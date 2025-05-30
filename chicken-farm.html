@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Chicken Farm Design Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .section-title {
+            border-bottom: 2px solid #10B981; /* Green border */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .list-circle li::marker {
+            content: '• ';
+            color: #10B981; /* Green bullet */
+        }
+        .list-disc li::marker {
+            color: #10B981; /* Green bullet */
+        }
+        /* Styles for the calculator section */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .slider-value {
+            min-width: 40px;
+            text-align: right;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #059669; /* emerald-600 */
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #059669; /* emerald-600 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-green-700 mb-8">Comprehensive Chicken Farm Design Report for 100 Chickens</h1>
+
+        <p class="mb-6 text-lg">
+            This report outlines a detailed plan and recommendations for establishing a chicken farm with 100 chickens in Xuan Hai Commune, Ninh Hai District, Ninh Thuan Province, Vietnam. The design principles prioritize optimal chicken welfare, productivity, and efficient management in tropical environments. Additionally, an interactive chicken farm growth calculator is included to help you model population growth and costs.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">1. Recommended Dimensions & Layout for 100 Chickens</h2>
+        <p class="mb-4 text-lg">
+            Adequate space is paramount for the health, well-being, and productivity of a flock of 100 chickens. Overcrowding can lead to severe stress, heat-related issues, increased disease transmission, and reduced egg production.
+        </p>
+
+        <h3 class="text-xl sm:text-2xl font-semibold text-green-600 mb-3">Space Guidelines for 100 Chickens:</h3>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Coop (Indoor) Space:</strong> Aim for at least 3-4 square feet per chicken, totaling a minimum of <strong class="font-bold">300-400 sq ft (e.g., 15ft x 20ft or 18ft x 22ft)</strong>. This provides sufficient room for roosting, nesting, and movement, especially during inclement weather.
+            </li>
+            <li>
+                <strong>Run (Outdoor) Space:</strong> Provide at least 10 square feet per chicken, totaling a minimum of <strong class="font-bold">1000 sq ft (e.g., 20ft x 50ft or 30ft x 33.5ft)</strong>. A larger run allows for foraging, exercise, and reduces boredom and aggression.
+            </li>
+            <li>
+                <strong>Layout:</strong> For 100 chickens, a single, large, well-ventilated ground-level structure with a massive attached run is generally the most practical and efficient for management, cleaning, and ensuring optimal airflow. Multi-level designs become less practical at this scale due to increased complexity in ventilation and cleaning.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">2. Internal Coop Features for 100 Chickens</h2>
+        <ol class="list-decimal list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Roosting Bars:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>Provide 8-12 inches of roosting space per bird, totaling approximately <strong class="font-bold">67-100 feet of roosting bars</strong>. This will require multiple long, parallel roosting bars.</li>
+                    <li>Use 2x2 inch lumber with rounded edges for comfortable grip.</li>
+                    <li>Place at varying heights (18-36 inches off the ground) to allow chickens to choose their preferred spot, but ensure they are not directly above nesting boxes. Maintain at least 1 foot from walls to prevent droppings on surfaces.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Nesting Boxes:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>One nesting box for every 3-4 hens, totaling <strong class="font-bold">25-34 nesting boxes</strong>. These should be arranged in banks or multiple rows for easy access and egg collection.</li>
+                    <li>Approximate size: 12"x12"x12" each.</li>
+                    <li>Locate in a darker, quiet, and secluded area of the coop. Consider roll-away nesting boxes to keep eggs cleaner and reduce egg-eating, which can be a bigger issue with larger flocks.</li>
+                    <li>Elevate them off the ground to keep them cleaner and provide a sense of security for the hens.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Bedding:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li><strong class="font-bold">Coarse sand</strong> is highly recommended for hot climates due to its excellent drainage, cooling properties (it stays cooler than organic materials), and ease of cleaning. It also provides natural grit.</li>
+                    <li>If sand is not feasible, large flake pine shavings or hemp bedding can be used. Avoid fine sawdust or cedar shavings, which can cause respiratory issues or be toxic.</li>
+                    <li>With 100 chickens, daily cleaning and frequent replacement of bedding are crucial. Efficient daily cleaning systems (e.g., dropping boards under roosts, easy-access doors, and potentially a system for mechanical removal) are essential to manage waste and prevent heat/moisture buildup.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Private Area for Laying/Hatching:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>The nesting boxes serve as the primary laying areas. For hatching, a dedicated, secluded, and well-ventilated "broody hen box" within the coop can be used. For extensive hatching with a large flock, consider a separate, smaller brooder house or dedicated hatching pens to manage chicks effectively.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">3. Materials and Construction for Hot Climate</h2>
+        <p class="mb-4 text-lg">
+            This section details the primary construction materials, estimated quantities, and approximate local costs for building a chicken farm for 100 chickens in Xuan Hai Commune, Ninh Hai District, Ninh Thuan Province, Vietnam.
+        </p>
+        <p class="mb-6 text-red-600 font-semibold">
+            <strong class="underline">Disclaimer:</strong> The cost estimates below are highly approximate and can vary significantly based on supplier, quality, current market fluctuations, and your ability to negotiate. It is absolutely essential to obtain direct quotes from local material suppliers in Ninh Thuan Province for accurate budgeting. Prices are in Vietnamese Dong (VND).
+        </p>
+
+        <h3 class="text-xl sm:text-2xl font-semibold text-green-600 mb-3">Estimated Material List & Costs (for a 15ft x 20ft Coop and 20ft x 50ft Run):</h3>
+
+        <div class="overflow-x-auto mb-8">
+            <table class="min-w-full divide-y divide-stone-200">
+                <thead class="bg-stone-50">
+                    <tr>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Category</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Material</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Estimated Quantity</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Approx. Unit Cost (VND)</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Approx. Total Cost (VND)</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-stone-200">
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Foundation & Flooring (Coop)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Concrete Slab (15x20ft, 4in thick)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Cement (50kg bag)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~42 bags</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">90,000 - 120,000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">3,780,000 - 5,040,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Sand (m³)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.5 m³</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">200,000 - 350,000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">300,000 - 525,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Gravel (m³)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~3 m³</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">250,000 - 400,000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">750,000 - 1,200,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Rebar Mesh (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~300 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~15,000 - 20,000 (per kg, estimate total weight)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1,500,000 - 2,500,000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Structural Framing (Coop & Run Posts)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Coop Posts (4x4 treated wood, 12ft long)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Treated Wood (pcs)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">12 pcs</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~300,000 - 600,000 (per pc)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">3,600,000 - 7,200,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Run Posts (4x4 treated wood, 10ft long)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Treated Wood (pcs)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~25 pcs</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~250,000 - 500,000 (per pc)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">6,250,000 - 12,500,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Coop Framing (2x4, 2x6, 2x8 lumber)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Treated Wood (linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~660 linear ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~30,000 - 60,000 (per linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">19,800,000 - 39,600,000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Roofing (Coop)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Corrugated Metal Sheets</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Metal Sheet (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~450 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80,000 - 150,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~3,300,000 - 6,200,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Roof Insulation (foam/foil)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~450 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">30,000 - 100,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1,200,000 - 4,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Ridge Cap, Fasteners</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lump Sum</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~500,000 - 1,000,000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Walls & Fencing</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Solid Wall Cladding (Coop)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Cement Board/Plywood (4x8ft sheet)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~12 sheets</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">150,000 - 300,000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1,800,000 - 3,600,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Mesh Wall Sections (Coop)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Hardware Cloth (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~230 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80,000 - 150,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1,700,000 - 3,200,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Run Fencing</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Hardware Cloth (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~980 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80,000 - 150,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~7,800,000 - 14,700,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Buried Apron</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Hardware Cloth (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~210 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80,000 - 150,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1,600,000 - 3,100,000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Internal Features</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Nesting Boxes (30 units)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Plywood/Wood</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lump Sum</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2,000,000 - 5,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Roosting Bars (100 linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">2x2 Lumber</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~100 linear ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~15,000 - 30,000 (per linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1,500,000 - 3,000,000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Accessories & Equipment</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Shade Cloth</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Shade Cloth (sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~500 sq ft</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">15,000 - 40,000 (per m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~750,000 - 2,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Automated Watering System</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">PVC Pipes, Fittings, Nipples (~100-150)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lump Sum</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2,000,000 - 5,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Large Capacity Feeders</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Feeders (units)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">5-10 units</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">200,000 - 500,000 (per unit)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1,000,000 - 5,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Industrial Fans</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Fans (units)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">2-4 units</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1,000,000 - 3,000,000 (per unit)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">2,000,000 - 12,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Misting System</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Pump, Tubing, Nozzles</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lump Sum</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1,500,000 - 4,000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Miscellaneous (Hinges, Latches, Screws, Paint, etc.)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Various</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lump Sum</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2,000,000 - 5,000,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mb-6 text-lg">
+            <strong class="text-red-600">Total Estimated Material Cost Range: Approximately 50,000,000 VND - 100,000,000+ VND.</strong> This does not include labor costs, which can be substantial.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">4. Ventilation - The Most Critical Factor for Large Flocks</h2>
+        <p class="mb-4 text-lg">
+            Chickens lack sweat glands and rely on panting to dissipate body heat. Therefore, exceptional airflow is paramount to prevent heat stress, especially with a large flock of 100 chickens where heat and ammonia buildup can be significant.
+        </p>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>High and Low Vents (Stack Effect):</strong> Implement a robust system of predator-proof vents. Install very large and numerous vents near the roofline (high points) to allow rising hot air and ammonia to escape. Complement these with equally large vents near the floor level (low points) to draw in cooler, fresh air.
+            </li>
+            <li>
+                <strong>Cross-Ventilation:</strong> Design the coop with large, opposing openings to facilitate maximum cross-ventilation. Consider open-sided designs for the majority of the coop, with provisions for closing off sections during heavy rain or cooler nights.
+            </li>
+            <li>
+                <strong>Adjustable Openings:</strong> Maximize mesh sections on walls, particularly in the upper areas, and equip them with adjustable covers (e.g., roll-down tarps, hinged solid panels) that can be opened for maximum airflow or closed for protection.
+            </li>
+            <li>
+                <strong>Fans:</strong> For 100 chickens, multiple industrial-grade, outdoor-rated fans are highly recommended. Strategically place them to ensure consistent air circulation throughout the entire coop, especially during peak heat hours.
+            </li>
+            <li>
+                <strong>Shade:</strong> Beyond roof overhangs and shade cloth, consider building a dedicated, robust shade structure over a significant portion of the outdoor run. Planting fast-growing shade trees or vines around the coop and run can also provide natural cooling.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">5. Additional Considerations for Vietnam's Climate & Large Scale</h2>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Water Supply:</strong> Provide multiple, large, shaded water stations. For 100 chickens, an <strong class="font-bold">automated watering system</strong> (e.g., nipple drinkers connected to a main water line) is highly recommended to ensure constant access to fresh, cool water and minimize manual refilling. Consider adding ice to water reservoirs on extremely hot days.
+            </li>
+            <li>
+                <strong>Dust Bath Area:</strong> Establish multiple large, designated, shaded areas within the run. Fill these with a mixture of dry dirt, sand, and some wood ash or food-grade diatomaceous earth to help chickens clean themselves and deter external parasites.
+            </li>
+            <li>
+                <strong>Cooling Measures:</strong> Beyond ventilation and shade, consider installing a robust <strong class="font-bold">misting system</strong> over the outdoor run area. This can significantly cool the ambient air (avoid direct misting on chickens). Offering frozen treats (e.g., frozen fruits, vegetables, or water mixed with treats) can also help chickens stay cool and hydrated.
+            </li>
+            <li>
+                <strong>Predator Protection:</strong> Use heavy-duty hardware cloth for all enclosures. Bury an apron of hardware cloth (at least 12-18 inches deep and bent outwards) around the entire perimeter of the run to prevent burrowing predators. All doors and access points must have strong, predator-proof latches. For a large flock, a fully enclosed, robust run is essential to protect against both ground and aerial predators.
+            </li>
+            <li>
+                <strong>Rain Protection:</strong> While maximizing ventilation, you must also protect the flock from heavy tropical rains. Large roof overhangs are critical. For mesh openings, ensure you have effective, easily deployable solid panels (e.g., plywood, roll-down tarps) that can be quickly closed during downpours. Ensure the entire area, including the run, has excellent drainage to prevent standing water and mud.
+            </li>
+            <li>
+                <strong>Cleaning and Maintenance:</strong> Design the coop for maximum ease of cleaning. This includes multiple human-sized access doors, removable roosting bars, and dropping boards/trays directly under roosts. For 100 chickens, consider designing the coop to allow for easy access with a small tractor or large wheelbarrow for efficient manure removal. Implement a strict daily cleaning routine.
+            </li>
+            <li>
+                <strong>Lighting:</strong> Chickens require about 14-16 hours of light for optimal egg production. In tropical climates, natural daylight is usually sufficient. If supplemental lighting is needed during shorter days to maintain egg production, use cool LED lights that do not generate additional heat.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">6. Enhanced Chicken Farm Design Visual for 100 Chickens</h2>
+        <p class="mb-4 text-lg">
+            Based on the above recommendations, an enhanced design concept has been generated to illustrate a suitable chicken farm for 100 chickens in a hot climate. This visual emphasizes the large scale, superior ventilation, and effective cooling strategies necessary for a thriving large flock.
+        </p>
+
+        <div class="flex flex-col items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-4 shadow-inner">
+            <h3 class="text-xl font-semibold text-center mb-4">Generating Enhanced Coop Image...</h3>
+            <div id="loading-indicator" class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
+            <img id="chicken-coop-image" src="" alt="Enhanced Chicken Coop Design" class="mt-8 max-w-full h-auto rounded-lg shadow-lg hidden">
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title mt-12">7. Interactive Chicken Farm Growth Calculator</h2>
+        <p class="mb-6 text-lg">
+            This interactive calculator allows you to model population growth and associated costs for your chicken farm based on various parameters. Adjust the inputs to explore different scenarios and understand their impact on your flock's size and financial outlook.
+        </p>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <section id="inputsSection" class="lg:col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Input Parameters</h3>
+                <p class="text-sm text-stone-600 mb-6">Adjust the parameters below to see how different assumptions affect your chicken farm's population growth and costs. Initial values are set to provide a starting point for a farm of this scale.</p>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label for="initialFlock" class="block text-sm font-medium text-stone-700">Initial Flock Size:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="initialFlock" name="initialFlock" min="100" max="2000" value="100" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="initialFlockValue" class="slider-value text-sm text-emerald-700 font-semibold">100</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="hensPerRooster" class="block text-sm font-medium text-stone-700">Hens per Rooster:</label>
+                         <div class="flex items-center space-x-2">
+                            <input type="range" id="hensPerRooster" name="hensPerRooster" min="5" max="20" value="10" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="hensPerRoosterValue" class="slider-value text-sm text-emerald-700 font-semibold">10</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="layingPercentage" class="block text-sm font-medium text-stone-700">Laying Hens (% of mature hens):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="layingPercentage" name="layingPercentage" min="30" max="100" value="80" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="layingPercentageValue" class="slider-value text-sm text-emerald-700 font-semibold">80%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="eggsPerHen" class="block text-sm font-medium text-stone-700">Eggs per Laying Hen per Month:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="eggsPerHen" name="eggsPerHen" min="5" max="30" value="18" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="eggsPerHenValue" class="slider-value text-sm text-emerald-700 font-semibold">18</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="fertilityRate" class="block text-sm font-medium text-stone-700">Fertility Rate (%):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="fertilityRate" name="fertilityRate" min="50" max="100" value="90" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="fertilityRateValue" class="slider-value text-sm text-emerald-700 font-semibold">90%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="hatchRate" class="block text-sm font-medium text-stone-700">Hatch Rate (% of fertile eggs):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="hatchRate" name="hatchRate" min="30" max="100" value="70" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="hatchRateValue" class="slider-value text-sm text-emerald-700 font-semibold">70%</span>
+                        </div>
+                    </div>
+                     <div>
+                        <label for="broodyHenPercentage" class="block text-sm font-medium text-stone-700">Broody Hens (% of laying hens):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="broodyHenPercentage" name="broodyHenPercentage" min="5" max="50" value="20" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="broodyHenPercentageValue" class="slider-value text-sm text-emerald-700 font-semibold">20%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="eggsPerBroodingHen" class="block text-sm font-medium text-stone-700">Eggs per Brooding Hen Cycle:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="eggsPerBroodingHen" name="eggsPerBroodingHen" min="5" max="20" value="12" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="eggsPerBroodingHenValue" class="slider-value text-sm text-emerald-700 font-semibold">12</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="chickSurvivalRate" class="block text-sm font-medium text-stone-700">Chick Survival Rate to Maturity (%):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="chickSurvivalRate" name="chickSurvivalRate" min="30" max="100" value="75" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="chickSurvivalRateValue" class="slider-value text-sm text-emerald-700 font-semibold">75%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="monthlyGiveaway" class="block text-sm font-medium text-stone-700">Monthly Giveaway (chickens):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="monthlyGiveaway" name="monthlyGiveaway" min="0" max="200" value="20" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="monthlyGiveawayValue" class="slider-value text-sm text-emerald-700 font-semibold">20</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="initialChickenCost" class="block text-sm font-medium text-stone-700">Initial Cost for 100 Chickens (VND):</label>
+                        <input type="number" id="initialChickenCost" name="initialChickenCost" min="0" value="24000000" class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="monthlyFeedCostPer100" class="block text-sm font-medium text-stone-700">Monthly Feed Cost for 100 Chickens (VND):</label>
+                        <input type="number" id="monthlyFeedCostPer100" name="monthlyFeedCostPer100" min="0" value="3000000" class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </section>
+
+            <section id="projectionsSection" class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Population Projections</h3>
+                <p class="text-sm text-stone-600 mb-6">Based on the selected parameters, here's the projected population growth over two years, shown in the chart and summary table. Explore how changes in breeding success or giveaways affect your flock.</p>
+                
+                <div class="mb-6">
+                    <p class="text-md font-medium text-stone-700">Initial Hens: <span id="initialHensDisplay" class="font-bold text-emerald-700">91</span></p>
+                    <p class="text-md font-medium text-stone-700">Initial Roosters: <span id="initialRoostersDisplay" class="font-bold text-emerald-700">9</span></p>
+                    <p class="text-md font-medium text-stone-700">Calculated New Mature Chickens per Cycle (after 6 months): <span id="newChicksDisplay" class="font-bold text-emerald-700">82</span></p>
+                </div>
+
+                <div class="chart-container mb-8">
+                    <canvas id="populationChart"></canvas>
+                </div>
+
+                <h4 class="text-xl font-semibold text-emerald-600 mb-3">Summary of Approximate Population:</h4>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-stone-200">
+                        <thead class="bg-stone-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Timeframe</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Projected Chickens</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-stone-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 6 Months</td>
+                                <td id="pop6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">100</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 12 Months</td>
+                                <td id="pop12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">492</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 18 Months</td>
+                                <td id="pop18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">884</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 2 Years (24 Months)</td>
+                                <td id="pop24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">1276</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <section id="costAnalysisSection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Cost Analysis</h3>
+            <p class="text-sm text-stone-600 mb-6">This section presents the initial cost and cumulative feed costs based on the projected chicken population. Feed costs are calculated based on the current chicken population each month.</p>
+            
+            <div class="mb-6">
+                <p class="text-md font-medium text-stone-700">Total Initial Cost: <span id="totalInitialCostDisplay" class="font-bold text-emerald-700">24.000.000 VND</span></p>
+            </div>
+
+            <h4 class="text-xl font-semibold text-emerald-600 mb-3">Summary of Cumulative Costs:</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-stone-200">
+                    <thead class="bg-stone-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Timeframe</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Total Feed Cost</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Total Cumulative Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-stone-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 6 Months</td>
+                            <td id="feedCost6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 12 Months</td>
+                            <td id="feedCost12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 18 Months</td>
+                            <td id="feedCost18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">After 2 Years (24 Months)</td>
+                            <td id="feedCost24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="calculationMethodologySection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Calculation Methodology</h3>
+            <p class="text-sm text-stone-600 mb-4">This section outlines the core steps used to calculate the number of new mature chickens added to the flock each cycle (after the initial 6-month maturity period), based on your inputs. The model simplifies by assuming a consistent rate of new mature chickens per cycle, derived from the initial hen population and breeding parameters.</p>
+            <ol class="list-decimal list-inside space-y-2 text-stone-700 text-sm">
+                <li><strong>Initial Hens & Roosters:</strong> Calculated from total initial flock and hen-to-rooster ratio.</li>
+                <li><strong>Laying Hens:</strong> Initial Hens × Percentage of Laying Hens.</li>
+                <li><strong>Broody Hens per Cycle:</strong> Laying Hens × Percentage of Broody Hens.</li>
+                <li><strong>Eggs Set by Broody Hens:</strong> Broody Hens per Cycle × Eggs per Brooding Hen Cycle.</li>
+                <li><strong>Fertile Eggs:</strong> Eggs Set × Fertility Rate.</li>
+                <li><strong>Hatched Chicks:</strong> Fertile Eggs × Hatch Rate.</li>
+                <li><strong>Surviving New Mature Chickens per Cycle:</strong> Hatched Chicks × Chick Survival Rate. This is the number added each month after the first 6 months.</li>
+                <li><strong>Population Adjustment:</strong> For the first 6 months, the population does not decrease due to no giveaways. From month 7 onwards, the calculated new mature chickens are added, and then the monthly giveaway is subtracted.</li>
+                <li><strong>Feed Cost:</strong> Monthly feed cost is calculated by the previous month's chicken population multiplied by the feed cost per chicken.</li>
+                <li><strong>Total Cumulative Cost:</strong> Total initial cost plus the cumulative feed cost over time.</li>
+            </ol>
+        </section>
+
+        <section id="importantConsiderationsSection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Important Considerations</h3>
+            <p class="text-sm text-stone-600 mb-4">Remember, these are projections. The following real-world factors can significantly influence actual flock growth:</p>
+            <ul class="list-disc list-inside space-y-2 text-stone-700 text-sm">
+                <li><strong>Rooster Management:</strong> As your flock grows, you will need to manage your rooster population to maintain the ideal hen-to-rooster ratio and prevent fighting or over-breeding. Many of the "given away" chickens might be roosters.</li>
+                <li><strong>Space and Resources:</strong> Rapid growth will require significant increases in coop space, feed, waterers, and general management.</li>
+                <li><strong>Disease:</strong> Larger flocks are more susceptible to disease outbreaks.</li>
+                <li><strong>Broodiness Cycles:</strong> Not all hens will become broody exactly when you need them to, and some might abandon nests.</li>
+                <li><strong>Seasonal Variations:</strong> Egg production and broodiness can vary with seasons (e.g., less in winter).</li>
+                <li><strong>Predation:</strong> Losses due to predators can impact numbers if not managed.</li>
+                <li><strong>Age of Flock:</strong> Egg production and fertility decline as hens and roosters age. This model assumes a consistent production rate from the mature flock.</li>
+            </ul>
+        </section>
+        
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title mt-12">8. Crucial Details for a Beginner Chicken Farmer</h2>
+        <p class="mb-4 text-lg">
+            Starting a chicken farm with 100 chickens, especially with no prior experience, is a significant undertaking. While the previous sections provide excellent guidelines for infrastructure, here are some crucial details that are vital for a beginner's success.
+        </p>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Start Small:</strong> Consider starting with a smaller flock (e.g., 10-20 chickens) for a year to learn the basics of chicken care, health, behavior, and daily routines. This allows you to make mistakes on a smaller scale and build confidence before scaling up.
+            </li>
+            <li>
+                <strong>Choose the Right Breed:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Purpose:</strong> Determine if you are raising chickens for eggs, meat, or both (dual-purpose), as this will dictate the breeds you choose.</li>
+                    <li><strong>Climate Adaptability:</strong> Select breeds known to tolerate hot and humid climates well. Local Vietnamese breeds might be a good starting point as they are naturally adapted.</li>
+                    <li><strong>Temperament:</strong> Some breeds are calmer and easier to manage than others.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Biosecurity is Paramount:</strong> With a large flock, disease can spread rapidly.
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Quarantine New Birds:</strong> Always isolate new chickens for at least 30 days before introducing them to your main flock.</li>
+                    <li><strong>Foot Baths/Sanitation:</strong> Implement strict sanitation protocols, especially for visitors or when moving between different areas of the farm.</li>
+                    <li><strong>Pest Control:</strong> Develop a plan to manage rodents, insects, and wild birds, as they can carry diseases.</li>
+                    <li><strong>Cleanliness:</strong> Regular and thorough cleaning of the coop and equipment is non-negotiable.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Daily Routine and Observation:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Daily Checks:</strong> You need to observe your flock daily for signs of illness (lethargy, ruffled feathers, unusual droppings, changes in eating/drinking). Early detection is key.</li>
+                    <li><strong>Food and Water:</strong> Ensure constant access to fresh, clean water and appropriate feed. Automated systems are good, but daily checks are still necessary.</li>
+                    <li><strong>Egg Collection:</strong> Collect eggs frequently (at least twice a day) to maintain hygiene and prevent breakage or egg-eating.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Nutrition:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Balanced Feed:</strong> Chickens need a balanced diet appropriate for their age and purpose (chick starter, grower, layer feed). Do not just feed them scraps.</li>
+                    <li><strong>Supplements:</strong> Provide grit (if not free-ranging on dirt/sand) and oyster shell (for laying hens) to aid digestion and eggshell quality.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Waste Management:</strong> 100 chickens produce a significant amount of manure. You'll need a plan for composting it effectively. Proper waste management prevents odors, flies, and disease.
+            </li>
+            <li>
+                <strong>Predator Management:</strong> Beyond the hardware cloth and buried aprons mentioned in the Canvas, consider secure night-time locking mechanisms, electric fencing for the run perimeter, and potentially even a guard dog (if appropriate for your location and breed).
+            </li>
+            <li>
+                <strong>Local Regulations and Support:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Permits:</strong> Check local regulations in Vietnam regarding raising poultry, especially for a commercial scale.</li>
+                    <li><strong>Veterinary Care:</strong> Identify a local veterinarian experienced with poultry.</li>
+                    <li><strong>Community:</strong> Connect with other local chicken farmers or agricultural extension services for advice and support.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Financial Planning:</strong> The calculator helps with ongoing costs, but remember initial setup costs (coop construction, fencing, waterers, feeders, initial flock purchase, brooding equipment for chicks) can be substantial. Factor in potential losses due to disease, predators or culling.
+            </li>
+        </ul>
+
+        <footer class="text-center mt-12 py-6 border-t border-stone-300">
+            <p class="text-sm text-stone-500">Chicken Farm Growth Calculator | Interactive Model based on Provided Report</p>
+        </footer>
+    </div>
+
+    <script>
+        // Image generation script (Section 6)
+        document.addEventListener('DOMContentLoaded', async () => {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const chickenCoopImage = document.getElementById('chicken-coop-image');
+
+            const prompt = "A very spacious, commercial-scale chicken coop designed for 100 chickens in a hot, humid tropical climate like Vietnam. The coop has a large, light-colored corrugated metal roof with very wide overhangs for maximum shade. The roof shows subtle signs of insulation underneath. The walls are primarily large mesh panels covered with fine hardware cloth for excellent cross-ventilation, with solid sections for shelter. There are numerous large high and low vents visible. The coop is significantly raised off the ground on sturdy, numerous posts. There's a massive, extensively shaded outdoor run attached, with multiple large shade cloths over parts of the mesh. The overall aesthetic is practical, durable, and optimized for extreme heat reduction for a large flock, with a clean and functional, almost industrial appearance. Show many chickens inside and in the run. Focus on the architectural details for hot weather and large scale.";
+
+            const payload = {
+                instances: { prompt: prompt },
+                parameters: { "sampleCount": 1 }
+            };
+
+            const apiKey = ""; // Canvas will automatically provide this at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // Check if the response is OK (status 200-299)
+                if (!response.ok) {
+                    const errorBody = await response.text(); // Read the error body as text
+                    throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
+                }
+
+                const result = await response.json();
+
+                if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                    const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    chickenCoopImage.src = imageUrl;
+                    chickenCoopImage.classList.remove('hidden');
+                    loadingIndicator.classList.add('hidden');
+                    document.querySelector('.flex h3').textContent = 'Enhanced Chicken Coop Design:';
+                } else {
+                    console.error('Image generation failed: No valid predictions found or unexpected response structure.');
+                    loadingIndicator.classList.add('hidden');
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'Failed to generate image. Please try again or check console for details.';
+                    errorMessage.className = 'text-red-500 mt-4 text-center';
+                    document.querySelector('.flex').appendChild(errorMessage);
+                }
+            } catch (error) {
+                console.error('Error generating image:', error);
+                loadingIndicator.classList.add('hidden');
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = `An error occurred during image generation: ${error.message}. Please check your network connection and try again.`;
+                errorMessage.className = 'text-red-500 mt-4 text-center';
+                document.querySelector('.flex').appendChild(errorMessage);
+            }
+        });
+
+        // Chicken growth calculator script (Section 7)
+        const inputs = {
+            initialFlock: document.getElementById('initialFlock'),
+            hensPerRooster: document.getElementById('hensPerRooster'),
+            layingPercentage: document.getElementById('layingPercentage'),
+            eggsPerHen: document.getElementById('eggsPerHen'),
+            fertilityRate: document.getElementById('fertilityRate'),
+            hatchRate: document.getElementById('hatchRate'),
+            broodyHenPercentage: document.getElementById('broodyHenPercentage'),
+            eggsPerBroodingHen: document.getElementById('eggsPerBroodingHen'),
+            chickSurvivalRate: document.getElementById('chickSurvivalRate'),
+            monthlyGiveaway: document.getElementById('monthlyGiveaway'),
+        };
+
+        const valueSpans = {
+            initialFlockValue: document.getElementById('initialFlockValue'),
+            hensPerRoosterValue: document.getElementById('hensPerRoosterValue'),
+            layingPercentageValue: document.getElementById('layingPercentageValue'),
+            eggsPerHenValue: document.getElementById('eggsPerHenValue'),
+            fertilityRateValue: document.getElementById('fertilityRateValue'),
+            hatchRateValue: document.getElementById('hatchRateValue'),
+            broodyHenPercentageValue: document.getElementById('broodyHenPercentageValue'),
+            eggsPerBroodingHenValue: document.getElementById('eggsPerBroodingHenValue'),
+            chickSurvivalRateValue: document.getElementById('chickSurvivalRateValue'),
+            monthlyGiveawayValue: document.getElementById('monthlyGiveawayValue'),
+        };
+
+        const outputDisplays = {
+            initialHensDisplay: document.getElementById('initialHensDisplay'),
+            initialRoostersDisplay: document.getElementById('initialRoostersDisplay'),
+            newChicksDisplay: document.getElementById('newChicksDisplay'),
+            pop6months: document.getElementById('pop6months'),
+            pop12months: document.getElementById('pop12months'),
+            pop18months: document.getElementById('pop18months'),
+            pop24months: document.getElementById('pop24months'),
+        };
+        
+        const costInputs = {
+            initialChickenCost: document.getElementById('initialChickenCost'),
+            monthlyFeedCostPer100: document.getElementById('monthlyFeedCostPer100'),
+        };
+
+        const costOutputDisplays = {
+            totalInitialCostDisplay: document.getElementById('totalInitialCostDisplay'),
+            feedCost6months: document.getElementById('feedCost6months'),
+            feedCost12months: document.getElementById('feedCost12months'),
+            feedCost18months: document.getElementById('feedCost18months'),
+            feedCost24months: document.getElementById('feedCost24months'),
+            cumulativeCost6months: document.getElementById('cumulativeCost6months'),
+            cumulativeCost12months: document.getElementById('cumulativeCost12months'),
+            cumulativeCost18months: document.getElementById('cumulativeCost18months'),
+            cumulativeCost24months: document.getElementById('cumulativeCost24months'),
+        };
+
+        let populationChart = null;
+
+        function updateSliderValue(sliderId, spanId, isPercentage = false) {
+            const slider = inputs[sliderId];
+            const span = valueSpans[spanId];
+            span.textContent = slider.value + (isPercentage ? '%' : '');
+        }
+
+        function calculateNewMatureChicksPerCycle(initialHens, pLaying, eggsPerHenMonthly, pFertile, pHatch, pBroody, eggsPerBroodingCycle, pSurvival) {
+            const layingHens = initialHens * (pLaying / 100);
+            const broodyHensThisCycle = layingHens * (pBroody / 100); 
+            const eggsSet = broodyHensThisCycle * eggsPerBroodingCycle;
+            const fertileEggs = eggsSet * (pFertile / 100);
+            const hatchedChicks = fertileEggs * (pHatch / 100);
+            const survivingNewMatureChickens = hatchedChicks * (pSurvival / 100);
+            return Math.round(survivingNewMatureChickens);
+        }
+
+        function projectPopulation() {
+            const initialFlockVal = parseInt(inputs.initialFlock.value);
+            const hensPerRoosterVal = parseInt(inputs.hensPerRooster.value);
+            const layingPercentageVal = parseInt(inputs.layingPercentage.value);
+            const eggsPerHenVal = parseInt(inputs.eggsPerHen.value);
+            const fertilityRateVal = parseInt(inputs.fertilityRate.value);
+            const hatchRateVal = parseInt(inputs.hatchRate.value);
+            const broodyHenPercentageVal = parseInt(inputs.broodyHenPercentage.value);
+            const eggsPerBroodingHenVal = parseInt(inputs.eggsPerBroodingHen.value);
+            const chickSurvivalRateVal = parseInt(inputs.chickSurvivalRate.value);
+            const monthlyGiveawayVal = parseInt(inputs.monthlyGiveaway.value);
+
+            const totalRatioParts = 1 + hensPerRoosterVal;
+            const initialRoosters = Math.round(initialFlockVal / totalRatioParts);
+            const initialHens = initialFlockVal - initialRoosters;
+
+            outputDisplays.initialHensDisplay.textContent = initialHens;
+            outputDisplays.initialRoostersDisplay.textContent = initialRoosters;
+
+            const newMatureChicksPerCycleVal = calculateNewMatureChicksPerCycle(
+                initialHens, layingPercentageVal, eggsPerHenVal, fertilityRateVal, hatchRateVal, broodyHenPercentageVal, eggsPerBroodingHenVal, chickSurvivalRateVal
+            );
+            outputDisplays.newChicksDisplay.textContent = newMatureChicksPerCycleVal;
+            
+            let currentPopulation = initialFlockVal;
+            const populationData = [initialFlockVal];
+            const maturityAgeMonths = 6;
+
+            // Cost calculations
+            const initialChickenCostVal = parseInt(costInputs.initialChickenCost.value);
+            const monthlyFeedCostPer100Val = parseInt(costInputs.monthlyFeedCostPer100.value);
+            const costPerChickenPerMonth = monthlyFeedCostPer100Val / 100;
+
+            costOutputDisplays.totalInitialCostDisplay.textContent = initialChickenCostVal.toLocaleString('en-US') + ' VND'; // Changed to en-US for consistency
+
+            let cumulativeFeedCost = 0;
+            let cumulativeTotalCost = initialChickenCostVal;
+
+            for (let month = 1; month <= 24; month++) {
+                let populationBeforeGiveaway = currentPopulation;
+                if (month >= maturityAgeMonths) {
+                    populationBeforeGiveaway += newMatureChicksPerCycleVal;
+                }
+                
+                // Apply giveaway only after the first 6 months
+                if (month > 6) { 
+                    currentPopulation = Math.max(0, populationBeforeGiveaway - monthlyGiveawayVal);
+                } else {
+                    currentPopulation = populationBeforeGiveaway; // No giveaway for the first 6 months
+                }
+                populationData.push(currentPopulation);
+
+                // Calculate feed cost for the current month based on population at the start of the month (previous month's end population)
+                const monthlyFeedCost = populationData[month-1] * costPerChickenPerMonth; 
+                cumulativeFeedCost += monthlyFeedCost;
+                cumulativeTotalCost += monthlyFeedCost;
+
+                if (month === 6) {
+                    outputDisplays.pop6months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost6months.textContent = Math.round(cumulativeFeedCost).toLocaleString('en-US') + ' VND';
+                    costOutputDisplays.cumulativeCost6months.textContent = Math.round(cumulativeTotalCost).toLocaleString('en-US') + ' VND';
+                }
+                if (month === 12) {
+                    outputDisplays.pop12months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost12months.textContent = Math.round(cumulativeFeedCost).toLocaleString('en-US') + ' VND';
+                    costOutputDisplays.cumulativeCost12months.textContent = Math.round(cumulativeTotalCost).toLocaleString('en-US') + ' VND';
+                }
+                if (month === 18) {
+                    outputDisplays.pop18months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost18months.textContent = Math.round(cumulativeFeedCost).toLocaleString('en-US') + ' VND';
+                    costOutputDisplays.cumulativeCost18months.textContent = Math.round(cumulativeTotalCost).toLocaleString('en-US') + ' VND';
+                }
+                if (month === 24) {
+                    outputDisplays.pop24months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost24months.textContent = Math.round(cumulativeFeedCost).toLocaleString('en-US') + ' VND';
+                    costOutputDisplays.cumulativeCost24months.textContent = Math.round(cumulativeTotalCost).toLocaleString('en-US') + ' VND';
+                }
+            }
+            
+            updateChart(populationData);
+        }
+
+        // Fix for Chart.js and Tailwind conflict - ensure Chart.js renders correctly
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#374151';
+
+        function updateChart(data) {
+            const labels = Array.from({ length: 25 }, (_, i) => `Month ${i}`);
+            if (populationChart) {
+                populationChart.data.labels = labels;
+                populationChart.data.datasets[0].data = data;
+                populationChart.update();
+            } else {
+                const ctx = document.getElementById('populationChart').getContext('2d');
+                populationChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Projected Chicken Population',
+                            data: data,
+                            borderColor: 'rgb(5, 150, 105)', // emerald-600
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            tension: 0.1,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Number of Chickens' }
+                            },
+                            x: {
+                                title: { display: true, text: 'Month' }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + ' chickens';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize slider values and attach event listeners
+        Object.keys(inputs).forEach(key => {
+            const isPercentage = key.includes('Percentage') || key.includes('Rate');
+            updateSliderValue(key, key + 'Value', isPercentage); 
+            inputs[key].addEventListener('input', () => {
+                updateSliderValue(key, key + 'Value', isPercentage);
+                projectPopulation();
+            });
+        });
+
+        Object.keys(costInputs).forEach(key => {
+            costInputs[key].addEventListener('input', projectPopulation);
+        });
+
+        // Initial population projection on load
+        document.addEventListener('DOMContentLoaded', projectPopulation);
+    </script>
+</body>
+</html>
