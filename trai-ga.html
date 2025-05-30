@@ -373,7 +373,7 @@
         <div class="flex flex-col items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-4 shadow-inner">
             <h3 class="text-xl font-semibold text-center mb-4">Đang tạo hình ảnh chuồng gà được cải tiến...</h3>
             <div id="loading-indicator" class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
-            <img id="chicken-coop-image" src="https://dougho.github.io/TienNguyenTV/chicken-farm-coop.png" alt="Enhanced Chicken Coop Design" class="mt-8 max-w-full h-auto rounded-lg shadow-lg hidden">
+            <img id="chicken-coop-image" src="https://dougho.github.io/TienNguyenTV/chicken-farm-coop.png" alt="Enhanced Chicken Coop Design" class="mt-8 max-w-full h-auto rounded-lg shadow-lg">
         </div>
 
         <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title mt-12">7. Công cụ tính toán tăng trưởng trang trại gà tương tác</h2>
@@ -654,59 +654,6 @@
     </div>
 
     <script>
-        // Image generation script (Section 6)
-        document.addEventListener('DOMContentLoaded', async () => {
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const chickenCoopImage = document.getElementById('chicken-coop-image');
-
-            const prompt = "A very spacious, commercial-scale chicken coop designed for 100 chickens in a hot, humid tropical climate like Vietnam. The coop has a large, light-colored corrugated metal roof with very wide overhangs for maximum shade. The roof shows subtle signs of insulation underneath. The walls are primarily large mesh panels covered with fine hardware cloth for excellent cross-ventilation, with solid sections for shelter. There are numerous large high and low vents visible. The coop is significantly raised off the ground on sturdy, numerous posts. There's a massive, extensively shaded outdoor run attached, with multiple large shade cloths over parts of the mesh. The overall aesthetic is practical, durable, and optimized for extreme heat reduction for a large flock, with a clean and functional, almost industrial appearance. Show many chickens inside and in the run. Focus on the architectural details for hot weather and large scale.";
-
-            const payload = {
-                instances: { prompt: prompt },
-                parameters: { "sampleCount": 1 }
-            };
-
-            const apiKey = ""; // Canvas will automatically provide this at runtime
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                // Check if the response is OK (status 200-299)
-                if (!response.ok) {
-                    const errorBody = await response.text(); // Read the error body as text
-                    throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
-                }
-
-                const result = await response.json();
-
-                if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
-                    const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
-                    chickenCoopImage.src = imageUrl;
-                    chickenCoopImage.classList.remove('hidden');
-                    loadingIndicator.classList.add('hidden');
-                    document.querySelector('.flex h3').textContent = 'Enhanced Chicken Coop Design:';
-                } else {
-                    console.error('Image generation failed: No valid predictions found or unexpected response structure.');
-                    loadingIndicator.classList.add('hidden');
-                    const errorMessage = document.createElement('p');
-                    errorMessage.textContent = 'Failed to generate image. Please try again or check console for details.';
-                    errorMessage.className = 'text-red-500 mt-4 text-center';
-                    document.querySelector('.flex').appendChild(errorMessage);
-                }
-            } catch (error) {
-                console.error('Error generating image:', error);
-                loadingIndicator.classList.add('hidden');
-                const errorMessage = document.createElement('p');
-                errorMessage.textContent = `An error occurred during image generation: ${error.message}. Please check your network connection and try again.`;
-                errorMessage.className = 'text-red-500 mt-4 text-center';
-                document.querySelector('.flex').appendChild(errorMessage);
-            }
-        });
 
         // Chicken growth calculator script (Section 7)
         const inputs = {
