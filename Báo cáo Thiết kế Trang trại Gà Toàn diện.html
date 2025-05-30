@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Thiết kế Trang trại Gà Toàn diện cho 100 con gà</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .section-title {
+            border-bottom: 2px solid #10B981; /* Green border */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .list-circle li::marker {
+            content: '• ';
+            color: #10B981; /* Green bullet */
+        }
+        .list-disc li::marker {
+            color: #10B981; /* Green bullet */
+        }
+        /* Styles for the calculator section */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .slider-value {
+            min-width: 40px;
+            text-align: right;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #059669; /* emerald-600 */
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type=range]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #059669; /* emerald-600 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-10">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-green-700 mb-8">Báo cáo Thiết kế Trang trại Gà Toàn diện cho 100 con gà</h1>
+
+        <p class="mb-6 text-lg">
+            Báo cáo này phác thảo một kế hoạch chi tiết và các khuyến nghị để thành lập một trang trại gà với 100 con gà tại Xã Xuân Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam. Các nguyên tắc thiết kế ưu tiên phúc lợi tối ưu cho gà, năng suất và quản lý hiệu quả trong môi trường nhiệt đới. Ngoài ra, một công cụ tính toán tăng trưởng trang trại gà tương tác cũng được bao gồm để giúp bạn mô hình hóa sự tăng trưởng dân số và chi phí.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">1. Kích thước & Bố cục Khuyến nghị cho 100 con gà</h2>
+        <p class="mb-4 text-lg">
+            Không gian đầy đủ là tối quan trọng đối với sức khỏe, phúc lợi và năng suất của một đàn 100 con gà. Tình trạng quá đông có thể dẫn đến căng thẳng nghiêm trọng, các vấn đề liên quan đến nhiệt, tăng nguy cơ lây lan bệnh tật và giảm sản lượng trứng.
+        </p>
+
+        <h3 class="text-xl sm:text-2xl font-semibold text-green-600 mb-3">Hướng dẫn về không gian cho 100 con gà:</h3>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Không gian chuồng (trong nhà):</strong> Mục tiêu ít nhất 0.28-0.37 mét vuông (3-4 feet vuông) mỗi con gà, tổng cộng tối thiểu <strong class="font-bold">27.8-37.1 mét vuông (300-400 feet vuông) (ví dụ: 4.5m x 6m hoặc 5.5m x 6.7m)</strong>. Điều này cung cấp đủ không gian cho gà đậu, làm tổ và di chuyển, đặc biệt trong thời tiết khắc nghiệt.
+            </li>
+            <li>
+                <strong>Không gian sân chơi (ngoài trời):</strong> Cung cấp ít nhất 0.93 mét vuông (10 feet vuông) mỗi con gà, tổng cộng tối thiểu <strong class="font-bold">92.9 mét vuông (1000 feet vuông) (ví dụ: 6m x 15m hoặc 9m x 10.2m)</strong>. Sân chơi lớn hơn cho phép gà kiếm ăn, vận động và giảm sự nhàm chán, hung hăng.
+            </li>
+            <li>
+                <strong>Bố cục:</strong> Đối với 100 con gà, một cấu trúc lớn, thông gió tốt ở tầng trệt với sân chơi lớn liền kề thường là thực tế và hiệu quả nhất để quản lý, vệ sinh và đảm bảo luồng không khí tối ưu. Các thiết kế nhiều tầng trở nên kém thực tế hơn ở quy mô này do sự phức tạp trong thông gió và vệ sinh tăng lên.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">2. Các tính năng bên trong chuồng gà cho 100 con gà</h2>
+        <ol class="list-decimal list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Thanh đậu:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>Cung cấp 20-30 cm (8-12 inch) không gian đậu mỗi con gà, tổng cộng khoảng <strong class="font-bold">20-30 mét (67-100 feet) thanh đậu</strong>. Điều này sẽ yêu cầu nhiều thanh đậu dài, song song.</li>
+                    <li>Sử dụng gỗ 5x5 cm (2x2 inch) với các cạnh bo tròn để gà bám thoải mái.</li>
+                    <li>Đặt ở các độ cao khác nhau (45-90 cm hoặc 18-36 inch so với mặt đất) để gà chọn vị trí ưa thích, nhưng đảm bảo chúng không nằm trực tiếp phía trên hộp làm tổ. Duy trì khoảng cách ít nhất 30 cm (1 foot) so với tường để tránh phân dính vào bề mặt.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Hộp làm tổ:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>Một hộp làm tổ cho mỗi 3-4 con gà mái, tổng cộng <strong class="font-bold">25-34 hộp làm tổ</strong>. Chúng nên được sắp xếp thành các hàng hoặc nhiều hàng để dễ dàng tiếp cận và thu trứng.</li>
+                    <li>Kích thước xấp xỉ: 30x30x30 cm (12"x12"x12") mỗi hộp.</li>
+                    <li>Đặt ở khu vực tối hơn, yên tĩnh và kín đáo trong chuồng. Cân nhắc sử dụng hộp làm tổ có khay trứng tự lăn để giữ trứng sạch hơn và giảm tình trạng gà ăn trứng, đây có thể là vấn đề lớn hơn với đàn gà lớn.</li>
+                    <li>Nâng cao chúng so với mặt đất để giữ chúng sạch hơn và mang lại cảm giác an toàn cho gà mái.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Vật liệu lót chuồng:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li><strong class="font-bold">Cát thô</strong> rất được khuyến nghị cho khí hậu nóng do khả năng thoát nước tuyệt vời, đặc tính làm mát (nó giữ mát hơn vật liệu hữu cơ) và dễ vệ sinh. Nó cũng cung cấp grit tự nhiên.</li>
+                    <li>Nếu cát không khả thi, có thể sử dụng dăm bào thông lớn hoặc vỏ cây gai dầu. Tránh mùn cưa mịn hoặc dăm bào tuyết tùng, có thể gây ra các vấn đề về hô hấp hoặc độc hại.</li>
+                    <li>Với 100 con gà, việc vệ sinh hàng ngày và thay vật liệu lót chuồng thường xuyên là rất quan trọng. Các hệ thống vệ sinh hàng ngày hiệu quả (ví dụ: ván hứng phân dưới thanh đậu, cửa dễ tiếp cận và có thể là hệ thống loại bỏ cơ học) là cần thiết để quản lý chất thải và ngăn ngừa tích tụ nhiệt/độ ẩm.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Khu vực riêng để đẻ/ấp:</strong>
+                <ul class="list-disc list-inside ml-5 mt-1 space-y-1">
+                    <li>Các hộp làm tổ đóng vai trò là khu vực đẻ chính. Đối với việc ấp, có thể sử dụng một "hộp gà ấp" chuyên dụng, kín đáo và thông gió tốt trong chuồng hoặc một lồng ấp di động. Đối với việc ấp quy mô lớn với đàn gà lớn, hãy cân nhắc một nhà ấp nhỏ hơn riêng biệt hoặc các chuồng ấp chuyên dụng để quản lý gà con hiệu quả.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">3. Vật liệu và Xây dựng cho Khí hậu nóng</h2>
+        <p class="mb-4 text-lg">
+            Phần này trình bày chi tiết các vật liệu xây dựng chính, số lượng ước tính và chi phí địa phương gần đúng để xây dựng một trang trại gà cho 100 con gà tại Xã Xuân Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam.
+        </p>
+        <p class="mb-6 text-red-600 font-semibold">
+            <strong class="underline">Tuyên bố miễn trừ trách nhiệm:</strong> Các ước tính chi phí dưới đây chỉ là gần đúng và có thể thay đổi đáng kể dựa trên nhà cung cấp, chất lượng, biến động thị trường hiện tại và khả năng đàm phán của bạn. Điều quan trọng là phải có báo giá trực tiếp từ các nhà cung cấp vật liệu địa phương tại tỉnh Ninh Thuận để lập ngân sách chính xác. Giá được tính bằng Đồng Việt Nam (VND).
+        </p>
+
+        <h3 class="text-xl sm:text-2xl font-semibold text-green-600 mb-3">Danh sách vật liệu & Chi phí ước tính (cho chuồng 4.5m x 6m và sân chơi 6m x 15m):</h3>
+
+        <div class="overflow-x-auto mb-8">
+            <table class="min-w-full divide-y divide-stone-200">
+                <thead class="bg-stone-50">
+                    <tr>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Hạng mục</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Vật liệu</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Số lượng ước tính</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Chi phí đơn vị ước tính (VND)</th>
+                        <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Tổng chi phí ước tính (VND)</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-stone-200">
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Móng & Sàn (Chuồng)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Sàn bê tông (4.5x6m, dày 10cm)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Xi măng (bao 50kg)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~42 bao</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">90.000 - 120.000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">3.780.000 - 5.040.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Cát (m³)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.5 m³</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">200.000 - 350.000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">300.000 - 525.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Đá dăm (m³)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~3 m³</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">250.000 - 400.000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">750.000 - 1.200.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lưới thép gia cố (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~27.8 mét vuông (~300 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~15.000 - 20.000 (mỗi kg, ước tính tổng trọng lượng)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.500.000 - 2.500.000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Khung cấu trúc (Cột chuồng & sân chơi)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Cột chuồng (gỗ đã xử lý 10x10cm, dài 3.6m)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Gỗ đã xử lý (cây)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">12 cây</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~300.000 - 600.000 (mỗi cây)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">3.600.000 - 7.200.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Cột sân chơi (gỗ đã xử lý 10x10cm, dài 3m)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Gỗ đã xử lý (cây)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~25 cây</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~250.000 - 500.000 (mỗi cây)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">6.250.000 - 12.500.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Khung chuồng (gỗ 5x10cm, 5x15cm, 5x20cm)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Gỗ đã xử lý (mét dài)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~201 mét dài (~660 linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~30.000 - 60.000 (mỗi mét dài)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">6.030.000 - 12.060.000 (Lưu ý: Đã chuyển đổi từ feet sang mét)</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Mái (Chuồng)</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Tấm lợp kim loại sóng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tấm kim loại (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~41.8 mét vuông (~450 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80.000 - 150.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~3.300.000 - 6.200.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Vật liệu cách nhiệt mái (xốp/lá)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~41.8 mét vuông (~450 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">30.000 - 100.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.200.000 - 4.000,000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Nắp nóc, ốc vít</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tổng cộng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~500.000 - 1.000.000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Tường & Hàng rào</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Tấm ốp tường đặc (Chuồng)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tấm xi măng/Ván ép (tấm 1.2x2.4m)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~12 tấm</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">150.000 - 300.000</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1.800.000 - 3.600.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Phần tường lưới (Chuồng)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lưới thép (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~21.4 mét vuông (~230 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80.000 - 150.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.700.000 - 3.200.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Hàng rào sân chơi</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lưới thép (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~91 mét vuông (~980 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80.000 - 150.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~7.800.000 - 14.700.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Tấm chắn chôn dưới đất</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lưới thép (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~19.5 mét vuông (~210 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">80.000 - 150.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.600.000 - 3.100.000</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Các tính năng bên trong</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Hộp làm tổ (30 cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Ván ép/Gỗ</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tổng cộng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2.000.000 - 5.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Thanh đậu (30.5 mét dài)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Gỗ 5x5cm</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~30.5 mét dài (~100 linear ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~15.000 - 30.000 (mỗi mét dài)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">457.500 - 915.000 (Lưu ý: Đã chuyển đổi từ feet sang mét)</td>
+                    </tr>
+
+                    <tr class="bg-stone-50"><td colspan="5" class="px-3 py-2 text-sm font-bold text-emerald-700">Phụ kiện & Thiết bị</td></tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Lưới che nắng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Lưới che nắng (mét vuông)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~46.5 mét vuông (~500 sq ft)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">15.000 - 40.000 (mỗi m²)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~750.000 - 2.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Hệ thống cấp nước tự động</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Ống PVC, phụ kiện, núm uống (~100-150 cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tổng cộng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2.000.000 - 5.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Máng ăn dung tích lớn</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Máng ăn (cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">5-10 cái</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">200.000 - 500.000 (mỗi cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1.000.000 - 5.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Quạt công nghiệp</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Quạt (cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">2-4 cái</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">1.000.000 - 3.000.000 (mỗi cái)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">2.000.000 - 12.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Hệ thống phun sương</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Bơm, ống, vòi phun</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tổng cộng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.500.000 - 4.000.000</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Linh tinh (Bản lề, chốt, ốc vít, sơn, v.v.)</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Nhiều loại</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Tổng cộng</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">N/A</td>
+                        <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~2.000.000 - 5.000.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mb-6 text-lg">
+            <strong class="text-red-600">Tổng chi phí vật liệu ước tính: Khoảng 50.000.000 VND - 100.000.000+ VND.</strong> Chi phí này chưa bao gồm chi phí nhân công, có thể đáng kể.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">4. Thông gió - Yếu tố quan trọng nhất đối với đàn lớn</h2>
+        <p class="mb-4 text-lg">
+            Gà không có tuyến mồ hôi và dựa vào việc thở hổn hển để tản nhiệt cơ thể. Do đó, luồng không khí đặc biệt quan trọng để ngăn ngừa căng thẳng nhiệt, đặc biệt với đàn 100 con gà nơi nhiệt và amoniac tích tụ có thể đáng kể.
+        </p>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Lỗ thông hơi cao và thấp (Hiệu ứng ống khói):</strong> Triển khai một hệ thống lỗ thông hơi chống động vật săn mồi mạnh mẽ. Lắp đặt các lỗ thông hơi rất lớn và nhiều gần đường mái (điểm cao) để không khí nóng và amoniac bốc lên thoát ra ngoài. Bổ sung các lỗ thông hơi lớn tương tự ở gần mặt sàn (điểm thấp) để hút không khí mát hơn, trong lành vào.
+            </li>
+            <li>
+                <strong>Thông gió chéo:</strong> Thiết kế chuồng với các lỗ mở đối diện lớn để tạo điều kiện cho luồng không khí di chuyển tối đa. Cân nhắc các thiết kế hở hai bên cho phần lớn chuồng, với các điều khoản để đóng các phần lại trong mưa lớn hoặc những đêm mát mẻ hơn.
+            </li>
+            <li>
+                <strong>Lỗ mở có thể điều chỉnh:</strong> Tối đa hóa các phần lưới trên tường, đặc biệt ở các khu vực phía trên, và trang bị chúng bằng các tấm che có thể điều chỉnh (ví dụ: bạt cuộn xuống, tấm chắn rắn có bản lề) có thể mở ra để thông gió tối đa hoặc đóng lại để bảo vệ.
+            </li>
+            <li>
+                <strong>Quạt:</strong> Đối với 100 con gà, nên sử dụng nhiều quạt công nghiệp, được đánh giá ngoài trời. Đặt chúng một cách chiến lược để đảm bảo lưu thông không khí liên tục khắp chuồng, đặc biệt trong những giờ nắng nóng cao điểm.
+            </li>
+            <li>
+                <strong>Bóng râm:</strong> Ngoài mái hiên và lưới che nắng, hãy cân nhắc xây dựng một cấu trúc che nắng chuyên dụng, chắc chắn trên một phần đáng kể của sân chơi ngoài trời. Trồng cây che bóng nhanh lớn hoặc dây leo xung quanh chuồng và sân chơi cũng có thể cung cấp khả năng làm mát tự nhiên.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">5. Các cân nhắc bổ sung cho Khí hậu Việt Nam & Quy mô lớn</h2>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Nguồn nước:</strong> Cung cấp nhiều trạm cấp nước lớn, có bóng râm. Đối với 100 con gà, <strong class="font-bold">hệ thống cấp nước tự động</strong> (ví dụ: núm uống được nối với đường nước chính) rất được khuyến nghị để đảm bảo gà luôn có nước sạch, mát và giảm thiểu việc đổ đầy thủ công. Cân nhắc thêm đá vào bồn chứa nước vào những ngày cực kỳ nóng.
+            </li>
+            <li>
+                <strong>Khu vực tắm bụi:</strong> Thiết lập nhiều khu vực lớn, có bóng râm, chuyên dụng trong sân chơi. Đổ đầy những khu vực này bằng hỗn hợp đất khô, cát và một ít tro gỗ hoặc đất tảo cát cấp thực phẩm để giúp gà tự làm sạch và ngăn chặn ký sinh trùng bên ngoài.
+            </li>
+            <li>
+                <strong>Các biện pháp làm mát:</strong> Ngoài thông gió và bóng râm, hãy cân nhắc lắp đặt <strong class="font-bold">hệ thống phun sương</strong> mạnh mẽ trên khu vực sân chơi ngoài trời. Điều này có thể làm mát đáng kể không khí xung quanh (tránh phun sương trực tiếp lên gà). Cung cấp các món ăn đông lạnh (ví dụ: trái cây đông lạnh, rau củ hoặc nước pha với đồ ăn vặt) cũng có thể giúp gà giữ mát và đủ nước.
+            </li>
+            <li>
+                <strong>Bảo vệ khỏi động vật săn mồi:</strong> Sử dụng lưới thép nặng cho tất cả các khu vực chuồng. Chôn một tấm lưới thép (sâu ít nhất 30-45 cm và uốn cong ra ngoài) xung quanh toàn bộ chu vi sân chơi để ngăn chặn động vật săn mồi đào bới. Tất cả các cửa và điểm tiếp cận phải có chốt chắc chắn, chống động vật săn mồi. Đối với đàn gà lớn, một sân chơi được bao quanh hoàn toàn, chắc chắn là rất cần thiết để bảo vệ khỏi cả động vật săn mồi trên mặt đất và trên không.
+            </li>
+            <li>
+                <strong>Bảo vệ khỏi mưa:</strong> Trong khi tối đa hóa thông gió, bạn cũng phải bảo vệ đàn gà khỏi những trận mưa lớn nhiệt đới. Mái hiên lớn là rất quan trọng. Đối với các lỗ mở bằng lưới, đảm bảo bạn có các tấm chắn rắn hiệu quả, dễ triển khai (ví dụ: ván ép, bạt cuộn xuống) có thể nhanh chóng đóng lại trong những trận mưa lớn. Đảm bảo toàn bộ khu vực, bao gồm cả sân chơi, có hệ thống thoát nước tuyệt vời để ngăn ngừa nước đọng và bùn.
+            </li>
+            <li>
+                <strong>Vệ sinh và bảo trì:</strong> Thiết kế chuồng để dễ dàng vệ sinh tối đa. Điều này bao gồm nhiều cửa ra vào cỡ người, thanh đậu có thể tháo rời và ván/khay hứng phân trực tiếp dưới thanh đậu. Đối với 100 con gà, hãy cân nhắc thiết kế chuồng để dễ dàng tiếp cận bằng máy kéo nhỏ hoặc xe cút kít lớn để loại bỏ phân hiệu quả. Thực hiện một quy trình vệ sinh hàng ngày nghiêm ngặt.
+            </li>
+            <li>
+                <strong>Chiếu sáng:</strong> Gà cần khoảng 14-16 giờ ánh sáng để sản lượng trứng tối ưu. Ở vùng khí hậu nhiệt đới, ánh sáng ban ngày tự nhiên thường là đủ. Nếu cần chiếu sáng bổ sung để duy trì sản lượng trứng trong những ngày ngắn hơn, hãy sử dụng đèn LED mát không tạo thêm nhiệt.
+            </li>
+        </ul>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">6. Hình ảnh Thiết kế Trang trại Gà Nâng cao cho 100 con gà</h2>
+        <p class="mb-4 text-lg">
+            Dựa trên các khuyến nghị trên, một khái niệm thiết kế nâng cao đã được tạo ra để minh họa một trang trại gà phù hợp cho 100 con gà trong khí hậu nóng. Hình ảnh này nhấn mạnh quy mô lớn, thông gió vượt trội và các chiến lược làm mát hiệu quả cần thiết cho một đàn gà lớn phát triển mạnh.
+        </p>
+
+        <div class="flex flex-col items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-4 shadow-inner">
+            <h3 class="text-xl font-semibold text-center mb-4">Đang tạo hình ảnh chuồng gà được cải tiến...</h3>
+            <div id="loading-indicator" class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
+            <img id="chicken-coop-image" src="" alt="Enhanced Chicken Coop Design" class="mt-8 max-w-full h-auto rounded-lg shadow-lg hidden">
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title mt-12">7. Công cụ tính toán tăng trưởng trang trại gà tương tác</h2>
+        <p class="mb-6 text-lg">
+            Công cụ tính toán tương tác này cho phép bạn mô hình hóa sự tăng trưởng dân số và các chi phí liên quan cho trang trại gà của mình dựa trên các thông số khác nhau. Điều chỉnh các đầu vào để khám phá các kịch bản khác nhau và hiểu tác động của chúng đến quy mô đàn và triển vọng tài chính của bạn.
+        </p>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <section id="inputsSection" class="lg:col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Thông số đầu vào</h3>
+                <p class="text-sm text-stone-600 mb-6">Điều chỉnh các thông số dưới đây để xem các giả định khác nhau ảnh hưởng đến sự tăng trưởng dân số và chi phí trang trại gà của bạn như thế nào. Các giá trị ban đầu được đặt để cung cấp một điểm khởi đầu cho một trang trại quy mô này.</p>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label for="initialFlock" class="block text-sm font-medium text-stone-700">Quy mô đàn ban đầu:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="initialFlock" name="initialFlock" min="100" max="2000" value="100" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="initialFlockValue" class="slider-value text-sm text-emerald-700 font-semibold">100</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="hensPerRooster" class="block text-sm font-medium text-stone-700">Số gà mái trên mỗi gà trống:</label>
+                         <div class="flex items-center space-x-2">
+                            <input type="range" id="hensPerRooster" name="hensPerRooster" min="5" max="20" value="10" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="hensPerRoosterValue" class="slider-value text-sm text-emerald-700 font-semibold">10</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="layingPercentage" class="block text-sm font-medium text-stone-700">Tỷ lệ gà mái đẻ (% gà mái trưởng thành):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="layingPercentage" name="layingPercentage" min="30" max="100" value="80" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="layingPercentageValue" class="slider-value text-sm text-emerald-700 font-semibold">80%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="eggsPerHen" class="block text-sm font-medium text-stone-700">Số trứng mỗi gà mái đẻ mỗi tháng:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="eggsPerHen" name="eggsPerHen" min="5" max="30" value="18" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="eggsPerHenValue" class="slider-value text-sm text-emerald-700 font-semibold">18</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="fertilityRate" class="block text-sm font-medium text-stone-700">Tỷ lệ thụ tinh (%):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="fertilityRate" name="fertilityRate" min="50" max="100" value="90" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="fertilityRateValue" class="slider-value text-sm text-emerald-700 font-semibold">90%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="hatchRate" class="block text-sm font-medium text-stone-700">Tỷ lệ nở (% trứng thụ tinh):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="hatchRate" name="hatchRate" min="30" max="100" value="70" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="hatchRateValue" class="slider-value text-sm text-emerald-700 font-semibold">70%</span>
+                        </div>
+                    </div>
+                     <div>
+                        <label for="broodyHenPercentage" class="block text-sm font-medium text-stone-700">Tỷ lệ gà mái ấp (% gà mái đẻ):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="broodyHenPercentage" name="broodyHenPercentage" min="5" max="50" value="20" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="broodyHenPercentageValue" class="slider-value text-sm text-emerald-700 font-semibold">20%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="eggsPerBroodingHen" class="block text-sm font-medium text-stone-700">Số trứng mỗi chu kỳ ấp của gà mái:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="eggsPerBroodingHen" name="eggsPerBroodingHen" min="5" max="20" value="12" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="eggsPerBroodingHenValue" class="slider-value text-sm text-emerald-700 font-semibold">12</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="chickSurvivalRate" class="block text-sm font-medium text-stone-700">Tỷ lệ sống sót của gà con đến khi trưởng thành (%):</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="chickSurvivalRate" name="chickSurvivalRate" min="30" max="100" value="75" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="chickSurvivalRateValue" class="slider-value text-sm text-emerald-700 font-semibold">75%</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="monthlyGiveaway" class="block text-sm font-medium text-stone-700">Số gà cho đi hàng tháng:</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="range" id="monthlyGiveaway" name="monthlyGiveaway" min="0" max="200" value="20" class="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                            <span id="monthlyGiveawayValue" class="slider-value text-sm text-emerald-700 font-semibold">20</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="initialChickenCost" class="block text-sm font-medium text-stone-700">Chi phí ban đầu cho 100 con gà (VND):</label>
+                        <input type="number" id="initialChickenCost" name="initialChickenCost" min="0" value="24000000" class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2">
+                    </div>
+                    <div>
+                        <label for="monthlyFeedCostPer100" class="block text-sm font-medium text-stone-700">Chi phí thức ăn hàng tháng cho 100 con gà (VND):</label>
+                        <input type="number" id="monthlyFeedCostPer100" name="monthlyFeedCostPer100" min="0" value="3000000" class="mt-1 block w-full rounded-md border-stone-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm p-2">
+                    </div>
+                </div>
+            </section>
+
+            <section id="projectionsSection" class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Dự báo Dân số</h3>
+                <p class="text-sm text-stone-600 mb-6">Dựa trên các thông số đã chọn, đây là dự báo tăng trưởng dân số trong hai năm, được hiển thị trong biểu đồ và bảng tóm tắt. Khám phá cách những thay đổi trong thành công sinh sản hoặc số gà cho đi ảnh hưởng đến đàn gà của bạn.</p>
+                
+                <div class="mb-6">
+                    <p class="text-md font-medium text-stone-700">Số gà mái ban đầu: <span id="initialHensDisplay" class="font-bold text-emerald-700">91</span></p>
+                    <p class="text-md font-medium text-stone-700">Số gà trống ban đầu: <span id="initialRoostersDisplay" class="font-bold text-emerald-700">9</span></p>
+                    <p class="text-md font-medium text-stone-700">Số gà trưởng thành mới được tính toán mỗi chu kỳ (sau 6 tháng): <span id="newChicksDisplay" class="font-bold text-emerald-700">82</span></p>
+                </div>
+
+                <div class="chart-container mb-8">
+                    <canvas id="populationChart"></canvas>
+                </div>
+
+                <h4 class="text-xl font-semibold text-emerald-600 mb-3">Tóm tắt Dân số ước tính:</h4>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-stone-200">
+                        <thead class="bg-stone-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Thời gian</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Số gà dự kiến</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-stone-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 6 tháng</td>
+                                <td id="pop6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">100</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 12 tháng</td>
+                                <td id="pop12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">492</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 18 tháng</td>
+                                <td id="pop18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">884</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 2 năm (24 tháng)</td>
+                                <td id="pop24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700">1276</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <section id="costAnalysisSection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Phân tích Chi phí</h3>
+            <p class="text-sm text-stone-600 mb-6">Phần này trình bày chi phí ban đầu và chi phí thức ăn tích lũy dựa trên dân số gà dự kiến. Chi phí thức ăn được tính dựa trên dân số gà hiện tại mỗi tháng.</p>
+            
+            <div class="mb-6">
+                <p class="text-md font-medium text-stone-700">Tổng chi phí ban đầu: <span id="totalInitialCostDisplay" class="font-bold text-emerald-700">24.000.000 VND</span></p>
+            </div>
+
+            <h4 class="text-xl font-semibold text-emerald-600 mb-3">Tóm tắt Chi phí tích lũy:</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-stone-200">
+                    <thead class="bg-stone-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Thời gian</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Tổng chi phí thức ăn</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Tổng chi phí tích lũy</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-stone-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 6 tháng</td>
+                            <td id="feedCost6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost6months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 12 tháng</td>
+                            <td id="feedCost12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost12months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 18 tháng</td>
+                            <td id="feedCost18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost18months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-stone-900">Sau 2 năm (24 tháng)</td>
+                            <td id="feedCost24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                            <td id="cumulativeCost24months" class="px-6 py-4 whitespace-nowrap text-sm text-stone-700"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="calculationMethodologySection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Phương pháp tính toán</h3>
+            <p class="text-sm text-stone-600 mb-4">Phần này phác thảo các bước cốt lõi được sử dụng để tính toán số lượng gà trưởng thành mới được thêm vào đàn mỗi chu kỳ (sau thời gian trưởng thành 6 tháng ban đầu), dựa trên các đầu vào của bạn. Mô hình được đơn giản hóa bằng cách giả định một tỷ lệ gà trưởng thành mới nhất quán mỗi chu kỳ, được lấy từ dân số gà mái ban đầu và các thông số sinh sản.</p>
+            <ol class="list-decimal list-inside space-y-2 text-stone-700 text-sm">
+                <li><strong>Gà mái & Gà trống ban đầu:</strong> Tính toán từ tổng đàn ban đầu và tỷ lệ gà mái-gà trống.</li>
+                <li><strong>Gà mái đẻ:</strong> Gà mái ban đầu × Tỷ lệ gà mái đẻ (%).</li>
+                <li><strong>Gà mái ấp mỗi chu kỳ:</strong> Gà mái đẻ × Tỷ lệ gà mái ấp (%).</li>
+                <li><strong>Số trứng được gà mái ấp:</strong> Gà mái ấp mỗi chu kỳ × Số trứng mỗi chu kỳ ấp của gà mái.</li>
+                <li><strong>Trứng thụ tinh:</strong> Số trứng được ấp × Tỷ lệ thụ tinh (%).</li>
+                <li><strong>Gà con nở:</strong> Trứng thụ tinh × Tỷ lệ nở (%).</li>
+                <li><strong>Gà trưởng thành mới sống sót mỗi chu kỳ:</strong> Gà con nở × Tỷ lệ sống sót của gà con đến khi trưởng thành (%). Đây là số lượng được thêm vào mỗi tháng sau 6 tháng đầu tiên.</li>
+                <li><strong>Điều chỉnh dân số:</strong> Trong 6 tháng đầu tiên, dân số không giảm do không có gà cho đi. Từ tháng thứ 7 trở đi, số gà trưởng thành mới được tính toán sẽ được thêm vào, sau đó số gà cho đi hàng tháng sẽ được trừ đi.</li>
+                <li><strong>Chi phí thức ăn:</strong> Chi phí thức ăn hàng tháng được tính bằng dân số gà của tháng trước nhân với chi phí thức ăn mỗi con gà.</li>
+                <li><strong>Tổng chi phí tích lũy:</strong> Tổng chi phí ban đầu cộng với tổng chi phí thức ăn tích lũy theo thời gian.</li>
+            </ol>
+        </section>
+
+        <section id="importantConsiderationsSection" class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl font-semibold text-emerald-600 mb-4">Những cân nhắc quan trọng</h3>
+            <p class="text-sm text-stone-600 mb-4">Hãy nhớ rằng, đây là những dự báo. Các yếu tố thực tế sau đây có thể ảnh hưởng đáng kể đến sự tăng trưởng thực tế của đàn gà:</p>
+            <ul class="list-disc list-inside space-y-2 text-stone-700 text-sm">
+                <li><strong>Quản lý gà trống:</strong> Khi đàn gà của bạn phát triển, bạn sẽ cần quản lý số lượng gà trống để duy trì tỷ lệ gà mái-gà trống lý tưởng và ngăn ngừa đánh nhau hoặc giao phối quá mức. Nhiều con gà "cho đi" có thể là gà trống.</li>
+                <li><strong>Không gian và tài nguyên:</strong> Tăng trưởng nhanh sẽ đòi hỏi tăng đáng kể không gian chuồng, thức ăn, máng uống và quản lý chung.</li>
+                <li><strong>Bệnh tật:</strong> Đàn gà lớn dễ mắc bệnh hơn.</li>
+                <li><strong>Chu kỳ ấp:</strong> Không phải tất cả gà mái sẽ ấp chính xác khi bạn cần, và một số có thể bỏ tổ.</li>
+                <li><strong>Biến động theo mùa:</strong> Sản lượng trứng và khả năng ấp có thể thay đổi theo mùa (ví dụ: ít hơn vào mùa đông).</li>
+                <li><strong>Động vật săn mồi:</strong> Thiệt hại do động vật săn mồi có thể ảnh hưởng đến số lượng nếu không được quản lý.</li>
+                <li><strong>Tuổi của đàn:</strong> Sản lượng trứng và khả năng thụ tinh giảm khi gà mái và gà trống già đi. Mô hình này giả định một tỷ lệ sản xuất nhất quán từ đàn gà trưởng thành.</li>
+            </ul>
+        </section>
+        
+        <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title mt-12">8. Chi tiết quan trọng cho Người mới bắt đầu nuôi gà</h2>
+        <p class="mb-4 text-lg">
+            Bắt đầu một trang trại gà với 100 con gà, đặc biệt là không có kinh nghiệm trước đây, là một công việc lớn. Mặc dù các phần trước cung cấp hướng dẫn tuyệt vời về cơ sở hạ tầng, nhưng đây là một số chi tiết quan trọng rất cần thiết cho sự thành công của người mới bắt đầu.
+        </p>
+        <ul class="list-disc list-inside mb-6 space-y-2 text-lg">
+            <li>
+                <strong>Bắt đầu nhỏ:</strong> Cân nhắc bắt đầu với một đàn nhỏ hơn (ví dụ: 10-20 con gà) trong một năm để học các kiến thức cơ bản về chăm sóc gà, sức khỏe, hành vi và các công việc hàng ngày. Điều này cho phép bạn mắc lỗi ở quy mô nhỏ hơn và xây dựng sự tự tin trước khi mở rộng quy mô.
+            </li>
+            <li>
+                <strong>Chọn giống gà phù hợp:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Mục đích:</strong> Xác định xem bạn nuôi gà để lấy trứng, lấy thịt hay cả hai (đa năng), vì điều này sẽ quyết định giống gà bạn chọn.</li>
+                    <li><strong>Khả năng thích nghi với khí hậu:</strong> Chọn các giống gà được biết đến là có khả năng chịu đựng tốt khí hậu nóng và ẩm. Các giống gà địa phương Việt Nam có thể là một điểm khởi đầu tốt vì chúng đã thích nghi tự nhiên.</li>
+                    <li><strong>Tính cách:</strong> Một số giống gà bình tĩnh và dễ quản lý hơn những giống khác.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>An toàn sinh học là tối quan trọng:</strong> Với một đàn gà lớn, bệnh tật có thể lây lan nhanh chóng.
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Cách ly gà mới:</strong> Luôn cách ly gà mới ít nhất 30 ngày trước khi đưa chúng vào đàn chính của bạn.</li>
+                    <li><strong>Tắm chân/Vệ sinh:</strong> Thực hiện các quy trình vệ sinh nghiêm ngặt, đặc biệt đối với khách hoặc khi di chuyển giữa các khu vực khác nhau của trang trại.</li>
+                    <li><strong>Kiểm soát dịch hại:</strong> Phát triển một kế hoạch quản lý chuột, côn trùng và chim hoang dã, vì chúng có thể mang mầm bệnh.</li>
+                    <li><strong>Sạch sẽ:</strong> Vệ sinh chuồng và thiết bị thường xuyên và kỹ lưỡng là không thể thiếu.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Thói quen hàng ngày và Quan sát:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Kiểm tra hàng ngày:</strong> Bạn cần quan sát đàn gà của mình hàng ngày để tìm các dấu hiệu bệnh tật (uể oải, lông xù, phân bất thường, thay đổi trong ăn uống). Phát hiện sớm là chìa khóa.</li>
+                    <li><strong>Thức ăn và nước:</strong> Đảm bảo luôn có sẵn nước sạch, tươi và thức ăn phù hợp. Hệ thống tự động rất tốt, nhưng vẫn cần kiểm tra hàng ngày.</li>
+                    <li><strong>Thu trứng:</strong> Thu trứng thường xuyên (ít nhất hai lần một ngày) để duy trì vệ sinh và ngăn ngừa trứng vỡ hoặc gà ăn trứng.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Dinh dưỡng:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Thức ăn cân bằng:</strong> Gà cần một chế độ ăn uống cân bằng phù hợp với độ tuổi và mục đích của chúng (thức ăn khởi động cho gà con, thức ăn tăng trưởng, thức ăn cho gà đẻ). Đừng chỉ cho chúng ăn thức ăn thừa.</li>
+                    <li><strong>Bổ sung:</strong> Cung cấp grit (nếu không được thả rông trên đất/cát) và vỏ hàu (cho gà mái đẻ) để hỗ trợ tiêu hóa và chất lượng vỏ trứng.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Quản lý chất thải:</strong> 100 con gà tạo ra một lượng phân đáng kể. Bạn sẽ cần một kế hoạch để ủ phân hiệu quả. Quản lý chất thải đúng cách ngăn ngừa mùi hôi, ruồi và bệnh tật.
+            </li>
+            <li>
+                <strong>Kiểm soát động vật săn mồi:</strong> Ngoài lưới thép và các tấm chắn chôn dưới đất được đề cập trong Canvas, hãy cân nhắc các cơ chế khóa an toàn vào ban đêm, hàng rào điện cho chu vi sân chơi và có thể cả chó bảo vệ (nếu phù hợp với vị trí và giống chó của bạn).
+            </li>
+            <li>
+                <strong>Quy định địa phương và Hỗ trợ:</strong>
+                <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
+                    <li><strong>Giấy phép:</strong> Kiểm tra các quy định địa phương tại Việt Nam liên quan đến việc nuôi gia cầm, đặc biệt đối với quy mô thương mại.</li>
+                    <li><strong>Chăm sóc thú y:</strong> Tìm một bác sĩ thú y địa phương có kinh nghiệm về gia cầm.</li>
+                    <li><strong>Cộng đồng:</strong> Kết nối với các nông dân nuôi gà khác trong khu vực hoặc các dịch vụ khuyến nông để được tư vấn và hỗ trợ.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Lập kế hoạch tài chính:</strong> Công cụ tính toán giúp tính toán chi phí liên tục, nhưng hãy nhớ rằng chi phí thiết lập ban đầu (xây dựng chuồng, hàng rào, máng uống, máng ăn, mua đàn gà ban đầu, thiết bị ấp nở cho gà con) có thể đáng kể. Tính đến các tổn thất tiềm ẩn do bệnh tật, động vật săn mồi hoặc loại bỏ.
+            </li>
+        </ul>
+
+        <footer class="text-center mt-12 py-6 border-t border-stone-300">
+            <p class="text-sm text-stone-500">Công cụ tính toán tăng trưởng trang trại gà | Mô hình tương tác dựa trên Báo cáo được cung cấp</p>
+        </footer>
+    </div>
+
+    <script>
+        // Image generation script (Section 6)
+        document.addEventListener('DOMContentLoaded', async () => {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const chickenCoopImage = document.getElementById('chicken-coop-image');
+
+            const prompt = "A very spacious, commercial-scale chicken coop designed for 100 chickens in a hot, humid tropical climate like Vietnam. The coop has a large, light-colored corrugated metal roof with very wide overhangs for maximum shade. The roof shows subtle signs of insulation underneath. The walls are primarily large mesh panels covered with fine hardware cloth for excellent cross-ventilation, with solid sections for shelter. There are numerous large high and low vents visible. The coop is significantly raised off the ground on sturdy, numerous posts. There's a massive, extensively shaded outdoor run attached, with multiple large shade cloths over parts of the mesh. The overall aesthetic is practical, durable, and optimized for extreme heat reduction for a large flock, with a clean and functional, almost industrial appearance. Show many chickens inside and in the run. Focus on the architectural details for hot weather and large scale.";
+
+            const payload = {
+                instances: { prompt: prompt },
+                parameters: { "sampleCount": 1 }
+            };
+
+            const apiKey = ""; // Canvas will automatically provide this at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                // Check if the response is OK (status 200-299)
+                if (!response.ok) {
+                    const errorBody = await response.text(); // Read the error body as text
+                    throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
+                }
+
+                const result = await response.json();
+
+                if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                    const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    chickenCoopImage.src = imageUrl;
+                    chickenCoopImage.classList.remove('hidden');
+                    loadingIndicator.classList.add('hidden');
+                    document.querySelector('.flex h3').textContent = 'Enhanced Chicken Coop Design:';
+                } else {
+                    console.error('Image generation failed: No valid predictions found or unexpected response structure.');
+                    loadingIndicator.classList.add('hidden');
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'Failed to generate image. Please try again or check console for details.';
+                    errorMessage.className = 'text-red-500 mt-4 text-center';
+                    document.querySelector('.flex').appendChild(errorMessage);
+                }
+            } catch (error) {
+                console.error('Error generating image:', error);
+                loadingIndicator.classList.add('hidden');
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = `An error occurred during image generation: ${error.message}. Please check your network connection and try again.`;
+                errorMessage.className = 'text-red-500 mt-4 text-center';
+                document.querySelector('.flex').appendChild(errorMessage);
+            }
+        });
+
+        // Chicken growth calculator script (Section 7)
+        const inputs = {
+            initialFlock: document.getElementById('initialFlock'),
+            hensPerRooster: document.getElementById('hensPerRooster'),
+            layingPercentage: document.getElementById('layingPercentage'),
+            eggsPerHen: document.getElementById('eggsPerHen'),
+            fertilityRate: document.getElementById('fertilityRate'),
+            hatchRate: document.getElementById('hatchRate'),
+            broodyHenPercentage: document.getElementById('broodyHenPercentage'),
+            eggsPerBroodingHen: document.getElementById('eggsPerBroodingHen'),
+            chickSurvivalRate: document.getElementById('chickSurvivalRate'),
+            monthlyGiveaway: document.getElementById('monthlyGiveaway'),
+        };
+
+        const valueSpans = {
+            initialFlockValue: document.getElementById('initialFlockValue'),
+            hensPerRoosterValue: document.getElementById('hensPerRoosterValue'),
+            layingPercentageValue: document.getElementById('layingPercentageValue'),
+            eggsPerHenValue: document.getElementById('eggsPerHenValue'),
+            fertilityRateValue: document.getElementById('fertilityRateValue'),
+            hatchRateValue: document.getElementById('hatchRateValue'),
+            broodyHenPercentageValue: document.getElementById('broodyHenPercentageValue'),
+            eggsPerBroodingHenValue: document.getElementById('eggsPerBroodingHenValue'),
+            chickSurvivalRateValue: document.getElementById('chickSurvivalRateValue'),
+            monthlyGiveawayValue: document.getElementById('monthlyGiveawayValue'),
+        };
+
+        const outputDisplays = {
+            initialHensDisplay: document.getElementById('initialHensDisplay'),
+            initialRoostersDisplay: document.getElementById('initialRoostersDisplay'),
+            newChicksDisplay: document.getElementById('newChicksDisplay'),
+            pop6months: document.getElementById('pop6months'),
+            pop12months: document.getElementById('pop12months'),
+            pop18months: document.getElementById('pop18months'),
+            pop24months: document.getElementById('pop24months'),
+        };
+        
+        const costInputs = {
+            initialChickenCost: document.getElementById('initialChickenCost'),
+            monthlyFeedCostPer100: document.getElementById('monthlyFeedCostPer100'),
+        };
+
+        const costOutputDisplays = {
+            totalInitialCostDisplay: document.getElementById('totalInitialCostDisplay'),
+            feedCost6months: document.getElementById('feedCost6months'),
+            feedCost12months: document.getElementById('feedCost12months'),
+            feedCost18months: document.getElementById('feedCost18months'),
+            feedCost24months: document.getElementById('feedCost24months'),
+            cumulativeCost6months: document.getElementById('cumulativeCost6months'),
+            cumulativeCost12months: document.getElementById('cumulativeCost12months'),
+            cumulativeCost18months: document.getElementById('cumulativeCost18months'),
+            cumulativeCost24months: document.getElementById('cumulativeCost24months'),
+        };
+
+        let populationChart = null;
+
+        function updateSliderValue(sliderId, spanId, isPercentage = false) {
+            const slider = inputs[sliderId];
+            const span = valueSpans[spanId];
+            span.textContent = slider.value + (isPercentage ? '%' : '');
+        }
+
+        function calculateNewMatureChicksPerCycle(initialHens, pLaying, eggsPerHenMonthly, pFertile, pHatch, pBroody, eggsPerBroodingCycle, pSurvival) {
+            const layingHens = initialHens * (pLaying / 100);
+            const broodyHensThisCycle = layingHens * (pBroody / 100); 
+            const eggsSet = broodyHensThisCycle * eggsPerBroodingCycle;
+            const fertileEggs = eggsSet * (pFertile / 100);
+            const hatchedChicks = fertileEggs * (pHatch / 100);
+            const survivingNewMatureChickens = hatchedChicks * (pSurvival / 100);
+            return Math.round(survivingNewMatureChickens);
+        }
+
+        function projectPopulation() {
+            const initialFlockVal = parseInt(inputs.initialFlock.value);
+            const hensPerRoosterVal = parseInt(inputs.hensPerRooster.value);
+            const layingPercentageVal = parseInt(inputs.layingPercentage.value);
+            const eggsPerHenVal = parseInt(inputs.eggsPerHen.value);
+            const fertilityRateVal = parseInt(inputs.fertilityRate.value);
+            const hatchRateVal = parseInt(inputs.hatchRate.value);
+            const broodyHenPercentageVal = parseInt(inputs.broodyHenPercentage.value);
+            const eggsPerBroodingHenVal = parseInt(inputs.eggsPerBroodingHen.value);
+            const chickSurvivalRateVal = parseInt(inputs.chickSurvivalRate.value);
+            const monthlyGiveawayVal = parseInt(inputs.monthlyGiveaway.value);
+
+            const totalRatioParts = 1 + hensPerRoosterVal;
+            const initialRoosters = Math.round(initialFlockVal / totalRatioParts);
+            const initialHens = initialFlockVal - initialRoosters;
+
+            outputDisplays.initialHensDisplay.textContent = initialHens;
+            outputDisplays.initialRoostersDisplay.textContent = initialRoosters;
+
+            const newMatureChicksPerCycleVal = calculateNewMatureChicksPerCycle(
+                initialHens, layingPercentageVal, eggsPerHenVal, fertilityRateVal, hatchRateVal, broodyHenPercentageVal, eggsPerBroodingHenVal, chickSurvivalRateVal
+            );
+            outputDisplays.newChicksDisplay.textContent = newMatureChicksPerCycleVal;
+            
+            let currentPopulation = initialFlockVal;
+            const populationData = [initialFlockVal];
+            const maturityAgeMonths = 6;
+
+            // Cost calculations
+            const initialChickenCostVal = parseInt(costInputs.initialChickenCost.value);
+            const monthlyFeedCostPer100Val = parseInt(costInputs.monthlyFeedCostPer100.value);
+            const costPerChickenPerMonth = monthlyFeedCostPer100Val / 100;
+
+            costOutputDisplays.totalInitialCostDisplay.textContent = initialChickenCostVal.toLocaleString('vi-VN') + ' VND'; // Changed to vi-VN for Vietnamese currency
+
+            let cumulativeFeedCost = 0;
+            let cumulativeTotalCost = initialChickenCostVal;
+
+            for (let month = 1; month <= 24; month++) {
+                let populationBeforeGiveaway = currentPopulation;
+                if (month >= maturityAgeMonths) {
+                    populationBeforeGiveaway += newMatureChicksPerCycleVal;
+                }
+                
+                // Apply giveaway only after the first 6 months
+                if (month > 6) { 
+                    currentPopulation = Math.max(0, populationBeforeGiveaway - monthlyGiveawayVal);
+                } else {
+                    currentPopulation = populationBeforeGiveaway; // No giveaway for the first 6 months
+                }
+                populationData.push(currentPopulation);
+
+                // Calculate feed cost for the current month based on population at the start of the month (previous month's end population)
+                const monthlyFeedCost = populationData[month-1] * costPerChickenPerMonth; 
+                cumulativeFeedCost += monthlyFeedCost;
+                cumulativeTotalCost += monthlyFeedCost;
+
+                if (month === 6) {
+                    outputDisplays.pop6months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost6months.textContent = Math.round(cumulativeFeedCost).toLocaleString('vi-VN') + ' VND';
+                    costOutputDisplays.cumulativeCost6months.textContent = Math.round(cumulativeTotalCost).toLocaleString('vi-VN') + ' VND';
+                }
+                if (month === 12) {
+                    outputDisplays.pop12months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost12months.textContent = Math.round(cumulativeFeedCost).toLocaleString('vi-VN') + ' VND';
+                    costOutputDisplays.cumulativeCost12months.textContent = Math.round(cumulativeTotalCost).toLocaleString('vi-VN') + ' VND';
+                }
+                if (month === 18) {
+                    outputDisplays.pop18months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost18months.textContent = Math.round(cumulativeFeedCost).toLocaleString('vi-VN') + ' VND';
+                    costOutputDisplays.cumulativeCost18months.textContent = Math.round(cumulativeTotalCost).toLocaleString('vi-VN') + ' VND';
+                }
+                if (month === 24) {
+                    outputDisplays.pop24months.textContent = currentPopulation;
+                    costOutputDisplays.feedCost24months.textContent = Math.round(cumulativeFeedCost).toLocaleString('vi-VN') + ' VND';
+                    costOutputDisplays.cumulativeCost24months.textContent = Math.round(cumulativeTotalCost).toLocaleString('vi-VN') + ' VND';
+                }
+            }
+            
+            updateChart(populationData);
+        }
+
+        // Fix for Chart.js and Tailwind conflict - ensure Chart.js renders correctly
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#374151';
+
+        function updateChart(data) {
+            const labels = Array.from({ length: 25 }, (_, i) => `Tháng ${i}`); // Translated labels
+            if (populationChart) {
+                populationChart.data.labels = labels;
+                populationChart.data.datasets[0].data = data;
+                populationChart.update();
+            } else {
+                const ctx = document.getElementById('populationChart').getContext('2d');
+                populationChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Dân số gà dự kiến', // Translated label
+                            data: data,
+                            borderColor: 'rgb(5, 150, 105)', // emerald-600
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            tension: 0.1,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: 'Số lượng gà' } // Translated title
+                            },
+                            x: {
+                                title: { display: true, text: 'Tháng' } // Translated title
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y + ' con gà'; // Translated unit
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize slider values and attach event listeners
+        Object.keys(inputs).forEach(key => {
+            const isPercentage = key.includes('Percentage') || key.includes('Rate');
+            updateSliderValue(key, key + 'Value', isPercentage);
+            inputs[key].addEventListener('input', () => {
+                updateSliderValue(key, key + 'Value', isPercentage);
+                projectPopulation();
+            });
+        });
+
+        Object.keys(costInputs).forEach(key => {
+            costInputs[key].addEventListener('input', projectPopulation);
+        });
+
+        // Initial population projection on load
+        document.addEventListener('DOMContentLoaded', projectPopulation);
+    </script>
+</body>
+</html>
