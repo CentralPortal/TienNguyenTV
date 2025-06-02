@@ -1,0 +1,285 @@
+I have a 2 list of items below, one in Vietnamese identified under "Items in Vietnamese" and one in English identified under "Items in English".  
+
+The structure of each item in Vietnamese are: first row is the item "Mặt hàng:", 2nd row is "👉 Số lượng ước tính:", follow by a few row indemnified with an asterisk
+The structure of each item in Vietnamese are: first row is the item "Item:", 2nd row is "👉 Estimated amount::", follow by a few row indemnified with an asterisk.  Please keep the label "👉 Số lượng ước tính:" and ""👉 Estimated amount::" intact, style the label blue and the value followed by the colon, black, making them easier to differentiate at a glance.
+
+Create a pretty html report using the language selection dropdown for the two languages. The report header is "Chi tiết mặt hàng" and the label for the dropdown is "Chọn ngôn ngữ" when viewing the Vietnamese content.  The report header is "Item Details" and the label for the dropdown is "Select Language" when viewing the English content. Use a card-based layout for each item. One card per row. This will make each item a distinct, visually separate block, which should be much easier to read and distinguish.  For each of with an asterisk, alternate with different style within each card for readability. use more distinct background colors for the alternate notes, making them easier to differentiate at a glance.
+
+/////////
+Items in Vietnamese:
+
+Mặt hàng: Nơi trú ẩn mới
+👉 Số lượng ước tính: 46.600.000 - 52.000.000 ₫
+
+*Giá cao hơn áp dụng cho khu vực miền núi xa xôi khó khăn khi giao hàng.
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+*Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!
+
+-----------
+Mặt hàng: Thực Phẩm Thiết Yếu
+👉 Số lượng ước tính: 1.100.000 ₫
+
+*Có sẵn nhiều số lượng và mặt hàng khác nhau.
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+-----------
+Mặt hàng: Hệ Thống Cấp Nước
+👉 Số lượng ước tính: 50.000.000 - 70.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+*Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!
+
+-----------
+Mặt hàng: Đèn Năng Lượng Mặt Trời
+👉 Số lượng ước tính: 1.200.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Hỗ Trợ Không Giới Hạn (Tiền mặt)
+👉 Số lượng ước tính: Bất kì
+
+
+
+-----------
+Mặt hàng: Nhu Yếu Phẩm Cho Giấc Ngủ
+👉 Số lượng ước tính: 1.350.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Xe Đạp
+👉 Số lượng ước tính: 2.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Thùng đựng nước
+👉 Số lượng ước tính: 35.000 - 40.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Bạt Che
+👉 Số lượng ước tính: 500.000-1.500.000 ₫
+
+*Phụ thuộc vào độ dày
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Quạt Năng Lượng Mặt Trời
+👉 Số lượng ước tính: 2.200.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Đồ dùng nhà bếp
+👉 Số lượng ước tính: 2.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Chuồng Gà
+👉 Số lượng ước tính: 9.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Giường Xếp
+👉 Số lượng ước tính: 1.450.000 - 2.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Bếp Nấu Ăn Di Động
+​👉 Số lượng ước tính: 350.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+
+
+-----------
+Mặt hàng: Bò Sinh Kế
+👉 Số lượng ước tính: 15.000.000-25.000.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết
+
+-----------
+Mặt hàng: Thức ăn & đồ dùng thiết yếu cho bé
+👉 Số lượng ước tính: 2.000.000 - 2.500.000 ₫
+
+*Tuỳ vào số lượng
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Sự Kiện Bữa Trưa Cộng Đồng
+👉 Số lượng ước tính: Tùy thuộc vào số lượng bữa trưa
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Đồ dùng thiết yếu cho gia đình
+👉 Số lượng ước tính: 2.300.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết
+
+-----------
+Mặt hàng: Sự Kiện Cứu Trợ Thực Phẩm Cộng Đồng
+👉 Số lượng ước tính:  Phụ thuộc vào số lượng gói
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+-----------
+Mặt hàng: Chăm sóc thiết yếu
+👉 Số lượng ước tính: 1.450.000 ₫
+
+*Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
+
+
+///////////////////
+Items in English:
+
+-----------
+Item: New Shelter
+👉 Estimated amount:   $1,791 - $2,000
+
+*Higher price covers the difficult remote mountain area delivery.
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+*Help us reach our goal - donate what you can!
+
+-----------
+Item: Essential Foods
+👉 Estimated amount:  $43
+
+*Different amounts and items are available
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+
+-----------
+Item: Water Supply System
+👉 Estimated amount: $1,922 - $2,691
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+*Help us reach our goal - donate what you can!
+
+-----------
+Item: Solar Light
+👉 Estimated amount: $47
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Unrestricted Support (Cash)
+👉 Estimated amount: Any
+
+
+
+-----------
+Item: Essentials for Sleep
+ 
+👉 Estimated amount:   $53
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+
+-----------
+Item: Bicycle
+👉 Estimated amount: $77
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Water Containers
+👉 Estimated amount: $2
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Tarpaulin
+👉 Estimated amount: $20 - $58
+
+*Depends on Thickness
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Solar Fan
+👉 Estimated amount:   $85
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Kitchenware
+👉 Estimated amount: $77
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Chicken Coop
+​
+👉 Estimated amount: $350
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+
+-----------
+Item: Cot
+👉 Estimated amount:   $56 - $77
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Portable Cooking Oven
+👉 Estimated amount:   $14
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Livelihood Cow
+👉 Estimated amount: $577 - $961
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Baby Food & Essentials
+👉 Estimated amount: $77 - $97
+
+*Depends on quantity
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Community Lunch Event
+👉 Estimated amount: Depends on the number of lunches
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Household Essentials
+👉 Estimated amount:   $89
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Community Food Relief Event
+👉 Estimated amount: Depends on how many packages
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+-----------
+Item: Essential Care
+👉 Estimated amount: $56
+
+*Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
+
+
+
