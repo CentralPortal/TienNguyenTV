@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết mặt hàng</title>
+    <title>Item Details Report</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -22,19 +24,35 @@
 </head>
 <body class="p-4 sm:p-6 md:p-8">
     <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10">
-        <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
-            <h1 id="report-header" class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-0"></h1>
-            <div class="flex items-center space-x-2">
-                <label id="language-label" for="language-select" class="text-gray-700 font-semibold text-lg"></label>
-                <select id="language-select" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
-                    <option value="vi">Tiếng Việt</option>
-                    <option value="en">English</option>
-                </select>
+        <!-- Header Section -->
+        <div class="flex flex-col items-center mb-6"> <!-- Changed to always stack vertically -->
+            <h1 id="report-header" class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 text-center"></h1> <!-- Centered title and increased bottom margin -->
+            <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 mt-4"> <!-- Increased horizontal spacing on larger screens -->
+                <!-- Language Selection -->
+                <div class="flex items-center space-x-2">
+                    <label id="language-label" for="language-select" class="text-gray-700 font-semibold text-lg"></label>
+                    <select id="language-select" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <option value="vi">Tiếng Việt</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <!-- Sort Options -->
+                <div class="flex items-center space-x-2">
+                    <label id="sort-label" for="sort-select" class="text-gray-700 font-semibold text-lg"></label>
+                    <select id="sort-select" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg">
+                        <option value="item"></option>
+                        <option value="amount"></option>
+                    </select>
+                </div>
             </div>
+            <!-- Global Note -->
+            <p id="global-note" class="text-gray-700 font-semibold text-center mt-6 text-base italic px-4 py-2 bg-yellow-100 rounded-lg border-l-4 border-yellow-500"></p>
         </div>
 
+        <!-- Item Cards Container -->
         <div id="items-container" class="grid grid-cols-1 gap-6">
-            </div>
+            <!-- Items will be rendered here by JavaScript -->
+        </div>
     </div>
 
     <script>
@@ -43,13 +61,17 @@
             "vi": {
                 header: "Chi tiết mặt hàng",
                 selectLabel: "Chọn ngôn ngữ",
+                sortLabels: {
+                    item: "Tiêu đề",
+                    amount: "Số lượng ước tính"
+                },
+                globalNote: "* Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.",
                 items: [
                     {
                         item: "Nơi trú ẩn mới",
                         amount: "46.600.000 - 52.000.000 ₫",
                         notes: [
                             "Giá cao hơn áp dụng cho khu vực miền núi xa xôi khó khăn khi giao hàng.",
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.",
                             "Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!"
                         ]
                     },
@@ -57,24 +79,20 @@
                         item: "Thực Phẩm Thiết Yếu",
                         amount: "1.100.000 ₫",
                         notes: [
-                            "Có sẵn nhiều số lượng và mặt hàng khác nhau.",
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
+                            "Có sẵn nhiều số lượng và mặt hàng khác nhau."
                         ]
                     },
                     {
                         item: "Hệ Thống Cấp Nước",
                         amount: "50.000.000 - 70.000.000 ₫",
                         notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.",
                             "Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!"
                         ]
                     },
                     {
                         item: "Đèn Năng Lượng Mặt Trời",
                         amount: "1.200.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Hỗ Trợ Không Giới Hạn (Tiền mặt)",
@@ -84,122 +102,98 @@
                     {
                         item: "Nhu Yếu Phẩm Cho Giấc Ngủ",
                         amount: "1.350.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Xe Đạp",
                         amount: "2.000.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Thùng đựng nước",
                         amount: "35.000 - 40.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Bạt Che",
                         amount: "500.000-1.500.000 ₫",
                         notes: [
-                            "Phụ thuộc vào độ dày",
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
+                            "Phụ thuộc vào độ dày"
                         ]
                     },
                     {
                         item: "Quạt Năng Lượng Mặt Trời",
                         amount: "2.200.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Đồ dùng nhà bếp",
                         amount: "2.000.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Chuồng Gà",
                         amount: "9.000.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Giường Xếp",
                         amount: "1.450.000 - 2.000.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Bếp Nấu Ăn Di Động",
                         amount: "350.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Bò Sinh Kế",
                         amount: "15.000.000-25.000.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết"
-                        ]
+                        notes: []
                     },
                     {
                         item: "Thức ăn & đồ dùng thiết yếu cho bé",
                         amount: "2.000.000 - 2.500.000 ₫",
                         notes: [
-                            "Tuỳ vào số lượng",
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
+                            "Tuỳ vào số lượng"
                         ]
                     },
                     {
                         item: "Sự Kiện Bữa Trưa Cộng Đồng",
                         amount: "Tùy thuộc vào số lượng bữa trưa",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Đồ dùng thiết yếu cho gia đình",
                         amount: "2.300.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết"
-                        ]
+                        notes: []
                     },
                     {
                         item: "Sự Kiện Cứu Trợ Thực Phẩm Cộng Đồng",
                         amount: "Phụ thuộc vào số lượng gói",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Chăm sóc thiết yếu",
                         amount: "1.450.000 ₫",
-                        notes: [
-                            "Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết."
-                        ]
+                        notes: []
                     }
                 ]
             },
             "en": {
                 header: "Item Details",
                 selectLabel: "Select Language",
+                sortLabels: {
+                    item: "Title",
+                    amount: "Estimated Amount"
+                },
+                globalNote: "* Marketplace prices often vary. The amounts shown are our best estimates at the time of listing.",
                 items: [
                     {
                         item: "New Shelter",
                         amount: "$1,791 - $2,000",
                         notes: [
                             "Higher price covers the difficult remote mountain area delivery.",
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing.",
                             "Help us reach our goal - donate what you can!"
                         ]
                     },
@@ -207,24 +201,20 @@
                         item: "Essential Foods",
                         amount: "$43",
                         notes: [
-                            "Different amounts and items are available",
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
+                            "Different amounts and items are available"
                         ]
                     },
                     {
                         item: "Water Supply System",
                         amount: "$1,922 - $2,691",
                         notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing.",
                             "Help us reach our goal - donate what you can!"
                         ]
                     },
                     {
                         item: "Solar Light",
                         amount: "$47",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Unrestricted Support (Cash)",
@@ -234,127 +224,132 @@
                     {
                         item: "Essentials for Sleep",
                         amount: "$53",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Bicycle",
                         amount: "$77",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Water Containers",
                         amount: "$2",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Tarpaulin",
                         amount: "$20 - $58",
                         notes: [
-                            "Depends on Thickness",
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
+                            "Depends on Thickness"
                         ]
                     },
                     {
                         item: "Solar Fan",
                         amount: "$85",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Kitchenware",
                         amount: "$77",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Chicken Coop",
                         amount: "$350",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Cot",
                         amount: "$56 - $77",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Portable Cooking Oven",
                         amount: "$14",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Livelihood Cow",
                         amount: "$577 - $961",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing"
-                        ]
+                        notes: []
                     },
                     {
                         item: "Baby Food & Essentials",
                         amount: "$77 - $97",
                         notes: [
-                            "Depends on quantity",
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
+                            "Depends on quantity"
                         ]
                     },
                     {
                         item: "Community Lunch Event",
                         amount: "Depends on the number of lunches",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Household Essentials",
                         amount: "$89",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Community Food Relief Event",
                         amount: "Depends on how many packages",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     },
                     {
                         item: "Essential Care",
                         amount: "$56",
-                        notes: [
-                            "Marketplace prices often vary. The amounts shown are our best estimates at the time of listing."
-                        ]
+                        notes: []
                     }
                 ]
             }
         };
 
         const languageSelect = document.getElementById('language-select');
+        const sortSelect = document.getElementById('sort-select');
         const reportHeader = document.getElementById('report-header');
         const languageLabel = document.getElementById('language-label');
+        const sortLabel = document.getElementById('sort-label');
+        const globalNoteElement = document.getElementById('global-note'); // Get the new global note element
         const itemsContainer = document.getElementById('items-container');
 
-        // Function to render items based on the selected language
-        function renderItems(lang) {
-            const currentData = itemsData[lang];
+        // Helper function to parse amount strings into a comparable number
+        function parseAmount(amountString) {
+            if (amountString.includes('Bất kì') || amountString.includes('Any')) {
+                return 0; // Treat "Any" as 0 for consistent sorting
+            }
+            // Remove currency symbols, commas, and spaces, then parse the first number in a range
+            const cleanedAmount = amountString.replace(/[₫$,]/g, '').trim();
+            const firstValue = parseFloat(cleanedAmount.split('-')[0].trim());
+            return isNaN(firstValue) ? 0 : firstValue; // Return 0 if parsing fails
+        }
+
+        // Function to render items based on the selected language and sort order
+        function renderItems() {
+            const currentLang = languageSelect.value;
+            const sortBy = sortSelect.value;
+            const currentData = itemsData[currentLang];
+
             reportHeader.textContent = currentData.header;
             languageLabel.textContent = currentData.selectLabel;
+            sortLabel.textContent = currentLang === 'vi' ? 'Sắp xếp theo:' : 'Sort by:';
+            globalNoteElement.textContent = currentData.globalNote; // Set the global note text
+
+            // Update sort options text based on language
+            sortSelect.options[0].textContent = currentData.sortLabels.item;
+            sortSelect.options[1].textContent = currentData.sortLabels.amount;
+
+            // Create a copy of the items array to sort
+            const sortedItems = [...currentData.items];
+
+            if (sortBy === 'item') {
+                sortedItems.sort((a, b) => a.item.localeCompare(b.item));
+            } else if (sortBy === 'amount') {
+                sortedItems.sort((a, b) => parseAmount(a.amount) - parseAmount(b.amount));
+            }
+
             itemsContainer.innerHTML = ''; // Clear previous items
 
-            currentData.items.forEach(item => {
+            sortedItems.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'bg-white rounded-xl shadow-md p-6 border border-gray-200 hover:shadow-lg transition-shadow duration-300';
 
@@ -369,7 +364,7 @@
                 amountDiv.className = 'mb-4';
                 const amountLabel = document.createElement('span');
                 amountLabel.className = 'text-blue-600 font-bold text-lg';
-                amountLabel.textContent = lang === 'vi' ? '👉 Số lượng ước tính:' : '👉 Estimated amount:';
+                amountLabel.textContent = currentLang === 'vi' ? '👉 Số lượng ước tính:' : '👉 Estimated amount:';
                 const amountValue = document.createElement('span');
                 amountValue.className = 'text-black font-medium text-lg ml-2';
                 amountValue.textContent = item.amount;
@@ -400,14 +395,16 @@
         }
 
         // Event listener for language selection change
-        languageSelect.addEventListener('change', (event) => {
-            renderItems(event.target.value);
-        });
+        languageSelect.addEventListener('change', renderItems);
 
-        // Initial render on page load (default to Vietnamese)
+        // Event listener for sort selection change
+        sortSelect.addEventListener('change', renderItems);
+
+        // Initial render on page load (default to Vietnamese and sort by item title)
         document.addEventListener('DOMContentLoaded', () => {
             languageSelect.value = 'vi'; // Set default to Vietnamese
-            renderItems('vi');
+            sortSelect.value = 'item'; // Set default sort to item title
+            renderItems();
         });
     </script>
 </body>
