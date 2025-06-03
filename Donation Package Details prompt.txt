@@ -142,7 +142,7 @@ Image-url: http://centralportal.github.io/TienNguyenTV/images/community-lunch.pn
 -----------
 Mặt hàng: Đồ dùng thiết yếu cho gia đình
 👉 Số lượng ước tính: 2.300.000 ₫
-Image-url: http://centralportal.github.io/TienNguyenTV/images/furniture.png
+Image-url: http://centralportal.github.io/TienNguyenTV/images/furnitures.png
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết
 
@@ -303,7 +303,7 @@ Image-url: http://centralportal.github.io/TienNguyenTV/images/community-lunch.pn
 -----------
 Item: Household Essentials
 👉 Estimated amount:   $89
-Image-url: http://centralportal.github.io/TienNguyenTV/images/furniture.png
+Image-url: http://centralportal.github.io/TienNguyenTV/images/furnitures.png
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
