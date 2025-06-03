@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiêu đề video để thu hút người xem</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            margin: 0;
-            padding: 20px;
             background-color: #f4f4f4;
             color: #333;
         }
@@ -45,24 +45,29 @@
             color: #555;
             border-bottom: 1px solid #eee;
             padding-bottom: 5px;
-            text-align: left; /* Aligned to left */
+            text-align: left;
         }
         p {
             margin-bottom: 15px;
             text-align: justify;
         }
         ul {
-            list-style-type: disc; /* Use default bullet points */
-            padding-left: 20px; /* Indent for bullet points */
+            list-style-type: disc;
+            padding-left: 20px;
             margin: 0;
         }
         li {
-            background-color: #e8f7ff;
+            background-color: #e8f7ff; /* Default background for list items */
             border: 1px solid #b3e0ff;
             padding: 8px 15px;
-            border-radius: 5px; /* Slightly rounded corners for single items */
-            margin-bottom: 10px; /* Space between each item */
-            text-align: left; /* Aligned to left */
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: left;
+            min-width: unset;
+        }
+        /* Apply a different background to odd list items for better readability */
+        li:nth-child(odd) {
+            background-color: #cceeff; /* Stronger contrast for readability */
         }
         .section-divider {
             border: 0;
@@ -89,17 +94,60 @@
             text-align: left;
             min-width: unset;
         }
+        /* Ensure tips section list items don't inherit the alternating background */
+        .tips-section li:nth-child(odd) {
+            background-color: transparent;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #3498db;
+            padding: 5px 0; /* Reduced vertical padding */
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .navbar-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .navbar-item {
+            color: white;
+            padding: 5px 10px; /* Reduced padding */
+            margin: 3px; /* Reduced margin */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9em; /* Slightly reduced font size */
+        }
+        .navbar-item:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="#difficulty" class="navbar-item">Khó khăn</a>
+            <a href="#awareness" class="navbar-item">Nhận thức & Tác động</a>
+            <a href="#curiosity" class="navbar-item">Tò mò & Cảm xúc</a>
+            <a href="#location" class="navbar-item">Địa điểm</a>
+            <a href="#action" class="navbar-item">Hành động & Giải pháp</a>
+            <a href="#tips" class="navbar-item">Mẹo sử dụng</a>
+        </div>
+    </div>
+
     <div class="container">
         <h1>Tiêu đề video để thu hút người xem</h1>
-        <p>Dưới đây là 100 gợi ý về tiêu đề video hoặc một phần tiêu đề được thiết kế để thu hút sự chú ý của người xem và cải thiện khả năng hiển thị tìm kiếm cho kênh của bạn, <strong>@TienNguyenTVOfficial</strong>.</p>
+        <p>Dưới đây là 153 gợi ý về tiêu đề video hoặc một phần tiêu đề được thiết kế để thu hút sự chú ý của người xem và cải thiện khả năng hiển thị tìm kiếm cho kênh của bạn, <strong>@TienNguyenTVOfficial</strong>.</p>
      
 
         <hr class="section-divider">
 
-        <h2>Tiêu đề tập trung vào sự khó khăn:</h2>
+        <h2 id="difficulty">Tiêu đề tập trung vào sự khó khăn:</h2>
         <ul>
             <li>Bệnh tật không tiền chữa, đành phó mặc số phận</li>
             <li>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</li>
@@ -136,11 +184,32 @@
             <li>Sức sống mãnh liệt nơi núi rừng heo hút</li>
             <li>Ươm mầm tương lai trên mảnh đất cằn cỗi</li>
             <li>Vượt qua giới hạn của đói nghèo</li>
+            <!-- New titles for "Tiêu đề tập trung vào sự khó khăn" -->
+            <li>Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo</li>
+            <li>Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi</li>
+            <li>Bệnh tật không thuốc: Khi cái chết cận kề</li>
+            <li>Dặm đường đến trường: Nỗi gian nan của trẻ em vùng cao</li>
+            <li>Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày</li>
+            <li>Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao</li>
+            <li>Đêm tối không đèn: Cuộc sống chìm trong bóng tối</li>
+            <li>Mưu sinh từ phân bò: Cuộc đời lam lũ vùng cao</li>
+            <li>Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân</li>
+            <li>Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão</li>
+            <li>Nước đọng vũng: Nguồn sống đầy rủi ro</li>
+            <li>Tuổi thơ bị đánh cắp: Trẻ em vùng cao bỏ học mưu sinh</li>
+            <li>Bữa ăn thiếu chất: Hậu quả khôn lường đến sức khỏe</li>
+            <li>Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu</li>
+            <li>Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại</li>
+            <li>Mùa màng thất bát: Nỗi ám ảnh đói nghèo</li>
+            <li>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</li>
+            <li>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</li>
+            <li>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</li>
+            <li>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</li>
         </ul>
 
         <hr class="section-divider">
 
-        <h2>Tiêu đề tập trung vào nhận thức và tác động:</h2>
+        <h2 id="awareness">Tiêu đề tập trung vào nhận thức và tác động:</h2>
         <ul>
             <li>Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</li>
             <li>Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng</li>
@@ -181,11 +250,24 @@
             <li>Tiếng gọi từ trái tim: Hướng về miền núi</li>
             <li>Ước mơ nhỏ bé giữa cuộc sống bộn bề</li>
             <li>Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo</li>
+            <!-- New titles for "Tiêu đề tập trung vào nhận thức và tác động" -->
+            <li>Thắp sáng tương lai: Mang điện về bản làng</li>
+            <li>Giọt nước nghĩa tình: Xây hệ thống nước sạch cho vùng cao</li>
+            <li>Bữa ăn đủ đầy: Niềm vui nhỏ bé cho trẻ em nghèo</li>
+            <li>Mái ấm yêu thương: Xóa nhà tạm bợ cho người dân</li>
+            <li>Cùng em đến trường: Trao xe đạp, chắp cánh ước mơ</li>
+            <li>Sức khỏe cộng đồng: Mang thuốc men đến vùng khó khăn</li>
+            <li>Vòng tay sẻ chia: Giúp người già neo đơn nơi núi rừng</li>
+            <li>Chung tay vì người khuyết tật: Nâng đỡ những mảnh đời bất hạnh</li>
+            <li>Đánh thức tiềm năng: Phát triển kinh tế bền vững vùng cao</li>
+            <li>Từ bùn đất đến mái ấm: Hành trình xây nhà mới</li>
+            <li>Nâng cao nhận thức: Chấm dứt cảnh sống trong hang đá</li>
+            <li>Hướng về vùng lũ: Giúp đỡ đồng bào sau thiên tai</li>
         </ul>
 
         <hr class="section-divider">
 
-        <h2>Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
+        <h2 id="curiosity">Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
         <ul>
             <li>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</li>
             <li>Bóng tối nuốt chửng cuộc sống vùng cao</li>
@@ -226,11 +308,24 @@
             <li>Vòng tay nhân ái sưởi ấm mùa đông</li>
             <li>Vượt lên số phận: Những người con vùng cao kiên cường</li>
             <li>Vượt qua giới hạn của đói nghèo</li>
+            <!-- New titles for "Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc" -->
+            <li>Bí mật đằng sau những mái nhà tạm bợ</li>
+            <li>Chuyện gì xảy ra khi không có nước sạch?</li>
+            <li>Nụ cười hiếm hoi của trẻ em vùng cao</li>
+            <li>Cuộc sống không điện: Bạn có tưởng tượng được không?</li>
+            <li>Hành trình tìm kiếm một bữa ăn no</li>
+            <li>Ánh mắt khao khát một viên thuốc</li>
+            <li>Ước mơ nhỏ nhoi của cô bé vùng cao</li>
+            <li>Tiếng lòng người mẹ đơn thân nơi núi rừng</li>
+            <li>Khi tuổi già không nơi nương tựa</li>
+            <li>Sức mạnh của ý chí vượt lên số phận</li>
+            <li>Những câu chuyện cảm động từ vùng đất nghèo</li>
+            <li>Vẻ đẹp kiên cường giữa cảnh đời khắc nghiệt</li>
         </ul>
 
         <hr class="section-divider">
 
-        <h2>Tiêu đề tập trung vào địa điểm:</h2>
+        <h2 id="location">Tiêu đề tập trung vào địa điểm:</h2>
         <ul>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</li>
@@ -242,11 +337,15 @@
             <li>Mái nhà tạm bợ vùng cao [Tên tỉnh/huyện cụ thể nếu có]</li>
             <li>Nghèo đói đeo bám người dân [Tên tỉnh/huyện cụ thể nếu có]</li>
             <li>Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <!-- New titles for "Tiêu đề tập trung vào địa điểm" -->
+            <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cuộc sống là một thử thách</li>
+            <li>[Tên tỉnh/huyện cụ thể nếu có]: Vùng đất của những phận đời cần giúp đỡ</li>
+            <li>[Tên tỉnh/huyện cụ thể nếu có]: Tiếng gọi từ trái tim núi rừng</li>
         </ul>
 
         <hr class="section-divider">
 
-        <h2>Tiêu đề tập trung vào hành động/giải pháp:</h2>
+        <h2 id="action">Tiêu đề tập trung vào hành động/giải pháp:</h2>
         <ul>
             <li>Ánh sáng cho những đêm tối vùng cao</li>
             <li>Chắp cánh ước mơ đến trường cho trẻ em nghèo</li>
@@ -258,9 +357,16 @@
             <li>Nước sạch cho cuộc sống khỏe mạnh hơn</li>
             <li>San sẻ bữa ăn, tiếp thêm sức mạnh</li>
             <li>Xây dựng tương lai cho cộng đồng vùng khó</li>
+            <!-- New titles for "Tiêu đề tập trung vào hành động/giải pháp" -->
+            <li>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</li>
+            <li>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</li>
+            <li>Xây dựng trường học: Ươm mầm tri thức cho tương lai</li>
+            <li>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
+            <li>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</li>
+            <li>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</li>
         </ul>
 
-        <div class="tips-section">
+        <div class="tips-section" id="tips">
             <h2>Mẹo sử dụng các tiêu đề này:</h2>
             <ul>
                 <li><strong>Cụ thể:</strong> Khi có thể, hãy đưa các chi tiết cụ thể từ video vào tiêu đề.</li>
