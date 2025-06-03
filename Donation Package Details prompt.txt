@@ -10,6 +10,7 @@ Items in Vietnamese:
 
 Mặt hàng: Nơi trú ẩn mới
 👉 Số lượng ước tính: 46.600.000 - 52.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/new-house.pgn
 
 *Giá cao hơn áp dụng cho khu vực miền núi xa xôi khó khăn khi giao hàng.
 
@@ -20,6 +21,7 @@ Mặt hàng: Nơi trú ẩn mới
 -----------
 Mặt hàng: Thực Phẩm Thiết Yếu
 👉 Số lượng ước tính: 1.100.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/new-house.pgn
 
 *Có sẵn nhiều số lượng và mặt hàng khác nhau.
 
@@ -27,6 +29,7 @@ Mặt hàng: Thực Phẩm Thiết Yếu
 -----------
 Mặt hàng: Hệ Thống Cấp Nước
 👉 Số lượng ước tính: 50.000.000 - 70.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/water-supply-system.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
@@ -35,36 +38,42 @@ Mặt hàng: Hệ Thống Cấp Nước
 -----------
 Mặt hàng: Đèn Năng Lượng Mặt Trời
 👉 Số lượng ước tính: 1.200.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/solar-light.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Hỗ Trợ Không Giới Hạn (Tiền mặt)
 👉 Số lượng ước tính: Bất kì
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cash.pgn
 
 
 
 -----------
 Mặt hàng: Nhu Yếu Phẩm Cho Giấc Ngủ
 👉 Số lượng ước tính: 1.350.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/beddings.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Xe Đạp
 👉 Số lượng ước tính: 2.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/bicycle.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Thùng đựng nước
 👉 Số lượng ước tính: 35.000 - 40.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/water-container.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Bạt Che
 👉 Số lượng ước tính: 500.000-1.500.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/tarp.pgn
 
 *Phụ thuộc vào độ dày
 
@@ -73,30 +82,35 @@ Mặt hàng: Bạt Che
 -----------
 Mặt hàng: Quạt Năng Lượng Mặt Trời
 👉 Số lượng ước tính: 2.200.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/solar-fan.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Đồ dùng nhà bếp
 👉 Số lượng ước tính: 2.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/kitchenware.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Chuồng Gà
 👉 Số lượng ước tính: 9.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/chicken-coop.jpg
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Giường Xếp
 👉 Số lượng ước tính: 1.450.000 - 2.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/portable-bed.jpg
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Bếp Nấu Ăn Di Động
 ​👉 Số lượng ước tính: 350.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cooking-stove.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
@@ -105,12 +119,14 @@ Mặt hàng: Bếp Nấu Ăn Di Động
 -----------
 Mặt hàng: Bò Sinh Kế
 👉 Số lượng ước tính: 15.000.000-25.000.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cow.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết
 
 -----------
 Mặt hàng: Thức ăn & đồ dùng thiết yếu cho bé
 👉 Số lượng ước tính: 2.000.000 - 2.500.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/baby-essentials-VN.pgn
 
 *Tuỳ vào số lượng
 
@@ -119,24 +135,28 @@ Mặt hàng: Thức ăn & đồ dùng thiết yếu cho bé
 -----------
 Mặt hàng: Sự Kiện Bữa Trưa Cộng Đồng
 👉 Số lượng ước tính: Tùy thuộc vào số lượng bữa trưa
+Image-url: http://centralportal.github.io/TienNguyenTV/images/community-lunch.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Đồ dùng thiết yếu cho gia đình
 👉 Số lượng ước tính: 2.300.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/furniture.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết
 
 -----------
 Mặt hàng: Sự Kiện Cứu Trợ Thực Phẩm Cộng Đồng
 👉 Số lượng ước tính:  Phụ thuộc vào số lượng gói
+Image-url: http://centralportal.github.io/TienNguyenTV/images/community-supplies.jpg
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
 -----------
 Mặt hàng: Chăm sóc thiết yếu
 👉 Số lượng ước tính: 1.450.000 ₫
+Image-url: http://centralportal.github.io/TienNguyenTV/images/essential-care-VN.pgn
 
 *Giá thị trường thường thay đổi. Số tiền hiển thị là ước tính tốt nhất của Tiến tại thời điểm niêm yết.
 
@@ -147,6 +167,7 @@ Items in English:
 -----------
 Item: New Shelter
 👉 Estimated amount:   $1,791 - $2,000
+Image-url: http://centralportal.github.io/TienNguyenTV/images/new-house.pgn
 
 *Higher price covers the difficult remote mountain area delivery.
 
@@ -157,6 +178,7 @@ Item: New Shelter
 -----------
 Item: Essential Foods
 👉 Estimated amount:  $43
+Image-url: http://centralportal.github.io/TienNguyenTV/images/new-house.pgn
 
 *Different amounts and items are available
 
@@ -166,6 +188,7 @@ Item: Essential Foods
 -----------
 Item: Water Supply System
 👉 Estimated amount: $1,922 - $2,691
+Image-url: http://centralportal.github.io/TienNguyenTV/images/water-supply-system.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
@@ -174,12 +197,14 @@ Item: Water Supply System
 -----------
 Item: Solar Light
 👉 Estimated amount: $47
+Image-url: http://centralportal.github.io/TienNguyenTV/images/solar-light.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Unrestricted Support (Cash)
 👉 Estimated amount: Any
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cash.pgn
 
 
 
@@ -187,6 +212,7 @@ Item: Unrestricted Support (Cash)
 Item: Essentials for Sleep
  
 👉 Estimated amount:   $53
+Image-url: http://centralportal.github.io/TienNguyenTV/images/beddings.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
@@ -194,18 +220,21 @@ Item: Essentials for Sleep
 -----------
 Item: Bicycle
 👉 Estimated amount: $77
+Image-url: http://centralportal.github.io/TienNguyenTV/images/bicycle.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Water Containers
 👉 Estimated amount: $2
+Image-url: http://centralportal.github.io/TienNguyenTV/images/water-container.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Tarpaulin
 👉 Estimated amount: $20 - $58
+Image-url: http://centralportal.github.io/TienNguyenTV/images/tarp.pgn
 
 *Depends on Thickness
 
@@ -214,12 +243,14 @@ Item: Tarpaulin
 -----------
 Item: Solar Fan
 👉 Estimated amount:   $85
+Image-url: http://centralportal.github.io/TienNguyenTV/images/solar-fan.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Kitchenware
 👉 Estimated amount: $77
+Image-url: http://centralportal.github.io/TienNguyenTV/images/kitchenware.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
@@ -227,6 +258,7 @@ Item: Kitchenware
 Item: Chicken Coop
 ​
 👉 Estimated amount: $350
+Image-url: http://centralportal.github.io/TienNguyenTV/images/chicken-coop.jpg
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
@@ -234,24 +266,28 @@ Item: Chicken Coop
 -----------
 Item: Cot
 👉 Estimated amount:   $56 - $77
+Image-url: http://centralportal.github.io/TienNguyenTV/images/portable-bed.jpg
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Portable Cooking Oven
 👉 Estimated amount:   $14
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cooking-stove.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Livelihood Cow
 👉 Estimated amount: $577 - $961
+Image-url: http://centralportal.github.io/TienNguyenTV/images/cow.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Baby Food & Essentials
 👉 Estimated amount: $77 - $97
+Image-url: http://centralportal.github.io/TienNguyenTV/images/baby-essentials-EN.pgn
 
 *Depends on quantity
 
@@ -260,24 +296,28 @@ Item: Baby Food & Essentials
 -----------
 Item: Community Lunch Event
 👉 Estimated amount: Depends on the number of lunches
+Image-url: http://centralportal.github.io/TienNguyenTV/images/community-lunch.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Household Essentials
 👉 Estimated amount:   $89
+Image-url: http://centralportal.github.io/TienNguyenTV/images/furniture.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Community Food Relief Event
 👉 Estimated amount: Depends on how many packages
+Image-url: http://centralportal.github.io/TienNguyenTV/images/community-supplies.jpg
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
 -----------
 Item: Essential Care
 👉 Estimated amount: $56
+Image-url: http://centralportal.github.io/TienNguyenTV/images/essential-care-EN.pgn
 
 *Marketplace prices often vary.  The amounts shown are our best estimates at the time of listing.
 
