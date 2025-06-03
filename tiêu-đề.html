@@ -126,6 +126,24 @@
         .navbar-item:hover {
             background-color: #2980b9;
         }
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            transition: border-color 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -144,11 +162,14 @@
         <h1>Tiêu đề video để thu hút người xem</h1>
         <p>Dưới đây là 153 gợi ý về tiêu đề video hoặc một phần tiêu đề được thiết kế để thu hút sự chú ý của người xem và cải thiện khả năng hiển thị tìm kiếm cho kênh của bạn, <strong>@TienNguyenTVOfficial</strong>.</p>
      
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tiêu đề...">
+        </div>
 
         <hr class="section-divider">
 
         <h2 id="difficulty">Tiêu đề tập trung vào sự khó khăn:</h2>
-        <ul>
+        <ul id="difficulty-list">
             <li>Bệnh tật không tiền chữa, đành phó mặc số phận</li>
             <li>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</li>
             <li>Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi</li>
@@ -210,7 +231,7 @@
         <hr class="section-divider">
 
         <h2 id="awareness">Tiêu đề tập trung vào nhận thức và tác động:</h2>
-        <ul>
+        <ul id="awareness-list">
             <li>Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</li>
             <li>Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng</li>
             <li>Bệnh tật không được chữa trị – Hậu quả của sự nghèo đói</li>
@@ -268,7 +289,7 @@
         <hr class="section-divider">
 
         <h2 id="curiosity">Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
-        <ul>
+        <ul id="curiosity-list">
             <li>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</li>
             <li>Bóng tối nuốt chửng cuộc sống vùng cao</li>
             <li>Bóng tối và những nỗi sợ hãi thầm kín</li>
@@ -326,7 +347,7 @@
         <hr class="section-divider">
 
         <h2 id="location">Tiêu đề tập trung vào địa điểm:</h2>
-        <ul>
+        <ul id="location-list">
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi những ước mơ còn dang dở</li>
@@ -346,7 +367,7 @@
         <hr class="section-divider">
 
         <h2 id="action">Tiêu đề tập trung vào hành động/giải pháp:</h2>
-        <ul>
+        <ul id="action-list">
             <li>Ánh sáng cho những đêm tối vùng cao</li>
             <li>Chắp cánh ước mơ đến trường cho trẻ em nghèo</li>
             <li>Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</li>
@@ -382,5 +403,97 @@
             <p>Đừng quên tối ưu hóa mô tả video và sử dụng các thẻ liên quan cùng với các tiêu đề hấp dẫn này để có khả năng hiển thị tìm kiếm tối đa trên cả YouTube và Google.</p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const lists = [
+                document.getElementById('difficulty-list'),
+                document.getElementById('awareness-list'),
+                document.getElementById('curiosity-list'),
+                document.getElementById('location-list'),
+                document.getElementById('action-list')
+            ];
+            const tipsSection = document.getElementById('tips'); // Get the tips section
+
+            searchInput.addEventListener('keyup', (event) => {
+                const searchTerm = event.target.value.toLowerCase();
+                let anySearchableListVisible = false; // Flag to track if any searchable list remains visible
+
+                lists.forEach(list => {
+                    if (list) { // Ensure the list element exists
+                        const items = list.getElementsByTagName('li');
+                        let hasVisibleItemsInCurrentList = false;
+
+                        for (let i = 0; i < items.length; i++) {
+                            const item = items[i];
+                            const text = item.textContent || item.innerText;
+                            if (text.toLowerCase().includes(searchTerm)) {
+                                item.style.display = ''; // Show the item
+                                hasVisibleItemsInCurrentList = true;
+                            } else {
+                                item.style.display = 'none'; // Hide the item
+                            }
+                        }
+
+                        // Get the associated H2 heading and preceding HR divider
+                        const parentH2 = list.previousElementSibling;
+                        const precedingHr = parentH2 ? parentH2.previousElementSibling : null;
+
+                        if (searchTerm === '') {
+                            // If search term is empty, show everything in this list's section
+                            list.style.display = '';
+                            if (parentH2 && parentH2.tagName === 'H2') {
+                                parentH2.style.display = '';
+                            }
+                            if (precedingHr && precedingHr.classList.contains('section-divider')) {
+                                precedingHr.style.display = '';
+                            }
+                            anySearchableListVisible = true; // If search is empty, all lists are considered visible
+                        } else {
+                            // If there's a search term
+                            if (hasVisibleItemsInCurrentList) {
+                                list.style.display = ''; // Show the list
+                                if (parentH2 && parentH2.tagName === 'H2') {
+                                    parentH2.style.display = ''; // Show the heading
+                                }
+                                if (precedingHr && precedingHr.classList.contains('section-divider')) {
+                                    precedingHr.style.display = ''; // Show the divider
+                                }
+                                anySearchableListVisible = true; // At least one searchable list has visible items
+                            } else {
+                                list.style.display = 'none'; // Hide the list
+                                if (parentH2 && parentH2.tagName === 'H2') {
+                                    parentH2.style.display = 'none'; // Hide the heading
+                                }
+                                if (precedingHr && precedingHr.classList.contains('section-divider')) {
+                                    precedingHr.style.display = 'none'; // Hide the divider
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Handle the visibility of the "Mẹo sử dụng các tiêu đề này" section
+                if (tipsSection) {
+                    if (searchTerm === '') { // Show only if search is empty
+                        tipsSection.style.display = '';
+                    } else { // Hide if there is any search term
+                        tipsSection.style.display = 'none';
+                    }
+                }
+
+                // Handle the very first section divider after the search input
+                const firstSectionDivider = document.querySelector('.search-container + .section-divider');
+                if (firstSectionDivider) {
+                    if (searchTerm === '' || anySearchableListVisible) {
+                        firstSectionDivider.style.display = '';
+                    } else {
+                        firstSectionDivider.style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
