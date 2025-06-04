@@ -26,7 +26,7 @@
     <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10">
         <!-- Header Section -->
         <div class="flex flex-col items-center mb-6"> <!-- Changed to always stack vertically -->
-            <h1 id="report-header" class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 text-center"></h1> <!-- Centered title and increased bottom margin -->
+            <h1 id="report-header" class="text-3xl sm:text-4xl font-bold text-blue-700 mb-6 text-center"></h1> <!-- Centered title and increased bottom margin, changed text color to blue-700 -->
             <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 mt-4"> <!-- Increased horizontal spacing on larger screens -->
                 <!-- Language Selection -->
                 <div class="flex items-center space-x-2">
@@ -192,7 +192,7 @@
                     {
                         item: "Bạt Che",
                         description: {
-                            paragraph: "Hãy tưởng tượng một gia đình trú ẩn dưới những cành cây và mảnh vụn yếu ớt, dễ bị ảnh hưởng bởi nắng, mưa và gió khắc nghiệt. Đối với họ, ngay cả nơi trú ẩn cơ bản cũng là một thách thức liên tục; thu nhập hạn hẹp của họ hầu như không đủ trang trải thức ăn, chứ đừng nói đến một mái nhà ổn định.",
+                            paragraph: "Hãy tưởng tượng một gia đình trú ẩn dưới những cành cây và mảnh vụn yếu ớt, dễ bị ảnh hưởng bởi nắng, mưa và gió khắc nghiệt. Đối với họ, ngay cả nơi trú ẩn cơ bản cũng là một thách thách thức liên tục; thu nhập hạn hẹp của họ hầu như không đủ trang trải thức ăn, chứ đừng nói đến một mái nhà ổn định.",
                             items: [
                                 "1 Bạt"
                             ]
@@ -741,7 +741,7 @@
                 contentContainer.className = 'flex-grow';
 
                 const itemTitle = document.createElement('h2');
-                itemTitle.className = 'text-2xl font-semibold text-gray-900 mb-2';
+                itemTitle.className = 'text-2xl font-semibold text-blue-700 mb-2'; // Changed text color to blue-700
                 itemTitle.textContent = item.item;
                 contentContainer.appendChild(itemTitle);
 
@@ -749,7 +749,8 @@
                 const descriptionContentDiv = document.createElement('div');
                 descriptionContentDiv.className = 'text-gray-700 text-base mb-3';
 
-                if (item.description) {
+                // Check if description exists and has the new structured format
+                if (item.description && typeof item.description === 'object' && item.description.paragraph !== undefined) {
                     // Add the main paragraph
                     if (item.description.paragraph) {
                         const p = document.createElement('p');
@@ -760,10 +761,32 @@
                     // Add the bulletized items if they exist
                     if (item.description.items && item.description.items.length > 0) {
                         const ul = document.createElement('ul');
-                        ul.className = 'list-disc ml-[10%] space-y-1 mt-2'; // Changed ml-5 to ml-[10%]
+                        ul.className = 'list-disc ml-[10%] space-y-1 mt-2'; // Added mt-2 for spacing after paragraph
                         item.description.items.forEach(listItem => {
                             const li = document.createElement('li');
                             li.textContent = listItem.trim();
+                            ul.appendChild(li);
+                        });
+                        descriptionContentDiv.appendChild(ul);
+                    }
+                } else if (typeof item.description === 'string' && item.description.trim() !== '') {
+                    // Fallback for old string format if it still exists in any item
+                    const parts = item.description.split('Items:');
+                    const paragraph = parts[0].trim();
+                    const itemsList = parts.length > 1 ? parts[1].split('\n').map(line => line.trim()).filter(line => line !== '') : [];
+
+                    if (paragraph) {
+                        const p = document.createElement('p');
+                        p.textContent = paragraph;
+                        descriptionContentDiv.appendChild(p);
+                    }
+
+                    if (itemsList.length > 0) {
+                        const ul = document.createElement('ul');
+                        ul.className = 'list-disc ml-[10%] space-y-1 mt-2';
+                        itemsList.forEach(listItem => {
+                            const li = document.createElement('li');
+                            li.textContent = listItem;
                             ul.appendChild(li);
                         });
                         descriptionContentDiv.appendChild(ul);
