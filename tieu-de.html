@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiêu đề video</title>
+    <title>Tiêu đề video để thu hút người xem</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,88 +18,83 @@
         }
         .container {
             max-width: 900px;
-            margin: 40px auto; /* Adjusted margin for consistency with reference */
+            margin: 40px auto;
             padding: 30px;
             background: #ffffff;
-            border-radius: 12px; /* Rounded corners for the main container */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
-        h1, h2, h3 {
-            color: #2c3e50; /* Darker blue for headings */
+        h1, h2 { /* Removed h3 from this general styling */
+            color: #2c3e50;
             font-weight: 700;
         }
         /* Styling for the Report Title (h1) */
         h1 {
-            font-size: 1.5rem; /* Reduced font size */
-            margin-bottom: 30px; /* Increased margin for more separation */
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             text-align: center;
             padding-bottom: 12px;
-            border-bottom: 3px solid #007bff; /* More prominent blue border */
-            color: #0056b3; /* Stronger blue color */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
-            letter-spacing: 0.05em; /* Slightly increased letter spacing */
+            border-bottom: 3px solid #007bff;
+            color: #0056b3;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.05em;
         }
-        /* Wrapper for H2 and icon for flex layout */
+        /* Wrapper for H2 and icon for flex layout - now for all main categories */
         .category-header-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 10px; /* Reduced margin-top for less space */
-            margin-bottom: 25px; /* Space below the entire row */
+            margin-top: 25px; /* Adjusted margin-top for new categories */
+            margin-bottom: 25px;
         }
-        /* Updated H2 style for pill shape (text only) */
+        /* Updated H2 style for pill shape (text only) - now applies to all new main categories */
         .category-header-row h2 {
-            font-size: 1.1em; /* Further reduced font size */
-            color: white; /* Text color for the pill */
-            background-color: #3498db; /* Blue background for the pill */
-            padding: 10px 20px; /* Adjusted padding for the pill shape */
-            border-radius: 12px; /* Less rounded border-radius */
-            text-align: center; /* Center text within the pill */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
-            display: inline-block; /* Make it a pill */
-            margin: 0; /* Remove default H2 margins */
-            flex-shrink: 0; /* Prevent the H2 pill from shrinking */
+            font-size: 1.1em;
+            color: white;
+            background-color: #3498db;
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            margin: 0;
+            flex-shrink: 0;
         }
         .category-header-row h2:hover {
-            background-color: #2980b9; /* Slightly darker blue on hover */
-            transform: translateY(-2px); /* Subtle lift effect */
+            background-color: #2980b9;
+            transform: translateY(-2px);
         }
         /* Style for the scroll-to-top icon */
         .scroll-to-top-icon {
             cursor: pointer;
-            margin-left: 15px; /* Space between the H2 pill and icon */
-            color: #007bff; /* Icon color, matching report title border */
-            flex-shrink: 0; /* Prevent icon from shrinking */
-            display: inline-block; /* Ensure it respects margin-left */
-            vertical-align: middle; /* Align icon vertically with text */
+            margin-left: 15px;
+            color: #007bff;
+            flex-shrink: 0;
+            display: inline-block;
+            vertical-align: middle;
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .scroll-to-top-icon:hover {
             opacity: 0.8;
-            transform: translateY(-2px); /* Subtle lift effect on hover */
+            transform: translateY(-2px);
         }
 
-        h3 {
-            font-size: 1.4em; /* Kept original em unit for consistency with other h2/h3 */
-            margin-top: 30px;
-            margin-bottom: 10px;
-            color: #555;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-            text-align: left;
-        }
+        /* Removed h3 specific styling as h3 is no longer used for categories */
+        /* p styling remains unchanged */
         p {
             margin-bottom: 15px;
             text-align: justify;
         }
+        /* Base ul styling remains */
         ul {
             list-style-type: disc;
             padding-left: 20px;
             margin: 0;
         }
+        /* Styling for list items */
         li {
-            background-color: #e8f7ff; /* Default background for list items */
+            background-color: #e8f7ff;
             border: 1px solid #b3e0ff;
             padding: 8px 15px;
             border-radius: 5px;
@@ -109,8 +104,9 @@
         }
         /* Apply a different background to odd list items for better readability */
         li:nth-child(odd) {
-            background-color: #cceeff; /* Stronger contrast for readability */
+            background-color: #cceeff;
         }
+
         .section-divider {
             border: 0;
             height: 1px;
@@ -140,33 +136,33 @@
         .tips-section li:nth-child(odd) {
             background-color: transparent;
         }
-        /* Override H2 style for tips section */
+        /* Override H2 style for tips section to prevent pill styling */
         .tips-section h2 {
-            color: #2c3e50; /* Darker blue for headings */
+            color: #2c3e50;
             font-weight: 700;
-            font-size: 1.8em; /* Match general h2 font size */
-            margin-top: 0; /* Remove top margin from the global h2 */
-            margin-bottom: 15px; /* Adjust margin as needed */
-            background-color: transparent; /* Remove pill background */
-            padding: 0; /* Remove pill padding */
-            border-radius: 0; /* Remove pill border-radius */
-            box-shadow: none; /* Remove pill shadow */
-            display: block; /* Revert to block display */
-            width: auto; /* Revert width */
-            text-align: center; /* Center the text */
-            margin-left: 0; /* Remove auto margins */
-            margin-right: 0; /* Remove auto margins */
-            transition: none; /* Remove transition */
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            display: block;
+            width: auto;
+            text-align: center;
+            margin-left: 0;
+            margin-right: 0;
+            transition: none;
         }
 
-        /* Reverted Navbar container style */
+        /* Navbar styling */
         .navbar {
-            background-color: transparent; /* Transparent background */
-            padding: 8px 0; /* Keep padding for spacing */
+            background-color: transparent;
+            padding: 8px 0;
             z-index: 1000;
-            box-shadow: none; /* No shadow */
-            margin-bottom: 30px; /* Space below the navbar when moved */
-            border-radius: 0; /* No border-radius */
+            box-shadow: none;
+            margin-bottom: 30px;
+            border-radius: 0;
         }
         .navbar-container {
             max-width: 900px;
@@ -174,31 +170,42 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            /* Added background, padding, and border-radius for the visual container of pills */
-            background-color: #f0f8ff; /* Light blue background for nav container */
+            background-color: #f0f8ff;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        /* Individual Navbar Item style - Pill shape */
         .navbar-item {
-            color: #007bff; /* Original blue text */
-            background-color: #e0f2f7; /* Very light blue-gray for nav links */
-            padding: 8px 18px; /* Adjusted padding for pill shape */
-            margin: 4px; /* Adjusted margin */
-            border-radius: 50px; /* Pill shape */
+            color: #007bff;
+            background-color: #e0f2f7;
+            padding: 8px 18px;
+            margin: 4px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
             font-weight: 600;
-            font-size: 1em; /* Slightly larger font size */
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .navbar-item:hover {
-            background-color: #d0e8f0; /* Slightly darker on hover */
-            color: #0056b3; /* Darker blue on hover */
-            transform: translateY(-2px); /* Subtle lift effect */
+            background-color: #d0e8f0;
+            color: #0056b3;
+            transform: translateY(-2px);
         }
+
+        /* Styling for the "Mẹo sử dụng" navigation item */
+        .navbar-item.tips-nav-item {
+            background-color: #007bff; /* Stronger blue */
+            color: white; /* White text */
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4); /* More pronounced shadow */
+            font-weight: 700; /* Bolder text */
+        }
+        .navbar-item.tips-nav-item:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-3px); /* Slightly more lift */
+        }
+
         .search-container {
-            margin-top: 30px; /* Added margin to separate from new navbar position */
+            margin-top: 30px;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -225,12 +232,20 @@
      
         <div class="navbar">
             <div class="navbar-container">
-                <a href="#difficulty" class="navbar-item">Khó khăn</a>
-                <a href="#awareness" class="navbar-item">Nhận thức & Tác động</a>
-                <a href="#curiosity" class="navbar-item">Tò mò & Cảm xúc</a>
-                <a href="#location" class="navbar-item">Địa điểm</a>
-                <a href="#action" class="navbar-item">Hành động & Giải pháp</a>
-                <a href="#tips" class="navbar-item">Mẹo sử dụng</a>
+                <a href="#suc-khoe-benh-tat" class="navbar-item">Sức khỏe & Bệnh tật</a>
+                <a href="#sinh-hoat-muu-sinh" class="navbar-item">Sinh hoạt & Mưu sinh</a>
+                <a href="#giao-duc-tuong-lai" class="navbar-item">Giáo dục & Tương lai</a>
+                <a href="#tam-ly-xa-hoi" class="navbar-item">Tâm lý & Xã hội</a>
+                <a href="#hy-vong-thay-doi" class="navbar-item">Hy vọng & Thay đổi</a>
+                <a href="#keu-goi-chung-tay" class="navbar-item">Kêu gọi & Chung tay</a>
+                <a href="#giai-phap-cu-the" class="navbar-item">Giải pháp cụ thể</a>
+                <a href="#noi-dau-kho-so" class="navbar-item">Nỗi đau & Khổ sở</a>
+                <a href="#kien-cuong-hy-vong" class="navbar-item">Kiên cường & Hy vọng</a>
+                <a href="#tong-quan-dia-diem" class="navbar-item">Tổng quan địa điểm</a>
+                <a href="#kho-khan-tai-dia-diem" class="navbar-item">Khó khăn tại địa điểm</a>
+                <a href="#ho-tro-chung" class="navbar-item">Hỗ trợ chung</a>
+                <a href="#du-an-cu-the" class="navbar-item">Dự án cụ thể</a>
+                <a href="#tips" class="navbar-item tips-nav-item">Mẹo sử dụng</a>
             </div>
         </div>
 
@@ -241,33 +256,42 @@
         <hr class="section-divider">
 
         <div class="category-header-row">
-            <h2 id="difficulty">Tiêu đề tập trung vào sự khó khăn:</h2>
+            <h2 id="suc-khoe-benh-tat">Sức khỏe & Bệnh tật</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
             </span>
         </div>
-        <ul id="difficulty-list">
+        <ul class="category-list">
             <li>Bệnh tật không tiền chữa, đành phó mặc số phận</li>
             <li>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</li>
+            <li>Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao</li>
+            <li>Bệnh tật không thuốc: Khi cái chết cận kề</li>
+            <li>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</li>
+            <li>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="sinh-hoat-muu-sinh">Sinh hoạt & Mưu sinh</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi</li>
             <li>Bóng tối và nỗi sợ hãi bủa vây mỗi đêm</li>
-            <li>Bước chân nhỏ bé vượt dặm đường đến lớp</li>
             <li>Bữa ăn thiếu chất, sức khỏe suy kiệt dần</li>
             <li>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</li>
             <li>Cơm rau đạm bạc, sức tàn lực kiệt: Cuộc sống thiếu thốn</li>
             <li>Cơm trắng muối, rau rừng: Bữa ăn hàng ngày của người nghèo Việt Nam</li>
-            <li>Chuyện chưa kể về những phận đời nghèo khó</li>
-            <li>Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn</li>
-            <li>Đi tìm con chữ giữa khó khăn chồng chất</li>
             <li>Giấc ngủ chập chờn trên đất lạnh: Nỗi khổ của người nghèo</li>
             <li>Giấc ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</li>
             <li>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</li>
-            <li>Giữ lửa truyền thống giữa bộn bề khó khăn</li>
-            <li>Hành trình đến con chữ đầy gian nan và thử thách</li>
-            <li>Khát khao một mái ấm bình yên</li>
-            <li>Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao</li>
             <li>Khi cái ăn cái mặc là cả một cuộc chiến</li>
             <li>Khi mái nhà không che nổi mưa nắng: Cảnh đời vùng khó</li>
             <li>Không điện, không nước sạch: Bóng tối và cơn khát ở núi rừng Việt Nam</li>
@@ -277,18 +301,9 @@
             <li>Mồ hôi rơi trên nương rẫy, đói nghèo vẫn bủa vây</li>
             <li>Mưu sinh vất vả, tương lai mờ mịt</li>
             <li>Ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</li>
-            <li>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</li>
             <li>Nơi giấc ngủ là nỗi ám ảnh: Cuộc sống không tiện nghi</li>
-            <li>Nơi cuộc sống khắc nghiệt thử thách lòng người</li>
-            <li>Nỗi lo cơm áo gạo tiền đè nặng vai gầy</li>
-            <li>Sức sống mãnh liệt nơi núi rừng heo hút</li>
-            <li>Ươm mầm tương lai trên mảnh đất cằn cỗi</li>
-            <li>Vượt qua giới hạn của đói nghèo</li>
-            <!-- New titles for "Tiêu đề tập trung vào sự khó khăn" -->
             <li>Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo</li>
             <li>Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi</li>
-            <li>Bệnh tật không thuốc: Khi cái chết cận kề</li>
-            <li>Dặm đường đến trường: Nỗi gian nan của trẻ em vùng cao</li>
             <li>Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày</li>
             <li>Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao</li>
             <li>Đêm tối không đèn: Cuộc sống chìm trong bóng tối</li>
@@ -296,29 +311,82 @@
             <li>Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân</li>
             <li>Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão</li>
             <li>Nước đọng vũng: Nguồn sống đầy rủi ro</li>
-            <li>Tuổi thơ bị đánh cắp: Trẻ em vùng cao bỏ học mưu sinh</li>
-            <li>Bữa ăn thiếu chất: Hậu quả khôn lường đến sức khỏe</li>
             <li>Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu</li>
             <li>Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại</li>
             <li>Mùa màng thất bát: Nỗi ám ảnh đói nghèo</li>
-            <li>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</li>
-            <li>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</li>
-            <li>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</li>
-            <li>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</li>
         </ul>
 
         <hr class="section-divider">
 
         <div class="category-header-row">
-            <h2 id="awareness">Tiêu đề tập trung vào nhận thức và tác động:</h2>
+            <h2 id="giao-duc-tuong-lai">Giáo dục & Tương lai</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
             </span>
         </div>
-        <ul id="awareness-list">
+        <ul class="category-list">
+            <li>Bước chân nhỏ bé vượt dặm đường đến lớp</li>
+            <li>Đi tìm con chữ giữa khó khăn chồng chất</li>
+            <li>Hành trình đến con chữ đầy gian nan và thử thách</li>
+            <li>Ươm mầm tương lai trên mảnh đất cằn cỗi</li>
+            <li>Dặm đường đến trường: Nỗi gian nan của trẻ em vùng cao</li>
+            <li>Tuổi thơ bị đánh cắp: Trẻ em vùng cao bỏ học mưu sinh</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="tam-ly-xa-hoi">Tâm lý & Xã hội</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
+            <li>Chuyện chưa kể về những phận đời nghèo khó</li>
+            <li>Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn</li>
+            <li>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</li>
+            <li>Nơi cuộc sống khắc nghiệt thử thách lòng người</li>
+            <li>Nỗi lo cơm áo gạo tiền đè nặng vai gầy</li>
+            <li>Sức sống mãnh liệt nơi núi rừng heo hút</li>
+            <li>Vượt qua giới hạn của đói nghèo</li>
+            <li>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</li>
+            <li>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="hy-vong-thay-doi">Hy vọng & Thay đổi</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</li>
+            <li>Gieo niềm tin vào một ngày mai tươi sáng</li>
+            <li>Hành trình tìm kiếm tương lai tươi sáng</li>
+            <li>Thắp lửa hy vọng trong đêm tối nghèo khó</li>
+            <li>Thay đổi từng ngày từ những hành động nhỏ</li>
+            <li>Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="keu-goi-chung-tay">Kêu gọi & Chung tay</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng</li>
             <li>Bệnh tật không được chữa trị – Hậu quả của sự nghèo đói</li>
             <li>Bệnh tật và sự bất lực – Góc khuất cần được sẻ chia</li>
@@ -332,12 +400,10 @@
             <li>Cùng nhau xây dựng tương lai cho trẻ em nghèo</li>
             <li>Đằng sau những bước chân đến trường: Sự hy sinh thầm lặng</li>
             <li>Đừng để bước chân trẻ thơ mỏi mòn trên đường đến trường</li>
-            <li>Gieo niềm tin vào một ngày mai tươi sáng</li>
             <li>Giấc ngủ không yên – Nỗi lo lắng thường trực của người nghèo</li>
             <li>Giấc ngủ trên đất lạnh – Lời cầu xin sự giúp đỡ</li>
             <li>Hành động vì một cộng đồng tốt đẹp hơn</li>
             <li>Hành trình tìm chữ đầy gian nan – Ước mơ cần được chắp cánh</li>
-            <li>Hành trình tìm kiếm tương lai tươi sáng</li>
             <li>Hãy nhìn vào đôi chân trần vượt núi đến trường</li>
             <li>Khát khao một viên thuốc: Nỗi đau không lời của người nghèo</li>
             <li>Lan tỏa sự sẻ chia, nhân rộng yêu thương</li>
@@ -351,84 +417,97 @@
             <li>Nối vòng tay lớn: Hướng về đồng bào khó khăn</li>
             <li>Sức mạnh của sự sẻ chia: Thay đổi cuộc đời người nghèo</li>
             <li>Sức mạnh đoàn kết của cộng đồng nghèo</li>
-            <li>Thay đổi từng ngày từ những hành động nhỏ</li>
-            <li>Thắp lửa hy vọng trong đêm tối nghèo khó</li>
             <li>Tiếp sức đến trường cho em thơ vùng khó</li>
             <li>Tiếng gọi từ trái tim: Hướng về miền núi</li>
             <li>Ước mơ nhỏ bé giữa cuộc sống bộn bề</li>
-            <li>Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo</li>
-            <!-- New titles for "Tiêu đề tập trung vào nhận thức và tác động" -->
-            <li>Thắp sáng tương lai: Mang điện về bản làng</li>
-            <li>Giọt nước nghĩa tình: Xây hệ thống nước sạch cho vùng cao</li>
-            <li>Bữa ăn đủ đầy: Niềm vui nhỏ bé cho trẻ em nghèo</li>
-            <li>Mái ấm yêu thương: Xóa nhà tạm bợ cho người dân</li>
-            <li>Cùng em đến trường: Trao xe đạp, chắp cánh ước mơ</li>
-            <li>Sức khỏe cộng đồng: Mang thuốc men đến vùng khó khăn</li>
-            <li>Vòng tay sẻ chia: Giúp người già neo đơn nơi núi rừng</li>
-            <li>Chung tay vì người khuyết tật: Nâng đỡ những mảnh đời bất hạnh</li>
-            <li>Đánh thức tiềm năng: Phát triển kinh tế bền vững vùng cao</li>
-            <li>Từ bùn đất đến mái ấm: Hành trình xây nhà mới</li>
-            <li>Nâng cao nhận thức: Chấm dứt cảnh sống trong hang đá</li>
-            <li>Hướng về vùng lũ: Giúp đỡ đồng bào sau thiên tai</li>
         </ul>
 
         <hr class="section-divider">
 
         <div class="category-header-row">
-            <h2 id="curiosity">Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
+            <h2 id="giai-phap-cu-the">Giải pháp cụ thể</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
             </span>
         </div>
-        <ul id="curiosity-list">
+        <ul class="category-list">
+            <li>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</li>
+            <li>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</li>
+            <li>Xây dựng trường học: Ươm mầm tri thức cho tương lai</li>
+            <li>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
+            <li>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</li>
+            <li>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="noi-dau-kho-so">Nỗi đau & Khổ sở</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</li>
             <li>Bóng tối nuốt chửng cuộc sống vùng cao</li>
             <li>Bóng tối và những nỗi sợ hãi thầm kín</li>
             <li>Bóng tối và sự cô đơn bao trùm</li>
             <li>Bữa ăn đạm bạc và những giọt nước mắt lặng lẽ</li>
             <li>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</li>
-            <li>Chắp nối những ước mơ còn dang dở</li>
-            <li>Chuyện chưa kể về những phận đời nghèo khó</li>
             <li>Đôi bàn tay chai sạn và tương lai mờ mịt</li>
             <li>Giấc mơ về một tấm nệm ấm áp</li>
             <li>Giấc ngủ không trọn vẹn và những lo toan</li>
             <li>Giấc ngủ trên cành cây: Nỗi đau thấu xương</li>
             <li>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</li>
-            <li>Giữ lửa truyền thống giữa bộn bề khó khăn</li>
-            <li>Khát khao một mái ấm bình yên</li>
             <li>Khát vọng nhỏ bé về một ngọn đèn</li>
-            <li>Khi khó khăn không quật ngã được ý chí</li>
-            <li>Lao động vất vả và niềm hy vọng nhỏ nhoi</li>
             <li>Mái tôn rỉ sét kể chuyện đời nghèo khó</li>
             <li>Mồ hôi rơi, hy vọng mỏng manh</li>
-            <li>Nét đẹp tâm hồn người dân vùng cao nghèo khó</li>
             <li>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</li>
             <li>Nơi những điều bình dị trở thành ước mơ xa xỉ</li>
+            <li>Tiếng thở dài dưới mái nhà dột nát</li>
+            <li>Vị đắng của cuộc đời trong từng bữa ăn</li>
+            <li>Vị mặn của nước mắt trong bữa cơm trắng muối</li>
+            <li>Bí mật đằng sau những mái nhà tạm bợ</li>
+            <li>Chuyện gì xảy ra khi không có nước sạch?</li>
+            <li>Ánh mắt khao khát một viên thuốc</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="kien-cuong-hy-vong">Kiên cường & Hy vọng</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
+            <li>Chắp nối những ước mơ còn dang dở</li>
+            <li>Giữ lửa truyền thống giữa bộn bề khó khăn</li>
+            <li>Khi khó khăn không quật ngã được ý chí</li>
+            <li>Lao động vất vả và niềm hy vọng nhỏ nhoi</li>
+            <li>Nét đẹp tâm hồn người dân vùng cao nghèo khó</li>
             <li>Nơi cuộc sống khắc nghiệt thử thách lòng người</li>
             <li>Sức mạnh phi thường của những bước chân nhỏ</li>
             <li>Sức sống mãnh liệt nơi núi rừng heo hút</li>
             <li>Thắp lửa hy vọng trong đêm tối nghèo khó</li>
             <li>Thắp sáng những nụ cười tắt lịm</li>
-            <li>Tiếng thở dài dưới mái nhà dột nát</li>
             <li>Tình người ấm áp giữa mùa đông khắc nghiệt</li>
             <li>Ươm mầm tương lai trên mảnh đất cằn cỗi</li>
             <li>Ước mơ con chữ giữa núi rừng khắc nghiệt</li>
             <li>Ước mơ nhỏ bé giữa cuộc sống bộn bề</li>
             <li>Vẻ đẹp tiềm ẩn của vùng đất và con người nghèo khó</li>
-            <li>Vị đắng của cuộc đời trong từng bữa ăn</li>
-            <li>Vị mặn của nước mắt trong bữa cơm trắng muối</li>
             <li>Vòng tay nhân ái sưởi ấm mùa đông</li>
             <li>Vượt lên số phận: Những người con vùng cao kiên cường</li>
             <li>Vượt qua giới hạn của đói nghèo</li>
-            <!-- New titles for "Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc" -->
-            <li>Bí mật đằng sau những mái nhà tạm bợ</li>
-            <li>Chuyện gì xảy ra khi không có nước sạch?</li>
             <li>Nụ cười hiếm hoi của trẻ em vùng cao</li>
             <li>Cuộc sống không điện: Bạn có tưởng tượng được không?</li>
             <li>Hành trình tìm kiếm một bữa ăn no</li>
-            <li>Ánh mắt khao khát một viên thuốc</li>
             <li>Ước mơ nhỏ nhoi của cô bé vùng cao</li>
             <li>Tiếng lòng người mẹ đơn thân nơi núi rừng</li>
             <li>Khi tuổi già không nơi nương tựa</li>
@@ -440,25 +519,17 @@
         <hr class="section-divider">
 
         <div class="category-header-row">
-            <h2 id="location">Tiêu đề tập trung vào địa điểm:</h2>
+            <h2 id="tong-quan-dia-diem">Tổng quan địa điểm</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
             </span>
         </div>
-        <ul id="location-list">
+        <ul class="category-list">
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi những ước mơ còn dang dở</li>
-            <li>Cuộc sống nghèo khó ở vùng núi [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Cuộc sống mưu sinh vất vả tại [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Đường đến trường gian nan ở [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Khó khăn chồng chất ở [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Mái nhà tạm bợ vùng cao [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Nghèo đói đeo bám người dân [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <li>Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có]</li>
-            <!-- New titles for "Tiêu đề tập trung vào địa điểm" -->
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cuộc sống là một thử thách</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Vùng đất của những phận đời cần giúp đỡ</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Tiếng gọi từ trái tim núi rừng</li>
@@ -467,14 +538,34 @@
         <hr class="section-divider">
 
         <div class="category-header-row">
-            <h2 id="action">Tiêu đề tập trung vào hành động/giải pháp:</h2>
+            <h2 id="kho-khan-tai-dia-diem">Khó khăn tại địa điểm</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
             </span>
         </div>
-        <ul id="action-list">
+        <ul class="category-list">
+            <li>Cuộc sống nghèo khó ở vùng núi [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Cuộc sống mưu sinh vất vả tại [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Đường đến trường gian nan ở [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Khó khăn chồng chất ở [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Mái nhà tạm bợ vùng cao [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Nghèo đói đeo bám người dân [Tên tỉnh/huyện cụ thể nếu có]</li>
+            <li>Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có]</li>
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="ho-tro-chung">Hỗ trợ chung</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Ánh sáng cho những đêm tối vùng cao</li>
             <li>Chắp cánh ước mơ đến trường cho trẻ em nghèo</li>
             <li>Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</li>
@@ -485,11 +576,23 @@
             <li>Nước sạch cho cuộc sống khỏe mạnh hơn</li>
             <li>San sẻ bữa ăn, tiếp thêm sức mạnh</li>
             <li>Xây dựng tương lai cho cộng đồng vùng khó</li>
-            <!-- New titles for "Tiêu đề tập trung vào hành động/giải pháp" -->
+        </ul>
+
+        <hr class="section-divider">
+
+        <div class="category-header-row">
+            <h2 id="du-an-cu-the">Dự án cụ thể</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
             <li>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</li>
             <li>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</li>
             <li>Xây dựng trường học: Ươm mầm tri thức cho tương lai</li>
-            <li> phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
+            <li>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
             <li>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</li>
             <li>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</li>
         </ul>
@@ -522,79 +625,61 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('searchInput');
-            const lists = [
-                document.getElementById('difficulty-list'),
-                document.getElementById('awareness-list'),
-                document.getElementById('curiosity-list'),
-                document.getElementById('location-list'),
-                document.getElementById('action-list')
-            ];
-            const tipsSection = document.getElementById('tips'); // Get the tips section
+            // Select all lists that contain the actual titles
+            const categoryLists = document.querySelectorAll('.container > ul.category-list');
+            const tipsSection = document.getElementById('tips');
 
             searchInput.addEventListener('keyup', (event) => {
                 const searchTerm = event.target.value.toLowerCase();
-                let anySearchableListVisible = false; // Flag to track if any searchable list remains visible
+                let anyCategoryVisible = false;
 
-                lists.forEach(list => {
-                    if (list) { // Ensure the list element exists
-                        const items = list.getElementsByTagName('li');
-                        let hasVisibleItemsInCurrentList = false;
+                categoryLists.forEach(list => {
+                    if (!list) return; // Skip if list doesn't exist
 
-                        for (let i = 0; i < items.length; i++) {
-                            const item = items[i];
-                            const text = item.textContent || item.innerText;
-                            if (text.toLowerCase().includes(searchTerm)) {
-                                item.style.display = ''; // Show the item
-                                hasVisibleItemsInCurrentList = true;
-                            } else {
-                                item.style.display = 'none'; // Hide the item
-                            }
-                        }
+                    const items = list.getElementsByTagName('li');
+                    let hasVisibleItemsInList = false;
 
-                        // Get the associated category-header-row (which contains H2 and icon)
-                        const categoryHeaderRow = list.previousElementSibling;
-                        // Get the preceding HR divider
-                        const precedingHr = categoryHeaderRow ? categoryHeaderRow.previousElementSibling : null;
-
-                        if (searchTerm === '') {
-                            // If search term is empty, show everything in this list's section
-                            list.style.display = '';
-                            if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
-                                categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
-                            }
-                            if (precedingHr && precedingHr.classList.contains('section-divider')) {
-                                precedingHr.style.display = '';
-                            }
-                            anySearchableListVisible = true; // If search is empty, all lists are considered visible
+                    for (let i = 0; i < items.length; i++) {
+                        const item = items[i];
+                        const text = item.textContent || item.innerText;
+                        if (text.toLowerCase().includes(searchTerm)) {
+                            item.style.display = '';
+                            hasVisibleItemsInList = true;
                         } else {
-                            // If there's a search term
-                            if (hasVisibleItemsInCurrentList) {
-                                list.style.display = ''; // Show the list
-                                if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
-                                    categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
-                                }
-                                if (precedingHr && precedingHr.classList.contains('section-divider')) {
-                                    precedingHr.style.display = ''; // Show the divider
-                                }
-                                anySearchableListVisible = true; // At least one searchable list has visible items
-                            } else {
-                                list.style.display = 'none'; // Hide the list
-                                if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
-                                    categoryHeaderRow.style.display = 'none'; // Hide the entire category header row
-                                }
-                                if (precedingHr && precedingHr.classList.contains('section-divider')) {
-                                    precedingHr.style.display = 'none'; // Hide the divider
-                                }
-                            }
+                            item.style.display = 'none';
+                        }
+                    }
+
+                    // Get the associated category-header-row (which contains H2 and icon)
+                    const categoryHeaderRow = list.previousElementSibling;
+                    // Get the preceding HR divider
+                    const precedingHr = categoryHeaderRow ? categoryHeaderRow.previousElementSibling : null;
+
+                    if (searchTerm === '' || hasVisibleItemsInList) {
+                        list.style.display = ''; // Show the category list
+                        if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                            categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
+                        }
+                        if (precedingHr && precedingHr.classList.contains('section-divider')) {
+                            precedingHr.style.display = '';
+                        }
+                        anyCategoryVisible = true;
+                    } else {
+                        list.style.display = 'none'; // Hide the category list
+                        if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                            categoryHeaderRow.style.display = 'none'; // Hide the entire category header row
+                        }
+                        if (precedingHr && precedingHr.classList.contains('section-divider')) {
+                            precedingHr.style.display = 'none'; // Hide the divider
                         }
                     }
                 });
 
                 // Handle the visibility of the "Mẹo sử dụng các tiêu đề này" section
                 if (tipsSection) {
-                    if (searchTerm === '') { // Show only if search is empty
+                    if (searchTerm === '') {
                         tipsSection.style.display = '';
-                    } else { // Hide if there is any search term
+                    } else {
                         tipsSection.style.display = 'none';
                     }
                 }
@@ -602,7 +687,7 @@
                 // Handle the very first section divider after the search input
                 const firstSectionDivider = document.querySelector('.search-container + .section-divider');
                 if (firstSectionDivider) {
-                    if (searchTerm === '' || anySearchableListVisible) {
+                    if (searchTerm === '' || anyCategoryVisible) {
                         firstSectionDivider.style.display = '';
                     } else {
                         firstSectionDivider.style.display = 'none';
