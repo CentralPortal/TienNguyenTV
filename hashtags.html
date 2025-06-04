@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Hashtag Guide</title>
+    <!-- Load Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for a cleaner look and feel */
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
+        }
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as per instructions */
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa; /* Light background for a fresh look */
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px; /* Rounded corners for the main container */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+        h1, h2, h3 {
+            color: #2c3e50; /* Darker blue for headings */
+            font-weight: 700;
+        }
+        /* Styling for the Report Title (h1) */
+        h1 {
+            font-size: 2.8rem; /* Slightly larger font size */
+            margin-bottom: 30px; /* Increased margin for more separation */
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #007bff; /* More prominent blue border */
+            color: #0056b3; /* Stronger blue color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            letter-spacing: 0.05em; /* Slightly increased letter spacing */
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0; /* Border under subheadings */
+        }
+        /* Styling for Category Titles (h3) */
+        h3 {
+            font-size: 1.5rem; /* Slightly larger font size */
+            margin-top: 30px; /* Increased margin for more separation */
+            margin-bottom: 15px;
+            color: #2c3e50; /* Dark text for contrast */
+            background-color: #e2e8f0; /* Light gray background */
+            padding: 8px 15px; /* Padding inside the background */
+            border-radius: 8px; /* Rounded corners for the background */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically center items */
+            justify-content: space-between; /* Push text and icon to ends */
+        }
+        h3 .scroll-to-top-icon { /* Style for the icon within h3 */
+            margin-left: 10px; /* Space from the text */
+            cursor: pointer;
+            color: #007bff; /* Blue color for the icon */
+            font-size: 1.2rem; /* Adjust size as needed */
+            transition: color 0.2s ease;
+        }
+        h3 .scroll-to-top-icon:hover {
+            color: #0056b3; /* Darker blue on hover */
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        strong {
+            color: #0056b3; /* Highlight important text */
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        ul li {
+            margin-bottom: 8px;
+        }
+        .example-box {
+            background-color: #e6f7ff; /* Light blue background for example box */
+            border-left: 5px solid #007bff; /* Blue left border */
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 8px; /* Rounded corners */
+            font-style: italic;
+        }
+
+        /* Styling for the category navigation */
+        .category-nav {
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #f0f8ff; /* Light blue background for nav */
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .category-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between nav items */
+            justify-content: center;
+        }
+        .category-nav li {
+            margin-bottom: 0;
+        }
+        .category-nav a {
+            display: block;
+            padding: 8px 15px;
+            background-color: #e0f2f7; /* Very light blue-gray for nav links */
+            color: #007bff; /* Original blue text */
+            border-radius: 20px; /* Pill shape */
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .category-nav a:hover {
+            background-color: #d0e8f0; /* Slightly darker on hover */
+            color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+
+        /* Styling for the hashtag lists (one per line, enhanced) */
+        .hashtag-category ul {
+            list-style-type: none; /* Remove default bullet points */
+            padding-left: 0;
+            margin-left: 0;
+            display: block; /* Ensure each li takes a new line */
+            margin-top: 15px; /* Add some space between category title and first hashtag */
+        }
+        .hashtag-category li {
+            margin-bottom: 8px; /* Slightly more space between items */
+            font-size: 1rem; /* Standard font size */
+            color: #333; /* Darker text for better readability */
+            background-color: #f8faff; /* Very light blue background for each item */
+            padding: 6px 12px; /* Padding inside each item */
+            border-radius: 6px; /* Subtle rounded corners */
+            border: 1px solid #e0e7ff; /* Very light blue border */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .hashtag-category li:hover {
+            background-color: #eef2ff; /* Slightly darker on hover */
+            transform: translateX(3px); /* Small slide effect on hover */
+        }
+        .hashtag-category li::before {
+            content: '#'; /* Add a hash symbol before each hashtag */
+            color: #007bff; /* Blue color for the hash symbol */
+            font-weight: bold;
+        }
+
+        /* Styles for details/summary (expand/collapse) */
+        details {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 8px; /* Further reduced vertical spacing */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        /* Styling for the outer details component */
+        details.main-info-section {
+            margin-bottom: 25px; /* More space below the main info section */
+            border: 2px solid #ffc107; /* Warning yellow border */
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3); /* Stronger shadow with yellow tint */
+        }
+        details.main-info-section summary {
+            background-color: #ffe082; /* Light yellow background for main summary */
+            color: #333; /* Darker text for contrast */
+            padding: 8px 15px; /* Adjusted padding */
+            font-size: 1rem; /* Reduced font size */
+            border-radius: 6px 6px 0 0; /* Rounded top corners */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically center items */
+            line-height: 1.2; /* Adjust line height for compactness */
+        }
+        details.main-info-section summary h2 {
+            color: #333; /* Ensure h2 inside is dark */
+            margin: 0; /* Remove default h2 margins */
+            border-bottom: none; /* No border under h2 in summary */
+            padding-bottom: 0; /* No padding under h2 in summary */
+            font-size: 1rem; /* Match summary font size */
+            flex-grow: 1; /* Allow text to take available space */
+        }
+        details.main-info-section summary::before { /* Changed to ::before */
+            content: '+'; /* Custom arrow for closed state */
+            color: #333; /* Dark arrow for main summary */
+            font-size: 1.3rem; /* Slightly larger arrow */
+            transition: transform 0.2s ease;
+            margin-right: 10px; /* Space between icon and text */
+        }
+        details.main-info-section[open] summary::before { /* Changed to ::before */
+            content: '-'; /* Custom arrow for open state */
+            transform: rotate(0deg); /* No rotation needed for minus */
+        }
+        details.main-info-section[open] summary {
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Lighter border when open */
+        }
+
+        summary {
+            font-size: 1.05rem; /* Slightly reduced font size */
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 8px 12px; /* Further reduced vertical spacing */
+            cursor: pointer;
+            outline: none; /* Remove outline on focus */
+            user-select: none; /* Prevent text selection on click */
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Vertically center items */
+            justify-content: space-between; /* Push text and arrow to ends */
+            border-bottom: 1px solid transparent; /* To be added when open */
+            transition: border-bottom 0.3s ease;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #e0e0e0; /* Add border when open */
+        }
+        summary::-webkit-details-marker {
+            display: none; /* Hide default arrow */
+        }
+        summary::before { /* Changed to ::before */
+            content: '+'; /* Custom arrow for closed state */
+            font-size: 1.2rem; /* Adjusted arrow size */
+            color: #007bff;
+            transition: transform 0.2s ease;
+            margin-right: 8px; /* Space between icon and text */
+        }
+        details[open] summary::before { /* Changed to ::before */
+            content: '-'; /* Custom arrow for open state */
+            transform: rotate(0deg); /* No rotation needed for minus */
+        }
+        .details-content {
+            padding: 8px 12px; /* Further reduced vertical spacing */
+            padding-top: 0; /* Adjust padding for content */
+        }
+        .details-content > details { /* Adjust margin for nested details */
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+
+        /* Search bar styling */
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .search-bar input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .search-bar button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for the search prompt text */
+        .search-prompt {
+            font-size: 1.1rem; /* Slightly larger font size */
+            font-weight: 600; /* Bold text */
+            color: #4a5568; /* Darker gray color */
+            margin-bottom: 10px; /* Space below the text */
+            text-align: center; /* Center the text */
+            padding: 5px 0; /* Small vertical padding */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .category-nav ul {
+                justify-content: flex-start; /* Align left on small screens */
+            }
+            summary {
+                font-size: 0.95rem; /* Further reduced for mobile */
+                padding: 6px 10px;
+            }
+            .details-content {
+                padding: 6px 10px;
+                padding-top: 0;
+            }
+            .search-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-bar button {
+                width: 100%;
+            }
+            .search-prompt {
+                font-size: 1rem; /* Adjust for mobile */
+                text-align: left; /* Align left on mobile */
+            }
+            details.main-info-section summary {
+                font-size: 0.9rem; /* Further reduced for mobile */
+                padding: 6px 10px;
+            }
+            details.main-info-section summary h2 {
+                font-size: 0.9rem; /* Further reduced for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main title of the document -->
+        <h1>Sử Dụng Hashtag trong Mô Tả Video YouTube</h1>
+
+        <!-- Category Navigation UI -->
+        <nav class="category-nav">
+            <ul>
+                <li><a href="#chu-de-chung">Chủ đề chung</a></li>
+                <li><a href="#ho-tro-tu-thien">Hỗ trợ & Từ thiện</a></li>
+                <li><a href="#luong-thuc-dinh-duong">Lương thực & Dinh dưỡng</a></li>
+                <li><a href="#suc-khoe-y-te">Sức khỏe & Y tế</a></li>
+                <li><a href="#giao-duc-tre-em">Giáo dục & Trẻ em</a></li>
+                <li><a href="#cuoc-song-lao-dong">Cuộc sống & Lao động</a></li>
+                <li><a href="#nha-o-moi-truong">Nhà ở & Môi trường</a></li>
+                <li><a href="#tac-dong-phat-trien">Tác động & Phát triển</a></li>
+                <li><a href="#gia-tri-tinh-than-van-hoa">Giá trị tinh thần & Văn hóa</a></li>
+                <li><a href="#thuong-hieu-kenh">Thương hiệu kênh</a></li>
+            </ul>
+        </nav>
+
+        <!-- Outer Collapsible Section for Main Information -->
+        <details class="main-info-section"> <!-- Removed 'open' attribute to make it initially collapsed -->
+            <summary>
+                <h2>Nhấp để đọc ít nhất một lần!</h2>
+            </summary>
+            <div class="details-content">
+                <!-- Collapsible Introduction Section -->
+                <details open> <!-- Set to open by default for the introduction -->
+                    <summary>Giới Thiệu</summary>
+                    <div class="details-content">
+                        <p>Việc thêm <strong>hashtag liên quan</strong> vào phần mô tả video YouTube của bạn có thể giúp tăng cơ hội video của bạn được tìm thấy trong các tìm kiếm trên cả YouTube và, ở một mức độ nào đó, trên Google. Hãy nghĩ về các hashtag như những nhãn dán cho YouTube và Google biết video của bạn nói về điều gì.</p>
+                    </div>
+                </details>
+
+                <!-- Collapsible "How Hashtags Work" Section -->
+                <details>
+                    <summary>Cách Hashtag Hoạt Động và Lợi Ích Của Chúng</summary>
+                    <div class="details-content">
+                        <p>Khi bạn thêm một hashtag (ví dụ: <code>#meothulamvuon</code> hoặc <code>#monandongian</code>) vào phần mô tả video của mình, nó sẽ trở thành một <strong>liên kết có thể nhấp vào</strong>. Khi ai đó nhấp vào hashtag đó, họ sẽ thấy một trang chứa các video khác cũng sử dụng cùng một hashtag. Điều này giúp mọi người tìm thấy các video liên quan đến sở thích của họ.</p>
+                        <ul class="list-disc pl-5">
+                            <li class="mb-2">
+                                <strong>Tìm Kiếm trên YouTube:</strong> Công cụ tìm kiếm của YouTube sử dụng các hashtag này (cùng với tiêu đề, mô tả và thẻ của video) để hiểu chủ đề của video bạn. Nếu ai đó tìm kiếm một hashtag cụ thể mà bạn đã sử dụng, video của bạn có cơ hội xuất hiện cao hơn trong kết quả tìm kiếm đó. Nó giống như việc sắp xếp video của bạn vào các danh mục để những người tìm kiếm danh mục đó có thể tìm thấy nó.
+                            </li>
+                            <li class="mb-2">
+                                <strong>Tìm Kiếm trên Google:</strong> Mặc dù YouTube là nơi chính để sử dụng hashtag cho việc tìm kiếm, Google đôi khi cũng có thể hiển thị các video YouTube trong kết quả tìm kiếm của mình. If video of your has related hashtags that match what someone is looking for on Google, it can help your video appear there. However, Google's video search engine primarily relies on the video's title, description, and actual content. Hashtags provide additional context that Google may consider.
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Collapsible "Hashtag Analogy" Section -->
+                <details>
+                    <summary>Tưởng Tượng Về Hashtag</summary>
+                    <div class="details-content">
+                        <p>Hãy hình dung như thế này:</p>
+                        <div class="example-box">
+                            <p>Hãy tưởng tượng một thư viện. Video của bạn là một cuốn sách.</p>
+                            <ul class="list-disc pl-5">
+                                <li class="mb-2"><strong>Tiêu Đề và Mô Tả:</strong> Chúng giống như tiêu đề chính và một bản tóm tắt ngắn trên bìa sách - chúng cung cấp thông tin quan trọng nhất.</li>
+                                <li class="mb-2"><strong>Thẻ (Tags):</strong> Chúng giống như các từ khóa chủ đề cụ thể được liệt kê bên trong cuốn sách giúp thủ thư (YouTube/Google) phân loại nó.</li>
+                                <li class="mb-2"><strong>Hashtag:</strong> Chúng giống như những nhãn dán bạn dán lên gáy sách, làm nổi bật các chủ đề chính. If someone is browsing the shelves looking for books with those specific labels, they are more likely to find yours.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Collapsible "Important Points" Section -->
+                <details>
+                    <summary>Những Điểm Quan Trọng Cần Nhớ</summary>
+                    <div class="details-content">
+                        <p>Để tối ưu hiệu quả của hashtag, hãy lưu ý những điều sau:</p>
+                        <ul class="list-disc pl-5">
+                            <li class="mb-2">
+                                <strong>Tính Liên Quan Là Chìa Khóa:</strong> Sử dụng các hashtag mô tả chính xác nội dung video của bạn. Đừng sử dụng các hashtag không liên quan hoặc gây hiểu lầm chỉ để có thêm lượt xem, vì điều này thực sự có thể làm giảm khả năng hiển thị của video bạn.
+                            </li>
+                            <li class="mb-2">
+                                <strong>Đừng Lạm Dụng:</strong> YouTube cho phép tối đa 15 hashtag, nhưng tốt nhất là bạn nên sử dụng một vài hashtag có liên quan cao ( khoảng 3-5). Quá nhiều hashtag có thể trông giống như spam and can be ignored.
+                            </li>
+                            <li class="mb-2">
+                                <strong>Tập Trung vào Vài Hashtag Đầu Tiên:</strong> YouTube thường làm nổi bật ba hashtag đầu tiên bạn đặt trong phần mô tả bên cạnh tiêu đề video của bạn. Hãy đảm bảo rằng đây là những hashtag quan trọng và liên quan nhất của bạn.
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </details>
+
+        <!-- Section: Suggested Hashtag List -->
+        <div class="hashtag-categories">
+            <div class="search-prompt">
+                Sử dụng thanh tìm kiếm dưới đây để nhanh chóng lọc các hashtag theo từ khóa:
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" id="hashtagSearch" placeholder="Tìm kiếm hashtag..." oninput="filterHashtags()">
+                <button onclick="clearSearch()">Xóa</button>
+            </div>
+
+            <div class="hashtag-category" id="chu-de-chung">
+                <h3>
+                    Chủ đề chung về Nghèo đói & Cộng đồng
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>CộngĐồngNghèo</li>
+                    <li>CộngĐồngNghèoKhó</li>
+                    <li>CộngĐồngVùngSâuVùngXa</li>
+                    <li>CựcKỳNghèoĐói</li>
+                    <li>CựcNghèo</li>
+                    <li>ĐóiKhổHàngNgày</li>
+                    <li>KhóKhănHàngNgày</li>
+                    <li>NghèoĐóiĐaChiều</li>
+                    <li>NghèoĐóiNôngThôn</li>
+                    <li>NghèoĐóiViệtNam</li>
+                    <li>NhuCầuCơBản</li>
+                    <li>NúiNonViệtNam</li>
+                    <li>ViệtNamCầnGiúpĐỡ</li>
+                    <li>ViệtNamCầnSựGiúpĐỡCủaChúngTa</li>
+                    <li>VòngLuẩnQuẩnNghèoĐói</li>
+                    <li>VùngNúiViệtNam</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="ho-tro-tu-thien">
+                <h3>
+                    Hỗ trợ & Từ thiện
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>ChiếnDịchTừThiệnViệtNam</li>
+                    <li>ChungTayGiúpĐỡ</li>
+                    <li>ChươngTrìnhHỗTrợViệtNam</li>
+                    <li>CôngViệcTừThiện</li>
+                    <li>ĐóngGópTrởLại</li>
+                    <li>ĐồngCảmTrongHànhĐộng</li>
+                    <li>HànhĐộngNgay</li>
+                    <li>HỗTrợCộngĐồng</li>
+                    <li>HỗTrợCộngĐồngNghèo</li>
+                    <li>HỗTrợTổngHợp</li>
+                    <li>HỗTrợViệtNam</li>
+                    <li>HỗTrợViệtNamNgay</li>
+                    <li>NỗLựcCứuTrợViệtNam</li>
+                    <li>PhiLợiNhuận</li>
+                    <li>QuyênGóp</li>
+                    <li>QuyênGópTừThiện</li>
+                    <li>TácĐộngQuyênGóp</li>
+                    <li>TácĐộngTrựcTiếp</li>
+                    <li>TạoRaSựKhácBiệt</li>
+                    <li>TạoRaSựKhácBiệtHômNay</li>
+                    <li>ỦngHộCộngĐồngNghèo</li>
+                    <li>ỦngHộNhânĐạo</li>
+                    <li>ỦngHộViệtNam</li>
+                    <li>ỦngHộViệtNamNgay</li>
+                    <li>ViệnTrợNhânĐạo</li>
+                    <li>ViệnTrợViệtNam</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="luong-thuc-dinh-duong">
+                <h3>
+                    Lương thực & Dinh dưỡng
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>AnNinhLươngThực</li>
+                    <li>AnToànThựcPhẩm</li>
+                    <li>ĂnLáCâyĐểSống</li>
+                    <li>ChếĐộĂnLáCây</li>
+                    <li>CơmTrắngMuối</li>
+                    <li>CơmTrắngQuaNgày</li>
+                    <li>CứuTrợĐóiKhát</li>
+                    <li>CứuTrợLươngThựcViệtNam</li>
+                    <li>DinhDưỡngKém</li>
+                    <li>HỗTrợDinhDưỡng</li>
+                    <li>HỗTrợLươngThực</li>
+                    <li>KhanHiếmNước</li>
+                    <li>MấtAnNinhLươngThực</li>
+                    <li>ThiếuLươngThực</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="suc-khoe-y-te">
+                <h3>
+                    Sức khỏe & Y tế
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>ChămSócSứcKhỏe</li>
+                    <li>ChămSócSứcKhỏeChoTấtCả</li>
+                    <li>HỗTrợSứcKhỏe</li>
+                    <li>HỗTrợYTếViệtNam</li>
+                    <li>NângCaoNhậnThứcVềSuyDinhDưỡng</li>
+                    <li>NhuCầuYTế</li>
+                    <li>TiếpCậnYTế</li>
+                    <li>ViệnTrợYTếViệtNam</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="giao-duc-tre-em">
+                <h3>
+                    Giáo dục & Trẻ em
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>GiáoDục</li>
+                    <li>GiáoDụcChoTấtCả</li>
+                    <li>HỗTrợGiáoDụcTrẻEm</li>
+                    <li>HỗTrợTrẻEm</li>
+                    <li>NghèoĐóiVàGiáoDục</li>
+                    <li>QuỹGiáoDụcViệtNam</li>
+                    <li>QuyênGópChoGiáoDục</li>
+                    <li>ThếHệTươngLai</li>
+                    <li>TiếpCậnGiáoDục</li>
+                    <li>TrẻEmKhóKhăn</li>
+                    <li>TrẻEmViệtNam</li>
+                    <li>ỦngHộTrẻEm</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="cuoc-song-lao-dong">
+                <h3>
+                    Cuộc sống & Lao động
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>ChănDê</li>
+                    <li>CôngViệcNặngNhọc</li>
+                    <li>CuộcSốngChănNuôiGiaSúc</li>
+                    <li>CuộcSốngCơmTrắng</li>
+                    <li>CuộcSốngNôngThôn</li>
+                    <li>ĐiềuKiệnLàmViệc</li>
+                    <li>ĐiềuKiệnSốngTồiTàn</li>
+                    <li>KhôngCóĐiện</li>
+                    <li>LàmRuộngĐểSống</li>
+                    <li>LaoĐộngChânTay</li>
+                    <li>LaoĐộngNặngNhọc</li>
+                    <li>LaoĐộngVàSứcKhỏe</li>
+                    <li>MấtSứcLaoĐộng</li>
+                    <li>NôngDânViệtNam</li>
+                    <li>NôngNghiệpTựCungTựCấp</li>
+                    <li>ThuGomPhânBò</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="nha-o-moi-truong">
+                <h3>
+                    Nhà ở & Môi trường
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>KhóKhănMôiTrường</li>
+                    <li>KhủngHoảngNhàỞ</li>
+                    <li>MáiẤm</li>
+                    <li>NghèoNăngLượng</li>
+                    <li>NhàỞKhôngỔn Định</li>
+                    <li>NhàỞTạmBợ</li>
+                    <li>NhàTạm</li>
+                    <li>NơiỞ</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="tac-dong-phat-trien">
+                <h3>
+                    Tác động & Phát triển
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>DiệtĐóiGiảmNghèo</li>
+                    <li>GiảmNghèo</li>
+                    <li>PháVỡVòngLuẩnQuẩn</li>
+                    <li>PhátTriểnBềnVững</li>
+                    <li>Phát Triển Việt Nam</li>
+                    <li>TácĐộngLâuDài</li>
+                    <li>TácĐộngXãHội</li>
+                    <li>TácĐộngXãHộiTíchCực</li>
+                    <li>TraoQuyềnChoCộngĐồng</li>
+                    <li>XâyDựngHyVọng</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="gia-tri-tinh-than-van-hoa">
+                <h3>
+                    Giá trị tinh thần & Văn hóa
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>CâuChuyệnViệtNam</li>
+                    <li>HyVọng</li>
+                    <li>HyVọngChoViệtNam</li>
+                    <li>HyVọngViệtNam</li>
+                    <li>NângCaoNhậnThức</li>
+                    <li>NângCaoNhậnThứcVềNghèoĐói</li>
+                    <li>NghèoĐóiVàVănHóa</li>
+                    <li>NhữngCâuChuyệnTruyềnCảmHứng</li>
+                    <li>QuanTâmConNgười</li>
+                    <li>SứcMạnhCộngĐồng</li>
+                    <li>SựKiênCường</li>
+                    <li>SựKiênCườngVănHóa</li>
+                    <li>TinhThầnCộngĐồng</li>
+                    <li>TinhThầnConNgười</li>
+                    <li>VănHóaViệtNam</li>
+                </ul>
+            </div>
+
+            <div class="hashtag-category" id="thuong-hieu-kenh">
+                <h3>
+                    Thương hiệu kênh (TienNguyen)
+                    <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                        <i class="fas fa-arrow-up"></i>
+                    </span>
+                </h3>
+                <ul>
+                    <li>TienNguyen</li>
+                    <li>TienNguyenOfficial</li>
+                    <li>TienNguyenTV</li>
+                    <li>TienNguyenTVOfficial</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Filters the hashtags displayed on the page based on user input.
+         * It hides hashtags that don't match the search query and also hides
+         * entire categories if all their hashtags are hidden.
+         */
+        function filterHashtags() {
+            // Get the search input value and convert to lowercase for case-insensitive matching
+            const searchTerm = document.getElementById('hashtagSearch').value.toLowerCase();
+            // Get all hashtag category containers (the div.hashtag-category)
+            const categories = document.querySelectorAll('.hashtag-category');
+
+            categories.forEach(category => {
+                // Get the list of hashtags within the current category
+                const hashtags = category.querySelectorAll('ul li');
+                let visibleHashtagsCount = 0; // Counter for visible hashtags in the current category
+
+                hashtags.forEach(hashtag => {
+                    // Get the text content of the hashtag (excluding the '#' added by CSS ::before)
+                    const hashtagText = hashtag.textContent.toLowerCase().replace(/^#/, '');
+
+                    // If the hashtag text contains the search term, show it; otherwise, hide it
+                    if (hashtagText.includes(searchTerm)) {
+                        hashtag.style.display = ''; // Show the list item
+                        visibleHashtagsCount++;
+                    } else {
+                        hashtag.style.display = 'none'; // Hide the list item
+                    }
+                });
+
+                // If no hashtags are visible in a category, hide the category div itself
+                if (visibleHashtagsCount === 0 && searchTerm !== '') {
+                    category.style.display = 'none'; // Hide the entire category div
+                } else {
+                    category.style.display = ''; // Show the category div
+                }
+            });
+        }
+
+        /**
+         * Clears the search input field and resets the hashtag display.
+         */
+        function clearSearch() {
+            document.getElementById('hashtagSearch').value = ''; // Clear the input
+            // Reset display for all hashtags and categories
+            document.querySelectorAll('.hashtag-category ul li').forEach(li => {
+                li.style.display = '';
+            });
+            document.querySelectorAll('.hashtag-category').forEach(category => {
+                category.style.display = ''; // Show all category divs
+            });
+            filterHashtags(); // Re-run filter to ensure all are visible
+        }
+
+        /**
+         * Scrolls the window to the top of the document with smooth behavior.
+         */
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
