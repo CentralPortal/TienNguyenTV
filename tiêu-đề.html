@@ -7,39 +7,81 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
+        }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Using Inter font as per instructions */
             line-height: 1.6;
-            background-color: #f4f4f4;
             color: #333;
+            background-color: #f8f9fa; /* Light background for a fresh look */
         }
         .container {
             max-width: 900px;
-            margin: 0 auto;
-            background: #fff;
+            margin: 40px auto; /* Adjusted margin for consistency with reference */
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #ffffff;
+            border-radius: 12px; /* Rounded corners for the main container */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
         }
         h1, h2, h3 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 20px;
+            color: #2c3e50; /* Darker blue for headings */
+            font-weight: 700;
         }
+        /* Styling for the Report Title (h1) */
         h1 {
-            font-size: 2.5em;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            font-size: 1.5rem; /* Reduced font size */
+            margin-bottom: 30px; /* Increased margin for more separation */
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #007bff; /* More prominent blue border */
+            color: #0056b3; /* Stronger blue color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            letter-spacing: 0.05em; /* Slightly increased letter spacing */
         }
-        h2 {
-            font-size: 1.8em;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            color: #3498db;
+        /* Wrapper for H2 and icon for flex layout */
+        .category-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px; /* Reduced margin-top for less space */
+            margin-bottom: 25px; /* Space below the entire row */
         }
+        /* Updated H2 style for pill shape (text only) */
+        .category-header-row h2 {
+            font-size: 1.1em; /* Further reduced font size */
+            color: white; /* Text color for the pill */
+            background-color: #3498db; /* Blue background for the pill */
+            padding: 10px 20px; /* Adjusted padding for the pill shape */
+            border-radius: 12px; /* Less rounded border-radius */
+            text-align: center; /* Center text within the pill */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+            display: inline-block; /* Make it a pill */
+            margin: 0; /* Remove default H2 margins */
+            flex-shrink: 0; /* Prevent the H2 pill from shrinking */
+        }
+        .category-header-row h2:hover {
+            background-color: #2980b9; /* Slightly darker blue on hover */
+            transform: translateY(-2px); /* Subtle lift effect */
+        }
+        /* Style for the scroll-to-top icon */
+        .scroll-to-top-icon {
+            cursor: pointer;
+            margin-left: 15px; /* Space between the H2 pill and icon */
+            color: #007bff; /* Icon color, matching report title border */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            display: inline-block; /* Ensure it respects margin-left */
+            vertical-align: middle; /* Align icon vertically with text */
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .scroll-to-top-icon:hover {
+            opacity: 0.8;
+            transform: translateY(-2px); /* Subtle lift effect on hover */
+        }
+
         h3 {
-            font-size: 1.4em;
+            font-size: 1.4em; /* Kept original em unit for consistency with other h2/h3 */
             margin-top: 30px;
             margin-bottom: 10px;
             color: #555;
@@ -98,13 +140,33 @@
         .tips-section li:nth-child(odd) {
             background-color: transparent;
         }
+        /* Override H2 style for tips section */
+        .tips-section h2 {
+            color: #2c3e50; /* Darker blue for headings */
+            font-weight: 700;
+            font-size: 1.8em; /* Match general h2 font size */
+            margin-top: 0; /* Remove top margin from the global h2 */
+            margin-bottom: 15px; /* Adjust margin as needed */
+            background-color: transparent; /* Remove pill background */
+            padding: 0; /* Remove pill padding */
+            border-radius: 0; /* Remove pill border-radius */
+            box-shadow: none; /* Remove pill shadow */
+            display: block; /* Revert to block display */
+            width: auto; /* Revert width */
+            text-align: center; /* Center the text */
+            margin-left: 0; /* Remove auto margins */
+            margin-right: 0; /* Remove auto margins */
+            transition: none; /* Remove transition */
+        }
+
+        /* Reverted Navbar container style */
         .navbar {
-            position: sticky;
-            top: 0;
-            background-color: #3498db;
-            padding: 5px 0; /* Reduced vertical padding */
+            background-color: transparent; /* Transparent background */
+            padding: 8px 0; /* Keep padding for spacing */
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: none; /* No shadow */
+            margin-bottom: 30px; /* Space below the navbar when moved */
+            border-radius: 0; /* No border-radius */
         }
         .navbar-container {
             max-width: 900px;
@@ -112,21 +174,31 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            /* Added background, padding, and border-radius for the visual container of pills */
+            background-color: #f0f8ff; /* Light blue background for nav container */
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
+        /* Individual Navbar Item style - Pill shape */
         .navbar-item {
-            color: white;
-            padding: 5px 10px; /* Reduced padding */
-            margin: 3px; /* Reduced margin */
-            border-radius: 5px;
+            color: #007bff; /* Original blue text */
+            background-color: #e0f2f7; /* Very light blue-gray for nav links */
+            padding: 8px 18px; /* Adjusted padding for pill shape */
+            margin: 4px; /* Adjusted margin */
+            border-radius: 50px; /* Pill shape */
             text-decoration: none;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
             font-weight: 600;
-            font-size: 0.9em; /* Slightly reduced font size */
+            font-size: 1em; /* Slightly larger font size */
         }
         .navbar-item:hover {
-            background-color: #2980b9;
+            background-color: #d0e8f0; /* Slightly darker on hover */
+            color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Subtle lift effect */
         }
         .search-container {
+            margin-top: 30px; /* Added margin to separate from new navbar position */
             margin-bottom: 20px;
             text-align: center;
         }
@@ -147,28 +219,35 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-container">
-            <a href="#difficulty" class="navbar-item">Khó khăn</a>
-            <a href="#awareness" class="navbar-item">Nhận thức & Tác động</a>
-            <a href="#curiosity" class="navbar-item">Tò mò & Cảm xúc</a>
-            <a href="#location" class="navbar-item">Địa điểm</a>
-            <a href="#action" class="navbar-item">Hành động & Giải pháp</a>
-            <a href="#tips" class="navbar-item">Mẹo sử dụng</a>
-        </div>
-    </div>
-
     <div class="container">
         <h1>Tiêu đề video để thu hút người xem</h1>
         <p>Dưới đây là 153 gợi ý về tiêu đề video hoặc một phần tiêu đề được thiết kế để thu hút sự chú ý của người xem và cải thiện khả năng hiển thị tìm kiếm cho kênh của bạn, <strong>@TienNguyenTVOfficial</strong>.</p>
      
+        <div class="navbar">
+            <div class="navbar-container">
+                <a href="#difficulty" class="navbar-item">Khó khăn</a>
+                <a href="#awareness" class="navbar-item">Nhận thức & Tác động</a>
+                <a href="#curiosity" class="navbar-item">Tò mò & Cảm xúc</a>
+                <a href="#location" class="navbar-item">Địa điểm</a>
+                <a href="#action" class="navbar-item">Hành động & Giải pháp</a>
+                <a href="#tips" class="navbar-item">Mẹo sử dụng</a>
+            </div>
+        </div>
+
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tiêu đề...">
         </div>
 
         <hr class="section-divider">
 
-        <h2 id="difficulty">Tiêu đề tập trung vào sự khó khăn:</h2>
+        <div class="category-header-row">
+            <h2 id="difficulty">Tiêu đề tập trung vào sự khó khăn:</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
         <ul id="difficulty-list">
             <li>Bệnh tật không tiền chữa, đành phó mặc số phận</li>
             <li>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</li>
@@ -230,7 +309,14 @@
 
         <hr class="section-divider">
 
-        <h2 id="awareness">Tiêu đề tập trung vào nhận thức và tác động:</h2>
+        <div class="category-header-row">
+            <h2 id="awareness">Tiêu đề tập trung vào nhận thức và tác động:</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
         <ul id="awareness-list">
             <li>Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</li>
             <li>Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng</li>
@@ -288,7 +374,14 @@
 
         <hr class="section-divider">
 
-        <h2 id="curiosity">Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
+        <div class="category-header-row">
+            <h2 id="curiosity">Tiêu đề sử dụng ngôn ngữ gợi sự tò mò và cảm xúc:</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
         <ul id="curiosity-list">
             <li>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</li>
             <li>Bóng tối nuốt chửng cuộc sống vùng cao</li>
@@ -346,7 +439,14 @@
 
         <hr class="section-divider">
 
-        <h2 id="location">Tiêu đề tập trung vào địa điểm:</h2>
+        <div class="category-header-row">
+            <h2 id="location">Tiêu đề tập trung vào địa điểm:</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
         <ul id="location-list">
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</li>
             <li>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</li>
@@ -366,7 +466,14 @@
 
         <hr class="section-divider">
 
-        <h2 id="action">Tiêu đề tập trung vào hành động/giải pháp:</h2>
+        <div class="category-header-row">
+            <h2 id="action">Tiêu đề tập trung vào hành động/giải pháp:</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
         <ul id="action-list">
             <li>Ánh sáng cho những đêm tối vùng cao</li>
             <li>Chắp cánh ước mơ đến trường cho trẻ em nghèo</li>
@@ -382,7 +489,7 @@
             <li>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</li>
             <li>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</li>
             <li>Xây dựng trường học: Ươm mầm tri thức cho tương lai</li>
-            <li>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
+            <li> phát triển sinh kế: Giúp người dân tự chủ cuộc sống</li>
             <li>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</li>
             <li>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</li>
         </ul>
@@ -393,9 +500,9 @@
                 <li><strong>Cụ thể:</strong> Khi có thể, hãy đưa các chi tiết cụ thể từ video vào tiêu đề.</li>
                 <li><strong>Sử dụng từ khóa mạnh:</strong> Kết hợp các thuật ngữ như "nghèo đói", "Việt Nam", "khu vực miền núi", "đói", "nơi trú ẩn" và "cuộc đấu tranh".</li>
                 <li><strong>Khơi gợi cảm xúc:</strong> Các tiêu đề tạo ra sự đồng cảm hoặc tò mò có thể thu hút nhiều lượt nhấp hơn.</li>
-                <li><strong>Cân nhắc các câu hỏi (Đôi khi):</strong> Mặc dù không phải tất cả các gợi ý đều là câu hỏi, nhưng bạn có thể điều chỉnh một số thành câu hỏi (ví dụ: "Bạn có thể tưởng tượng sống bằng cơm trắng không?").</li>
+                <li><strong>Cân nhắc các câu hỏi (Đôi khi):):</strong> Mặc dù không phải tất cả các gợi ý đều là câu hỏi, nhưng bạn có thể điều chỉnh một số thành câu hỏi (ví dụ: "Bạn có thể tưởng tượng sống bằng cơm trắng không?").</li>
                 <li><strong>Giữ cho tiêu đề ngắn gọn:</strong> Đặt mục tiêu cung cấp thông tin nhưng không quá dài.</li>
-                <li><strong>Bao gồm số liệu (nếu có):</strong> Nếu video có số lượng gia đình cụ thể hoặc số liệu thống kê cụ thể, bạn có thể đưa vào.</li>
+                <li><strong>Bao gồm số liệu (nếu có):):</strong> Nếu video có số lượng gia đình cụ thể hoặc số liệu thống kê cụ thể, bạn có thể đưa vào.</li>
                 <li><strong>Kiểm tra các phong cách khác nhau:</strong> Thử nghiệm các loại tiêu đề khác nhau để xem loại nào phù hợp nhất với đối tượng của bạn.</li>
                 <li><strong>Tính nhất quán:</strong> Duy trì phong cách nhất quán trong tiêu đề của bạn nhưng vẫn làm cho mỗi tiêu đề trở nên độc đáo đối với nội dung video.</li>
             </ul>
@@ -405,6 +512,14 @@
     </div>
 
     <script>
+        // Function to scroll to the top of the document
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('searchInput');
             const lists = [
@@ -436,15 +551,16 @@
                             }
                         }
 
-                        // Get the associated H2 heading and preceding HR divider
-                        const parentH2 = list.previousElementSibling;
-                        const precedingHr = parentH2 ? parentH2.previousElementSibling : null;
+                        // Get the associated category-header-row (which contains H2 and icon)
+                        const categoryHeaderRow = list.previousElementSibling;
+                        // Get the preceding HR divider
+                        const precedingHr = categoryHeaderRow ? categoryHeaderRow.previousElementSibling : null;
 
                         if (searchTerm === '') {
                             // If search term is empty, show everything in this list's section
                             list.style.display = '';
-                            if (parentH2 && parentH2.tagName === 'H2') {
-                                parentH2.style.display = '';
+                            if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                                categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
                             }
                             if (precedingHr && precedingHr.classList.contains('section-divider')) {
                                 precedingHr.style.display = '';
@@ -454,8 +570,8 @@
                             // If there's a search term
                             if (hasVisibleItemsInCurrentList) {
                                 list.style.display = ''; // Show the list
-                                if (parentH2 && parentH2.tagName === 'H2') {
-                                    parentH2.style.display = ''; // Show the heading
+                                if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                                    categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
                                 }
                                 if (precedingHr && precedingHr.classList.contains('section-divider')) {
                                     precedingHr.style.display = ''; // Show the divider
@@ -463,8 +579,8 @@
                                 anySearchableListVisible = true; // At least one searchable list has visible items
                             } else {
                                 list.style.display = 'none'; // Hide the list
-                                if (parentH2 && parentH2.tagName === 'H2') {
-                                    parentH2.style.display = 'none'; // Hide the heading
+                                if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                                    categoryHeaderRow.style.display = 'none'; // Hide the entire category header row
                                 }
                                 if (precedingHr && precedingHr.classList.contains('section-divider')) {
                                     precedingHr.style.display = 'none'; // Hide the divider
