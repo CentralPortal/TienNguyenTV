@@ -3,69 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mô tả kênh YouTube</title>
+    <title>Mô tả kênh</title>
+    <!-- Google Fonts - Inter for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif; /* Changed font to Inter */
+            line-height: 1.7; /* Slightly increased line height for readability */
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #f8f9fa; /* Lighter background for a fresh look */
+            color: #343a40; /* Darker text color for better contrast */
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
+            background: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* Enhanced shadow for depth */
+            transition: all 0.3s ease; /* Smooth transition on hover/focus (if interactive elements were added) */
+        }
+        .container:hover {
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12); /* Subtle hover effect */
         }
         h1 {
             color: #2c3e50;
             text-align: center;
-            font-size: 2.5em;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
+            font-size: 2.8em; /* Slightly larger heading */
+            border-bottom: 3px solid #007bff; /* Vibrant blue border */
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            font-weight: 700; /* Bolder for emphasis */
         }
         h2 {
-            color: #3498db;
-            font-size: 1.8em;
-            margin-top: 40px;
-            margin-bottom: 15px;
+            color: #007bff; /* Consistent vibrant blue for subheadings */
+            font-size: 2.0em; /* Slightly larger subheading */
+            margin-top: 45px;
+            margin-bottom: 20px;
             text-align: left;
+            font-weight: 600;
         }
         p {
-            margin-bottom: 15px;
+            margin-bottom: 18px; /* More spacing between paragraphs */
             text-align: justify;
         }
         .contact-info {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 30px;
+            background-color: #e9ecef; /* Slightly darker shade for contact info */
+            padding: 25px;
+            border-radius: 10px; /* Consistent rounded corners */
+            margin-top: 40px;
+            border-left: 5px solid #007bff; /* Accent border */
         }
         .contact-info p {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: left;
+            font-size: 1.05em; /* Slightly larger text in contact info */
         }
         .contact-info strong {
-            color: #2c3e50;
+            color: #212529; /* Stronger color for labels */
+        }
+        .contact-info a {
+            color: #007bff; /* Consistent link color */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .contact-info a:hover {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: underline;
         }
         .hashtags {
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: center;
-            font-size: 1.1em;
+            font-size: 1.15em;
             color: #555;
         }
         .hashtags span {
             display: inline-block;
-            background-color: #3498db;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin: 5px;
+            background-color: #007bff; /* Vibrant blue for hashtags */
+            color: #ffffff;
+            padding: 8px 15px; /* Increased padding */
+            border-radius: 20px; /* More rounded, pill-like shape */
+            margin: 7px; /* More spacing between hashtags */
+            box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Subtle shadow for hashtags */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+        .hashtags span:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift effect */
         }
     </style>
 </head>
@@ -73,13 +98,11 @@
     <div class="container">
         <h1>Mô tả kênh YouTube</h1>
 
-        <p>Tiến đi đến những ngọn núi xa xôi của Việt Nam để cho bạn thấy cuộc sống thực sự của những gia đình cực kỳ nghèo khó. Bạn sẽ thấy những khó khăn hàng ngày của họ: sống trong những ngôi nhà nhỏ bé, đổ nát được làm bằng kim loại cũ hoặc bạt rách, ngủ trên nền đất cứng hoặc cành cây, và luôn lo lắng về việc kiếm tiền mua thuốc.</p>
+        <p>Tiến đi đến những vùng núi xa xôi của Việt Nam để cho chúng ta thấy thực tế khắc nghiệt của các gia đình cực kỳ nghèo khó. Tiến cho thấy những khó khăn hàng ngày của họ: sống trong những ngôi nhà nhỏ bé, đổ nát làm bằng kim loại phế liệu hoặc bạt rách, ngủ trên nền đất cứng, và luôn lo lắng về việc mua thuốc.</p>
 
-        <p>Tiến cho thấy cảnh những gia đình ăn những bữa ăn đơn giản như chỉ có cơm với muối và rau. Họ thường không có nước sạch hoặc đèn. Công việc của họ rất khó khăn, như làm nông, thu gom chất thải động vật hoặc chăn bò, chỉ để kiếm một ít tiền.</p>
+        <p>Bạn sẽ thấy các gia đình ăn những bữa ăn đơn giản như cơm với muối và lá đu đủ, thường không có nước sạch hoặc điện. Họ làm những công việc khó khăn—làm nông, thu gom chất thải, chăn bò—chỉ để kiếm rất ít tiền.</p>
 
-        <p>Mục tiêu của Tiến rất đơn giản: chia sẻ những câu chuyện này để nhiều người biết đến những gì đang diễn ra. Bằng cách thể hiện cuộc sống thực này, Tiến hy vọng có thể truyền cảm hứng cho những người khác giúp đỡ những nhu cầu quan trọng như nhà ở an toàn, thực phẩm lành mạnh và các nhu yếu phẩm khác.</p>
-
-        <p>Hãy tham gia cùng Tiến để tạo ra sự khác biệt thực sự cho những người dễ bị tổn thương nhất của Việt Nam. Mỗi khi bạn xem, thích hoặc chia sẻ video của Tiến, bạn đang giúp Tiến truyền bá thông điệp và mang lại hy vọng.</p>
+        <p>Mục tiêu đơn giản của Tiến là chia sẻ những câu chuyện này để nâng cao nhận thức cho những người dễ bị tổn thương nhất ở Việt Nam.</p>
 
         <div class="contact-info">
             <h2>Kết nối với Tiến:</h2>
@@ -89,8 +112,8 @@
         </div>
 
         <div class="hashtags">
-            <span>#VietnamPoverty</span>
-            <span>#CommunitySupport</span>
+            <span>#NghèoĐóiViệtNam</span>
+            <span>#HỗTrợCộngĐồng</span>
             <span>#TienNguyenTV</span>
         </div>
     </div>
