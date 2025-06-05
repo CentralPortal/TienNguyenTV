@@ -24,7 +24,7 @@
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 { /* Removed h3 from this general styling */
+        h1, h2 {
             color: #2c3e50;
             font-weight: 700;
         }
@@ -44,8 +44,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 25px; /* Adjusted margin-top for new categories */
-            margin-bottom: 25px;
+            margin-top: 15px; /* Reduced margin-top for categories */
+            margin-bottom: 15px; /* Reduced margin-bottom for categories */
         }
         /* Updated H2 style for pill shape (text only) - now applies to all new main categories */
         .category-header-row h2 {
@@ -80,19 +80,15 @@
             transform: translateY(-2px);
         }
 
-        /* Removed h3 specific styling as h3 is no longer used for categories */
-        /* p styling remains unchanged */
         p {
             margin-bottom: 15px;
             text-align: justify;
         }
-        /* Base ul styling remains */
         ul {
-            list-style-type: none; /* Remove default disc for custom checkbox */
-            padding-left: 0; /* Remove default padding for custom checkbox */
+            list-style-type: none;
+            padding-left: 0;
             margin: 0;
         }
-        /* Styling for list items */
         li {
             background-color: #e8f7ff;
             border: 1px solid #b3e0ff;
@@ -101,71 +97,89 @@
             margin-bottom: 10px;
             text-align: left;
             min-width: unset;
-            display: flex; /* Use flexbox for checkbox and text alignment */
-            align-items: center; /* Vertically center items */
+            display: flex;
+            align-items: center;
         }
-        /* Apply a different background to odd list items for better readability */
         li:nth-child(odd) {
             background-color: #cceeff;
         }
-        /* Style for the text content within the list item */
         li span {
-            flex-grow: 1; /* Allow text to take available space */
+            flex-grow: 1;
         }
 
-        .section-divider {
+        /* The only horizontal line remaining */
+        .main-section-divider {
             border: 0;
             height: 1px;
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(52, 152, 219, 0.75), rgba(0, 0, 0, 0));
-            margin: 40px 0;
+            margin: 20px 0; /* Reduced margin */
         }
+        /* Adjusted tips section for note-like appearance */
         .tips-section {
-            background-color: #ecf0f1;
-            padding: 25px;
+            background-color: #e6f7ff; /* Lighter blue background */
+            padding: 15px; /* Reduced padding */
+            border-left: 5px solid #007bff; /* Blue border on left */
             border-radius: 8px;
-            margin-top: 30px;
+            margin-top: 15px; /* Reduced margin */
+            margin-bottom: 15px; /* Reduced margin */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow */
         }
+        /* Style for the summary element (the clickable header) */
+        .tips-section summary {
+            font-size: 1.2em; /* Smaller font for a note heading */
+            color: #0056b3; /* Darker blue color */
+            font-weight: 600;
+            cursor: pointer; /* Indicate it's clickable */
+            padding-bottom: 5px;
+            border-bottom: 1px dashed #a0d8ff; /* Light dashed border */
+            margin-bottom: 10px; /* Space between summary and content */
+            display: block; /* Ensures full width click area */
+        }
+        /* Remove default arrow for details tag to use custom styling */
+        .tips-section summary::-webkit-details-marker {
+            display: none;
+        }
+        .tips-section summary::before {
+            content: '►'; /* Custom arrow icon */
+            margin-right: 10px;
+            transition: transform 0.2s ease-in-out;
+            display: inline-block;
+        }
+        .tips-section[open] summary::before {
+            transform: rotate(90deg); /* Rotate arrow when open */
+        }
+
         .tips-section ul {
             list-style-type: disc;
-            margin-left: 20px;
+            margin-left: 25px;
             padding: 0;
+            margin-top: 10px; /* Space between the "Lưu ý" and the list */
         }
         .tips-section li {
             background-color: transparent;
             border: none;
             padding: 0;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             text-align: left;
             min-width: unset;
-            display: list-item; /* Revert to list-item for tips section */
+            display: list-item;
+            font-size: 0.95em; /* Slightly smaller font for tips text */
         }
-        /* Ensure tips section list items don't inherit the alternating background */
         .tips-section li:nth-child(odd) {
             background-color: transparent;
         }
-        /* Override H2 style for tips section to prevent pill styling */
-        .tips-section h2 {
-            color: #2c3e50;
-            font-weight: 700;
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 15px;
-            background-color: transparent;
-            padding: 0;
-            border-radius: 0;
-            box-shadow: none;
-            display: block;
-            width: auto;
-            text-align: center;
-            margin-left: 0;
-            margin-right: 0;
-            transition: none;
+        .tips-section p {
+            font-size: 0.9em; /* Smaller font for tips paragraph */
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #555;
         }
 
-        /* Navbar styling */
+
+        /* Navbar styling - Now simplified */
         .navbar {
             background-color: transparent;
-            padding: 8px 0;
+            padding: 0;
             z-index: 1000;
             box-shadow: none;
             margin-bottom: 30px;
@@ -175,50 +189,94 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Align dropdown to left */
+            align-items: center; /* Vertically align items */
             flex-wrap: wrap;
             background-color: #f0f8ff;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
+        /* The `navbar-item` class will now only apply to dropdown items */
         .navbar-item {
-            color: #007bff;
-            background-color: #e0f2f7;
-            padding: 8px 18px;
-            margin: 4px;
-            border-radius: 50px;
+            color: #333; /* Darker text for dropdown items */
+            background-color: transparent; /* No background for dropdown items */
+            padding: 10px 15px; /* Adjusted padding */
+            margin: 0; /* No margin between dropdown items */
+            border-radius: 4px; /* Slightly rounded */
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 400; /* Regular font weight */
+            font-size: 0.95em; /* Slightly smaller font for dropdown */
+            transition: background-color 0.2s ease;
+            white-space: nowrap;
+            display: block; /* Make dropdown links block-level for distinctness */
         }
         .navbar-item:hover {
-            background-color: #d0e8f0;
+            background-color: #f0f0f0;
             color: #0056b3;
+            transform: none; /* Remove transform on hover for dropdown items */
+        }
+
+        /* Dropdown specific styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 15px; /* Space between dropdown and search */
+        }
+
+        .dropdown-button {
+            background-color: #007bff; /* Strong blue for the dropdown button */
+            color: white; /* White text for contrast */
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4); /* Pronounced shadow */
+        }
+
+        .dropdown-button:hover {
+            background-color: #0056b3;
             transform: translateY(-2px);
         }
 
-        /* Styling for the "Mẹo sử dụng" navigation item */
-        .navbar-item.tips-nav-item {
-            background-color: #007bff; /* Stronger blue */
-            color: white; /* White text */
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4); /* More pronounced shadow */
-            font-weight: 700; /* Bolder text */
-        }
-        .navbar-item.tips-nav-item:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-            transform: translateY(-3px); /* Slightly more lift */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10; /* Higher z-index to be above other content */
+            border-radius: 8px;
+            padding: 10px 0;
+            left: 0; /* Align dropdown content to the left of its button */
+            transform: none; /* Remove horizontal centering transform */
+            margin-top: 5px;
+            max-height: 250px;
+            overflow-y: auto;
         }
 
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+
+
+        /* Search container and input - Adjusted for new layout */
         .search-container {
-            margin-top: 30px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-top: 0; /* Remove top margin from search */
+            margin-bottom: 0; /* Remove bottom margin from search */
+            text-align: left; /* Align search input left */
+            flex-grow: 1; /* Allow search to take available space */
         }
         .search-input {
             width: 100%;
-            max-width: 500px;
+            max-width: none; /* Remove max-width for flexible sizing */
             padding: 10px 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -236,37 +294,61 @@
     <div class="container">
         <h1>Tiêu đề video để thu hút người xem</h1>
         <p>Dưới đây là 153 gợi ý về tiêu đề video hoặc một phần tiêu đề được thiết kế để thu hút sự chú ý của người xem và cải thiện khả năng hiển thị tìm kiếm cho kênh của bạn, <strong>@TienNguyenTVOfficial</strong>.</p>
-        <p class="text-sm text-gray-600 mb-4">
-            <strong class="text-red-500">Lưu ý:</strong> Vui lòng đánh dấu vào ô bên cạnh tiêu đề sau khi bạn đã sử dụng nó để tránh sử dụng nhầm lẫn nhiều lần. Trạng thái của các ô này sẽ được lưu lại trong trình duyệt của bạn.
-        </p>
+        
+        <details class="tips-section" id="tips">
+            <summary>Mẹo sử dụng các tiêu đề này:</summary>
+            <p class="text-sm text-gray-600 mb-4">
+                <strong class="text-red-500">Lưu ý:</strong> Vui lòng đánh dấu vào ô bên cạnh tiêu đề sau khi bạn đã sử dụng nó để tránh sử dụng nhầm lẫn nhiều lần. Trạng thái của các ô này sẽ được lưu lại trong trình duyệt của bạn.
+            </p>
+            <ul>
+                <li><strong>Cụ thể:</strong> Khi có thể, hãy đưa các chi tiết cụ thể từ video vào tiêu đề.</li>
+                <li><strong>Sử dụng từ khóa mạnh:</strong> Kết hợp các thuật ngữ như "nghèo đói", "Việt Nam", "khu vực miền núi", "đói", "nơi trú ẩn" và "cuộc đấu tranh".</li>
+                <li><strong>Khơi gợi cảm xúc:</strong> Các tiêu đề tạo ra sự đồng cảm hoặc tò mò có thể thu hút nhiều lượt nhấp hơn.</li>
+                <li><strong>Cân nhắc các câu hỏi (Đôi khi):):</strong> Mặc dù không phải tất cả các gợi ý đều là câu hỏi, nhưng bạn có thể điều chỉnh một số thành câu hỏi (ví dụ: "Bạn có thể tưởng tượng sống bằng cơm trắng không?").</li>
+                <li><strong>Giữ cho tiêu đề ngắn gọn:</strong> Đặt mục tiêu cung cấp thông tin nhưng không quá dài.</li>
+                <li><strong>Bao gồm số liệu (nếu có):):</strong> Nếu video có số lượng gia đình cụ thể hoặc số liệu thống kê cụ thể, bạn có thể đưa vào.</li>
+                <li><strong>Kiểm tra các phong cách khác nhau:</strong> Thử nghiệm các loại tiêu đề khác nhau để xem loại nào phù hợp nhất với đối tượng của bạn.</li>
+                <li><strong>Tính nhất quán:</strong> Duy trì phong cách nhất quán trong tiêu đề của bạn nhưng vẫn làm cho mỗi tiêu đề trở nên độc đáo đối với nội dung video.</li>
+            </ul>
+            <p>Hãy nhớ thay thế "[Tên tỉnh/huyện cụ thể nếu có]" bằng vị trí thực tế nếu bạn đang tập trung vào một khu vực cụ thể trong video của mình. Điều này sẽ giúp tìm kiếm có mục tiêu hơn.</p>
+            <p>Đừng quên tối ưu hóa mô tả video và sử dụng các thẻ liên quan cùng với các tiêu đề hấp dẫn này để có khả năng hiển thị tìm kiếm tối đa trên cả YouTube và Google.</p>
+        </details>
      
         <div class="navbar">
             <div class="navbar-container">
-                <a href="#suc-khoe-benh-tat" class="navbar-item">Sức khỏe & Bệnh tật</a>
-                <a href="#sinh-hoat-muu-sinh" class="navbar-item">Sinh hoạt & Mưu sinh</a>
-                <a href="#giao-duc-tuong-lai" class="navbar-item">Giáo dục & Tương lai</a>
-                <a href="#tam-ly-xa-hoi" class="navbar-item">Tâm lý & Xã hội</a>
-                <a href="#hy-vong-thay-doi" class="navbar-item">Hy vọng & Thay đổi</a>
-                <a href="#keu-goi-chung-tay" class="navbar-item">Kêu gọi & Chung tay</a>
-                <a href="#giai-phap-cu-the" class="navbar-item">Giải pháp cụ thể</a>
-                <a href="#noi-dau-kho-so" class="navbar-item">Nỗi đau & Khổ sở</a>
-                <a href="#kien-cuong-hy-vong" class="navbar-item">Kiên cường & Hy vọng</a>
-                <a href="#tong-quan-dia-diem" class="navbar-item">Tổng quan địa điểm</a>
-                <a href="#kho-khan-tai-dia-diem" class="navbar-item">Khó khăn tại địa điểm</a>
-                <a href="#ho-tro-chung" class="navbar-item">Hỗ trợ chung</a>
-                <a href="#du-an-cu-the" class="navbar-item">Dự án cụ thể</a>
-                <a href="#tips" class="navbar-item tips-nav-item">Mẹo sử dụng</a>
+                <div class="dropdown">
+                    <button class="dropdown-button" id="dropdownMenuButton">
+                        Danh mục
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#du-an-cu-the" class="navbar-item">Dự án cụ thể</a>
+                        <a href="#giai-phap-cu-the" class="navbar-item">Giải pháp cụ thể</a>
+                        <a href="#giao-duc-tuong-lai" class="navbar-item">Giáo dục & Tương lai</a>
+                        <a href="#ho-tro-chung" class="navbar-item">Hỗ trợ chung</a>
+                        <a href="#hy-vong-thay-doi" class="navbar-item">Hy vọng & Thay đổi</a>
+                        <a href="#keu-goi-chung-tay" class="navbar-item">Kêu gọi & Chung tay</a>
+                        <a href="#kien-cuong-hy-vong" class="navbar-item">Kiên cường & Hy vọng</a>
+                        <a href="#kho-khan-tai-dia-diem" class="navbar-item">Khó khăn tại địa điểm</a>
+                        <a href="#noi-dau-kho-so" class="navbar-item">Nỗi đau & Khổ sở</a>
+                        <a href="#sinh-hoat-muu-sinh" class="navbar-item">Sinh hoạt & Mưu sinh</a>
+                        <a href="#suc-khoe-benh-tat" class="navbar-item">Sức khỏe & Bệnh tật</a>
+                        <a href="#tam-ly-xa-hoi" class="navbar-item">Tâm lý & Xã hội</a>
+                        <a href="#tong-quan-dia-diem" class="navbar-item">Tổng quan địa điểm</a>
+                    </div>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tiêu đề...">
+                </div>
             </div>
         </div>
 
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tiêu đề...">
-        </div>
-
-        <hr class="section-divider">
+        <hr class="main-section-divider">
 
         <div class="category-header-row">
-            <h2 id="suc-khoe-benh-tat">Sức khỏe & Bệnh tật</h2>
+            <h2 id="du-an-cu-the">Dự án cụ thể</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -274,18 +356,16 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không tiền chữa, đành phó mặc số phận</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc: Khi cái chết cận kề</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng trường học: Ươm mầm tri thức cho tương lai</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</span></li>
         </ul>
 
-        <hr class="section-divider">
-
         <div class="category-header-row">
-            <h2 id="sinh-hoat-muu-sinh">Sinh hoạt & Mưu sinh</h2>
+            <h2 id="giai-phap-cu-the">Giải pháp cụ thể</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -293,40 +373,19 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và nỗi sợ hãi bủa vây mỗi đêm</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn thiếu chất, sức khỏe suy kiệt dần</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm rau đạm bạc, sức tàn lực kiệt: Cuộc sống thiếu thốn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm trắng muối, rau rừng: Bữa ăn hàng ngày của người nghèo Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ chập chờn trên đất lạnh: Nỗi khổ của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi cái ăn cái mặc là cả một cuộc chiến</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi mái nhà không che nổi mưa nắng: Cảnh đời vùng khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không điện, không nước sạch: Bóng tối và cơn khát ở núi rừng Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động chân tay bấp bềnh: Mưu sinh nơi rẻo cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà dột nát, tương lai mịt mù</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét, tấm bạt rách: Nơi trú ẩn vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi trên nương rẫy, đói nghèo vẫn bủa vây</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh vất vả, tương lai mờ mịt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc ngủ là nỗi ám ảnh: Cuộc sống không tiện nghi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đêm tối không đèn: Cuộc sống chìm trong bóng tối</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh từ phân bò: Cuộc đời lam lũ vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước đọng vũng: Nguồn sống đầy rủi ro</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mùa màng thất bát: Nỗi ám ảnh đói nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thắp sáng tương lai: Mang điện về bản làng</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước nghĩa tình: Xây hệ thống nước sạch cho vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đủ đầy: Niềm vui nhỏ bé cho trẻ em nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái ấm yêu thương: Xóa nhà tạm bợ cho người dân</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng em đến trường: Trao xe đạp, chắp cánh ước mơ</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức khỏe cộng đồng: Mang thuốc men đến vùng khó khăn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vòng tay sẻ chia: Giúp người già neo đơn nơi núi rừng</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chung tay vì người khuyết tật: Nâng đỡ những mảnh đời bất hạnh</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đánh thức tiềm năng: Phát triển kinh tế bền vững vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Từ bùn đất đến mái ấm: Hành trình xây nhà mới</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nâng cao nhận thức: Chấm dứt cảnh sống trong hang đá</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hướng về vùng lũ: Giúp đỡ đồng bào sau thiên tai</span></li>
         </ul>
-
-        <hr class="section-divider">
 
         <div class="category-header-row">
             <h2 id="giao-duc-tuong-lai">Giáo dục & Tương lai</h2>
@@ -345,10 +404,8 @@
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tuổi thơ bị đánh cắp: Trẻ em vùng cao bỏ học mưu sinh</span></li>
         </ul>
 
-        <hr class="section-divider">
-
         <div class="category-header-row">
-            <h2 id="tam-ly-xa-hoi">Tâm lý & Xã hội</h2>
+            <h2 id="ho-tro-chung">Hỗ trợ chung</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -356,18 +413,17 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện chưa kể về những phận đời nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi cuộc sống khắc nghiệt thử thách lòng người</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nỗi lo cơm áo gạo tiền đè nặng vai gầy</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức sống mãnh liệt nơi núi rừng heo hút</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vượt qua giới hạn của đói nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh sáng cho những đêm tối vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chắp cánh ước mơ đến trường cho trẻ em nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Gửi trao yêu thương đến miền núi Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành động nhỏ, thay đổi cuộc đời lớn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hỗ trợ thuốc men cho người nghèo vùng núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Một mái nhà ấm áp cho đồng bào miền núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước sạch cho cuộc sống khỏe mạnh hơn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>San sẻ bữa ăn, tiếp thêm sức mạnh</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng tương lai cho cộng đồng vùng khó</span></li>
         </ul>
-
-        <hr class="section-divider">
 
         <div class="category-header-row">
             <h2 id="hy-vong-thay-doi">Hy vọng & Thay đổi</h2>
@@ -385,8 +441,6 @@
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thay đổi từng ngày từ những hành động nhỏ</span></li>
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo</span></li>
         </ul>
-
-        <hr class="section-divider">
 
         <div class="category-header-row">
             <h2 id="keu-goi-chung-tay">Kêu gọi & Chung tay</h2>
@@ -432,62 +486,6 @@
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ước mơ nhỏ bé giữa cuộc sống bộn bề</span></li>
         </ul>
 
-        <hr class="section-divider">
-
-        <div class="category-header-row">
-            <h2 id="giai-phap-cu-the">Giải pháp cụ thể</h2>
-            <span class="scroll-to-top-icon" onclick="scrollToTop()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-            </span>
-        </div>
-        <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng trường học: Ươm mầm tri thức cho tương lai</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</span></li>
-        </ul>
-
-        <hr class="section-divider">
-
-        <div class="category-header-row">
-            <h2 id="noi-dau-kho-so">Nỗi đau & Khổ sở</h2>
-            <span class="scroll-to-top-icon" onclick="scrollToTop()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-            </span>
-        </div>
-        <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối nuốt chửng cuộc sống vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và những nỗi sợ hãi thầm kín</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và sự cô đơn bao trùm</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đạm bạc và những giọt nước mắt lặng lẽ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đôi bàn tay chai sạn và tương lai mờ mịt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc mơ về một tấm nệm ấm áp</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ không trọn vẹn và những lo toan</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây: Nỗi đau thấu xương</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát vọng nhỏ bé về một ngọn đèn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét kể chuyện đời nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi, hy vọng mỏng manh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi những điều bình dị trở thành ước mơ xa xỉ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng thở dài dưới mái nhà dột nát</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị đắng của cuộc đời trong từng bữa ăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị mặn của nước mắt trong bữa cơm trắng muối</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bí mật đằng sau những mái nhà tạm bợ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện gì xảy ra khi không có nước sạch?</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt khao khát một viên thuốc</span></li>
-        </ul>
-
-        <hr class="section-divider">
-
         <div class="category-header-row">
             <h2 id="kien-cuong-hy-vong">Kiên cường & Hy vọng</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
@@ -526,27 +524,6 @@
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vẻ đẹp kiên cường giữa cảnh đời khắc nghiệt</span></li>
         </ul>
 
-        <hr class="section-divider">
-
-        <div class="category-header-row">
-            <h2 id="tong-quan-dia-diem">Tổng quan địa điểm</h2>
-            <span class="scroll-to-top-icon" onclick="scrollToTop()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-            </span>
-        </div>
-        <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi những ước mơ còn dang dở</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cuộc sống là một thử thách</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Vùng đất của những phận đời cần giúp đỡ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Tiếng gọi từ trái tim núi rừng</span></li>
-        </ul>
-
-        <hr class="section-divider">
-
         <div class="category-header-row">
             <h2 id="kho-khan-tai-dia-diem">Khó khăn tại địa điểm</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
@@ -565,10 +542,8 @@
             <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có]</span></li>
         </ul>
 
-        <hr class="section-divider">
-
         <div class="category-header-row">
-            <h2 id="ho-tro-chung">Hỗ trợ chung</h2>
+            <h2 id="noi-dau-kho-so">Nỗi đau & Khổ sở</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -576,22 +551,32 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh sáng cho những đêm tối vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chắp cánh ước mơ đến trường cho trẻ em nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Gửi trao yêu thương đến miền núi Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành động nhỏ, thay đổi cuộc đời lớn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hỗ trợ thuốc men cho người nghèo vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Một mái nhà ấm áp cho đồng bào miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước sạch cho cuộc sống khỏe mạnh hơn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>San sẻ bữa ăn, tiếp thêm sức mạnh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng tương lai cho cộng đồng vùng khó</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối nuốt chửng cuộc sống vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và những nỗi sợ hãi thầm kín</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và sự cô đơn bao trùm</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đạm bạc và những giọt nước mắt lặng lẽ</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đôi bàn tay chai sạn và tương lai mờ mịt</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc mơ về một tấm nệm ấm áp</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ không trọn vẹn và những lo toan</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây: Nỗi đau thấu xương</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát vọng nhỏ bé về một ngọn đèn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét kể chuyện đời nghèo khó</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi, hy vọng mỏng manh</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi những điều bình dị trở thành ước mơ xa xỉ</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng thở dài dưới mái nhà dột nát</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị đắng của cuộc đời trong từng bữa ăn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị mặn của nước mắt trong bữa cơm trắng muối</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bí mật đằng sau những mái nhà tạm bợ</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện gì xảy ra khi không có nước sạch?</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt khao khát một viên thuốc</span></li>
         </ul>
 
-        <hr class="section-divider">
-
         <div class="category-header-row">
-            <h2 id="du-an-cu-the">Dự án cụ thể</h2>
+            <h2 id="sinh-hoat-muu-sinh">Sinh hoạt & Mưu sinh</h2>
             <span class="scroll-to-top-icon" onclick="scrollToTop()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
@@ -599,152 +584,223 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng trường học: Ươm mầm tri thức cho tương lai</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và nỗi sợ hãi bủa vây mỗi đêm</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn thiếu chất, sức khỏe suy kiệt dần</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm rau đạm bạc, sức tàn lực kiệt: Cuộc sống thiếu thốn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm trắng muối, rau rừng: Bữa ăn hàng ngày của người nghèo Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ chập chờn trên đất lạnh: Nỗi khổ của người nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi cái ăn cái mặc là cả một cuộc chiến</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi mái nhà không che nổi mưa nắng: Cảnh đời vùng khó</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không điện, không nước sạch: Bóng tối và cơn khát ở núi rừng Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động chân tay bấp bềnh: Mưu sinh nơi rẻo cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà dột nát, tương lai mịt mù</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét, tấm bạt rách: Nơi trú ẩn vùng cao Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi trên nương rẫy, đói nghèo vẫn bủa vây</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh vất vả, tương lai mờ mịt</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc ngủ là nỗi ám ảnh: Cuộc sống không tiện nghi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đêm tối không đèn: Cuộc sống chìm trong bóng tối</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh từ phân bò: Cuộc đời lam lũ vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước đọng vũng: Nguồn sống đầy rủi ro</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mùa màng thất bát: Nỗi ám ảnh đói nghèo</span></li>
         </ul>
 
-        <div class="tips-section" id="tips">
-            <h2>Mẹo sử dụng các tiêu đề này:</h2>
-            <ul>
-                <li><strong>Cụ thể:</strong> Khi có thể, hãy đưa các chi tiết cụ thể từ video vào tiêu đề.</li>
-                <li><strong>Sử dụng từ khóa mạnh:</strong> Kết hợp các thuật ngữ như "nghèo đói", "Việt Nam", "khu vực miền núi", "đói", "nơi trú ẩn" và "cuộc đấu tranh".</li>
-                <li><strong>Khơi gợi cảm xúc:</strong> Các tiêu đề tạo ra sự đồng cảm hoặc tò mò có thể thu hút nhiều lượt nhấp hơn.</li>
-                <li><strong>Cân nhắc các câu hỏi (Đôi khi):):</strong> Mặc dù không phải tất cả các gợi ý đều là câu hỏi, nhưng bạn có thể điều chỉnh một số thành câu hỏi (ví dụ: "Bạn có thể tưởng tượng sống bằng cơm trắng không?").</li>
-                <li><strong>Giữ cho tiêu đề ngắn gọn:</strong> Đặt mục tiêu cung cấp thông tin nhưng không quá dài.</li>
-                <li><strong>Bao gồm số liệu (nếu có):):</strong> Nếu video có số lượng gia đình cụ thể hoặc số liệu thống kê cụ thể, bạn có thể đưa vào.</li>
-                <li><strong>Kiểm tra các phong cách khác nhau:</strong> Thử nghiệm các loại tiêu đề khác nhau để xem loại nào phù hợp nhất với đối tượng của bạn.</li>
-                <li><strong>Tính nhất quán:</strong> Duy trì phong cách nhất quán trong tiêu đề của bạn nhưng vẫn làm cho mỗi tiêu đề trở nên độc đáo đối với nội dung video.</li>
-            </ul>
-            <p>Hãy nhớ thay thế "[Tên tỉnh/huyện cụ thể nếu có]" bằng vị trí thực tế nếu bạn đang tập trung vào một khu vực cụ thể trong video của mình. Điều này sẽ giúp tìm kiếm có mục tiêu hơn.</p>
-            <p>Đừng quên tối ưu hóa mô tả video và sử dụng các thẻ liên quan cùng với các tiêu đề hấp dẫn này để có khả năng hiển thị tìm kiếm tối đa trên cả YouTube và Google.</p>
+        <div class="category-header-row">
+            <h2 id="suc-khoe-benh-tat">Sức khỏe & Bệnh tật</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
         </div>
-    </div>
+        <ul class="category-list">
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không tiền chữa, đành phó mặc số phận</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc: Khi cái chết cận kề</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</span></li>
+        </ul>
 
-    <script>
-        // Function to scroll to the top of the document
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
+        <div class="category-header-row">
+            <h2 id="tam-ly-xa-hoi">Tâm lý & Xã hội</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện chưa kể về những phận đời nghèo khó</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi cuộc sống khắc nghiệt thử thách lòng người</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nỗi lo cơm áo gạo tiền đè nặng vai gầy</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức sống mãnh liệt nơi núi rừng heo hút</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vượt qua giới hạn của đói nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</span></li>
+        </ul>
 
-        // Function to save checkbox states to localStorage
-        function saveCheckboxStates() {
-            const checkboxes = document.querySelectorAll('.category-list input[type="checkbox"]');
-            const states = {};
-            checkboxes.forEach(checkbox => {
-                states[checkbox.id] = checkbox.checked;
-            });
-            localStorage.setItem('videoTitleCheckboxStates', JSON.stringify(states));
-            console.log('Checkbox states saved to localStorage.');
-        }
+        <div class="category-header-row">
+            <h2 id="tong-quan-dia-diem">Tổng quan địa điểm</h2>
+            <span class="scroll-to-top-icon" onclick="scrollToTop()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+            </span>
+        </div>
+        <ul class="category-list">
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi những ước mơ còn dang dở</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cuộc sống là một thử thách</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Vùng đất của những phận đời cần giúp đỡ</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Tiếng gọi từ trái tim núi rừng</span></li>
+        </ul>
 
-        // Function to load checkbox states from localStorage
-        function loadCheckboxStates() {
-            const savedStates = localStorage.getItem('videoTitleCheckboxStates');
-            if (savedStates) {
-                const states = JSON.parse(savedStates);
-                const checkboxes = document.querySelectorAll('.category-list input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    if (states[checkbox.id] !== undefined) {
-                        checkbox.checked = states[checkbox.id];
-                    }
+        <script>
+            // Function to scroll to the top of the document
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
-                console.log('Checkbox states loaded from localStorage.');
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('searchInput');
-            const categoryLists = document.querySelectorAll('.container > ul.category-list');
-            const tipsSection = document.getElementById('tips');
-
-            // Assign unique IDs to checkboxes and attach event listeners
-            categoryLists.forEach(list => {
-                const items = list.getElementsByTagName('li');
-                Array.from(items).forEach((item, index) => {
-                    const checkbox = item.querySelector('input[type="checkbox"]');
-                    const textContent = item.querySelector('span').textContent.trim();
-                    // Create a simple, unique ID for each checkbox
-                    checkbox.id = `checkbox-${list.id}-${index}-${textContent.replace(/[^a-zA-Z0-9]/g, '').substring(0, 10)}`;
-                    checkbox.addEventListener('change', saveCheckboxStates);
+            // Function to save checkbox states to localStorage
+            function saveCheckboxStates() {
+                const checkboxes = document.querySelectorAll('.category-list input[type="checkbox"]');
+                const states = {};
+                checkboxes.forEach(checkbox => {
+                    states[checkbox.id] = checkbox.checked;
                 });
-            });
+                localStorage.setItem('videoTitleCheckboxStates', JSON.stringify(states));
+                console.log('Checkbox states saved to localStorage.');
+            }
 
-            // Load states after IDs are assigned
-            loadCheckboxStates();
+            // Function to load checkbox states from localStorage
+            function loadCheckboxStates() {
+                const savedStates = localStorage.getItem('videoTitleCheckboxStates');
+                if (savedStates) {
+                    const states = JSON.parse(savedStates);
+                    const checkboxes = document.querySelectorAll('.category-list input[type="checkbox"]');
+                    checkboxes.forEach(checkbox => {
+                        if (states[checkbox.id] !== undefined) {
+                            checkbox.checked = states[checkbox.id];
+                        }
+                    });
+                    console.log('Checkbox states loaded from localStorage.');
+                }
+            }
 
-            searchInput.addEventListener('keyup', (event) => {
-                const searchTerm = event.target.value.toLowerCase();
-                let anyCategoryVisible = false;
+            document.addEventListener('DOMContentLoaded', () => {
+                const searchInput = document.getElementById('searchInput');
+                const categoryLists = document.querySelectorAll('.container > ul.category-list');
+                const tipsSection = document.getElementById('tips');
 
+                // Assign unique IDs to checkboxes and attach event listeners
                 categoryLists.forEach(list => {
-                    if (!list) return; // Skip if list doesn't exist
-
                     const items = list.getElementsByTagName('li');
-                    let hasVisibleItemsInList = false;
+                    Array.from(items).forEach((item, index) => {
+                        const checkbox = item.querySelector('input[type="checkbox"]');
+                        const textContent = item.querySelector('span').textContent.trim();
+                        // Create a simple, unique ID for each checkbox
+                        checkbox.id = `checkbox-${list.id}-${index}-${textContent.replace(/[^a-zA-Z0-9]/g, '').substring(0, 10)}`;
+                        checkbox.addEventListener('change', saveCheckboxStates);
+                    });
+                });
 
-                    for (let i = 0; i < items.length; i++) {
-                        const item = items[i];
-                        const text = item.textContent || item.innerText;
-                        if (text.toLowerCase().includes(searchTerm)) {
-                            item.style.display = 'flex'; /* Ensure flex display is restored */
-                            hasVisibleItemsInList = true;
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    }
+                // Load states after IDs are assigned
+                loadCheckboxStates();
 
-                    // Get the associated category-header-row (which contains H2 and icon)
-                    const categoryHeaderRow = list.previousElementSibling;
-                    // Get the preceding HR divider
-                    const precedingHr = categoryHeaderRow ? categoryHeaderRow.previousElementSibling : null;
+                // Dropdown functionality
+                const dropdownButton = document.getElementById('dropdownMenuButton');
+                const dropdown = document.querySelector('.dropdown');
 
-                    if (searchTerm === '' || hasVisibleItemsInList) {
-                        list.style.display = ''; // Show the category list
-                        if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
-                            categoryHeaderRow.style.display = 'flex'; /* Ensure flex display is restored */
-                        }
-                        if (precedingHr && precedingHr.classList.contains('section-divider')) {
-                            precedingHr.style.display = '';
-                        }
-                        anyCategoryVisible = true;
-                    } else {
-                        list.style.display = 'none'; // Hide the category list
-                        if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
-                            categoryHeaderRow.style.display = 'none'; // Hide the entire category header row
-                        }
-                        if (precedingHr && precedingHr.classList.contains('section-divider')) {
-                            precedingHr.style.display = 'none'; // Hide the divider
-                        }
+                dropdownButton.addEventListener('click', function(event) {
+                    dropdown.classList.toggle('show');
+                    event.stopPropagation(); // Prevent document click from closing it immediately
+                });
+
+                // Close the dropdown if the user clicks outside of it
+                document.addEventListener('click', function(event) {
+                    if (!dropdown.contains(event.target)) {
+                        dropdown.classList.remove('show');
                     }
                 });
 
-                // Handle the visibility of the "Mẹo sử dụng các tiêu đề này" section
-                if (tipsSection) {
-                    if (searchTerm === '') {
-                        tipsSection.style.display = '';
-                    } else {
-                        tipsSection.style.display = 'none';
-                    }
-                }
+                // Close dropdown when a link inside it is clicked
+                const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+                dropdownLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        dropdown.classList.remove('show');
+                    });
+                });
 
-                // Handle the very first section divider after the search input
-                const firstSectionDivider = document.querySelector('.search-container + .section-divider');
-                if (firstSectionDivider) {
-                    if (searchTerm === '' || anyCategoryVisible) {
-                        firstSectionDivider.style.display = '';
-                    } else {
-                        firstSectionDivider.style.display = 'none';
+
+                searchInput.addEventListener('keyup', (event) => {
+                    const searchTerm = event.target.value.toLowerCase();
+                    let anyCategoryVisible = false;
+
+                    categoryLists.forEach(list => {
+                        if (!list) return; // Skip if list doesn't exist
+
+                        const items = list.getElementsByTagName('li');
+                        let hasVisibleItemsInList = false;
+
+                        for (let i = 0; i < items.length; i++) {
+                            const item = items[i];
+                            const text = item.textContent || item.innerText;
+                            if (text.toLowerCase().includes(searchTerm)) {
+                                item.style.display = 'flex'; /* Ensure flex display is restored */
+                                hasVisibleItemsInList = true;
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+
+                        // Get the associated category-header-row (which contains H2 and icon)
+                        const categoryHeaderRow = list.previousElementSibling;
+                        // Get the preceding HR divider
+                        // Note: The main section divider is now before the categories, so no need to hide it here.
+                        // Only hide category header rows if no items are visible.
+                        if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
+                            if (hasVisibleItemsInList) {
+                                categoryHeaderRow.style.display = 'flex';
+                            } else {
+                                categoryHeaderRow.style.display = 'none';
+                            }
+                        }
+                        
+                        if (hasVisibleItemsInList) {
+                            anyCategoryVisible = true;
+                        }
+                    });
+
+                    // Logic for the main section divider. It should only be hidden if NO categories are visible due to search.
+                    const mainSectionDivider = document.querySelector('.main-section-divider');
+                    if (mainSectionDivider) {
+                        if (searchTerm === '' || anyCategoryVisible) {
+                            mainSectionDivider.style.display = '';
+                        } else {
+                            mainSectionDivider.style.display = 'none';
+                        }
                     }
-                }
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 </html>
