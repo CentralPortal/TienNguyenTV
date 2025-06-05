@@ -378,14 +378,14 @@
                     {
                         item: "Trại Gà",
                         description: {
-                            paragraph: "Hãy cùng chung tay biến trang trại gà này thành hiện thực! Sự đóng góp của bạn sẽ giúp thiết lập một trang trại gà bền vững với quy mô ban đầu 100 con. Sứ mệnh cốt lõi của chúng tôi là cung cấp thực phẩm, sinh kế và hy vọng cho các gia đình khó khăn.",
+                            paragraph: "<strong>Hãy cùng chung tay biến trang trại gà này thành hiện thực!</strong><br><br>Sự đóng góp của bạn sẽ giúp thiết lập một trang trại gà bền vững với quy mô ban đầu 100 con. Sứ mệnh cốt lõi của chúng tôi là cung cấp thực phẩm, sinh kế và hy vọng cho các gia đình khó khăn.",
                             items: [
                                 "Định kỳ tặng gà trưởng thành cho các gia đình khó khăn.",
                                 "Giúp các gia đình khó khăn đạt được sự tự cung tự cấp."
                             ]
                         },
                         amount: "50.000.000 - 100.000.000+ ₫",
-                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/chicken-farm-coop.png",
+                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/chicken-farm.png",
                         notes: [
                             "Hình ảnh chỉ mang tính minh họa và không phải là thiết kế thực tế."
                         ]
@@ -705,14 +705,14 @@
                     {
                         item: "Chicken Farm",
                         description: {
-                            paragraph: "Join hands to make this chicken farm a reality! Your contributions will help establish a sustainable chicken farm starting with an initial flock of 100 chickens. Our core mission is to provide food, livelihood, and hope to struggling families.",
+                            paragraph: "<strong>Join hands to make this community chicken farm a reality!</strong><br><br>Your contributions will help establish a sustainable chicken farm starting with an initial flock of 100 chickens. Our core mission is to provide food, livelihood, and hope to struggling families.",
                             items: [
                                 "Periodically donate mature chickens to families in need.",
                                 "Help struggling families achieve self-sufficiency."
                             ]
                         },
                         amount: "$1,900 - $4,000+",
-                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/chicken-farm-coop.png",
+                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/chicken-farm.png",
                         notes: [
                             "Picture is for illustration purpose only and it is not the actual design."
                         ]
@@ -815,7 +815,7 @@
                     // Add the main paragraph
                     if (item.description.paragraph) {
                         const p = document.createElement('p');
-                        p.textContent = item.description.paragraph.trim();
+                        p.innerHTML = item.description.paragraph.trim(); // Use innerHTML to render strong and br tags
                         descriptionContentDiv.appendChild(p);
                     }
 
@@ -838,7 +838,7 @@
 
                     if (paragraph) {
                         const p = document.createElement('p');
-                        p.textContent = paragraph;
+                        p.innerHTML = paragraph; // Use innerHTML for fallback too
                         descriptionContentDiv.appendChild(p);
                     }
 
