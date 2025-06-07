@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Tổng Thể Xây Dựng Trang Trại Gà</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        /* Styling for the main header */
+        h1 {
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        /* Styling for section headings */
+        h2 {
+            color: #388e3c;
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #a5d6a7;
+            padding-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        /* Styling for sub-headings */
+        h3 {
+            color: #4caf50;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: bold;
+        }
+        /* General section styling */
+        section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        table th {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #e0e0e0;
+        }
+        /* List styling */
+        ul {
+            list-style: disc;
+            margin-left: 1.5rem;
+        }
+        ol {
+            list-style: decimal;
+            margin-left: 1.5rem;
+        }
+        /* Link styling */
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Reference list styling */
+        .reference-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Specific styling for the Table of Contents section */
+        #table-of-contents {
+            background-color: #f0fdf4; /* Light green background */
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            margin-bottom: 3rem; /* More space below TOC */
+        }
+        #table-of-contents h2 {
+            color: #166534; /* Darker green for TOC heading */
+            border-bottom: 3px solid #6ee7b7; /* Thicker, lighter border */
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 2.25rem; /* Larger heading */
+            text-align: center;
+        }
+        #table-of-contents ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            margin-left: 0;
+        }
+        #table-of-contents ul li {
+            margin-bottom: 0.75rem; /* Space between TOC items */
+        }
+        #table-of-contents ul li a {
+            font-size: 1.125rem; /* Slightly larger font for TOC links */
+            color: #047857; /* Darker green for links */
+            font-weight: 600; /* Semi-bold */
+            transition: color 0.2s ease-in-out;
+            padding: 0.25rem 0; /* Add some padding for clickable area */
+            display: block; /* Make the whole line clickable */
+        }
+        #table-of-contents ul li a:hover {
+            color: #10b981; /* Lighter green on hover */
+            text-decoration: none; /* Remove underline on hover for a cleaner look */
+        }
+        /* For nested lists within TOC, if they were to be added */
+        #table-of-contents ul ul {
+            margin-left: 1.5rem; /* Indent sub-items */
+            margin-top: 0.5rem;
+        }
+        #table-of-contents ul ul li a {
+            font-size: 1rem; /* Smaller font for sub-items */
+            color: #1d4ed8; /* Blue for sub-links */
+        }
+        #table-of-contents ul ul li a:hover {
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-green-800 text-5xl font-extrabold mb-4">Kế Hoạch Tổng Thể Xây Dựng Trang Trại Gà</h1>
+            <h1 class="text-green-700 text-3xl">tại Tỉnh Ninh Thuận, Việt Nam</h1>
+        </header>
+
+        <!-- New Table of Contents Section -->
+        <section id="table-of-contents" class="rounded-lg shadow-md">
+            <h2 class="text-green-800">Mục Lục</h2>
+            <ul>
+                <li><a href="#giới-thiệu">1. Giới thiệu</a></li>
+                <li><a href="#phân-tích-khí-hậu">2. Phân tích khí hậu tỉnh Ninh Thuận</a></li>
+                <li><a href="#giống-gà-phù-hợp">3. Giống gà phù hợp với thời tiết nóng</a></li>
+                <li><a href="#thiết-kế-chuồng">4. Thiết kế chuồng gà cho thời tiết nóng</a></li>
+                <li><a href="#vật-liệu-chi-phí">5. Vật liệu và chi phí xây dựng</a></li>
+                <li><a href="#mua-gà-chi-phí">6. Mua gà và chi phí</a></li>
+                <li><a href="#thức-ăn-chi-phí">7. Yêu cầu thức ăn và chi phí</a></li>
+                <li><a href="#lao-động-chi-phí">8. Yêu cầu lao động và chi phí</a></li>
+                <li><a href="#dự-báo-tăng-trưởng">9. Dự báo tăng trưởng đàn gà</a></li>
+                <li><a href="#chi-phí-hàng-tháng">10. Chi phí hàng tháng</a></li>
+                <li><a href="#dự-báo-doanh-thu">11. Dự báo doanh thu</a></li>
+                <li><a href="#hướng-dẫn-thực-hiện">12. Hướng dẫn thực hiện từng bước</a></li>
+                <li><a href="#phòng-bệnh">13. Phòng bệnh trong khí hậu nóng</a></li>
+                <li><a href="#hệ-thống-làm-mát">14. Hệ thống làm mát cho thời tiết nóng</a></li>
+                <li><a href="#tài-liệu-tham-khảo">15. Tài liệu tham khảo</a></li>
+            </ul>
+        </section>
+
+        <section id="giới-thiệu" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Giới thiệu</h2>
+            <p>Kế hoạch tổng thể này trình bày các bước và cân nhắc để thiết lập một trang trại 100 con gà tại An Xuân 1, Thị trấn Xuân Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam. Kế hoạch được thiết kế đặc biệt cho điều kiện thời tiết nóng của khu vực này và cung cấp thông tin chi tiết về thiết kế chuồng trại, vật liệu, chi phí và phương pháp quản lý.</p>
+        </section>
+
+        <section id="phân-tích-khí-hậu" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Phân tích khí hậu tỉnh Ninh Thuận</h2>
+            <p>Tỉnh Ninh Thuận có khí hậu nhiệt đới xavan (phân loại Köppen: Aw) với các đặc điểm sau:</p>
+            <ul>
+                <li><strong>Nhiệt độ trung bình năm</strong>: 26,2°C (79,1°F)</li>
+                <li><strong>Nhiệt độ cao nhất</strong>: 30,9°C (87,62°F)</li>
+                <li><strong>Nhiệt độ thấp nhất</strong>: 21,5°C (70,7°F)</li>
+                <li><strong>Lượng mưa hàng năm</strong>: Khoảng 1.145 mm (45,1 inch)</li>
+                <li><strong>Khu vực khô nhất</strong>: Ninh Thuận là khu vực khô và nóng nhất Việt Nam</li>
+                <li><strong>Độ ẩm</strong>: Cao, đặc biệt trong mùa mưa</li>
+                <li><strong>Mùa mưa</strong>: Tháng 9 và tháng 10 (216-232 mm mỗi tháng)</li>
+                <li><strong>Tháng nóng nhất</strong>: Tháng 5 đến tháng 8 với nhiệt độ đạt 30-31°C</li>
+            </ul>
+            <h3>Phạm vi nhiệt độ hàng tháng:</h3>
+            <ul>
+                <li>Tháng 1: 25,4°/21,9°C (7,9 ngày mưa)</li>
+                <li>Tháng 2: 26,1°/21,5°C (4,5 ngày mưa)</li>
+                <li>Tháng 3: 27,7°/22,6°C (5,9 ngày mưa)</li>
+                <li>Tháng 4: 29,3°/24,2°C (7,7 ngày mưa)</li>
+                <li>Tháng 5: 30,9°/25,9°C (17,1 ngày mưa)</li>
+                <li>Tháng 6: 30,7°/25,9°C (18,3 ngày mưa)</li>
+                <li>Tháng 7: 30,3°/25,4°C (18,9 ngày mưa)</li>
+                <li>Tháng 8: 30,3°/25,4°C (18,5 ngày mưa)</li>
+                <li>Tháng 9: 29,4°/24,9°C (21,5 ngày mưa)</li>
+                <li>Tháng 10: 28,2°/24,3°C (21,3 ngày mưa)</li>
+                <li>Tháng 11: 27,2°/23,8°C (14,7 ngày mưa)</li>
+                <li>Tháng 12: 25,7°/22,6°C (11,7 ngày mưa)</li>
+            </ul>
+            <p>Khí hậu nóng và tương đối khô này đòi hỏi những cân nhắc đặc biệt cho việc nuôi gà, đặc biệt là về thiết kế chuồng trại, lựa chọn giống và phương pháp quản lý.</p>
+        </section>
+
+        <section id="giống-gà-phù-hợp" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Giống gà phù hợp với thời tiết nóng</h2>
+            <p>Đối với khí hậu nóng của tỉnh Ninh Thuận, các giống gà sau đây được khuyến nghị:</p>
+            <h3>Giống gà được khuyến nghị hàng đầu:</h3>
+            <ol>
+                <li><strong>Gà Leghorn</strong>
+                    <ul>
+                        <li>Gà đẻ trứng xuất sắc (150-300 trứng/năm)</li>
+                        <li>Chịu nhiệt tốt với mào lớn giúp tản nhiệt</li>
+                        <li>Tiêu thụ thức ăn thấp</li>
+                        <li>Trọng lượng trưởng thành: 2-2,5 kg</li>
+                        <li>Trứng trắng</li>
+                        <li>Chi phí mỗi gà con: 12.000-15.000 VNĐ</li>
+                    </ul>
+                </li>
+                <li><strong>Gà cổ trụi (Naked Neck/Turken)</strong>
+                    <ul>
+                        <li>Giống gà lưỡng dụng tốt (thịt và trứng)</li>
+                        <li>Chịu nhiệt xuất sắc do lông ít</li>
+                        <li>Sản lượng trứng trung bình (150-200 trứng/năm)</li>
+                        <li>Tính cách hiền lành</li>
+                        <li>Trọng lượng trưởng thành: 2,5-3 kg</li>
+                        <li>Chi phí mỗi gà con: 15.000-18.000 VNĐ</li>
+                    </ul>
+                </li>
+                <li><strong>Gà Ai Cập Fayoumi</strong>
+                    <ul>
+                        <li>Chịu nhiệt cực kỳ tốt</li>
+                        <li>Kháng bệnh</li>
+                        <li>Sản lượng trứng trung bình (150-250 trứng/năm)</li>
+                        <li>Trưởng thành sớm</li>
+                        <li>Kiếm ăn tốt</li>
+                        <li>Chi phí mỗi gà con: 14.000-17.000 VNĐ</li>
+                    </ul>
+                </li>
+                <li><strong>Giống gà địa phương Việt Nam</strong>
+                    <ul>
+                        <li>Gà Lai Hồ và Lai Mía</li>
+                        <li>Thích nghi tốt với điều kiện địa phương</li>
+                        <li>Kháng bệnh</li>
+                        <li>Chất lượng thịt cao với ít mỡ dưới da</li>
+                        <li>Trọng lượng trưởng thành: 2,3-2,5 kg trong 3,5 tháng</li>
+                        <li>Chi phí mỗi gà con: 12.000-15.000 VNĐ</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Giống gà nên tránh trong thời tiết nóng:</h3>
+            <ul>
+                <li>Gà Brahmas</li>
+                <li>Gà Orpingtons</li>
+                <li>Gà Plymouth Rocks</li>
+                <li>Gà Rhode Island Reds</li>
+                <li>Gà Ameraucanas</li>
+            </ul>
+            <p>Những giống này có đặc điểm khiến chúng không phù hợp với khí hậu nóng, như lông dày, mào nhỏ và thân hình nặng.</p>
+        </section>
+
+        <section id="thiết-kế-chuồng" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Thiết kế chuồng gà cho thời tiết nóng</h2>
+            <h3>Yếu tố thiết kế thiết yếu:</h3>
+            <ol>
+                <li><strong>Thông gió</strong>
+                    <ul>
+                        <li>Quan trọng cho thời tiết nóng</li>
+                        <li>Nhiều cửa sổ và lỗ thông hơi được đặt để tạo thông gió chéo</li>
+                        <li>Lỗ thông hơi trên mái để cho phép không khí nóng thoát ra</li>
+                        <li>Các mặt lưới kim loại để tối đa hóa luồng không khí</li>
+                    </ul>
+                </li>
+                <li><strong>Bóng râm</strong>
+                    <ul>
+                        <li>Mái với phần nhô ra đáng kể (tối thiểu 1 foot)</li>
+                        <li>Mái fiberglass màu "khói" để tạo bóng râm mà không giữ nhiệt</li>
+                        <li>Hướng bắc-nam để giảm thiểu tiếp xúc trực tiếp với ánh nắng mặt trời</li>
+                        <li>Cây cối hoặc thực vật xung quanh để tạo thêm bóng râm</li>
+                    </ul>
+                </li>
+                <li><strong>Bảo vệ khỏi động vật săn mồi</strong>
+                    <ul>
+                        <li>Lưới kim loại cứng (không phải lưới gà) cho tất cả các lỗ mở</li>
+                        <li>Chốt cửa an toàn</li>
+                        <li>Rào chắn chu vi được chôn để ngăn động vật đào hang</li>
+                        <li>Thiết kế nâng cao để bảo vệ khỏi động vật săn mồi trên mặt đất và lũ lụt</li>
+                    </ul>
+                </li>
+                <li><strong>Tính năng làm mát</strong>
+                    <ul>
+                        <li>Thiết kế nâng cao để không khí lưu thông bên dưới</li>
+                        <li>Hệ thống phun sương hoặc tạo sương mù cho những ngày cực kỳ nóng</li>
+                        <li>Vật liệu mái phản chiếu</li>
+                        <li>Mái cách nhiệt để giảm truyền nhiệt</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Kích thước chuồng gà được khuyến nghị cho 100 con gà:</h3>
+            <p>Đối với 100 con gà trong khí hậu nóng, không gian được khuyến nghị là 0,5-0,6 mét vuông cho mỗi con trong khu vực chạy, và 0,15-0,2 mét vuông cho mỗi con trong khu vực đậu.</p>
+            <h4>Cấu trúc chuồng chính:</h4>
+            <ul>
+                <li>Chiều dài: 12 mét</li>
+                <li>Chiều rộng: 9 mét</li>
+                <li>Chiều cao (phía trước): 3 mét</li>
+                <li>Chiều cao (phía sau): 2,5 mét</li>
+                <li>Phần mái nhô ra: 1 mét ở tất cả các bên</li>
+                <li>Sàn: Nâng cao 0,5 mét so với mặt đất</li>
+                <li>Cột hỗ trợ: Mỗi 3 mét</li>
+                <li>Giá đỡ mái: Mỗi 2 mét với thanh chéo</li>
+            </ul>
+            <h4>Khu vực đậu:</h4>
+            <ul>
+                <li>Chiều dài: 4 mét</li>
+                <li>Chiều rộng: 5 mét</li>
+                <li>Diện tích: 20 mét vuông (đủ cho 100 con gà)</li>
+                <li>Thanh đậu: 20-25 cm cho mỗi con gà, đặt ở độ cao 60-90 cm so với sàn</li>
+            </ul>
+            <h4>Khu vực chạy:</h4>
+            <ul>
+                <li>Chiều dài: 12 mét</li>
+                <li>Chiều rộng: 5 mét</li>
+                <li>Diện tích: 60 mét vuông (đủ cho 100 con gà)</li>
+            </ul>
+        </section>
+
+        <section id="vật-liệu-chi-phí" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Vật liệu và chi phí xây dựng</h2>
+            <h3>Vật liệu xây dựng:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Vật liệu</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá (VNĐ)</th>
+                        <th>Tổng chi phí (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Cột gỗ (10x10 cm)</td><td>30 cái</td><td>150.000</td><td>4.500.000</td></tr>
+                    <tr><td>Dầm gỗ (5x10 cm)</td><td>40 cái</td><td>100.000</td><td>4.000.000</td></tr>
+                    <tr><td>Tấm lợp fiberglass (màu khói)</td><td>30 tấm</td><td>120.000</td><td>3.600.000</td></tr>
+                    <tr><td>Lưới kim loại cứng (rộng 1m)</td><td>100 mét</td><td>70.000</td><td>7.000.000</td></tr>
+                    <tr><td>Xi măng</td><td>20 bao</td><td>90.000</td><td>1.800.000</td></tr>
+                    <tr><td>Cát</td><td>2 mét khối</td><td>400.000</td><td>800.000</td></tr>
+                    <tr><td>Sỏi</td><td>1 mét khối</td><td>450.000</td><td>450.000</td></tr>
+                    <tr><td>Đinh, vít, chốt</td><td>Nhiều loại</td><td>-</td><td>1.000.000</td></tr>
+                    <tr><td>Bản lề và chốt cửa</td><td>5 bộ</td><td>100.000</td><td>500.000</td></tr>
+                    <tr><td>Hệ thống nước tự động</td><td>1 bộ</td><td>2.500.000</td><td>2.500.000</td></tr>
+                    <tr><td>Máng ăn</td><td>10 cái</td><td>150.000</td><td>1.500.000</td></tr>
+                    <tr><td>Hộp đẻ trứng</td><td>25 hộp</td><td>100.000</td><td>2.500.000</td></tr>
+                    <tr><td>Quạt thông gió</td><td>4 cái</td><td>500.000</td><td>2.000.000</td></tr>
+                    <tr><td>Hệ thống phun sương</td><td>1 bộ</td><td>1.500.000</td><td>1.500.000</td></tr>
+                    <tr><td class="font-bold">Tổng chi phí vật liệu</td><td></td><td></td><td class="font-bold">33.650.000 VNĐ</td></tr>
+                </tbody>
+            </table>
+            <h3>Chi phí lao động:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Loại lao động</th>
+                        <th>Số ngày cần thiết</th>
+                        <th>Giá ngày công (VNĐ)</th>
+                        <th>Tổng chi phí (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Thợ mộc lành nghề</td><td>10</td><td>400.000</td><td>4.000.000</td></tr>
+                    <tr><td>Lao động phổ thông</td><td>20 (2 người x 10 ngày)</td><td>300.000</td><td>6.000.000</td></tr>
+                    <tr><td>Thợ điện</td><td>2</td><td>500.000</td><td>1.000.000</td></tr>
+                    <tr><td>Thợ nước (cho hệ thống nước)</td><td>2</td><td>500.000</td><td>1.000.000</td></tr>
+                    <tr><td class="font-bold">Tổng chi phí lao động</td><td></td><td></td><td class="font-bold">12.000.000 VNĐ</td></tr>
+                </tbody>
+            </table>
+            <p class="font-bold mt-4">Tổng chi phí xây dựng: 45.650.000 VNĐ (khoảng 1.900 USD)</p>
+        </section>
+
+        <section id="mua-gà-chi-phí" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Mua gà và chi phí</h2>
+            <h3>Đàn gà ban đầu:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Mục</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá (VNĐ)</th>
+                        <th>Tổng chi phí (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Gà con Leghorn</td><td>40</td><td>15.000</td><td>600.000</td></tr>
+                    <tr><td>Gà con cổ trụi</td><td>30</td><td>18.000</td><td>540.000</td></tr>
+                    <tr><td>Gà con Lai Hồ/Lai Mía</td><td>30</td><td>15.000</td><td>450.000</td></tr>
+                    <tr><td class="font-bold">Tổng chi phí gà</td><td></td><td></td><td class="font-bold">1.590.000 VNĐ</td></tr>
+                </tbody>
+            </table>
+            <h3>Thiết bị cho gà con:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Mục</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá (VNĐ)</th>
+                        <th>Tổng chi phí (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Đèn sưởi ấp</td><td>4</td><td>250.000</td><td>1.000.000</td></tr>
+                    <tr><td>Máng ăn cho gà con</td><td>10</td><td>100.000</td><td>1.000.000</td></tr>
+                    <tr><td>Máng uống cho gà con</td><td>10</td><td>100.000</td><td>1.000.000</td></tr>
+                    <tr><td>Vật liệu lót chuồng</td><td>Số lượng lớn</td><td>500.000</td><td>500.000</td></tr>
+                    <tr><td class="font-bold">Tổng chi phí thiết bị</td><td></td><td></td><td class="font-bold">3.500.000 VNĐ</td></tr>
+                </tbody>
+            </table>
+            <p class="font-bold mt-4">Tổng chi phí ban đầu cho gà và thiết bị: 5.090.000 VNĐ (khoảng 212 USD)</p>
+        </section>
+
+        <section id="thức-ăn-chi-phí" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Yêu cầu thức ăn và chi phí</h2>
+            <h3>Yêu cầu thức ăn theo độ tuổi:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Độ tuổi</th>
+                        <th>Thức ăn hàng ngày cho mỗi con</th>
+                        <th>Thức ăn hàng tháng cho 100 con</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-4 tuần</td><td>20-30 gram</td><td>60-90 kg</td></tr>
+                    <tr><td>5-10 tuần</td><td>50-70 gram</td><td>150-210 kg</td></tr>
+                    <tr><td>11-20 tuần</td><td>80-100 gram</td><td>240-300 kg</td></tr>
+                    <tr><td>21+ tuần (gà đẻ)</td><td>100-120 gram</td><td>300-360 kg</td></tr>
+                    <tr><td>21+ tuần (gà thịt)</td><td>120-150 gram</td><td>360-450 kg</td></tr>
+                </tbody>
+            </table>
+            <h3>Chi phí thức ăn:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Loại thức ăn</th>
+                        <th>Giá mỗi kg (VNĐ)</th>
+                        <th>Chi phí hàng tháng cho 100 con (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Thức ăn khởi đầu (0-4 tuần)</td><td>13.000</td><td>780.000-1.170.000</td></tr>
+                    <tr><td>Thức ăn tăng trưởng (5-20 tuần)</td><td>12.000</td><td>1.800.000-3.600.000</td></tr>
+                    <tr><td>Thức ăn cho gà đẻ (21+ tuần)</td><td>11.000</td><td>3.300.000-3.960.000</td></tr>
+                    <tr><td>Thức ăn cho gà thịt (21+ tuần)</td><td>13.000</td><td>4.680.000-5.850.000</td></tr>
+                </tbody>
+            </table>
+            <p class="font-bold mt-4">Chi phí thức ăn trung bình hàng tháng: 3.500.000 VNĐ (khoảng 146 USD)</p>
+        </section>
+
+        <section id="lao-động-chi-phí" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Yêu cầu lao động và chi phí</h2>
+            <h3>Công việc hàng ngày:</h3>
+            <ol>
+                <li>Cho ăn và uống: 1-2 giờ</li>
+                <li>Thu trứng: 0,5-1 giờ</li>
+                <li>Vệ sinh và bảo trì: 1 giờ</li>
+                <li>Theo dõi sức khỏe: 0,5 giờ</li>
+            </ol>
+            <h3>Lựa chọn lao động:</h3>
+            <ol>
+                <li><strong>Lao động gia đình</strong>:
+                    <ul>
+                        <li>Không có chi phí trực tiếp nếu được thực hiện bởi thành viên gia đình</li>
+                        <li>Khoảng 3-4 giờ làm việc mỗi ngày</li>
+                    </ul>
+                </li>
+                <li><strong>Công nhân bán thời gian</strong>:
+                    <ul>
+                        <li>4 giờ mỗi ngày</li>
+                        <li>Lương hàng tháng: 3.000.000 VNĐ (125 USD)</li>
+                    </ul>
+                </li>
+                <li><strong>Công nhân toàn thời gian</strong> (cho hoạt động lớn hơn):
+                    <ul>
+                        <li>8 giờ mỗi ngày</li>
+                        <li>Lương hàng tháng: 6.000.000 VNĐ (250 USD)</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>Đối với trang trại 100 con gà, lao động gia đình hoặc công nhân bán thời gian là đủ.</p>
+        </section>
+
+        <section id="dự-báo-tăng-trưởng" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Dự báo tăng trưởng đàn gà</h2>
+            <h3>Giả định:</h3>
+            <ul>
+                <li>Bắt đầu với 100 con gà (70% mái, 30% trống)</li>
+                <li>70% gà mái đẻ trứng thường xuyên</li>
+                <li>80% tỷ lệ thụ tinh trứng</li>
+                <li>70% tỷ lệ nở thành công</li>
+                <li>85% tỷ lệ sống sót của gà con đến tuổi trưởng thành</li>
+                <li>Ấp tự nhiên (không dùng máy ấp)</li>
+            </ul>
+            <h3>Dự báo tăng trưởng hàng tháng:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Tháng</th>
+                        <th>Quần thể ban đầu</th>
+                        <th>Gà con mới</th>
+                        <th>Tổn thất</th>
+                        <th>Tiêu thụ/Bán</th>
+                        <th>Quần thể cuối</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>100</td><td>0</td><td>2</td><td>0</td><td>98</td></tr>
+                    <tr><td>2</td><td>98</td><td>20</td><td>3</td><td>5</td><td>110</td></tr>
+                    <tr><td>3</td><td>110</td><td>25</td><td>4</td><td>10</td><td>121</td></tr>
+                    <tr><td>4</td><td>121</td><td>30</td><td>4</td><td>15</td><td>132</td></tr>
+                    <tr><td>5</td><td>132</td><td>35</td><td>5</td><td>20</td><td>142</td></tr>
+                    <tr><td>6</td><td>142</td><td>40</td><td>5</td><td>25</td><td>152</td></tr>
+                </tbody>
+            </table>
+            <p>Đến cuối 6 tháng, trang trại có thể có khoảng 152 con gà, giả định một số được bán hoặc tiêu thụ.</p>
+        </section>
+
+        <section id="chi-phí-hàng-tháng" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Chi phí hàng tháng</h2>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Danh mục chi phí</th>
+                        <th>Chi phí hàng tháng (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Thức ăn</td><td>3.500.000</td></tr>
+                    <tr><td>Thuốc và thực phẩm bổ sung</td><td>500.000</td></tr>
+                    <tr><td>Tiện ích (điện, nước)</td><td>700.000</td></tr>
+                    <tr><td>Bảo trì và sửa chữa</td><td>300.000</td></tr>
+                    <tr><td>Lao động (bán thời gian)</td><td>3.000.000</td></tr>
+                    <tr><td>Khác</td><td>500.000</td></tr>
+                    <tr><td class="font-bold">Tổng chi phí hàng tháng</td><td class="font-bold">8.500.000 VNĐ (khoảng 354 USD)</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="dự-báo-doanh-thu" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Dự báo doanh thu</h2>
+            <h3>Nguồn doanh thu hàng tháng:</h3>
+            <table class="w-full rounded-lg overflow-hidden">
+                <thead>
+                    <tr>
+                        <th>Nguồn doanh thu</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá (VNĐ)</th>
+                        <th>Doanh thu hàng tháng (VNĐ)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Trứng</td><td>1.400 trứng (70 gà mái x 20 trứng)</td><td>3.000</td><td>4.200.000</td></tr>
+                    <tr><td>Gà thịt</td><td>15 con</td><td>57.000 mỗi kg (trung bình 2,5 kg)</td><td>2.137.500</td></tr>
+                    <tr><td>Gà con</td><td>20 con</td><td>15.000</td><td>300.000</td></tr>
+                    <tr><td class="font-bold">Tổng doanh thu hàng tháng</td><td></td><td></td><td class="font-bold">6.637.500 VNĐ</td></tr>
+                </tbody>
+            </table>
+            <h3>Phân tích lợi nhuận:</h3>
+            <ul>
+                <li>Doanh thu hàng tháng: 6.637.500 VNĐ</li>
+                <li>Chi phí hàng tháng: 8.500.000 VNĐ</li>
+                <li>Lợi nhuận/Lỗ hàng tháng: -1.862.500 VNĐ</li>
+            </ul>
+            <p>Lưu ý: Trang trại có thể sẽ hoạt động với một khoản lỗ nhỏ trong vài tháng đầu tiên. Lợi nhuận sẽ cải thiện khi:</p>
+            <ol>
+                <li>Đàn gà phát triển và ổn định</li>
+                <li>Phương pháp quản lý được cải thiện</li>
+                <li>Hiệu quả sử dụng thức ăn tăng lên</li>
+                <li>Kênh tiếp thị phát triển</li>
+            </ol>
+            <p>Đến tháng thứ 6, với sản lượng và doanh số tăng, trang trại sẽ tiến gần đến điểm hòa vốn hoặc có lợi nhuận.</p>
+        </section>
+
+        <section id="hướng-dẫn-thực-hiện" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Hướng dẫn thực hiện từng bước</h2>
+            <h3>Giai đoạn 1: Lập kế hoạch và chuẩn bị (1-2 tháng)</h3>
+            <ol>
+                <li><strong>Lựa chọn và chuẩn bị địa điểm</strong>
+                    <ul>
+                        <li>Chọn khu vực thoát nước tốt với bóng râm tự nhiên nếu có thể</li>
+                        <li>Dọn dẹp đất và san bằng mặt đất</li>
+                        <li>Đảm bảo tiếp cận nguồn nước và điện</li>
+                        <li>Xem xét hướng gió chủ đạo để thông gió</li>
+                    </ul>
+                </li>
+                <li><strong>Hoàn thiện thiết kế</strong>
+                    <ul>
+                        <li>Điều chỉnh thiết kế chuồng được khuyến nghị cho địa điểm cụ thể của bạn</li>
+                        <li>Tạo kế hoạch xây dựng chi tiết</li>
+                        <li>Lập danh sách tất cả vật liệu cần thiết</li>
+                    </ul>
+                </li>
+                <li><strong>Giấy phép và quy định</strong>
+                    <ul>
+                        <li>Kiểm tra quy định địa phương về chăn nuôi gia cầm</li>
+                        <li>Xin giấy phép cần thiết nếu được yêu cầu</li>
+                        <li>Tham khảo ý kiến văn phòng khuyến nông địa phương</li>
+                    </ul>
+                </li>
+                <li><strong>Tìm nguồn vật liệu và thiết bị</strong>
+                    <ul>
+                        <li>Lấy báo giá từ nhiều nhà cung cấp</li>
+                        <li>Mua vật liệu xây dựng</li>
+                        <li>Đặt hàng thiết bị chuyên dụng (máng ăn, máng uống, v.v.)</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Giai đoạn 2: Xây dựng (1 tháng)</h3>
+            <ol>
+                <li><strong>Nền móng và cấu trúc</strong>
+                    <ul>
+                        <li>Đánh dấu bố trí chuồng</li>
+                        <li>Lắp đặt cột và nền móng</li>
+                        <li>Xây dựng sàn nâng cao</li>
+                        <li>Dựng khung cấu trúc</li>
+                    </ul>
+                </li>
+                <li><strong>Tường và mái</strong>
+                    <ul>
+                        <li>Lắp đặt lưới kim loại cứng trên tường</li>
+                        <li>Xây dựng và gắn mái</li>
+                        <li>Lắp đặt hệ thống thông gió</li>
+                        <li>Xây dựng cửa và điểm tiếp cận</li>
+                    </ul>
+                </li>
+                <li><strong>Thiết lập nội thất</strong>
+                    <ul>
+                        <li>Lắp đặt thanh đậu</li>
+                        <li>Xây dựng hộp đẻ trứng</li>
+                        <li>Thiết lập khu vực ấp</li>
+                        <li>Lắp đặt hệ thống cho ăn và uống</li>
+                    </ul>
+                </li>
+                <li><strong>Tính năng bên ngoài</strong>
+                    <ul>
+                        <li>Xây dựng khu vực chạy</li>
+                        <li>Lắp đặt cấu trúc tạo bóng râm</li>
+                        <li>Thiết lập khu vực ủ phân</li>
+                        <li>Tạo hệ thống thoát nước</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Giai đoạn 3: Mua gà và quản lý ban đầu (1 tháng)</h3>
+            <ol>
+                <li><strong>Chuẩn bị cho gà con</strong>
+                    <ul>
+                        <li>Thiết lập khu vực ấp</li>
+                        <li>Lắp đặt đèn sưởi</li>
+                        <li>Chuẩn bị vật liệu lót chuồng</li>
+                        <li>Dự trữ thức ăn khởi đầu và thực phẩm bổ sung</li>
+                    </ul>
+                </li>
+                <li><strong>Mua gà</strong>
+                    <ul>
+                        <li>Tìm nguồn gà con từ nhà cung cấp uy tín</li>
+                        <li>Vận chuyển cẩn thận để giảm thiểu căng thẳng</li>
+                        <li>Đưa vào khu vực ấp</li>
+                    </ul>
+                </li>
+                <li><strong>Chăm sóc ban đầu</strong>
+                    <ul>
+                        <li>Theo dõi nhiệt độ chặt chẽ</li>
+                        <li>Đảm bảo dinh dưỡng và nước uống đầy đủ</li>
+                        <li>Theo dõi dấu hiệu bệnh tật hoặc căng thẳng</li>
+                        <li>Bắt đầu thực hành ghi chép</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Giai đoạn 4: Quản lý liên tục và tối ưu hóa</h3>
+            <ol>
+                <li><strong>Thói quen hàng ngày</strong>
+                    <ul>
+                        <li>Cho ăn và uống buổi sáng</li>
+                        <li>Thu trứng (nhiều lần trong ngày)</li>
+                        <li>Kiểm tra sức khỏe</li>
+                        <li>Cho ăn buổi tối và đảm bảo chuồng an toàn</li>
+                    </ul>
+                </li>
+                <li><strong>Công việc hàng tuần</strong>
+                    <ul>
+                        <li>Vệ sinh sâu máng ăn và máng uống</li>
+                        <li>Bảo trì vật liệu lót chuồng</li>
+                        <li>Theo dõi sức khỏe và điều trị nếu cần</li>
+                        <li>Ghi chép (sản lượng trứng, tiêu thụ thức ăn, v.v.)</li>
+                    </ul>
+                </li>
+                <li><strong>Công việc hàng tháng</strong>
+                    <ul>
+                        <li>Vệ sinh chuồng kỹ lưỡng</li>
+                        <li>Bảo trì thiết bị</li>
+                        <li>Đánh giá tài chính</li>
+                        <li>Đánh giá đàn và quyết định loại bỏ</li>
+                    </ul>
+                </li>
+                <li><strong>Điều chỉnh theo mùa</strong>
+                    <ul>
+                        <li>Tăng cường biện pháp làm mát trong những tháng nóng nhất</li>
+                        <li>Điều chỉnh công thức thức ăn dựa trên thời tiết</li>
+                        <li>Thực hiện phòng bệnh bổ sung trong mùa mưa</li>
+                        <li>Lập kế hoạch nhân giống và mở rộng đàn</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="phòng-bệnh" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Phòng bệnh trong khí hậu nóng</h2>
+            <h3>Bệnh phổ biến trong thời tiết nóng:</h3>
+            <ol>
+                <li><strong>Căng thẳng nhiệt</strong>
+                    <ul>
+                        <li>Triệu chứng: Thở hổn hển, cánh xòe ra, giảm hoạt động, giảm sản lượng trứng</li>
+                        <li>Phòng ngừa: Bóng râm đầy đủ, thông gió, nước mát, giảm mật độ nuôi</li>
+                    </ul>
+                </li>
+                <li><strong>Bệnh cầu trùng</strong>
+                    <ul>
+                        <li>Triệu chứng: Tiêu chảy có máu, sút cân, giảm ăn</li>
+                        <li>Phòng ngừa: Vật liệu lót chuồng sạch, vệ sinh đúng cách, thuốc chống cầu trùng trong thức ăn nếu cần thiết</li>
+                    </ul>
+                </li>
+                <li><strong>Bệnh Newcastle</strong>
+                    <ul>
+                        <li>Triệu chứng: Vấn đề hô hấp, triệu chứng thần kinh, giảm sản lượng trứng</li>
+                        <li>Phòng ngừa: Tiêm phòng, biện pháp an toàn sinh học, cách ly gà mới</li>
+                    </ul>
+                </li>
+                <li><strong>Cúm gia cầm</strong>
+                    <ul>
+                        <li>Triệu chứng: Khó thở, đầu sưng, đổi màu xanh của mào</li>
+                        <li>Phòng ngừa: An toàn sinh học nghiêm ngặt, hạn chế tiếp xúc với chim hoang dã, tiêm phòng</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Biện pháp phòng ngừa:</h3>
+            <ol>
+                <li><strong>An toàn sinh học</strong>
+                    <ul>
+                        <li>Hạn chế khách truy cập</li>
+                        <li>Khử trùng giày dép trước khi vào khu vực chuồng</li>
+                        <li>Cách ly gà mới trong 30 ngày</li>
+                        <li>Giữ chim hoang dã tránh xa khu vực gà</li>
+                    </ul>
+                </li>
+                <li><strong>Lịch tiêm phòng</strong>
+                    <ul>
+                        <li>Ngày 1: Bệnh Marek</li>
+                        <li>Ngày 7: Bệnh Newcastle, viêm phế quản truyền nhiễm</li>
+                        <li>Ngày 21: Bệnh Gumboro</li>
+                        <li>Tuần 8: Bệnh Newcastle (tăng cường)</li>
+                        <li>Tuần 16: Bệnh Newcastle, viêm phế quản truyền nhiễm, đậu gà</li>
+                    </ul>
+                </li>
+                <li><strong>Thực hành vệ sinh</strong>
+                    <ul>
+                        <li>Loại bỏ phân hàng ngày</li>
+                        <li>Vệ sinh máng ăn và máng uống hàng tuần</li>
+                        <li>Vệ sinh sâu toàn bộ chuồng hàng tháng</li>
+                        <li>Thay thế vật liệu lót chuồng thường xuyên</li>
+                    </ul>
+                </li>
+                <li><strong>Theo dõi sức khỏe</strong>
+                    <ul>
+                        <li>Quan sát hành vi đàn hàng ngày</li>
+                        <li>Kiểm tra sức khỏe cá nhân hàng tuần</li>
+                        <li>Cách ly nhanh chóng gà bị bệnh</li>
+                        <li>Mối quan hệ với bác sĩ thú y địa phương</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="hệ-thống-làm-mát" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Hệ thống làm mát cho thời tiết nóng</h2>
+            <h3>Phương pháp làm mát thụ động:</h3>
+            <ol>
+                <li><strong>Bóng râm chiến lược</strong>
+                    <ul>
+                        <li>Trồng cây xung quanh chuồng</li>
+                        <li>Lắp đặt vải che bóng trên khu vực chạy</li>
+                        <li>Định vị chuồng để giảm thiểu tiếp xúc trực tiếp với ánh nắng mặt trời</li>
+                    </ul>
+                </li>
+                <li><strong>Tối ưu hóa thông gió</strong>
+                    <ul>
+                        <li>Thiết kế thông gió chéo</li>
+                        <li>Lỗ thông hơi trên mái để giải phóng không khí nóng</li>
+                        <li>Cửa sổ có thể điều chỉnh để kiểm soát luồng không khí</li>
+                    </ul>
+                </li>
+                <li><strong>Vật liệu phản chiếu</strong>
+                    <ul>
+                        <li>Vật liệu mái màu sáng hoặc phản chiếu</li>
+                        <li>Cách nhiệt dưới mái</li>
+                        <li>Sơn trắng trên tường ngoài</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Hệ thống làm mát chủ động:</h3>
+            <ol>
+                <li><strong>Hệ thống phun sương</strong>
+                    <ul>
+                        <li>Máy phun sương áp suất thấp xung quanh chu vi</li>
+                        <li>Hẹn giờ hoạt động trong những phần nóng nhất của ngày</li>
+                        <li>Chi phí: 1.500.000 VNĐ cho hệ thống cơ bản</li>
+                    </ul>
+                </li>
+                <li><strong>Quạt</strong>
+                    <ul>
+                        <li>Quạt trần hoặc gắn tường</li>
+                        <li>Đặt vị trí để tối đa hóa lưu thông không khí</li>
+                        <li>Chi phí: 500.000 VNĐ mỗi quạt</li>
+                    </ul>
+                </li>
+                <li><strong>Cung cấp nước mát</strong>
+                    <ul>
+                        <li>Đường ống nước ngầm để làm mát nước tự nhiên</li>
+                        <li>Nhiều trạm nước trong suốt chuồng và khu vực chạy</li>
+                        <li>Chai đá trong nước trong thời tiết cực kỳ nóng</li>
+                        <li>Hệ thống nước tự động với nước mát, sạch</li>
+                    </ul>
+                </li>
+                <li><strong>Khu vực lót ướt</strong>
+                    <ul>
+                        <li>Khu vực chỉ định với cát ẩm để tắm bụi</li>
+                        <li>Giúp gà tự làm mát</li>
+                        <li>Phải được duy trì để ngăn ngừa nấm mốc phát triển</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="tài-liệu-tham-khảo" class="rounded-lg shadow-md mb-8">
+            <h2 class="text-green-700">Tài liệu tham khảo</h2>
+            <ul class="reference-list">
+                <li>1. Vietnam Online. (2025). Ninh Thuan Weather & Climate. Truy xuất từ <a href="https://www.vietnamonline.com/weather/ninh-thuan.html" target="_blank">https://www.vietnamonline.com/weather/ninh-thuan.html</a></li>
+                <li>2. The Featherbrain. (2021). The REAL best chicken breeds for hot climates. Truy xuất từ <a href="https://www.thefeatherbrain.com/blog/hot-climate-chicken-breeds" target="_blank">https://www.thefeatherbrain.com/blog/hot-climate-chicken-breeds</a></li>
+                <li>3. Farming My Backyard. (n.d.). The Best Chicken Coop For Hot Climates. Truy xuất từ <a href="https://farmingmybackyard.com/chicken-coop-for-hot-climates/" target="_blank">https://farmingmybackyard.com/chicken-coop-for-hot-climates/</a></li>
+                <li>4. GREENFEED Vietnam. (2021). "With good chicken feed and enthusiastic technical support, I'll keep raising my chicken flock". Truy xuất từ <a href="https://www.greenfeed.com.vn/en/with-good-chicken-feed-and-enthusiastic-technical-support-ill-keep-raising-my-chicken-flock/" target="_blank">https://www.greenfeed.com.vn/en/with-good-chicken-feed-and-enthusiastic-technical-support-ill-keep-raising-my-chicken-flock/" target="_blank">https://www.greenfeed.com.vn/en/with-good-chicken-feed-and-enthusiastic-technical-support-ill-keep-raising-my-chicken-flock/</a></li>
+                <li>5. Vietnam CP Group. (n.d.). Raising Chickens on Cooling Farms. Truy xuất từ <a href="https://vietnam.vnanet.vn/english/tin-tuc/raising-chickens-on-cooling-farms-55462.html" target="_blank">https://vietnam.vnanet.vn/english/tin-tuc/raising-chickens-on-cooling-farms-55462.html</a></li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
