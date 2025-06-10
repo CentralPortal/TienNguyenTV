@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trại Gà</title>
+    <title>Kế Hoạch Tổng Thể Xây Dựng Trang Trại Gà</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for interactive calculator chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Base styles for body and font */
@@ -35,7 +38,7 @@
             font-size: 2.25rem; /* Larger font size for main titles */
             line-height: 1.2;
         }
-        /* Custom bullet points for lists */
+        /* Custom bullet points for lists (from trai-ga.html) */
         .list-circle li::marker {
             content: '• ';
             color: #10B981; /* Green bullet */
@@ -95,7 +98,7 @@
             background-color: #047857; /* Darker emerald on hover */
         }
 
-        /* Table styling enhancements */
+        /* Table styling enhancements (from trai-ga.html) */
         table {
             border-collapse: separate; /* Allows border-radius on cells */
             border-spacing: 0;
@@ -144,6 +147,7 @@
             background-color: #ffffff;
             position: relative; /* Needed for absolute positioning of scroll-to-top */
         }
+        /* Adjustments for sections within main grid in calculator */
         main section {
              margin-bottom: 0; /* Remove bottom margin for sections within main grid */
         }
@@ -161,6 +165,7 @@
             object-fit: contain; /* Ensure image fits well */
             border-radius: 0.75rem; /* Rounded corners for image */
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for image */
+            margin-bottom: 1.5rem; /* Spacing between images */
         }
 
         /* Scroll to top button styling */
@@ -310,21 +315,71 @@
             vertical-align: middle;
             margin-right: 0.4em;
         }
+        /* Original collapsible card styles from comprehensive-chicken-farm.html */
+        .collapsible-card {
+            background-color: #f0fdf4; /* Lighter green for sub-section cards */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            margin-bottom: 1.25rem; /* Space between cards */
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out; /* Smooth transition for expand/collapse */
+        }
+        .collapsible-content.expanded {
+            max-height: fit-content; /* Will be set by JS */
+        }
+        .arrow-icon-toggle { /* Renamed to avoid conflict with nav-menu arrow-icon */
+            transition: transform 0.3s ease-out;
+        }
+        .arrow-icon-toggle.rotated {
+            transform: rotate(180deg);
+        }
+        /* h3 for collapsible cards */
+        .collapsible-card h3 {
+            color: #4caf50;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        /* h4 for collapsible cards */
+        .collapsible-card h4 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8">
     <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-10 report-container">
-        <h1 class="text-3xl sm:text-4xl font-bold text-center text-green-700 mb-8">Trại Gà</h1>
+        <header class="text-center mb-8">
+            <h1 class="text-green-800 text-5xl font-extrabold mb-4">Kế Hoạch Tổng Thể Xây Dựng Trang Trại Gà</h1>
+            <h1 class="text-green-700 text-3xl">tại Tỉnh Ninh Thuận, Việt Nam</h1>
+        </header>
 
         <p class="mb-6 text-lg text-stone-700">
             Kế hoạch chi tiết và các khuyến nghị để thành lập một trang trại gà với 100 con gà tại Xã Xuân Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam. Các nguyên tắc thiết kế ưu tiên phúc lợi tối ưu cho gà, năng suất và quản lý hiệu quả trong môi trường nhiệt đới. Ngoài ra, một công cụ tính toán tăng trưởng trang trại gà tương tác cũng được bao gồm để giúp bạn mô hình hóa sự tăng trưởng dân số và chi phí.
         </p>
 
-        <!-- Navigation UI - Full Table of Contents (Simplified) -->
+        <!-- Navigation UI - Full Table of Contents (from trai-ga.html) -->
         <nav class="nav-menu">
             <h3>Mục lục chi tiết</h3>
             <ul>
-                <!-- Section 1 -->
+                <li>
+                    <details>
+                        <summary>
+                            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                            <a href="#intro_section">Giới thiệu</a>
+                        </summary>
+                    </details>
+                </li>
                 <li>
                     <details>
                         <summary>
@@ -345,7 +400,6 @@
                         </ul>
                     </details>
                 </li>
-                <!-- Section 2 -->
                 <li>
                     <details>
                         <summary>
@@ -389,7 +443,6 @@
                         </ul>
                     </details>
                 </li>
-                <!-- Section 3 -->
                 <li>
                     <details>
                         <summary>
@@ -459,7 +512,6 @@
                         </ul>
                     </details>
                 </li>
-                <!-- Section 4 -->
                 <li>
                     <details>
                         <summary>
@@ -477,27 +529,32 @@
                         </ul>
                     </details>
                 </li>
-                <!-- Section 5 -->
                 <li>
                     <details>
                         <summary>
                             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <a href="#section5_additional_considerations">5. Các cân nhắc bổ sung cho Khí hậu Việt Nam & Quy mô lớn</a>
+                            <a href="#operational_considerations">5. Các cân nhắc vận hành và quản lý</a>
                         </summary>
                         <ul>
-                            <li><a href="#section5_water_supply">Nguồn nước</a></li>
-                            <li><a href="#section5_dust_bath">Khu vực tắm bụi</a></li>
-                            <li><a href="#section5_cooling_measures">Các biện pháp làm mát</a></li>
-                            <li><a href="#section5_predator_protection">Bảo vệ khỏi động vật săn mồi</a></li>
-                            <li><a href="#section5_rain_protection">Bảo vệ khỏi mưa</a></li>
-                            <li><a href="#section5_cleaning_maintenance">Vệ sinh và bảo trì</a></li>
-                            <li><a href="#section5_lighting">Chiếu sáng</a></li>
+                            <li><a href="#op_water_supply">Nguồn nước</a></li>
+                            <li><a href="#op_dust_bath">Khu vực tắm bụi</a></li>
+                            <li><a href="#op_cooling_measures">Các biện pháp làm mát</a></li>
+                            <li><a href="#op_predator_protection">Bảo vệ khỏi động vật săn mồi</a></li>
+                            <li><a href="#op_rain_protection">Bảo vệ khỏi mưa</a></li>
+                            <li><a href="#op_cleaning_maintenance">Vệ sinh và bảo trì</a></li>
+                            <li><a href="#op_lighting">Chiếu sáng</a></li>
+                            <li>
+                                <a href="#op_disease_prevention">Phòng bệnh trong khí hậu nóng</a>
+                                <ul>
+                                    <li><a href="#op_common_diseases">Bệnh phổ biến trong thời tiết nóng</a></li>
+                                    <li><a href="#op_preventive_measures">Biện pháp phòng ngừa</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </details>
                 </li>
-                <!-- Section 6 -->
                 <li>
                     <details>
                         <summary>
@@ -506,10 +563,8 @@
                             </svg>
                             <a href="#section6_design_visual">6. Hình ảnh Thiết kế Trang trại Gà Nâng cao cho 100 con gà</a>
                         </summary>
-                        <!-- No sub-sections for this item -->
                     </details>
                 </li>
-                <!-- Section 7 -->
                 <li>
                     <details>
                         <summary>
@@ -582,14 +637,29 @@
                         </ul>
                     </details>
                 </li>
-                <!-- Section 8 -->
                 <li>
                     <details>
                         <summary>
                             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <a href="#section8_beginner_details">8. Chi tiết quan trọng cho Người mới bắt đầu nuôi gà</a>
+                            <a href="#step_by_step_guidance">8. Hướng dẫn thực hiện từng bước</a>
+                        </summary>
+                        <ul>
+                            <li><a href="#phase1">Giai đoạn 1: Lập kế hoạch và chuẩn bị (1-2 tháng)</a></li>
+                            <li><a href="#phase2">Giai đoạn 2: Xây dựng (1 tháng)</a></li>
+                            <li><a href="#phase3">Giai đoạn 3: Mua gà và quản lý ban đầu (1 tháng)</a></li>
+                            <li><a href="#phase4">Giai đoạn 4: Quản lý liên tục và tối ưu hóa</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li>
+                    <details>
+                        <summary>
+                            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                            <a href="#section8_beginner_details">9. Chi tiết quan trọng cho Người mới bắt đầu nuôi gà</a>
                         </summary>
                         <ul>
                             <li><a href="#section8_start_small">Bắt đầu nhỏ</a></li>
@@ -643,6 +713,20 @@
         </nav>
         <!-- End Navigation UI -->
 
+        <!-- Introduction Section -->
+        <section id="intro_section" class="rounded-lg shadow-md mb-8">
+            <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                </svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">Giới thiệu</h2>
+            <p class="mb-4 text-lg text-stone-700">
+                Kế hoạch tổng thể này trình bày các bước và cân nhắc để thiết lập một trang trại 100 con gà tại An Xuân 1, Thị trấn Xuân Hải, Huyện Ninh Hải, Tỉnh Ninh Thuận, Việt Nam. Kế hoạch được thiết kế đặc biệt cho điều kiện thời tiết nóng của khu vực này và cung cấp thông tin chi tiết về thiết kế chuồng trại, vật liệu, chi phí và phương pháp quản lý. Ngoài ra, một công cụ tính toán tăng trưởng trang trại gà tương tác cũng được bao gồm để giúp bạn mô hình hóa sự tăng trưởng dân số và chi phí.
+            </p>
+        </section>
+
+        <!-- Section 1: Recommended Dimensions & Layout for 100 Chickens (from trai-ga.html) -->
         <section id="section1_dims_layout">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -668,6 +752,7 @@
             </ul>
         </section>
 
+        <!-- Section 2: Internal Features of a Chicken Coop for 100 Chickens (from trai-ga.html) -->
         <section id="section2_internal_features">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -710,6 +795,7 @@
             </ol>
         </section>
 
+        <!-- Section 3: Materials and Construction for Hot Climate (from trai-ga.html) -->
         <section id="section3_materials_construction">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -804,7 +890,7 @@
                             <td id="section3_roof_insulation" class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">Vật liệu cách nhiệt mái (xốp/lá)</td>
                             <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~41.8 mét vuông (~450 sq ft)</td>
                             <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">30.000 - 100.000 (mỗi m²)</td>
-                            <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.200.000 - 4.000,000</td>
+                            <td class="px-3 py-2 whitespace-nowrap text-sm text-stone-700">~1.200.000 - 4.000.000</td>
                         </tr>
                         <tr>
                             <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-stone-900"></td>
@@ -911,6 +997,7 @@
             </p>
         </section>
 
+        <!-- Section 4: Ventilation - Most Crucial Factor for Large Flocks (from trai-ga.html) -->
         <section id="section4_ventilation">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -919,7 +1006,7 @@
             </div>
             <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">4. Thông gió - Yếu tố quan trọng nhất đối với đàn lớn</h2>
             <p class="mb-4 text-lg text-stone-700">
-                Gà không có tuyến mồ hôi và dựa vào việc thở hổn hển để tản nhiệt cơ thể. Do đó, luồng không khí đặc biệt quan trọng để ngăn ngừa căng thẳng nhiệt, đặc biệt với đàn 100 con gà nơi nhiệt và amoniac tích tụ có thể đáng kể.
+                Gà không có tuyến mồ hôi và dựa vào việc thở hổn hén để tản nhiệt cơ thể. Do đó, luồng không khí đặc biệt quan trọng để ngăn ngừa căng thẳng nhiệt, đặc biệt với đàn 100 con gà nơi nhiệt và amoniac tích tụ có thể đáng kể.
             </p>
             <ul class="list-disc list-inside mb-6 space-y-2 text-lg text-stone-700">
                 <li id="section4_high_low_vents">
@@ -940,38 +1027,115 @@
             </ul>
         </section>
 
-        <section id="section5_additional_considerations">
+        <!-- New Section: Operational and Management Considerations (Merged from trai-ga.html Section 5 and original sections) -->
+        <section id="operational_considerations">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
                 </svg>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">5. Các cân nhắc bổ sung cho Khí hậu Việt Nam & Quy mô lớn</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">5. Các cân nhắc vận hành và quản lý</h2>
             <ul class="list-disc list-inside mb-6 space-y-2 text-lg text-stone-700">
-                <li id="section5_water_supply">
+                <li id="op_water_supply">
                     <strong>Nguồn nước:</strong> Cung cấp nhiều trạm cấp nước lớn, có bóng râm. Đối với 100 con gà, <strong class="font-bold">hệ thống cấp nước tự động</strong> (ví dụ: núm uống được nối với đường nước chính) rất được khuyến nghị để đảm bảo gà luôn có nước sạch, mát và giảm thiểu việc đổ đầy thủ công. Cân nhắc thêm đá vào bồn chứa nước vào những ngày cực kỳ nóng.
                 </li>
-                <li id="section5_dust_bath">
+                <li id="op_dust_bath">
                     <strong>Khu vực tắm bụi:</strong> Thiết lập nhiều khu vực lớn, có bóng râm, chuyên dụng trong sân chơi. Đổ đầy những khu vực này bằng hỗn hợp đất khô, cát và một ít tro gỗ hoặc đất tảo cát cấp thực phẩm để giúp gà tự làm sạch và ngăn chặn ký sinh trùng bên ngoài.
                 </li>
-                <li id="section5_cooling_measures">
+                <li id="op_cooling_measures">
                     <strong>Các biện pháp làm mát:</strong> Ngoài thông gió và bóng râm, hãy cân nhắc lắp đặt <strong class="font-bold">hệ thống phun sương</strong> mạnh mẽ trên khu vực sân chơi ngoài trời. Điều này có thể làm mát đáng kể không khí xung quanh (tránh phun sương trực tiếp lên gà). Cung cấp các món ăn đông lạnh (ví dụ: trái cây đông lạnh, rau củ hoặc nước pha với đồ ăn vặt) cũng có thể giúp gà giữ mát và đủ nước.
                 </li>
-                <li id="section5_predator_protection">
+                <li id="op_predator_protection">
                     <strong>Bảo vệ khỏi động vật săn mồi:</strong> Sử dụng lưới thép nặng cho tất cả các khu vực chuồng. Chôn một tấm lưới thép (sâu ít nhất 30-45 cm và uốn cong ra ngoài) xung quanh toàn bộ chu vi sân chơi để ngăn chặn động vật săn mồi đào bới. Tất cả các cửa và điểm tiếp cận phải có chốt chắc chắn, chống động vật săn mồi. Đối với đàn gà lớn, một sân chơi được bao quanh hoàn toàn, chắc chắn là rất cần thiết để bảo vệ khỏi cả động vật săn mồi trên mặt đất và trên không.
                 </li>
-                <li id="section5_rain_protection">
+                <li id="op_rain_protection">
                     <strong>Bảo vệ khỏi mưa:</strong> Trong khi tối đa hóa thông gió, bạn cũng phải bảo vệ đàn gà khỏi những trận mưa lớn nhiệt đới. Mái hiên lớn là rất quan trọng. Đối với các lỗ mở bằng lưới, đảm bảo bạn có các tấm chắn rắn hiệu quả, dễ triển khai (ví dụ: ván ép, bạt cuộn xuống) có thể nhanh chóng đóng lại trong những trận mưa lớn. Đảm bảo toàn bộ khu vực, bao gồm cả sân chơi, có hệ thống thoát nước tuyệt vời để ngăn ngừa nước đọng và bùn.
                 </li>
-                <li id="section5_cleaning_maintenance">
+                <li id="op_cleaning_maintenance">
                     <strong>Vệ sinh và bảo trì:</strong> Thiết kế chuồng để dễ dàng vệ sinh tối đa. Điều này bao gồm nhiều cửa ra vào cỡ người, thanh đậu có thể tháo rời và ván/khay hứng phân trực tiếp dưới thanh đậu. Đối với 100 con gà, hãy cân nhắc thiết kế chuồng để cho phép dễ dàng tiếp cận bằng máy kéo nhỏ hoặc xe cút kít lớn để loại bỏ phân hiệu quả. Thực hiện một quy trình vệ sinh hàng ngày nghiêm ngặt.
                 </li>
-                <li id="section5_lighting">
+                <li id="op_lighting">
                     <strong>Chiếu sáng:</strong> Gà cần khoảng 14-16 giờ ánh sáng để sản lượng trứng tối ưu. Ở vùng khí hậu nhiệt đới, ánh sáng ban ngày tự nhiên thường là đủ. Nếu cần chiếu sáng bổ sung để duy trì sản lượng trứng trong những ngày ngắn hơn, hãy sử dụng đèn LED mát không tạo thêm nhiệt.
                 </li>
             </ul>
+
+            <!-- Disease Prevention (merged from original section and new concepts) -->
+            <div class="collapsible-card mt-6">
+                <h3 class="flex justify-between items-center cursor-pointer" onclick="toggleCollapse(this)">
+                    <span id="op_disease_prevention">Phòng bệnh trong khí hậu nóng</span>
+                    <span class="arrow-icon-toggle">&#9660;</span>
+                </h3>
+                <div class="collapsible-content">
+                    <div class="mt-2">
+                        <h4 id="op_common_diseases">Bệnh phổ biến trong thời tiết nóng:</h4>
+                        <ol class="mt-2">
+                            <li><strong>Căng thẳng nhiệt</strong>
+                                <ul>
+                                    <li>Triệu chứng: Thở hổn hén, cánh xòe ra, giảm hoạt động, giảm sản lượng trứng</li>
+                                    <li>Phòng ngừa: Bóng râm đầy đủ, thông gió, nước mát, giảm mật độ nuôi</li>
+                                </ul>
+                            </li>
+                            <li><strong>Bệnh cầu trùng</strong>
+                                <ul>
+                                    <li>Triệu chứng: Tiêu chảy có máu, sút cân, giảm ăn</li>
+                                    <li>Phòng ngừa: Vật liệu lót chuồng sạch, vệ sinh đúng cách, thuốc chống cầu trùng trong thức ăn nếu cần thiết</li>
+                                </ul>
+                            </li>
+                            <li><strong>Bệnh Newcastle</strong>
+                                <ul>
+                                    <li>Triệu chứng: Vấn đề hô hấp, triệu chứng thần kinh, giảm sản lượng trứng</li>
+                                    <li>Phòng ngừa: Tiêm phòng, biện pháp an toàn sinh học, cách ly gà mới</li>
+                                </ul>
+                            </li>
+                            <li><strong>Cúm gia cầm</strong>
+                                <ul>
+                                    <li>Triệu chứng: Khó thở, đầu sưng, đổi màu xanh của mào</li>
+                                    <li>Phòng ngừa: An toàn sinh học nghiêm ngặt, hạn chế tiếp xúc với chim hoang dã, tiêm phòng</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <h4 id="op_preventive_measures" class="mt-4">Biện pháp phòng ngừa:</h4>
+                        <ol class="mt-2">
+                            <li><strong>An toàn sinh học</strong>
+                                <ul>
+                                    <li>Hạn chế khách truy cập</li>
+                                    <li>Khử trùng giày dép trước khi vào khu vực chuồng</li>
+                                    <li>Cách ly gà mới trong 30 ngày</li>
+                                    <li>Giữ chim hoang dã tránh xa khu vực gà</li>
+                                </ul>
+                            </li>
+                            <li><strong>Lịch tiêm phòng</strong>
+                                <ul>
+                                    <li>Ngày 1: Bệnh Marek</li>
+                                    <li>Ngày 7: Bệnh Newcastle, viêm phế quản truyền nhiễm</li>
+                                    <li>Ngày 21: Bệnh Gumboro</li>
+                                    <li>Tuần 8: Bệnh Newcastle (tăng cường)</li>
+                                    <li>Tuần 16: Bệnh Newcastle, viêm phế quản truyền nhiễm, đậu gà</li>
+                                </ul>
+                            </li>
+                            <li><strong>Thực hành vệ sinh</strong>
+                                <ul>
+                                    <li>Loại bỏ phân hàng ngày</li>
+                                    <li>Vệ sinh máng ăn và máng uống hàng tuần</li>
+                                    <li>Vệ sinh sâu toàn bộ chuồng hàng tháng</li>
+                                    <li>Thay thế vật liệu lót chuồng thường xuyên</li>
+                                </ul>
+                            </li>
+                            <li><strong>Theo dõi sức khỏe</strong>
+                                <ul>
+                                    <li>Quan sát hành vi đàn hàng ngày</li>
+                                    <li>Kiểm tra sức khỏe cá nhân hàng tuần</li>
+                                    <li>Cách ly nhanh chóng gà bị bệnh</li>
+                                    <li>Mối quan hệ với bác sĩ thú y địa phương</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- Section 6: Enhanced Chicken Farm Design Visual for 100 Chickens (from trai-ga.html) -->
         <section id="section6_design_visual">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -985,11 +1149,14 @@
 
             <div class="flex flex-col items-center justify-center min-h-[400px] bg-gray-50 rounded-lg p-4 shadow-inner">
                 <h3 class="text-xl font-semibold text-center mb-4">Hình ảnh thiết kế chuồng gà:</h3>
-                <!-- Placeholder for static image -->
-                <img id="chicken-coop-image" src="https://centralportal.github.io/TienNguyenTV/images/chicken-farm-coop.png" alt="Enhanced Chicken Coop Design" class="mt-8 max-w-full h-auto rounded-lg shadow-lg">
+                <!-- First Image -->
+                <img id="chicken-coop-image" src="https://centralportal.github.io/TienNguyenTV/images/chicken-farm-coop.png" alt="Enhanced Chicken Coop Design 1" class="mt-8 max-w-full h-auto rounded-lg shadow-lg">
+                <!-- Second Image -->
+                <img src="https://centralportal.github.io/TienNguyenTV/images/chicken_coop_design.png" alt="Enhanced Chicken Coop Design 2" class="max-w-full h-auto rounded-lg shadow-lg">
             </div>
         </section>
 
+        <!-- Section 7: Interactive Chicken Farm Growth Calculator (from trai-ga.html) -->
         <section id="section7_calculator">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
@@ -1004,7 +1171,7 @@
             <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <section id="inputsSection" class="lg:col-span-1 bg-white p-6 rounded-lg shadow-lg">
                     <h3 id="section7_input_params" class="text-2xl font-semibold text-emerald-600 mb-4">Thông số đầu vào</h3>
-                    <p class="text-sm text-stone-600 mb-6">Điều chỉnh các thông số dưới đây để xem các giả định khác nhau ảnh hưởng đến sự tăng trưởng dân số và chi phí trang trại gà của bạn như thế nào. Các giá trị ban đầu được đặt để cung cấp một điểm khởi đầu cho một trang trại quy mô này.</p>
+                    <p class="text-sm text-stone-600 mb-6">Điều chỉnh các thông số dưới đây để xem các giả định khác nhau ảnh hưởng đến sự tăng trưởng dân số và chi phí trang trại gà của bạn như thế nào. Các giá trị ban đầu được đặt để cung cấp một điểm khởi điểm cho một trang trại quy mô này.</p>
                     
                     <div class="space-y-5">
                         <div id="section7_initial_flock_input">
@@ -1214,14 +1381,181 @@
                 <li id="section7_cons_age"><strong>Tuổi của đàn:</strong> Sản lượng trứng và khả năng thụ tinh giảm khi gà mái và gà trống già đi. Mô hình này giả định một tỷ lệ sản xuất nhất quán từ đàn gà trưởng thành.</li>
             </ul>
         </section>
-        
+
+        <!-- Step-by-step guidance (from original comprehensive-chicken-farm.html) -->
+        <section id="step_by_step_guidance" class="rounded-lg shadow-md mb-8">
+            <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                </svg>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">8. Hướng dẫn thực hiện từng bước</h2>
+            <div class="collapsible-card">
+                <h3 class="flex justify-between items-center cursor-pointer" onclick="toggleCollapse(this)">
+                    <span id="phase1">Giai đoạn 1: Lập kế hoạch và chuẩn bị (1-2 tháng)</span>
+                    <span class="arrow-icon-toggle">&#9660;</span>
+                </h3>
+                <div class="collapsible-content">
+                    <ol class="mt-2">
+                        <li><strong>Lựa chọn và chuẩn bị địa điểm</strong>
+                            <ul>
+                                <li>Chọn khu vực thoát nước tốt với bóng râm tự nhiên nếu có thể</li>
+                                <li>Dọn dẹp đất và san bằng mặt đất</li>
+                                <li>Đảm bảo tiếp cận nguồn nước và điện</li>
+                                <li>Xem xét hướng gió chủ đạo để thông gió</li>
+                            </ul>
+                        </li>
+                        <li><strong>Hoàn thiện thiết kế</strong>
+                            <ul>
+                                <li>Điều chỉnh thiết kế chuồng được khuyến nghị cho địa điểm cụ thể của bạn</li>
+                                <li>Tạo kế hoạch xây dựng chi tiết</li>
+                                <li>Lập danh sách tất cả vật liệu cần thiết</li>
+                            </ul>
+                        </li>
+                        <li><strong>Giấy phép và quy định</strong>
+                            <ul>
+                                <li>Kiểm tra quy định địa phương về chăn nuôi gia cầm</li>
+                                <li>Xin giấy phép cần thiết nếu được yêu cầu</li>
+                                <li>Tham khảo ý kiến văn phòng khuyến nông địa phương</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tìm nguồn vật liệu và thiết bị</strong>
+                            <ul>
+                                <li>Lấy báo giá từ nhiều nhà cung cấp</li>
+                                <li>Mua vật liệu xây dựng</li>
+                                <li>Đặt hàng thiết bị chuyên dụng (máng ăn, máng uống, v.v.)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="collapsible-card">
+                <h3 class="flex justify-between items-center cursor-pointer" onclick="toggleCollapse(this)">
+                    <span id="phase2">Giai đoạn 2: Xây dựng (1 tháng)</span>
+                    <span class="arrow-icon-toggle">&#9660;</span>
+                </h3>
+                <div class="collapsible-content">
+                    <ol class="mt-2">
+                        <li><strong>Nền móng và cấu trúc</strong>
+                            <ul>
+                                <li>Đánh dấu bố trí chuồng</li>
+                                <li>Lắp đặt cột và nền móng</li>
+                                <li>Xây dựng sàn nâng cao</li>
+                                <li>Dựng khung cấu trúc</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tường và mái</strong>
+                            <ul>
+                                <li>Lắp đặt lưới kim loại cứng trên tường</li>
+                                <li>Xây dựng và gắn mái</li>
+                                <li>Lắp đặt hệ thống thông gió</li>
+                                <li>Xây dựng cửa và điểm tiếp cận</li>
+                            </ul>
+                        </li>
+                        <li><strong>Thiết lập nội thất</strong>
+                            <ul>
+                                <li>Lắp đặt thanh đậu</li>
+                                <li>Xây dựng hộp đẻ trứng</li>
+                                <li>Thiết lập khu vực ấp</li>
+                                <li>Lắp đặt hệ thống cho ăn và uống</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tính năng bên ngoài</strong>
+                            <ul>
+                                <li>Xây dựng khu vực chạy</li>
+                                <li>Lắp đặt cấu trúc tạo bóng râm</li>
+                                <li>Thiết lập khu vực ủ phân</li>
+                                <li>Tạo hệ thống thoát nước</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="collapsible-card">
+                <h3 class="flex justify-between items-center cursor-pointer" onclick="toggleCollapse(this)">
+                    <span id="phase3">Giai đoạn 3: Mua gà và quản lý ban đầu (1 tháng)</span>
+                    <span class="arrow-icon-toggle">&#9660;</span>
+                </h3>
+                <div class="collapsible-content">
+                    <ol class="mt-2">
+                        <li><strong>Chuẩn bị cho gà con</strong>
+                            <ul>
+                                <li>Thiết lập khu vực ấp</li>
+                                <li>Lắp đặt đèn sưởi</li>
+                                <li>Chuẩn bị vật liệu lót chuồng</li>
+                                <li>Dự trữ thức ăn khởi đầu và thực phẩm bổ sung</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mua gà</strong>
+                            <ul>
+                                <li>Tìm nguồn gà con từ nhà cung cấp uy tín</li>
+                                <li>Vận chuyển cẩn thận để giảm thiểu căng thẳng</li>
+                                <li>Đưa vào khu vực ấp</li>
+                            </ul>
+                        </li>
+                        <li><strong>Chăm sóc ban đầu</strong>
+                            <ul>
+                                <li>Theo dõi nhiệt độ chặt chẽ</li>
+                                <li>Đảm bảo dinh dưỡng và nước uống đầy đủ</li>
+                                <li>Theo dõi dấu hiệu bệnh tật hoặc căng thẳng</li>
+                                <li>Bắt đầu thực hành ghi chép</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="collapsible-card">
+                <h3 class="flex justify-between items-center cursor-pointer" onclick="toggleCollapse(this)">
+                    <span id="phase4">Giai đoạn 4: Quản lý liên tục và tối ưu hóa</span>
+                    <span class="arrow-icon-toggle">&#9660;</span>
+                </h3>
+                <div class="collapsible-content">
+                    <ol class="mt-2">
+                        <li><strong>Thói quen hàng ngày</strong>
+                            <ul>
+                                <li>Cho ăn và uống buổi sáng</li>
+                                <li>Thu trứng (nhiều lần trong ngày)</li>
+                                <li>Kiểm tra sức khỏe</li>
+                                <li>Cho ăn buổi tối và đảm bảo chuồng an toàn</li>
+                            </ul>
+                        </li>
+                        <li><strong>Công việc hàng tuần</strong>
+                            <ul>
+                                <li>Vệ sinh sâu máng ăn và máng uống</li>
+                                <li>Bảo trì vật liệu lót chuồng</li>
+                                <li>Theo dõi sức khỏe và điều trị nếu cần</li>
+                                <li>Ghi chép (sản lượng trứng, tiêu thụ thức ăn, v.v.)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Công việc hàng tháng</strong>
+                            <ul>
+                                <li>Vệ sinh chuồng kỹ lưỡng</li>
+                                <li>Bảo trì thiết bị</li>
+                                <li>Đánh giá tài chính</li>
+                                <li>Đánh giá đàn và quyết định loại bỏ</li>
+                            </ul>
+                        </li>
+                        <li><strong>Điều chỉnh theo mùa</strong>
+                            <ul>
+                                <li>Tăng cường biện pháp làm mát trong những tháng nóng nhất</li>
+                                <li>Điều chỉnh công thức thức ăn dựa trên thời tiết</li>
+                                <li>Thực hiện phòng bệnh bổ sung trong mùa mưa</li>
+                                <li>Lập kế hoạch nhân giống và mở rộng đàn</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Important Details for First-Time Chicken Keepers (from trai-ga.html) -->
         <section id="section8_beginner_details">
             <div class="scroll-to-top-button" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
                 </svg>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">8. Chi tiết quan trọng cho Người mới bắt đầu nuôi gà</h2>
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-600 section-title">9. Chi tiết quan trọng cho Người mới bắt đầu nuôi gà</h2>
             <p class="mb-4 text-lg text-stone-700">
                 Bắt đầu một trang trại gà với 100 con gà, đặc biệt là không có kinh nghiệm trước đây, là một công việc lớn. Mặc dù các phần trước cung cấp hướng dẫn tuyệt vời về cơ sở hạ tầng, nhưng đây là một số chi tiết quan trọng rất cần thiết cho sự thành công của người mới bắt đầu.
             </p>
@@ -1242,8 +1576,8 @@
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
                         <li id="section8_quarantine_birds"><strong>Cách ly gà mới:</strong> Luôn cách ly gà mới ít nhất 30 ngày trước khi đưa chúng vào đàn chính của bạn.</li>
                         <li id="section8_sanitation"><strong>Tắm chân/Vệ sinh:</strong> Thực hiện các quy trình vệ sinh nghiêm ngặt, đặc biệt đối với khách hoặc khi di chuyển giữa các khu vực khác nhau của trang trại.</li>
-                        <li id="section8_pest_control"><strong>Kiểm soát dịch hại:</li>
-                        <li id="section8_cleanliness">Sạch sẽ</strong></li>
+                        <li id="section8_pest_control"><strong>Kiểm soát dịch hại:</strong> Với một đàn gà lớn, việc kiểm soát côn trùng và gặm nhấm là rất quan trọng để ngăn ngừa bệnh tật và thiệt hại.</li>
+                        <li id="section8_cleanliness"><strong>Sạch sẽ:</strong> Giữ chuồng và sân chơi sạch sẽ để giảm thiểu mầm bệnh và sâu bệnh.</li>
                     </ul>
                 </li>
                 <li id="section8_daily_routine">
@@ -1257,7 +1591,7 @@
                 <li id="section8_nutrition">
                     <strong>Dinh dưỡng:</strong>
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_balanced_feed"><strong>Thức ăn cân bằng:</strong> Gà cần một chế độ ăn uống cân bằng phùmục đích của chúng (thức ăn khởi động cho gà con, thức ăn tăng trưởng, thức ăn cho gà đẻ). Đừng chỉ cho chúng ăn thức ăn thừa.</li>
+                        <li id="section8_balanced_feed"><strong>Thức ăn cân bằng:</strong> Gà cần một chế độ ăn uống cân bằng phù hợp với mục đích của chúng (thức ăn khởi động cho gà con, thức ăn tăng trưởng, thức ăn cho gà đẻ). Đừng chỉ cho chúng ăn thức ăn thừa.</li>
                         <li id="section8_supplements"><strong>Bổ sung:</strong> Cung cấp grit (nếu không được thả rông trên đất/cát) và vỏ hàu (cho gà mái đẻ) để hỗ trợ tiêu hóa và chất lượng vỏ trứng.</li>
                     </ul>
                 </li>
@@ -1276,11 +1610,45 @@
         </section>
 
         <footer class="text-center mt-12 py-6 border-t border-stone-300">
-            <p class="text-sm text-stone-500">Công cụ tính toán tăng trưởng trang trại gà | Mô hình tương tác dựa trên Báo cáo được cung cấp</p>
+            <p class="text-sm text-stone-500">Kế hoạch trang trại gà toàn diện | Mô hình tương tác được cập nhật</p>
         </footer>
     </div>
 
     <script>
+        // Function to toggle the visibility of collapsible content (for original collapsible cards)
+        function toggleCollapse(headerElement) {
+            const content = headerElement.nextElementSibling;
+            const arrowIcon = headerElement.querySelector('.arrow-icon-toggle'); // Use the new class name
+
+            if (content.classList.contains('expanded')) {
+                // Collapse the content
+                content.style.maxHeight = '0px';
+                content.classList.remove('expanded');
+                arrowIcon.classList.remove('rotated');
+            } else {
+                // Expand the content
+                // Calculate content height to ensure smooth transition
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.classList.add('expanded');
+                arrowIcon.classList.add('rotated');
+            }
+        }
+
+        // Initialize all collapsible sections to be collapsed by default (for original collapsible cards)
+        document.addEventListener('DOMContentLoaded', () => {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-card h3');
+            collapsibleHeaders.forEach(header => {
+                const content = header.nextElementSibling;
+                // Ensure content is initially collapsed by setting max-height to 0
+                content.style.maxHeight = '0px';
+                content.classList.remove('expanded'); // Make sure no 'expanded' class is present on load
+                const arrow = header.querySelector('.arrow-icon-toggle');
+                if (arrow) { // Check if arrow icon exists
+                     arrow.classList.remove('rotated'); // Ensure arrow is not rotated
+                }
+            });
+        });
+
         // Chicken growth calculator script (Section 7)
         const inputs = {
             initialFlock: document.getElementById('initialFlock'),
@@ -1309,7 +1677,6 @@
         };
 
         const outputDisplays = {
-            // Corrected IDs to match HTML
             initialHensDisplay: document.getElementById('section7_initial_hens_display_output'),
             initialRoostersDisplay: document.getElementById('section7_initial_roosters_display_output'),
             newChicksDisplay: document.getElementById('section7_new_chicks_display_output'),
@@ -1325,7 +1692,6 @@
         };
 
         const costOutputDisplays = {
-            // Corrected ID to match HTML
             totalInitialCostDisplay: document.getElementById('section7_total_initial_cost_display_output'),
             feedCost6months: document.getElementById('feedCost6months'),
             feedCost12months: document.getElementById('feedCost12months'),
