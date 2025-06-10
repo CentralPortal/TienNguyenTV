@@ -353,6 +353,36 @@
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
         }
+
+        /* Checkbox styling */
+        .task-item {
+            display: flex;
+            align-items: flex-start; /* Align checkbox and text at the start */
+            margin-bottom: 0.5rem; /* Space between tasks */
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-top: 0.25rem; /* Align checkbox with text baseline */
+            margin-right: 0.75rem; /* Space between checkbox and label */
+            flex-shrink: 0; /* Prevent checkbox from shrinking */
+            width: 1.25rem; /* Size of checkbox */
+            height: 1.25rem; /* Size of checkbox */
+            accent-color: #059669; /* Green accent color for checkbox */
+            border-radius: 0.25rem; /* Slightly rounded corners */
+            cursor: pointer;
+        }
+
+        .task-item label {
+            font-size: 1rem;
+            color: #374151;
+            cursor: pointer;
+            line-height: 1.5; /* Ensure good line height for text */
+        }
+
+        .task-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #6b7280; /* Lighter color for completed tasks */
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8">
@@ -664,7 +694,7 @@
                         <ul>
                             <li><a href="#section8_start_small">Bắt đầu nhỏ</a></li>
                             <li>
-                                <a href="#section8_choose_breed">Chọn giống gà phù hợp</a>
+                                <a href="#section8_choose_breed">Chọn giống gà phù
                                 <ul>
                                     <li><a href="#section8_breed_purpose">Mục đích</a></li>
                                     <li><a href="#section8_breed_climate">Khả năng thích nghi với khí hậu</a></li>
@@ -1010,7 +1040,7 @@
             </p>
             <ul class="list-disc list-inside mb-6 space-y-2 text-lg text-stone-700">
                 <li id="section4_high_low_vents">
-                    <strong>Lỗ thông hơi cao và thấp (Hiệu ứng ống khói):</strong> Triển khai một hệ thống lỗ thông hơi chống động vật săn mồi mạnh mẽ. Lắp đặt các lỗ thông hơi rất lớn và nhiều gần đường mái (điểm cao) để không khí nóng và amoniac bốc lên thoát ra ngoài. Bổ sung các lỗ thông hơi lớn tương tự ở gần mặt sàn (điểm thấp) để hút không khí mát hơn, trong lành vào.
+                    <strong>Lỗ thông hơi cao và thấp (Hiệu ứng ống khói):</strong> Triển khai một hệ thống lỗ thông hơi chống động vật săn mậu mạnh mẽ. Lắp đặt các lỗ thông hơi rất lớn và nhiều gần đường mái (điểm cao) để không khí nóng và amoniac bốc lên thoát ra ngoài. Bổ sung các lỗ thông hơi lớn tương tự ở gần mặt sàn (điểm thấp) để hút không khí mát hơn, trong lành vào.
                 </li>
                 <li id="section4_cross_ventilation">
                     <strong>Thông gió chéo:</strong> Thiết kế chuồng với các lỗ mở đối diện lớn để tạo điều kiện cho luồng không khí di chuyển tối đa. Cân nhắc các thiết kế hở hai bên cho phần lớn chuồng, với các điều khoản để đóng các phần lại trong mưa lớn hoặc những đêm mát mẻ hơn.
@@ -1068,36 +1098,36 @@
                 <div class="collapsible-content">
                     <div class="mt-2">
                         <h4 id="op_common_diseases">Bệnh phổ biến trong thời tiết nóng:</h4>
-                        <ol class="mt-2">
+                        <ul class="list-disc list-inside ml-5 mt-2">
                             <li><strong>Căng thẳng nhiệt</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Triệu chứng: Thở hổn hén, cánh xòe ra, giảm hoạt động, giảm sản lượng trứng</li>
                                     <li>Phòng ngừa: Bóng râm đầy đủ, thông gió, nước mát, giảm mật độ nuôi</li>
                                 </ul>
                             </li>
                             <li><strong>Bệnh cầu trùng</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Triệu chứng: Tiêu chảy có máu, sút cân, giảm ăn</li>
                                     <li>Phòng ngừa: Vật liệu lót chuồng sạch, vệ sinh đúng cách, thuốc chống cầu trùng trong thức ăn nếu cần thiết</li>
                                 </ul>
                             </li>
                             <li><strong>Bệnh Newcastle</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Triệu chứng: Vấn đề hô hấp, triệu chứng thần kinh, giảm sản lượng trứng</li>
                                     <li>Phòng ngừa: Tiêm phòng, biện pháp an toàn sinh học, cách ly gà mới</li>
                                 </ul>
                             </li>
                             <li><strong>Cúm gia cầm</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Triệu chứng: Khó thở, đầu sưng, đổi màu xanh của mào</li>
                                     <li>Phòng ngừa: An toàn sinh học nghiêm ngặt, hạn chế tiếp xúc với chim hoang dã, tiêm phòng</li>
                                 </ul>
                             </li>
-                        </ol>
+                        </ul>
                         <h4 id="op_preventive_measures" class="mt-4">Biện pháp phòng ngừa:</h4>
-                        <ol class="mt-2">
+                        <ul class="list-disc list-inside ml-5 mt-2">
                             <li><strong>An toàn sinh học</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Hạn chế khách truy cập</li>
                                     <li>Khử trùng giày dép trước khi vào khu vực chuồng</li>
                                     <li>Cách ly gà mới trong 30 ngày</li>
@@ -1105,7 +1135,7 @@
                                 </ul>
                             </li>
                             <li><strong>Lịch tiêm phòng</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Ngày 1: Bệnh Marek</li>
                                     <li>Ngày 7: Bệnh Newcastle, viêm phế quản truyền nhiễm</li>
                                     <li>Ngày 21: Bệnh Gumboro</li>
@@ -1114,7 +1144,7 @@
                                 </ul>
                             </li>
                             <li><strong>Thực hành vệ sinh</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Loại bỏ phân hàng ngày</li>
                                     <li>Vệ sinh máng ăn và máng uống hàng tuần</li>
                                     <li>Vệ sinh sâu toàn bộ chuồng hàng tháng</li>
@@ -1122,14 +1152,14 @@
                                 </ul>
                             </li>
                             <li><strong>Theo dõi sức khỏe</strong>
-                                <ul>
+                                <ul class="list-disc list-inside ml-5 mt-1">
                                     <li>Quan sát hành vi đàn hàng ngày</li>
                                     <li>Kiểm tra sức khỏe cá nhân hàng tuần</li>
                                     <li>Cách ly nhanh chóng gà bị bệnh</li>
                                     <li>Mối quan hệ với bác sĩ thú y địa phương</li>
                                 </ul>
                             </li>
-                        </ol>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -1398,32 +1428,71 @@
                 <div class="collapsible-content">
                     <ol class="mt-2">
                         <li><strong>Lựa chọn và chuẩn bị địa điểm</strong>
-                            <ul>
-                                <li>Chọn khu vực thoát nước tốt với bóng râm tự nhiên nếu có thể</li>
-                                <li>Dọn dẹp đất và san bằng mặt đất</li>
-                                <li>Đảm bảo tiếp cận nguồn nước và điện</li>
-                                <li>Xem xét hướng gió chủ đạo để thông gió</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul0-li0" data-section="phase1" data-ul-idx="0" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul0-li0">Chọn khu vực thoát nước tốt với bóng râm tự nhiên nếu có thể</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul0-li1" data-section="phase1" data-ul-idx="0" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul0-li1">Dọn dẹp đất và san bằng mặt đất</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul0-li2" data-section="phase1" data-ul-idx="0" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul0-li2">Đảm bảo tiếp cận nguồn nước và điện</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul0-li3" data-section="phase1" data-ul-idx="0" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul0-li3">Xem xét hướng gió chủ đạo để thông gió</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Hoàn thiện thiết kế</strong>
-                            <ul>
-                                <li>Điều chỉnh thiết kế chuồng được khuyến nghị cho địa điểm cụ thể của bạn</li>
-                                <li>Tạo kế hoạch xây dựng chi tiết</li>
-                                <li>Lập danh sách tất cả vật liệu cần thiết</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul1-li0" data-section="phase1" data-ul-idx="1" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul1-li0">Điều chỉnh thiết kế chuồng được khuyến nghị cho địa điểm cụ thể của bạn</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul1-li1" data-section="phase1" data-ul-idx="1" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul1-li1">Tạo kế hoạch xây dựng chi tiết</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul1-li2" data-section="phase1" data-ul-idx="1" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul1-li2">Lập danh sách tất cả vật liệu cần thiết</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Giấy phép và quy định</strong>
-                            <ul>
-                                <li>Kiểm tra quy định địa phương về chăn nuôi gia cầm</li>
-                                <li>Xin giấy phép cần thiết nếu được yêu cầu</li>
-                                <li>Tham khảo ý kiến văn phòng khuyến nông địa phương</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul2-li0" data-section="phase1" data-ul-idx="2" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul2-li0">Kiểm tra quy định địa phương về chăn nuôi gia cầm</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul2-li1" data-section="phase1" data-ul-idx="2" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul2-li1">Xin giấy phép cần thiết nếu được yêu cầu</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul2-li2" data-section="phase1" data-ul-idx="2" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul2-li2">Tham khảo ý kiến văn phòng khuyến nông địa phương</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Tìm nguồn vật liệu và thiết bị</strong>
-                            <ul>
-                                <li>Lấy báo giá từ nhiều nhà cung cấp</li>
-                                <li>Mua vật liệu xây dựng</li>
-                                <li>Đặt hàng thiết bị chuyên dụng (máng ăn, máng uống, v.v.)</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul3-li0" data-section="phase1" data-ul-idx="3" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul3-li0">Lấy báo giá từ nhiều nhà cung cấp</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul3-li1" data-section="phase1" data-ul-idx="3" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul3-li1">Mua vật liệu xây dựng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase1-ul3-li2" data-section="phase1" data-ul-idx="3" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase1-ul3-li2">Đặt hàng thiết bị chuyên dụng (máng ăn, máng uống, v.v.)</label>
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -1437,35 +1506,83 @@
                 <div class="collapsible-content">
                     <ol class="mt-2">
                         <li><strong>Nền móng và cấu trúc</strong>
-                            <ul>
-                                <li>Đánh dấu bố trí chuồng</li>
-                                <li>Lắp đặt cột và nền móng</li>
-                                <li>Xây dựng sàn nâng cao</li>
-                                <li>Dựng khung cấu trúc</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul0-li0" data-section="phase2" data-ul-idx="0" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul0-li0">Đánh dấu bố trí chuồng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul0-li1" data-section="phase2" data-ul-idx="0" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul0-li1">Lắp đặt cột và nền móng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul0-li2" data-section="phase2" data-ul-idx="0" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul0-li2">Xây dựng sàn nâng cao</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul0-li3" data-section="phase2" data-ul-idx="0" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul0-li3">Dựng khung cấu trúc</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Tường và mái</strong>
-                            <ul>
-                                <li>Lắp đặt lưới kim loại cứng trên tường</li>
-                                <li>Xây dựng và gắn mái</li>
-                                <li>Lắp đặt hệ thống thông gió</li>
-                                <li>Xây dựng cửa và điểm tiếp cận</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul1-li0" data-section="phase2" data-ul-idx="1" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul1-li0">Lắp đặt lưới kim loại cứng trên tường</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul1-li1" data-section="phase2" data-ul-idx="1" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul1-li1">Xây dựng và gắn mái</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul1-li2" data-section="phase2" data-ul-idx="1" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul1-li2">Lắp đặt hệ thống thông gió</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul1-li3" data-section="phase2" data-ul-idx="1" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul1-li3">Xây dựng cửa và điểm tiếp cận</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Thiết lập nội thất</strong>
-                            <ul>
-                                <li>Lắp đặt thanh đậu</li>
-                                <li>Xây dựng hộp đẻ trứng</li>
-                                <li>Thiết lập khu vực ấp</li>
-                                <li>Lắp đặt hệ thống cho ăn và uống</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul2-li0" data-section="phase2" data-ul-idx="2" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul2-li0">Lắp đặt thanh đậu</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul2-li1" data-section="phase2" data-ul-idx="2" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul2-li1">Xây dựng hộp đẻ trứng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul2-li2" data-section="phase2" data-ul-idx="2" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul2-li2">Thiết lập khu vực ấp</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul2-li3" data-section="phase2" data-ul-idx="2" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul2-li3">Lắp đặt hệ thống cho ăn và uống</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Tính năng bên ngoài</strong>
-                            <ul>
-                                <li>Xây dựng khu vực chạy</li>
-                                <li>Lắp đặt cấu trúc tạo bóng râm</li>
-                                <li>Thiết lập khu vực ủ phân</li>
-                                <li>Tạo hệ thống thoát nước</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul3-li0" data-section="phase2" data-ul-idx="3" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul3-li0">Xây dựng khu vực chạy</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul3-li1" data-section="phase2" data-ul-idx="3" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul3-li1">Lắp đặt cấu trúc tạo bóng râm</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul3-li2" data-section="phase2" data-ul-idx="3" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul3-li2">Thiết lập khu vực ủ phân</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase2-ul3-li3" data-section="phase2" data-ul-idx="3" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase2-ul3-li3">Tạo hệ thống thoát nước</label>
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -1479,26 +1596,59 @@
                 <div class="collapsible-content">
                     <ol class="mt-2">
                         <li><strong>Chuẩn bị cho gà con</strong>
-                            <ul>
-                                <li>Thiết lập khu vực ấp</li>
-                                <li>Lắp đặt đèn sưởi</li>
-                                <li>Chuẩn bị vật liệu lót chuồng</li>
-                                <li>Dự trữ thức ăn khởi đầu và thực phẩm bổ sung</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul0-li0" data-section="phase3" data-ul-idx="0" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul0-li0">Thiết lập khu vực ấp</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul0-li1" data-section="phase3" data-ul-idx="0" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul0-li1">Lắp đặt đèn sưởi</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul0-li2" data-section="phase3" data-ul-idx="0" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul0-li2">Chuẩn bị vật liệu lót chuồng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul0-li3" data-section="phase3" data-ul-idx="0" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul0-li3">Dự trữ thức ăn khởi đầu và thực phẩm bổ sung</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Mua gà</strong>
-                            <ul>
-                                <li>Tìm nguồn gà con từ nhà cung cấp uy tín</li>
-                                <li>Vận chuyển cẩn thận để giảm thiểu căng thẳng</li>
-                                <li>Đưa vào khu vực ấp</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul1-li0" data-section="phase3" data-ul-idx="1" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul1-li0">Tìm nguồn gà con từ nhà cung cấp uy tín</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul1-li1" data-section="phase3" data-ul-idx="1" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul1-li1">Vận chuyển cẩn thận để giảm thiểu căng thẳng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul1-li2" data-section="phase3" data-ul-idx="1" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul1-li2">Đưa vào khu vực ấp</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Chăm sóc ban đầu</strong>
-                            <ul>
-                                <li>Theo dõi nhiệt độ chặt chẽ</li>
-                                <li>Đảm bảo dinh dưỡng và nước uống đầy đủ</li>
-                                <li>Theo dõi dấu hiệu bệnh tật hoặc căng thẳng</li>
-                                <li>Bắt đầu thực hành ghi chép</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul2-li0" data-section="phase3" data-ul-idx="2" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul2-li0">Theo dõi nhiệt độ chặt chẽ</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul2-li1" data-section="phase3" data-ul-idx="2" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul2-li1">Đảm bảo dinh dưỡng và nước uống đầy đủ</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul2-li2" data-section="phase3" data-ul-idx="2" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul2-li2">Theo dõi dấu hiệu bệnh tật hoặc căng thẳng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase3-ul2-li3" data-section="phase3" data-ul-idx="2" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase3-ul2-li3">Bắt đầu thực hành ghi chép</label>
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -1512,35 +1662,83 @@
                 <div class="collapsible-content">
                     <ol class="mt-2">
                         <li><strong>Thói quen hàng ngày</strong>
-                            <ul>
-                                <li>Cho ăn và uống buổi sáng</li>
-                                <li>Thu trứng (nhiều lần trong ngày)</li>
-                                <li>Kiểm tra sức khỏe</li>
-                                <li>Cho ăn buổi tối và đảm bảo chuồng an toàn</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul0-li0" data-section="phase4" data-ul-idx="0" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul0-li0">Cho ăn và uống buổi sáng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul0-li1" data-section="phase4" data-ul-idx="0" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul0-li1">Thu trứng (nhiều lần trong ngày)</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul0-li2" data-section="phase4" data-ul-idx="0" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul0-li2">Kiểm tra sức khỏe</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul0-li3" data-section="phase4" data-ul-idx="0" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul0-li3">Cho ăn buổi tối và đảm bảo chuồng an toàn</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Công việc hàng tuần</strong>
-                            <ul>
-                                <li>Vệ sinh sâu máng ăn và máng uống</li>
-                                <li>Bảo trì vật liệu lót chuồng</li>
-                                <li>Theo dõi sức khỏe và điều trị nếu cần</li>
-                                <li>Ghi chép (sản lượng trứng, tiêu thụ thức ăn, v.v.)</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul1-li0" data-section="phase4" data-ul-idx="1" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul1-li0">Vệ sinh sâu máng ăn và máng uống</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul1-li1" data-section="phase4" data-ul-idx="1" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul1-li1">Bảo trì vật liệu lót chuồng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul1-li2" data-section="phase4" data-ul-idx="1" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul1-li2">Theo dõi sức khỏe và điều trị nếu cần</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul1-li3" data-section="phase4" data-ul-idx="1" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul1-li3">Ghi chép (sản lượng trứng, tiêu thụ thức ăn, v.v.)</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Công việc hàng tháng</strong>
-                            <ul>
-                                <li>Vệ sinh chuồng kỹ lưỡng</li>
-                                <li>Bảo trì thiết bị</li>
-                                <li>Đánh giá tài chính</li>
-                                <li>Đánh giá đàn và quyết định loại bỏ</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul2-li0" data-section="phase4" data-ul-idx="2" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul2-li0">Vệ sinh chuồng kỹ lưỡng</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul2-li1" data-section="phase4" data-ul-idx="2" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul2-li1">Bảo trì thiết bị</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul2-li2" data-section="phase4" data-ul-idx="2" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul2-li2">Đánh giá tài chính</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul2-li3" data-section="phase4" data-ul-idx="2" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul2-li3">Đánh giá đàn và quyết định loại bỏ</label>
+                                </li>
                             </ul>
                         </li>
                         <li><strong>Điều chỉnh theo mùa</strong>
-                            <ul>
-                                <li>Tăng cường biện pháp làm mát trong những tháng nóng nhất</li>
-                                <li>Điều chỉnh công thức thức ăn dựa trên thời tiết</li>
-                                <li>Thực hiện phòng bệnh bổ sung trong mùa mưa</li>
-                                <li>Lập kế hoạch nhân giống và mở rộng đàn</li>
+                            <ul class="list-none p-0 mt-2 space-y-2">
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul3-li0" data-section="phase4" data-ul-idx="3" data-li-idx="0" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul3-li0">Tăng cường biện pháp làm mát trong những tháng nóng nhất</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul3-li1" data-section="phase4" data-ul-idx="3" data-li-idx="1" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul3-li1">Điều chỉnh công thức thức ăn dựa trên thời tiết</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul3-li2" data-section="phase4" data-ul-idx="3" data-li-idx="2" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul3-li2">Thực hiện phòng bệnh bổ sung trong mùa mưa</label>
+                                </li>
+                                <li class="task-item">
+                                    <input type="checkbox" id="task-phase4-ul3-li3" data-section="phase4" data-ul-idx="3" data-li-idx="3" class="form-checkbox text-green-600">
+                                    <label for="task-phase4-ul3-li3">Lập kế hoạch nhân giống và mở rộng đàn</label>
+                                </li>
                             </ul>
                         </li>
                     </ol>
@@ -1566,33 +1764,33 @@
                 <li id="section8_choose_breed">
                     <strong>Chọn giống gà phù hợp:</strong>
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_breed_purpose"><strong>Mục đích:</strong> Xác định xem bạn nuôi gà để lấy trứng, lấy thịt hay cả hai (đa năng), vì điều này sẽ quyết định giống gà bạn chọn.</li>
-                        <li id="section8_breed_climate"><strong>Khả năng thích nghi với khí hậu:</strong> Chọn các giống gà được biết đến là có khả năng chịu đựng tốt khí hậu nóng và ẩm. Các giống gà địa phương Việt Nam có thể là một điểm khởi đầu tốt vì chúng đã thích nghi tự nhiên.</li>
-                        <li id="section8_breed_temperament"><strong>Tính cách:</strong> Một số giống gà bình tĩnh và dễ quản lý hơn những giống khác.</li>
+                        <li id="section8_breed_purpose">Mục đích: Xác định xem bạn nuôi gà để lấy trứng, lấy thịt hay cả hai (đa năng), vì điều này sẽ quyết định giống gà bạn chọn.</li>
+                        <li id="section8_breed_climate">Khả năng thích nghi với khí hậu: Chọn các giống gà được biết đến là có khả năng chịu đựng tốt khí hậu nóng và ẩm. Các giống gà địa phương Việt Nam có thể là một điểm khởi đầu tốt vì chúng đã thích nghi tự nhiên.</li>
+                        <li id="section8_breed_temperament">Tính cách: Một số giống gà bình tĩnh và dễ quản lý hơn những giống khác.</li>
                     </ul>
                 </li>
                 <li id="section8_biosecurity">
                     <strong>An toàn sinh học là tối quan trọng:</strong> Với một đàn gà lớn, bệnh tật có thể lây lan nhanh chóng.
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_quarantine_birds"><strong>Cách ly gà mới:</strong> Luôn cách ly gà mới ít nhất 30 ngày trước khi đưa chúng vào đàn chính của bạn.</li>
-                        <li id="section8_sanitation"><strong>Tắm chân/Vệ sinh:</strong> Thực hiện các quy trình vệ sinh nghiêm ngặt, đặc biệt đối với khách hoặc khi di chuyển giữa các khu vực khác nhau của trang trại.</li>
-                        <li id="section8_pest_control"><strong>Kiểm soát dịch hại:</strong> Với một đàn gà lớn, việc kiểm soát côn trùng và gặm nhấm là rất quan trọng để ngăn ngừa bệnh tật và thiệt hại.</li>
-                        <li id="section8_cleanliness"><strong>Sạch sẽ:</strong> Giữ chuồng và sân chơi sạch sẽ để giảm thiểu mầm bệnh và sâu bệnh.</li>
+                        <li id="section8_quarantine_birds">Cách ly gà mới: Luôn cách ly gà mới ít nhất 30 ngày trước khi đưa chúng vào đàn chính của bạn.</li>
+                        <li id="section8_sanitation">Tắm chân/Vệ sinh: Thực hiện các quy trình vệ sinh nghiêm ngặt, đặc biệt đối với khách hoặc khi di chuyển giữa các khu vực khác nhau của trang trại.</li>
+                        <li id="section8_pest_control">Kiểm soát dịch hại: Với một đàn gà lớn, việc kiểm soát côn trùng và gặm nhấm là rất quan trọng để ngăn ngừa bệnh tật và thiệt hại.</li>
+                        <li id="section8_cleanliness">Sạch sẽ: Giữ chuồng và sân chơi sạch sẽ để giảm thiểu mầm bệnh và sâu bệnh.</li>
                     </ul>
                 </li>
                 <li id="section8_daily_routine">
                     <strong>Thói quen hàng ngày và Quan sát:</strong>
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_daily_checks"><strong>Kiểm tra hàng ngày:</strong> Bạn cần quan sát đàn gà của mình hàng ngày để tìm các dấu hiệu bệnh tật (uể oải, lông xù, phân bất thường, thay đổi trong ăn uống). Phát hiện sớm là chìa khóa.</li>
-                        <li id="section8_food_water"><strong>Thức ăn và nước:</strong> Đảm bảo luôn có sẵn nước sạch, tươi và thức ăn phù hợp. Hệ thống tự động rất tốt, nhưng vẫn cần kiểm tra hàng ngày.</li>
-                        <li id="section8_egg_collection"><strong>Thu trứng:</strong> Thu trứng thường xuyên (ít nhất hai lần một ngày) để duy trì vệ sinh và ngăn ngừa trứng vỡ hoặc gà ăn trứng.</li>
+                        <li id="section8_daily_checks">Kiểm tra hàng ngày: Bạn cần quan sát đàn gà của mình hàng ngày để tìm các dấu hiệu bệnh tật (uể oải, lông xù, phân bất thường, thay đổi trong ăn uống). Phát hiện sớm là chìa khóa.</li>
+                        <li id="section8_food_water">Thức ăn và nước: Đảm bảo luôn có sẵn nước sạch, tươi và thức ăn phù hợp. Hệ thống tự động rất tốt, nhưng vẫn cần kiểm tra hàng ngày.</li>
+                        <li id="section8_egg_collection">Thu trứng: Thu trứng thường xuyên (ít nhất hai lần một ngày) để duy trì vệ sinh và ngăn ngừa trứng vỡ hoặc gà ăn trứng.</li>
                     </ul>
                 </li>
                 <li id="section8_nutrition">
                     <strong>Dinh dưỡng:</strong>
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_balanced_feed"><strong>Thức ăn cân bằng:</strong> Gà cần một chế độ ăn uống cân bằng phù hợp với mục đích của chúng (thức ăn khởi động cho gà con, thức ăn tăng trưởng, thức ăn cho gà đẻ). Đừng chỉ cho chúng ăn thức ăn thừa.</li>
-                        <li id="section8_supplements"><strong>Bổ sung:</strong> Cung cấp grit (nếu không được thả rông trên đất/cát) và vỏ hàu (cho gà mái đẻ) để hỗ trợ tiêu hóa và chất lượng vỏ trứng.</li>
+                        <li id="section8_balanced_feed">Thức ăn cân bằng: Gà cần một chế độ ăn uống cân bằng phù hợp với mục đích của chúng (thức ăn khởi động cho gà con, thức ăn tăng trưởng, thức ăn cho gà đẻ). Đừng chỉ cho chúng ăn thức ăn thừa.</li>
+                        <li id="section8_supplements">Bổ sung: Cung cấp grit (nếu không được thả rông trên đất/cát) và vỏ hàu (cho gà mái đẻ) để hỗ trợ tiêu hóa và chất lượng vỏ trứng.</li>
                     </ul>
                 </li>
                 <li id="section8_waste_management"><strong>Quản lý chất thải:</strong> 100 con gà tạo ra một lượng phân đáng kể. Bạn sẽ cần một kế hoạch để ủ phân hiệu quả. Quản lý chất thải đúng cách ngăn ngừa mùi hôi, ruồi và bệnh tật.</li>
@@ -1600,9 +1798,9 @@
                 <li id="section8_local_support">
                     <strong>Quy định địa phương và Hỗ trợ:</strong>
                     <ul class="list-circle list-inside ml-5 mt-1 space-y-1">
-                        <li id="section8_permits"><strong>Giấy phép:</strong> Kiểm tra các quy định địa phương tại Việt Nam liên quan đến việc nuôi gia cầm, đặc biệt đối với quy mô thương mại.</li>
-                        <li id="section8_vet_care"><strong>Chăm sóc thú y:</strong> Tìm một bác sĩ thú y địa phương có kinh nghiệm về gia cầm.</li>
-                        <li id="section8_community"><strong>Cộng đồng:</strong> Kết nối với các nông dân nuôi gà khác trong khu vực hoặc các dịch vụ khuyến nông để được tư vấn và hỗ trợ.</li>
+                        <li id="section8_permits">Giấy phép: Kiểm tra các quy định địa phương tại Việt Nam liên quan đến việc nuôi gia cầm, đặc biệt đối với quy mô thương mại.</li>
+                        <li id="section8_vet_care">Chăm sóc thú y: Tìm một bác sĩ thú y địa phương có kinh nghiệm về gia cầm.</li>
+                        <li id="section8_community">Cộng đồng: Kết nối với các nông dân nuôi gà khác trong khu vực hoặc các dịch vụ khuyến nông để được tư vấn và hỗ trợ.</li>
                     </ul>
                 </li>
                 <li id="section8_financial_planning"><strong>Lập kế hoạch tài chính:</strong> Công cụ tính toán giúp tính toán chi phí liên tục, nhưng hãy nhớ rằng chi phí thiết lập ban đầu (xây dựng chuồng, hàng rào, máng uống, máng ăn, mua đàn gà ban đầu, thiết bị ấp nở cho gà con) có thể đáng kể. Tính đến các tổn thất tiềm ẩn do bệnh tật, động vật săn mồi hoặc loại bỏ.</li>
@@ -1875,8 +2073,44 @@
             costInputs[key].addEventListener('input', projectPopulation);
         });
 
-        // Initial population projection on load
-        document.addEventListener('DOMContentLoaded', projectPopulation);
+        // Local Storage for Checkboxes
+        function saveCheckboxState(id, isChecked) {
+            localStorage.setItem(id, isChecked ? 'true' : 'false');
+        }
+
+        function loadCheckboxStates() {
+            document.querySelectorAll('#step_by_step_guidance .task-item input[type="checkbox"]').forEach(checkbox => {
+                const id = checkbox.id;
+                const savedState = localStorage.getItem(id);
+                if (savedState !== null) {
+                    checkbox.checked = (savedState === 'true');
+                    // Visually update the label if checked
+                    if (checkbox.checked) {
+                        checkbox.nextElementSibling.classList.add('line-through', 'text-gray-500');
+                    } else {
+                        checkbox.nextElementSibling.classList.remove('line-through', 'text-gray-500');
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            projectPopulation(); // Initial population projection
+
+            // Attach event listeners to all existing checkboxes
+            document.querySelectorAll('#step_by_step_guidance .task-item input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    saveCheckboxState(event.target.id, event.target.checked);
+                    if (event.target.checked) {
+                        event.target.nextElementSibling.classList.add('line-through', 'text-gray-500');
+                    } else {
+                        event.target.nextElementSibling.classList.remove('line-through', 'text-gray-500');
+                    }
+                });
+            });
+
+            loadCheckboxStates(); // Load states after listeners are attached
+        });
     </script>
 </body>
 </html>
