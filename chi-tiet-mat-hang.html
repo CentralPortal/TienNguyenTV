@@ -22,6 +22,17 @@
         .note-odd {
             background-color: #f3e8ff; /* Light purple */
         }
+        /* Flashing animation for footnotes */
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .flashing-footnote {
+            animation: flash 1s infinite alternate; /* Flash every 1 second */
+            font-weight: bold; /* Make footnote text bold */
+            color: #ef4444; /* Red color for attention */
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -126,10 +137,11 @@
                                 "Chi phí vận chuyển vật liệu và nhân công"
                             ]
                         },
-                        amount: "50.000.000 - 70.000.000 ₫",
+                        amount: "50.000.000 - 90.000.000 ₫",
                         imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/water-supply-system.png",
                         notes: [
-                            "Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!"
+                            "Hãy giúp đạt được mục tiêu chung - hãy quyên góp những gì bạn có thể!",
+                            "*** Đã quyên góp được 25.000.000 ₫***" // Added flashing footnote
                         ]
                     },
                     {
@@ -194,7 +206,7 @@
                     {
                         item: "Bạt Che",
                         description: {
-                            paragraph: "Hãy tưởng tượng một gia đình trú ẩn dưới những cành cây và mảnh vụn yếu ớt, dễ bị ảnh hưởng bởi nắng, mưa và gió khắc nghiệt. Đối với họ, ngay cả nơi trú ẩn cơ bản cũng là một thách thách thức liên tục; thu nhập hạn hẹp của họ hầu như không đủ trang trải thức ăn, chứ đừng nói đến một mái nhà ổn định.",
+                            paragraph: "Hãy tưởng tượng một gia đình trú ẩn dưới những cành cây và mảnh vụn yếu ớt, dễ bị ảnh hưởng bởi nắng, mưa và gió khắc nghiệt. Đối với họ, ngay cả nơi trú ẩn cơ bản cũng là một thách thách thứclà một thách thức liên tục; thu nhập hạn hẹp của họ hầu như không đủ trang trải thức ăn, chứ đừng nói đến một mái nhà ổn định.",
                             items: [
                                 "1 Bạt"
                             ]
@@ -443,10 +455,11 @@
                                 "Cost of transportation of materials and labor"
                             ]
                         },
-                        amount: "$1,922 - $2,691",
+                        amount: "$2000 - $3,800",
                         imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/water-supply-system.png",
                         notes: [
-                            "Help us reach our goal - donate what you can!"
+                            "Help us reach our goal - donate what you can!",
+                            "*** $1000 donated so far ***" // Added flashing footnote
                         ]
                     },
                     {
@@ -635,7 +648,7 @@
                         },
                         amount: "Depends on the number of lunches",
                         imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/community-lunch.png",
-                       
+                        
                     },
                     {
                         item: "Household Essentials",
@@ -849,7 +862,12 @@
                     notesList.className = 'space-y-2';
                     item.notes.forEach((note, index) => {
                         const noteItem = document.createElement('li');
-                        noteItem.className = `p-2 rounded-md ${index % 2 === 0 ? 'note-even' : 'note-odd'}`;
+                        // Add flashing-footnote class if the note contains the specific text
+                        if (note.includes('*** Đã quyên góp được') || note.includes('*** $1000 donated so far')) {
+                            noteItem.className = `p-2 rounded-md ${index % 2 === 0 ? 'note-even' : 'note-odd'} flashing-footnote`;
+                        } else {
+                            noteItem.className = `p-2 rounded-md ${index % 2 === 0 ? 'note-even' : 'note-odd'}`;
+                        }
                         const asteriskSpan = document.createElement('span');
                         asteriskSpan.className = 'font-bold text-gray-700 mr-2';
                         asteriskSpan.textContent = '*';
