@@ -290,7 +290,7 @@
                             ]
                         },
                         amount: "350.000 ₫",
-                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/cooking-stove.png",
+                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/cooking-stove.png", // This image URL is used
                         notes: []
                     },
                     {
@@ -613,7 +613,7 @@
                             ]
                         },
                         amount: "$14.00",
-                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/cooking-stove.png",
+                        imageUrl: "https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/cooking-stove.png", // This image URL is used
                         notes: []
                     },
                     {
@@ -679,7 +679,7 @@
                     {
                         item: "Sự Kiện Cứu Trợ Thực Phẩm Cộng Đồng",
                         description: {
-                            paragraph: "Một ngày tràn ngập niềm vui khi người dân từ các làng miền núi tụ họp để nhận thực phẩm thiết yếu. Hiện tại, bữa ăn thường ngày của họ thường chỉ là cháo gạo với một ít rau hoặc muối. Sự đóng góp của bạn sẽ trực tiếp cung cấp những túi thực phẩm bổ dưỡng. Điều này sẽ mang lại sự nhẹ nhõm và niềm vui ngay lập tức cho nhiều cá nhân và gia đình đang phải vật lộn với tình trạng nghèo đói cùng cực. Hãy tham gia nỗ lực chung mạnh mẽ này để tạo ra sự khác biệt đáng kể trong cuộc sống của họ vào ngày đặc biệt này.",
+                            paragraph: "Một ngày tràn ngập niềm vui khi người dân từ các làng miền núi tụ họp để nhận thực phẩm thiết yếu. Hiện tại, bữa ăn thường ngày của họ thường chỉ là cháo gạo với một ít rau hoặc muối. Sự đóng góp của bạn sẽ trực tiếp cung cấp những túi thực phẩm bổ dưỡng. Điều này sẽ mang lại sự nhẹ nhòm và niềm vui ngay lập tức cho nhiều cá nhân và gia đình đang phải vật lộn với tình trạng nghèo đói cùng cực. Hãy tham gia nỗ lực chung mạnh mẽ này để tạo ra sự khác biệt đáng kể trong cuộc sống của họ vào ngày đặc biệt này.",
                             items: [
                                 "Gói hàng có thể được thiết kế riêng với nguồn cung cấp thực phẩm cơ bản (300.000 ₫ - 500.000 ₫)."
                             ]
@@ -820,7 +820,12 @@
                     const itemImage = document.createElement('img');
                     itemImage.src = item.imageUrl;
                     itemImage.alt = item.item;
-                    itemImage.className = 'w-full h-48 object-cover rounded-md'; // w-full inside max-w-[300px] container
+                    // Apply object-contain for specific items
+                    if (item.item === "Bếp Nấu Ăn Di Động" || item.item === "Portable Cooking Oven" || item.item === "Quạt Năng Lượng Mặt Trời" || item.item === "Solar Fan") {
+                        itemImage.className = 'w-full h-48 object-contain rounded-md'; // Changed to object-contain
+                    } else {
+                        itemImage.className = 'w-full h-48 object-cover rounded-md';
+                    }
                     itemImage.onerror = function() {
                         this.onerror=null;
                         this.src=`https://placehold.co/300x200/CCCCCC/666666?text=Image+Not+Found`;
