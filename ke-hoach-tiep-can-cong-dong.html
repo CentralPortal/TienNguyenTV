@@ -99,40 +99,7 @@
             margin-top: 1rem;
         }
 
-        /* Custom styles for collapsible sections */
-        .collapsible-header {
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #e2e8f0;
-            border-radius: 8px 8px 0 0; /* Rounded top corners */
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #2d3748;
-            transition: background-color 0.3s ease;
-        }
-        .collapsible-header:hover {
-            background-color: #f0f0f0;
-        }
-        .collapsible-header .icon {
-            transition: transform 0.3s ease;
-        }
-        .collapsible-header.collapsed .icon {
-            transform: rotate(-90deg);
-        }
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out; /* Smooth transition for height */
-            padding: 0 1.5rem; /* Padding applied when expanded */
-        }
-        .collapsible-content.expanded {
-            max-height: 1000px; /* A large enough value to accommodate content */
-            padding: 1.5rem;
-        }
+        /* Removed collapsible-specific styles as they are no longer needed */
         .card {
             background-color: #ffffff;
             border-radius: 12px;
@@ -140,26 +107,7 @@
             margin-bottom: 2rem;
             overflow: hidden; /* Ensures rounded corners apply to children */
         }
-        .toc-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        .toc-list li {
-            margin-bottom: 0.5rem;
-        }
-        .toc-list a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .toc-list a:hover {
-            text-decoration: underline;
-        }
-        .toc-list ul { /* Nested TOC for h3 */
-            margin-top: 0.25rem;
-            margin-left: 1rem;
-            list-style: circle;
-        }
+        /* Removed toc-list styles as TOC is removed */
     </style>
 </head>
 <body class="p-4">
@@ -167,46 +115,12 @@
         <!-- Main Title -->
         <h1 class="text-4xl font-extrabold mb-6 text-center text-blue-700">Kế Hoạch Tiếp Cận Cộng Đồng</h1>
 
-        <!-- Table of Contents -->
-        <div class="card mb-8 p-6">
-            <h2 class="text-2xl font-bold mb-4 pb-2 border-b-2 border-gray-200" id="table-of-contents">Mục Lục</h2>
-            <nav>
-                <ul class="toc-list">
-                    <li><a href="#info-to-ask">1. Thông Tin Cần Hỏi Từ Mỗi Gia Đình</a>
-                        <ul>
-                            <li><a href="#basic-id-location">Thông Tin Cơ Bản & Vị Trí</a></li>
-                            <li><a href="#family-composition">Thành Phần Gia Đình</a></li>
-                            <li><a href="#living-conditions">Điều Kiện Sống</a></li>
-                            <li><a href="#livelihood-needs">Sinh Kế & Nhu Cầu</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#comfortable-questions">2. Các Câu Hỏi Dễ Chịu Để Trợ Lý Hỏi Gia Đình</a>
-                        <ul>
-                            <li><a href="#start-gratitude">Bắt Đầu Bằng Lòng Biết Ơn & Sự Ấm Áp</a></li>
-                            <li><a href="#transition-info-gathering">Chuyển Sang Thu Thập Thông Tin (Giải Thích "Tại Sao")</a></li>
-                            <li><a href="#gentle-questioning-examples">Ví Dụ Về Các Câu Hỏi Nhẹ Nhàng</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#encourage-signup">3. Khuyến Khích Mọi Người Đăng Ký</a></li>
-                    <li><a href="#tasks-assistants">4. Danh Sách Nhiệm Vụ Cho Các Trợ Lý Của Bạn</a>
-                        <ul>
-                            <li><a href="#before-event">Trước Sự Kiện</a></li>
-                            <li><a href="#during-event">Trong Sự Kiện</a></li>
-                            <li><a href="#after-event">Sau Sự Kiện</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#info-card">5. Thẻ Thông Tin Nhỏ Cho Các Gia Đình</a></li>
-                </ul>
-            </nav>
-        </div>
-
         <!-- Section 1: Information to Ask From Each Family -->
         <div class="card">
-            <div class="collapsible-header" data-target="content-info-to-ask">
+            <div class="p-4">
                 <h2 class="text-3xl font-bold flex-grow" id="info-to-ask">1. Thông Tin Cần Hỏi Từ Mỗi Gia Đình</h2>
-                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
             </div>
-            <div class="collapsible-content expanded" id="content-info-to-ask">
+            <div class="p-6">
                 <p class="text-gray-700 mb-4">Mục tiêu là thu thập đủ thông tin để hiểu nhu cầu của họ và xác định vị trí của họ cho các chuyến thăm trong tương lai, mà không khiến họ cảm thấy bị tra hỏi.</p>
 
                 <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="basic-id-location">Thông Tin Cơ Bản & Vị Trí:</h3>
@@ -243,11 +157,10 @@
 
         <!-- Section 2: Comfortable Questions for Assistants to Query Families -->
         <div class="card">
-            <div class="collapsible-header" data-target="content-comfortable-questions">
+            <div class="p-4">
                 <h2 class="text-3xl font-bold flex-grow" id="comfortable-questions">2. Các Câu Hỏi Dễ Chịu Để Trợ Lý Hỏi Gia Đình</h2>
-                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
             </div>
-            <div class="collapsible-content expanded" id="content-comfortable-questions">
+            <div class="p-6">
                 <p class="text-gray-700 mb-4">Huấn luyện các trợ lý của bạn phải đồng cảm, kiên nhẫn và tôn trọng. Đặt câu hỏi như một cách để hiểu và giúp đỡ, không phải để phán xét.</p>
 
                 <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="start-gratitude">Bắt Đầu Bằng Lòng Biết Ơn & Sự Ấm Áp:</h3>
@@ -274,16 +187,15 @@
 
         <!-- Section 3: Encouraging People to Sign Up -->
         <div class="card">
-            <div class="collapsible-header" data-target="content-encourage-signup">
+            <div class="p-4">
                 <h2 class="text-3xl font-bold flex-grow" id="encourage-signup">3. Khuyến Khích Mọi Người Đăng Ký</h2>
-                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
             </div>
-            <div class="collapsible-content expanded" id="content-encourage-signup">
+            <div class="p-6">
                 <p class="text-gray-700 mb-4">Sự ngần ngại là điều tự nhiên do những trải nghiệm trong quá khứ hoặc sự e dè. Hãy tập trung vào việc xây dựng lòng tin và giải thích tác động tích cực.</p>
                 <ul class="list-disc ml-6 mb-4 text-gray-700">
                     <li><strong>Xây Dựng Lòng Tin Trước Tiên:</strong> Hành động tặng thực phẩm là bước đầu tiên. Hãy thể hiện sự quan tâm và tôn trọng thực sự trong suốt quá trình tương tác.</li>
                     <li><strong>Giải Thích Rõ Ràng Mục Đích:</strong> "Kênh YouTube của anh Tiên chia sẻ cuộc sống thực của các gia đình khó khăn. Khi mọi người xem những video này, nó giúp họ hiểu được những khó khăn và khuyến khích họ quyên góp để chúng ta có thể mang lại nhiều sự giúp đỡ hơn nữa, không chỉ cho gia đình cô chú/anh chị mà còn cho những người khác trong cộng đồng." "Bằng cách chia sẻ câu chuyện của mình, cô chú/anh chị không chỉ giúp đỡ bản thân mà còn giúp chúng cháu/em tiếp cận được nhiều người hơn muốn tạo ra sự khác biệt cho cộng đồng của chúng ta."</li>
-                    <li><strong>Nhấn Mạnh Quyền Lựa Chọn và Quyền Riêng Tư:</strong> "Việc này hoàn toàn là lựa chọn của cô chú/anh chị. Không có bất kỳ áp lực nào cả." "Nếu cô chú/anh chị đồng ý, anh Tiên sẽ đến thăm nhà, nói chuyện với cô chú/anh chị và chia sẻ câu chuyện của cô chú/anh chị một cách tôn trọng. Chúng cháu/em sẽ không bao giờ chia sẻ bất cứ điều gì mà cô chú/anh chị không muốn." "Cô chú/anh chị luôn có thể thay đổi ý định sau này nếu cô chú/anh chị đăng ký hôm nay."</li>
+                    <li><strong>Nhấn Mạnh Quyền Lựa Chọn và Quyền Riêng Tư: I</strong>"Việc này hoàn toàn là lựa chọn của cô chú/anh chị. Không có bất kỳ áp lực nào cả." "Nếu cô chú/anh chị đồng ý, anh Tiên sẽ đến thăm nhà, nói chuyện với cô chú/anh chị và chia sẻ câu chuyện của cô chú/anh chị một cách tôn trọng. Chúng cháu/em sẽ không bao giờ chia sẻ bất cứ điều gì mà cô chú/anh chị không muốn." "Cô chú/anh chị luôn có thể thay đổi ý định sau này nếu cô chú/anh chị đăng ký hôm nay."</li>
                     <li><strong>Nêu Bật Các Câu Chuyện Thành Công (nếu có thể):</strong> "Nhiều gia đình đã chia sẻ câu chuyện của họ với anh Tiên đã nhận được sự giúp đỡ đáng kể – một số thậm chí còn có nhà mới hoặc hỗ trợ thường xuyên cho việc học của con cái họ. Cô chú/anh chị có thể xem câu chuyện của họ trên trang web của chúng tôi."</li>
                     <li><strong>Thẻ Thông Tin (Rất Quan Trọng Đối Với Các Gia Đình Ngần Ngại):</strong> Đây là công cụ quan trọng nhất của bạn đối với những người chưa sẵn sàng cam kết ngay tại chỗ. Nó cung cấp một cách ít áp lực để họ có thể kết nối sau này.</li>
                 </ul>
@@ -292,11 +204,10 @@
 
         <!-- Section 4: List of Tasks for Your Assistants -->
         <div class="card">
-            <div class="collapsible-header" data-target="content-tasks-assistants">
+            <div class="p-4">
                 <h2 class="text-3xl font-bold flex-grow" id="tasks-assistants">4. Danh Sách Nhiệm Vụ Cho Các Trợ Lý Của Bạn</h2>
-                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
             </div>
-            <div class="collapsible-content expanded" id="content-tasks-assistants">
+            <div class="p-6">
                 <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="before-event">Trước Sự Kiện:</h3>
                 <ul class="list-disc ml-6 mb-4 text-gray-700">
                     <li><strong>Họp & Huấn Luyện:</strong> Tập hợp tất cả các trợ lý. Giải thích mục đích của sự kiện (phân phát thực phẩm, thu thập thông tin, khuyến khích đăng ký).</li>
@@ -328,11 +239,10 @@
 
         <!-- Section 5: Small Info Index Card for Families -->
         <div class="card">
-            <div class="collapsible-header" data-target="content-info-card">
+            <div class="p-4">
                 <h2 class="text-3xl font-bold flex-grow" id="info-card">5. Thẻ Thông Tin Nhỏ Cho Các Gia Đình</h2>
-                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
             </div>
-            <div class="collapsible-content expanded" id="content-info-card">
+            <div class="p-6">
                 <p class="text-gray-700 mb-4">Thẻ này nên đơn giản, bền và dễ hiểu. Sử dụng văn bản rõ ràng, lớn.</p>
 
                 <div class="info-card-container">
@@ -364,37 +274,6 @@
         </div>
     </div>
 
-    <script>
-        // JavaScript for collapsible sections
-        document.addEventListener('DOMContentLoaded', function() {
-            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-
-            collapsibleHeaders.forEach(header => {
-                header.addEventListener('click', function() {
-                    const targetId = this.dataset.target;
-                    const content = document.getElementById(targetId);
-                    const icon = this.querySelector('.icon');
-
-                    if (content.classList.contains('expanded')) {
-                        content.classList.remove('expanded');
-                        this.classList.add('collapsed');
-                    } else {
-                        content.classList.add('expanded');
-                        this.classList.remove('collapsed');
-                    }
-                });
-            });
-
-            // Initially collapse all sections except the first one (Table of Contents)
-            collapsibleHeaders.forEach((header, index) => {
-                const targetId = header.dataset.target;
-                const content = document.getElementById(targetId);
-                if (index > 0) { // Keep the first section (TOC) expanded by default
-                    content.classList.remove('expanded');
-                    header.classList.add('collapsed');
-                }
-            });
-        });
-    </script>
+    <!-- Removed JavaScript for collapsible sections as they are no longer needed -->
 </body>
 </html>
