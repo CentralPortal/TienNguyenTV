@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Tiếp Cận Cộng Đồng</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3 {
+            color: #1a202c; /* Darker heading color */
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 2.25rem; /* text-4xl */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.75rem; /* text-3xl */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0; /* Light border */
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-size: 1.5rem; /* text-2xl */
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2d3748; /* Slightly lighter heading */
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+        .info-card-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        .info-card {
+            background-color: #e0f2f7; /* Light blue background for card */
+            border: 1px solid #a7d9ed;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px; /* Ensure a minimum height for the card */
+        }
+        .info-card-section {
+            padding: 0.5rem 0;
+        }
+        .info-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #007bff; /* Blue for the title */
+            margin-bottom: 0.5rem;
+        }
+        .info-card-text {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .info-card-contact {
+            margin-top: 1rem;
+        }
+        .info-card-contact strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-top: 0.25rem;
+            color: #0056b3;
+        }
+        .info-card-note {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 1rem;
+        }
+
+        /* Custom styles for collapsible sections */
+        .collapsible-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 8px 8px 0 0; /* Rounded top corners */
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2d3748;
+            transition: background-color 0.3s ease;
+        }
+        .collapsible-header:hover {
+            background-color: #f0f0f0;
+        }
+        .collapsible-header .icon {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-header.collapsed .icon {
+            transform: rotate(-90deg);
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* Smooth transition for height */
+            padding: 0 1.5rem; /* Padding applied when expanded */
+        }
+        .collapsible-content.expanded {
+            max-height: 1000px; /* A large enough value to accommodate content */
+            padding: 1.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            overflow: hidden; /* Ensures rounded corners apply to children */
+        }
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+        .toc-list a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+        .toc-list ul { /* Nested TOC for h3 */
+            margin-top: 0.25rem;
+            margin-left: 1rem;
+            list-style: circle;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <!-- Main Title -->
+        <h1 class="text-4xl font-extrabold mb-6 text-center text-blue-700">Kế Hoạch Tiếp Cận Cộng Đồng</h1>
+
+        <!-- Table of Contents -->
+        <div class="card mb-8 p-6">
+            <h2 class="text-2xl font-bold mb-4 pb-2 border-b-2 border-gray-200" id="table-of-contents">Mục Lục</h2>
+            <nav>
+                <ul class="toc-list">
+                    <li><a href="#info-to-ask">1. Thông Tin Cần Hỏi Từ Mỗi Gia Đình</a>
+                        <ul>
+                            <li><a href="#basic-id-location">Thông Tin Cơ Bản & Vị Trí</a></li>
+                            <li><a href="#family-composition">Thành Phần Gia Đình</a></li>
+                            <li><a href="#living-conditions">Điều Kiện Sống</a></li>
+                            <li><a href="#livelihood-needs">Sinh Kế & Nhu Cầu</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#comfortable-questions">2. Các Câu Hỏi Dễ Chịu Để Trợ Lý Hỏi Gia Đình</a>
+                        <ul>
+                            <li><a href="#start-gratitude">Bắt Đầu Bằng Lòng Biết Ơn & Sự Ấm Áp</a></li>
+                            <li><a href="#transition-info-gathering">Chuyển Sang Thu Thập Thông Tin (Giải Thích "Tại Sao")</a></li>
+                            <li><a href="#gentle-questioning-examples">Ví Dụ Về Các Câu Hỏi Nhẹ Nhàng</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#encourage-signup">3. Khuyến Khích Mọi Người Đăng Ký</a></li>
+                    <li><a href="#tasks-assistants">4. Danh Sách Nhiệm Vụ Cho Các Trợ Lý Của Bạn</a>
+                        <ul>
+                            <li><a href="#before-event">Trước Sự Kiện</a></li>
+                            <li><a href="#during-event">Trong Sự Kiện</a></li>
+                            <li><a href="#after-event">Sau Sự Kiện</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#info-card">5. Thẻ Thông Tin Nhỏ Cho Các Gia Đình</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Section 1: Information to Ask From Each Family -->
+        <div class="card">
+            <div class="collapsible-header" data-target="content-info-to-ask">
+                <h2 class="text-3xl font-bold flex-grow" id="info-to-ask">1. Thông Tin Cần Hỏi Từ Mỗi Gia Đình</h2>
+                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
+            </div>
+            <div class="collapsible-content expanded" id="content-info-to-ask">
+                <p class="text-gray-700 mb-4">Mục tiêu là thu thập đủ thông tin để hiểu nhu cầu của họ và xác định vị trí của họ cho các chuyến thăm trong tương lai, mà không khiến họ cảm thấy bị tra hỏi.</p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="basic-id-location">Thông Tin Cơ Bản & Vị Trí:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Họ và Tên đầy đủ</strong> của Chủ Hộ</li>
+                    <li><strong>Tên Làng/Ấp:</strong> Cộng đồng nhỏ cụ thể nơi họ sinh sống.</li>
+                    <li><strong>Tên Huyện/Xã:</strong> Khu vực hành chính lớn hơn.</li>
+                    <li><strong>Chỉ Dẫn Chung Đến Nhà:</strong> Các địa danh đơn giản hoặc mô tả tuyến đường (ví dụ: "qua tảng đá lớn," "rẽ trái ở suối," "lên đồi từ chợ"). Điều này rất quan trọng đối với các khu vực hẻo lánh.</li>
+                    <li><strong>Thời Gian Tốt Nhất Để Thăm:</strong> Khi nào các thành viên gia đình có nhiều khả năng ở nhà nhất?</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="family-composition">Thành Phần Gia Đình:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Tổng Số Thành Viên Gia Đình</strong> sống trong hộ.</li>
+                    <li><strong>Số Lượng Trẻ Em</strong> (đặc biệt là những em trong độ tuổi đi học hoặc nhỏ hơn).</li>
+                    <li><strong>Số Lượng Người Cao Tuổi</strong> (ví dụ: trên 60 hoặc 65 tuổi).</li>
+                    <li><strong>Bất Kỳ Thành Viên Gia Đình Nào Có Nhu Cầu Đặc Biệt</strong> (ví dụ: khuyết tật, bệnh mãn tính).</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="living-conditions">Điều Kiện Sống:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Loại Nhà Ở:</strong> Là nhà xi măng, nhà gỗ, hay lán tạm (cành cây, bạt, tấm tôn cũ)? Điều này giúp hình dung nhanh về tình hình của họ.</li>
+                    <li><strong>Tiếp Cận Nước Sạch:</strong> Họ có nguồn nước uống sạch đáng tin cậy không? Nếu có, đó là gì (giếng, sông, thu gom nước mưa)?</li>
+                    <li><strong>Tiếp Cận Ánh Sáng/Điện:</strong> Họ có điện hay nguồn sáng nào khác vào ban đêm không?</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="livelihood-needs">Sinh Kế & Nhu Cầu:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Nghề Nghiệp Chính:</strong> Họ làm gì để kiếm sống (ví dụ: làm nông, thu gom phân bò, chăn nuôi, lao động thời vụ)?</li>
+                    <li><strong>Những Thách Thức Chính:</strong> Những khó khăn lớn nhất mà họ phải đối mặt trong cuộc sống hàng ngày hoặc công việc là gì? (Điều này giúp đánh giá mức độ nghèo đói của họ một cách định tính mà không cần hỏi thu nhập chính xác).</li>
+                    <li><strong>Nhu Cầu Cấp Bách Nhất (Ngoài Thực Phẩm):</strong> Nếu bạn có thể giúp một điều ngay bây giờ, đó sẽ là gì (ví dụ: sửa chữa nhà ở, thuốc men, đồ dùng học tập, hệ thống nước sạch)?</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 2: Comfortable Questions for Assistants to Query Families -->
+        <div class="card">
+            <div class="collapsible-header" data-target="content-comfortable-questions">
+                <h2 class="text-3xl font-bold flex-grow" id="comfortable-questions">2. Các Câu Hỏi Dễ Chịu Để Trợ Lý Hỏi Gia Đình</h2>
+                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
+            </div>
+            <div class="collapsible-content expanded" id="content-comfortable-questions">
+                <p class="text-gray-700 mb-4">Huấn luyện các trợ lý của bạn phải đồng cảm, kiên nhẫn và tôn trọng. Đặt câu hỏi như một cách để hiểu và giúp đỡ, không phải để phán xét.</p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="start-gratitude">Bắt Đầu Bằng Lòng Biết Ơn & Sự Ấm Áp:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li>"Xin chào, cảm ơn cô chú/anh chị đã đến hôm nay. Chúng cháu/em rất vui khi có thể chia sẻ những phần quà thực phẩm này với cô chú/anh chị."</li>
+                    <li>"Cháu/Em tên là [Tên Trợ Lý], và cháu/em đang giúp anh Tiên hôm nay. Anh ấy thực sự quan tâm đến việc hỗ trợ các gia đình ở vùng núi."</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="transition-info-gathering">Chuyển Sang Thu Thập Thông Tin (Giải Thích "Tại Sao"):</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li>"Để giúp anh Tiên hiểu rõ hơn về nhu cầu của các gia đình, và để anh ấy có thể đến thăm và hỗ trợ thêm trong tương lai, cô chú/anh chị có sẵn lòng chia sẻ một chút về gia đình và nơi ở của mình không?"</li>
+                    <li>"Thông tin này sẽ chỉ được sử dụng bởi anh Tiên và nhóm của anh ấy để giúp đỡ nhiều gia đình hơn, và sẽ được giữ kín."</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="gentle-questioning-examples">Ví Dụ Về Các Câu Hỏi Nhẹ Nhàng:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Tên & Vị Trí:</strong> "Cô chú/anh chị có thể cho cháu/em biết tên và tên làng/ấp của mình không? Điều đó giúp chúng cháu/em biết tìm cô chú/anh chị ở đâu nếu anh Tiên đến thăm." "Nếu anh Tiên muốn đến thăm nhà cô chú/anh chị, cô chú/anh chị sẽ mô tả cách dễ nhất để đến đó như thế nào? Có cây lớn hay con suối nào gần đó không?"</li>
+                    <li><strong>Gia Đình:</strong> "Gia đình cô chú/anh chị có bao nhiêu người?" "Cô chú/anh chị có con nhỏ đi học, hay cha mẹ già sống cùng không?" "Có thành viên nào trong gia đình cần chăm sóc đặc biệt do sức khỏe không?"</li>
+                    <li><strong>Nhà Ở:</strong> "Chúng cháu/em thấy có nhiều loại nhà khác nhau ở đây. Cô chú/anh chị có thể kể một chút về ngôi nhà của mình không? Nhà được làm bằng gỗ, hay có thể là bạt và cành cây?" "Cô chú/anh chị có dễ dàng tiếp cận nước sạch để uống và nấu ăn không?" "Nhà cô chú/anh chị có dễ dàng có ánh sáng, đặc biệt là vào ban đêm không?"</li>
+                    <li><strong>Công Việc & Nhu Cầu:</strong> "Cô chú/anh chị thường làm công việc gì để nuôi sống gia đình?" "Những thách thức lớn nhất mà cô chú/anh chị phải đối mặt trong cuộc sống hàng ngày hoặc công việc là gì?" "Ngoài thực phẩm hôm nay, nhu cầu cấp bách nhất của gia đình cô chú/anh chị lúc này là gì? Có phải là giúp đỡ sửa nhà, hay thuốc men, hay thứ gì đó cho các cháu?"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 3: Encouraging People to Sign Up -->
+        <div class="card">
+            <div class="collapsible-header" data-target="content-encourage-signup">
+                <h2 class="text-3xl font-bold flex-grow" id="encourage-signup">3. Khuyến Khích Mọi Người Đăng Ký</h2>
+                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
+            </div>
+            <div class="collapsible-content expanded" id="content-encourage-signup">
+                <p class="text-gray-700 mb-4">Sự ngần ngại là điều tự nhiên do những trải nghiệm trong quá khứ hoặc sự e dè. Hãy tập trung vào việc xây dựng lòng tin và giải thích tác động tích cực.</p>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Xây Dựng Lòng Tin Trước Tiên:</strong> Hành động tặng thực phẩm là bước đầu tiên. Hãy thể hiện sự quan tâm và tôn trọng thực sự trong suốt quá trình tương tác.</li>
+                    <li><strong>Giải Thích Rõ Ràng Mục Đích:</strong> "Kênh YouTube của anh Tiên chia sẻ cuộc sống thực của các gia đình khó khăn. Khi mọi người xem những video này, nó giúp họ hiểu được những khó khăn và khuyến khích họ quyên góp để chúng ta có thể mang lại nhiều sự giúp đỡ hơn nữa, không chỉ cho gia đình cô chú/anh chị mà còn cho những người khác trong cộng đồng." "Bằng cách chia sẻ câu chuyện của mình, cô chú/anh chị không chỉ giúp đỡ bản thân mà còn giúp chúng cháu/em tiếp cận được nhiều người hơn muốn tạo ra sự khác biệt cho cộng đồng của chúng ta."</li>
+                    <li><strong>Nhấn Mạnh Quyền Lựa Chọn và Quyền Riêng Tư:</strong> "Việc này hoàn toàn là lựa chọn của cô chú/anh chị. Không có bất kỳ áp lực nào cả." "Nếu cô chú/anh chị đồng ý, anh Tiên sẽ đến thăm nhà, nói chuyện với cô chú/anh chị và chia sẻ câu chuyện của cô chú/anh chị một cách tôn trọng. Chúng cháu/em sẽ không bao giờ chia sẻ bất cứ điều gì mà cô chú/anh chị không muốn." "Cô chú/anh chị luôn có thể thay đổi ý định sau này nếu cô chú/anh chị đăng ký hôm nay."</li>
+                    <li><strong>Nêu Bật Các Câu Chuyện Thành Công (nếu có thể):</strong> "Nhiều gia đình đã chia sẻ câu chuyện của họ với anh Tiên đã nhận được sự giúp đỡ đáng kể – một số thậm chí còn có nhà mới hoặc hỗ trợ thường xuyên cho việc học của con cái họ. Cô chú/anh chị có thể xem câu chuyện của họ trên trang web của chúng tôi."</li>
+                    <li><strong>Thẻ Thông Tin (Rất Quan Trọng Đối Với Các Gia Đình Ngần Ngại):</strong> Đây là công cụ quan trọng nhất của bạn đối với những người chưa sẵn sàng cam kết ngay tại chỗ. Nó cung cấp một cách ít áp lực để họ có thể kết nối sau này.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 4: List of Tasks for Your Assistants -->
+        <div class="card">
+            <div class="collapsible-header" data-target="content-tasks-assistants">
+                <h2 class="text-3xl font-bold flex-grow" id="tasks-assistants">4. Danh Sách Nhiệm Vụ Cho Các Trợ Lý Của Bạn</h2>
+                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
+            </div>
+            <div class="collapsible-content expanded" id="content-tasks-assistants">
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="before-event">Trước Sự Kiện:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Họp & Huấn Luyện:</strong> Tập hợp tất cả các trợ lý. Giải thích mục đích của sự kiện (phân phát thực phẩm, thu thập thông tin, khuyến khích đăng ký).</li>
+                    <li><strong>Xem Lại Phiếu Thông Tin:</strong> Xem lại biểu mẫu họ sẽ sử dụng để thu thập dữ liệu gia đình. Đảm bảo họ hiểu rõ từng trường.</li>
+                    <li><strong>Thực Hành Câu Hỏi:</strong> Đóng vai các kỹ thuật "đặt câu hỏi dễ chịu". Nhấn mạnh sự đồng cảm, kiên nhẫn và lắng nghe tích cực.</li>
+                    <li><strong>Giải Thích Kênh YouTube:</strong> Đảm bảo họ có thể trình bày rõ ràng mục đích và lợi ích của việc được giới thiệu trên kênh.</li>
+                    <li><strong>Phân Phát Thẻ Thông Tin:</strong> Đưa cho mỗi trợ lý một chồng thẻ thông tin nhỏ.</li>
+                    <li><strong>Nhạy Cảm Văn Hóa:</strong> Nhắc nhở họ tôn trọng phong tục và truyền thống địa phương.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="during-event">Trong Sự Kiện:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Chào Đón Nồng Nhiệt:</strong> Chào đón nồng nhiệt từng gia đình khi họ đến với vé của mình.</li>
+                    <li><strong>Phân Phát Thực Phẩm:</strong> Phân phát hiệu quả một gói thực phẩm cho mỗi vé gia đình.</li>
+                    <li><strong>Tương Tác & Xây Dựng Mối Quan Hệ:</strong> Có một cuộc trò chuyện ngắn gọn, thân thiện với mỗi gia đình. Cảm ơn họ đã đến.</li>
+                    <li><strong>Thu Thập Thông Tin:</strong> Lịch sự giải thích mục đích thu thập thông tin (để giúp đỡ trong tương lai). Sử dụng các kỹ thuật đặt câu hỏi dễ chịu để điền chính xác phiếu/biểu mẫu thông tin cho mỗi gia đình. Đảm bảo họ hiểu thông tin là bảo mật.</li>
+                    <li><strong>Giới Thiệu Kênh YouTube & Đăng Ký:</strong> Sau khi thu thập thông tin cơ bản, nhẹ nhàng giới thiệu ý tưởng được giới thiệu trên kênh YouTube. Giải thích cách chia sẻ câu chuyện của họ giúp mang lại nhiều sự hỗ trợ hơn. Hỏi xem họ có sẵn lòng đăng ký không. Nếu có, hãy đánh dấu vào biểu mẫu.</li>
+                    <li><strong>Đối Với Các Gia Đình Ngần Ngại:</strong> Nếu một gia đình ngần ngại, hãy trấn an họ rằng điều đó không sao cả. Nói: "Chúng cháu/em hiểu nếu cô chú/anh chị chưa sẵn sàng hôm nay, và điều đó hoàn toàn ổn. Đây là một tấm thẻ nhỏ có tên, trang web và số điện thoại của anh Tiên. Cô chú/anh chị có thể mang theo." "Trên trang web, cô chú/anh chị có thể xem các video về các gia đình khác đã nhận được sự giúp đỡ. Nếu cô chú/anh chị cảm thấy thoải mái và muốn liên hệ sau này, vui lòng sử dụng số trên tấm thẻ này." Trao cho họ thẻ thông tin.</li>
+                    <li><strong>Cảm Ơn & Tạm Biệt:</strong> Cảm ơn mỗi gia đình một lần nữa vì thời gian và sự hợp tác của họ.</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800" id="after-event">Sau Sự Kiện:</h3>
+                <ul class="list-disc ml-6 mb-4 text-gray-700">
+                    <li><strong>Thu Thập Biểu Mẫu:</strong> Thu thập tất cả các phiếu thông tin/biểu mẫu đã hoàn thành từ các trợ lý.</li>
+                    <li><strong>Tổng Kết:</strong> Hỏi các trợ lý về bất kỳ thách thức, mối quan tâm chung hoặc tương tác đáng chú ý nào.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Small Info Index Card for Families -->
+        <div class="card">
+            <div class="collapsible-header" data-target="content-info-card">
+                <h2 class="text-3xl font-bold flex-grow" id="info-card">5. Thẻ Thông Tin Nhỏ Cho Các Gia Đình</h2>
+                <span class="icon text-2xl font-bold">&#9660;</span> <!-- Down arrow -->
+            </div>
+            <div class="collapsible-content expanded" id="content-info-card">
+                <p class="text-gray-700 mb-4">Thẻ này nên đơn giản, bền và dễ hiểu. Sử dụng văn bản rõ ràng, lớn.</p>
+
+                <div class="info-card-container">
+                    <div class="info-card">
+                        <div class="info-card-section">
+                            <div class="info-card-title">Tien Nguyen TV Official</div>
+                            <!-- Optional: A small, simple drawing of a house or a helping hand can be added here as SVG or emoji -->
+                            <p class="text-gray-600 text-sm">Giúp đỡ cộng đồng vùng núi Việt Nam</p>
+                        </div>
+                        <div class="info-card-section info-card-contact">
+                            <p class="text-gray-700"><strong>Trang Web:</strong></p>
+                            <strong class="text-blue-700">TienNguyenTV.com</strong>
+                            <p class="text-gray-700 mt-2"><strong>Số Điện Thoại Liên Hệ:</strong></p>
+                            <strong class="text-blue-700">Zalo: 033.252.0648</strong>
+                            <strong class="text-blue-700">Viber: 0975.040.037</strong>
+                            <strong class="text-blue-700">SĐT: 033.252.0648</strong>
+                        </div>
+                        <div class="info-card-section mt-auto">
+                            <p class="info-card-text"><strong>Bạn Muốn Được Giúp Đỡ Thêm?</strong></p>
+                            <p class="info-card-text">Xem các video về các gia đình chúng tôi đã giúp đỡ trên trang web của chúng tôi.</p>
+                            <p class="info-card-text">Nếu bạn cảm thấy thoải mái chia sẻ câu chuyện của mình để được hỗ trợ trong tương lai, vui lòng gọi cho chúng tôi.</p>
+                            <p class="info-card-text font-bold text-lg text-green-700">Chúng tôi ở đây để giúp đỡ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-gray-600 text-sm mt-8">Hãy nhớ dịch thẻ này chính xác sang tiếng Việt và in trên giấy bền. Chúc bạn thành công với sự kiện của mình!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for collapsible sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+
+            collapsibleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const content = document.getElementById(targetId);
+                    const icon = this.querySelector('.icon');
+
+                    if (content.classList.contains('expanded')) {
+                        content.classList.remove('expanded');
+                        this.classList.add('collapsed');
+                    } else {
+                        content.classList.add('expanded');
+                        this.classList.remove('collapsed');
+                    }
+                });
+            });
+
+            // Initially collapse all sections except the first one (Table of Contents)
+            collapsibleHeaders.forEach((header, index) => {
+                const targetId = header.dataset.target;
+                const content = document.getElementById(targetId);
+                if (index > 0) { // Keep the first section (TOC) expanded by default
+                    content.classList.remove('expanded');
+                    header.classList.add('collapsed');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
