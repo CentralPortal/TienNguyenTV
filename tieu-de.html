@@ -103,8 +103,21 @@
         li:nth-child(odd) {
             background-color: #cceeff;
         }
-        li span {
+        /* Adjusted styling for the new div inside li */
+        li > div {
             flex-grow: 1;
+            padding-left: 10px; /* Add some padding between checkbox and text */
+        }
+        .vietnamese-title {
+            font-weight: 600;
+            color: #333;
+        }
+        .english-title {
+            color: #666;
+            font-size: 0.85em;
+            font-style: italic;
+            margin-top: 2px; /* Small space between Vietnamese and English */
+            display: block; /* Ensure it takes its own line */
         }
 
         /* The only horizontal line remaining */
@@ -356,12 +369,12 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lắp đặt hệ thống nước sạch: Thay đổi cuộc sống vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cung cấp vật tư y tế: Chăm sóc sức khỏe cộng đồng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng trường học: Ươm mầm tri thức cho tương lai</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Phát triển sinh kế: Giúp người dân tự chủ cuộc sống</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chương trình "Bữa ăn ấm áp": Mang yêu thương đến bản làng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sáng kiến "Ánh sáng vùng cao": Thắp đèn cho mọi nhà</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lắp đặt hệ thống nước sạch tại Việt Nam: Thay đổi cuộc sống vùng cao</span><span class="english-title">Installing clean water systems in Vietnam: Changing lives in the highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cung cấp vật tư y tế cho cộng đồng nghèo Việt Nam: Chăm sóc sức khỏe</span><span class="english-title">Providing medical supplies to poor Vietnamese communities: Healthcare support</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Xây dựng trường học ở vùng núi Việt Nam: Ươm mầm tri thức tương lai</span><span class="english-title">Building schools in Vietnam's mountain regions: Nurturing future knowledge</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Phát triển sinh kế bền vững cho người nghèo Việt Nam</span><span class="english-title">Developing sustainable livelihoods for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chương trình "Bữa ăn ấm áp" tại Việt Nam: Mang yêu thương đến bản làng nghèo</span><span class="english-title">"Warm Meal" program in Vietnam: Bringing love to impoverished villages</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sáng kiến "Ánh sáng vùng cao" Việt Nam: Thắp đèn cho mọi nhà nghèo</span><span class="english-title">"Highland Light" initiative in Vietnam: Lighting up every poor home</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -373,18 +386,18 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thắp sáng tương lai: Mang điện về bản làng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước nghĩa tình: Xây hệ thống nước sạch cho vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đủ đầy: Niềm vui nhỏ bé cho trẻ em nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái ấm yêu thương: Xóa nhà tạm bợ cho người dân</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng em đến trường: Trao xe đạp, chắp cánh ước mơ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức khỏe cộng đồng: Mang thuốc men đến vùng khó khăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vòng tay sẻ chia: Giúp người già neo đơn nơi núi rừng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chung tay vì người khuyết tật: Nâng đỡ những mảnh đời bất hạnh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đánh thức tiềm năng: Phát triển kinh tế bền vững vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Từ bùn đất đến mái ấm: Hành trình xây nhà mới</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nâng cao nhận thức: Chấm dứt cảnh sống trong hang đá</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hướng về vùng lũ: Giúp đỡ đồng bào sau thiên tai</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thắp sáng tương lai ở Việt Nam: Mang điện về bản làng nghèo</span><span class="english-title">Lighting up the future in Vietnam: Bringing electricity to poor villages</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giọt nước nghĩa tình: Xây hệ thống nước sạch cho vùng cao Việt Nam</span><span class="english-title">Drops of compassion: Building clean water systems for Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa ăn đủ đầy cho trẻ em nghèo Việt Nam: Niềm vui nhỏ bé</span><span class="english-title">Full meals for poor Vietnamese children: A small joy</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái ấm yêu thương: Xóa nhà tạm bợ cho người dân nghèo Việt Nam</span><span class="english-title">Warm homes: Eliminating makeshift shelters for poor Vietnamese people</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cùng em đến trường ở Việt Nam: Trao xe đạp, chắp cánh ước mơ</span><span class="english-title">Accompanying children to school in Vietnam: Granting bicycles, nurturing dreams</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức khỏe cộng đồng nghèo Việt Nam: Mang thuốc men đến vùng khó khăn</span><span class="english-title">Health for poor Vietnamese communities: Bringing medicine to disadvantaged areas</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vòng tay sẻ chia: Giúp người già neo đơn nơi núi rừng Việt Nam</span><span class="english-title">Embrace of sharing: Helping lonely elderly in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chung tay vì người khuyết tật Việt Nam: Nâng đỡ những mảnh đời bất hạnh</span><span class="english-title">Joining hands for people with disabilities in Vietnam: Supporting unfortunate lives</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đánh thức tiềm năng: Phát triển kinh tế bền vững vùng cao Việt Nam</span><span class="english-title">Unlocking potential: Developing sustainable economy in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Từ bùn đất đến mái ấm: Hành trình xây nhà mới cho người nghèo Việt Nam</span><span class="english-title">From mud to home: The journey of building new houses for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nâng cao nhận thức: Chấm dứt cảnh sống trong hang đá của người Việt Nam</span><span class="english-title">Raising awareness: Ending cave dwelling lives for Vietnamese people</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hướng về vùng lũ Việt Nam: Giúp đỡ đồng bào sau thiên tai</span><span class="english-title">Towards flood-affected areas in Vietnam: Helping compatriots after natural disasters</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -396,12 +409,12 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bước chân nhỏ bé vượt dặm đường đến lớp</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đi tìm con chữ giữa khó khăn chồng chất</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành trình đến con chữ đầy gian nan và thử thách</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ươm mầm tương lai trên mảnh đất cằn cỗi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Dặm đường đến trường: Nỗi gian nan của trẻ em vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tuổi thơ bị đánh cắp: Trẻ em vùng cao bỏ học mưu sinh</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bước chân nhỏ bé vượt dặm đường đến lớp ở Việt Nam</span><span class="english-title">Tiny footsteps overcoming miles to school in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đi tìm con chữ giữa khó khăn chồng chất ở Việt Nam</span><span class="english-title">Seeking literacy amidst overwhelming difficulties in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành trình đến con chữ đầy gian nan và thử thách ở Việt Nam</span><span class="english-title">The arduous and challenging journey to literacy in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ươm mầm tương lai trên mảnh đất cằn cỗi ở Việt Nam</span><span class="english-title">Nurturing future seeds on barren land in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Dặm đường đến trường: Nỗi gian nan của trẻ em vùng cao Việt Nam</span><span class="english-title">Miles to school: The hardship of highland children in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tuổi thơ bị đánh cắp: Trẻ em vùng cao Việt Nam bỏ học mưu sinh</span><span class="english-title">Stolen childhood: Highland children in Vietnam dropping out for livelihood</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -413,16 +426,16 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh sáng cho những đêm tối vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chắp cánh ước mơ đến trường cho trẻ em nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Gửi trao yêu thương đến miền núi Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành động nhỏ, thay đổi cuộc đời lớn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hỗ trợ thuốc men cho người nghèo vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Một mái nhà ấm áp cho đồng bào miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước sạch cho cuộc sống khỏe mạnh hơn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>San sẻ bữa ăn, tiếp thêm sức mạnh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Xây dựng tương lai cho cộng đồng vùng khó</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ánh sáng cho những đêm tối vùng cao Việt Nam</span><span class="english-title">Light for the dark nights in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chắp cánh ước mơ đến trường cho trẻ em nghèo Việt Nam</span><span class="english-title">Giving wings to dreams of schooling for poor Vietnamese children</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cùng chung tay giúp đỡ người nghèo vùng cao Việt Nam</span><span class="english-title">Joining hands to help the poor in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Gửi trao yêu thương đến miền núi Việt Nam</span><span class="english-title">Sending love to the mountainous regions of Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành động nhỏ, thay đổi cuộc đời lớn cho người nghèo Việt Nam</span><span class="english-title">Small actions, big life changes for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hỗ trợ thuốc men cho người nghèo vùng núi Việt Nam</span><span class="english-title">Providing medicine for the poor in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Một mái nhà ấm áp cho đồng bào miền núi Việt Nam</span><span class="english-title">A warm home for compatriots in Vietnam's mountainous regions</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nước sạch cho cuộc sống khỏe mạnh hơn ở Việt Nam</span><span class="english-title">Clean water for a healthier life in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">San sẻ bữa ăn, tiếp thêm sức mạnh cho cộng đồng nghèo Việt Nam</span><span class="english-title">Sharing meals, empowering poor communities in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Xây dựng tương lai cho cộng đồng vùng khó Việt Nam</span><span class="english-title">Building a future for disadvantaged communities in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -434,12 +447,12 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Gieo niềm tin vào một ngày mai tươi sáng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành trình tìm kiếm tương lai tươi sáng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thắp lửa hy vọng trong đêm tối nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thay đổi từng ngày từ những hành động nhỏ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ánh sáng nơi cuối con đường: Hy vọng cho người nghèo Việt Nam</span><span class="english-title">Light at the end of the road: Hope for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Gieo niềm tin vào một ngày mai tươi sáng cho Việt Nam</span><span class="english-title">Sowing faith in a brighter tomorrow for Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành trình tìm kiếm tương lai tươi sáng cho cộng đồng nghèo Việt Nam</span><span class="english-title">Journey to a brighter future for poor communities in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thắp lửa hy vọng trong đêm tối nghèo khó ở Việt Nam</span><span class="english-title">Kindling hope in the dark nights of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thay đổi từng ngày từ những hành động nhỏ ở Việt Nam</span><span class="english-title">Daily changes from small actions in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hướng đến một cuộc sống tốt đẹp hơn cho người nghèo Việt Nam</span><span class="english-title">Towards a better life for the poor in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -451,39 +464,39 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không được chữa trị – Hậu quả của sự nghèo đói</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật và sự bất lực – Góc khuất cần được sẻ chia</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối vùng cao – Nơi ánh sáng hy vọng cần được thắp lên</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và sự cô lập – Cần một bàn tay giúp đỡ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đạm bạc – Lời nhắc nhở về sự thiếu thốn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn thiếu dinh dưỡng – Tương lai bị ảnh hưởng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chắp cánh ước mơ cho trẻ em nghèo vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chia sẻ để yêu thương lan tỏa: Cùng giúp đỡ miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng chung tay xoa dịu nỗi đau</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cùng nhau xây dựng tương lai cho trẻ em nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đằng sau những bước chân đến trường: Sự hy sinh thầm lặng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đừng để bước chân trẻ thơ mỏi mòn trên đường đến trường</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ không yên – Nỗi lo lắng thường trực của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên đất lạnh – Lời cầu xin sự giúp đỡ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành động vì một cộng đồng tốt đẹp hơn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành trình tìm chữ đầy gian nan – Ước mơ cần được chắp cánh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hãy nhìn vào đôi chân trần vượt núi đến trường</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát khao một viên thuốc: Nỗi đau không lời của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lan tỏa sự sẻ chia, nhân rộng yêu thương</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động khổ sai: Cái giá của sự nghèo đói</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động vất vả – Cần một cơ hội để đổi đời</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lắng nghe tiếng lòng của người nghèo Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà dột nát – Biểu tượng của sự khó khăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét, tấm bạt rách: Tiếng kêu cứu từ vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mất điện, thiếu nước: Cuộc sống bị bỏ quên ở vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi và nước mắt – Giá trị của sự sẻ chia</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nối vòng tay lớn: Hướng về đồng bào khó khăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức mạnh của sự sẻ chia: Thay đổi cuộc đời người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức mạnh đoàn kết của cộng đồng nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếp sức đến trường cho em thơ vùng khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng gọi từ trái tim: Hướng về miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ước mơ nhỏ bé giữa cuộc sống bộn bề</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bát cơm trắng muối: Thức tỉnh lương tri cộng đồng vì người nghèo Việt Nam</span><span class="english-title">Bowl of plain rice with salt: Awakening community conscience for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật không được chữa trị ở Việt Nam – Hậu quả của sự nghèo đói</span><span class="english-title">Untreated illness in Vietnam - The consequence of poverty</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật và sự bất lực ở vùng núi Việt Nam – Góc khuất cần được sẻ chia</span><span class="english-title">Illness and helplessness in Vietnam's mountains - A hidden corner needing sharing</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối vùng cao Việt Nam – Nơi ánh sáng hy vọng cần được thắp lên</span><span class="english-title">Darkness in Vietnam's highlands - Where the light of hope needs to be lit</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối và sự cô lập ở cộng đồng nghèo Việt Nam – Cần một bàn tay giúp đỡ</span><span class="english-title">Darkness and isolation in Vietnam's poor communities - A helping hand is needed</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa ăn đạm bạc ở Việt Nam – Lời nhắc nhở về sự thiếu thốn</span><span class="english-title">Simple meals in Vietnam - A reminder of scarcity</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa ăn thiếu dinh dưỡng ở Việt Nam – Tương lai bị ảnh hưởng</span><span class="english-title">Malnourished meals in Vietnam - A future impacted</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chắp cánh ước mơ cho trẻ em nghèo vùng núi Việt Nam</span><span class="english-title">Giving wings to dreams for poor children in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chia sẻ để yêu thương lan tỏa: Cùng giúp đỡ miền núi Việt Nam</span><span class="english-title">Share to spread love: Together help Vietnam's mountainous regions</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cùng chung tay xoa dịu nỗi đau của người nghèo Việt Nam</span><span class="english-title">Joining hands to ease the pain of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cùng nhau xây dựng tương lai cho trẻ em nghèo Việt Nam</span><span class="english-title">Together building a future for poor children in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đằng sau những bước chân đến trường ở Việt Nam: Sự hy sinh thầm lặng</span><span class="english-title">Behind the footsteps to school in Vietnam: Silent sacrifices</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đừng để bước chân trẻ thơ mỏi mòn trên đường đến trường ở Việt Nam</span><span class="english-title">Don't let children's footsteps tire on the way to school in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ không yên – Nỗi lo lắng thường trực của người nghèo Việt Nam</span><span class="english-title">Restless sleep - The constant worry of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ trên đất lạnh ở Việt Nam – Lời cầu xin sự giúp đỡ</span><span class="english-title">Sleeping on cold ground in Vietnam - A plea for help</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành động vì một cộng đồng tốt đẹp hơn ở Việt Nam</span><span class="english-title">Acting for a better community in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành trình tìm chữ đầy gian nan ở Việt Nam – Ước mơ cần được chắp cánh</span><span class="english-title">The arduous journey to literacy in Vietnam - Dreams needing wings</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hãy nhìn vào đôi chân trần vượt núi đến trường ở Việt Nam</span><span class="english-title">Look at the barefoot children crossing mountains to school in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khát khao một viên thuốc: Nỗi đau không lời của người nghèo Việt Nam</span><span class="english-title">Longing for a pill: The unspoken pain of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lan tỏa sự sẻ chia, nhân rộng yêu thương ở Việt Nam</span><span class="english-title">Spreading sharing, multiplying love in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lao động khổ sai ở Việt Nam: Cái giá của sự nghèo đói</span><span class="english-title">Hard labor in Vietnam: The price of poverty</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lao động vất vả ở Việt Nam – Cần một cơ hội để đổi đời</span><span class="english-title">Hard work in Vietnam - A chance to change lives is needed</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lắng nghe tiếng lòng của người nghèo Việt Nam</span><span class="english-title">Listening to the hearts of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái nhà dột nát ở Việt Nam – Biểu tượng của sự khó khăn</span><span class="english-title">Leaky roofs in Vietnam - A symbol of hardship</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái tôn rỉ sét, tấm bạt rách: Tiếng kêu cứu từ vùng cao Việt Nam</span><span class="english-title">Rusted tin roofs, torn tarps: Cries for help from Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mất điện, thiếu nước: Cuộc sống bị bỏ quên ở vùng cao Việt Nam</span><span class="english-title">No electricity, no water: Forgotten lives in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mồ hôi và nước mắt ở Việt Nam – Giá trị của sự sẻ chia</span><span class="english-title">Sweat and tears in Vietnam - The value of sharing</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nối vòng tay lớn: Hướng về đồng bào khó khăn ở Việt Nam</span><span class="english-title">Joining hands: Towards disadvantaged compatriots in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức mạnh của sự sẻ chia: Thay đổi cuộc đời người nghèo Việt Nam</span><span class="english-title">The power of sharing: Changing the lives of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức mạnh đoàn kết của cộng đồng nghèo Việt Nam</span><span class="english-title">The power of unity in Vietnam's poor communities</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tiếp sức đến trường cho em thơ vùng khó Việt Nam</span><span class="english-title">Empowering children in disadvantaged areas of Vietnam to go to school</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tiếng gọi từ trái tim: Hướng về miền núi Việt Nam</span><span class="english-title">A call from the heart: Towards Vietnam's mountainous regions</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ước mơ nhỏ bé giữa cuộc sống bộn bề của người nghèo Việt Nam</span><span class="english-title">Small dreams amidst the bustling lives of the poor in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -495,33 +508,33 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chắp nối những ước mơ còn dang dở</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giữ lửa truyền thống giữa bộn bề khó khăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi khó khăn không quật ngã được ý chí</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động vất vả và niềm hy vọng nhỏ nhoi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nét đẹp tâm hồn người dân vùng cao nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi cuộc sống khắc nghiệt thử thách lòng người</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức mạnh phi thường của những bước chân nhỏ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức sống mãnh liệt nơi núi rừng heo hút</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thắp lửa hy vọng trong đêm tối nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thắp sáng những nụ cười tắt lịm</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tình người ấm áp giữa mùa đông khắc nghiệt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ươm mầm tương lai trên mảnh đất cằn cỗi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ước mơ con chữ giữa núi rừng khắc nghiệt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ước mơ nhỏ bé giữa cuộc sống bộn bề</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vẻ đẹp tiềm ẩn của vùng đất và con người nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vòng tay nhân ái sưởi ấm mùa đông</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vượt lên số phận: Những người con vùng cao kiên cường</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vượt qua giới hạn của đói nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nụ cười hiếm hoi của trẻ em vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cuộc sống không điện: Bạn có tưởng tượng được không?</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Hành trình tìm kiếm một bữa ăn no</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ước mơ nhỏ nhoi của cô bé vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng lòng người mẹ đơn thân nơi núi rừng</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi tuổi già không nơi nương tựa</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức mạnh của ý chí vượt lên số phận</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Những câu chuyện cảm động từ vùng đất nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vẻ đẹp kiên cường giữa cảnh đời khắc nghiệt</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chắp nối những ước mơ còn dang dở của người nghèo Việt Nam</span><span class="english-title">Connecting the unfinished dreams of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giữ lửa truyền thống giữa bộn bề khó khăn ở Việt Nam</span><span class="english-title">Keeping traditions alive amidst overwhelming difficulties in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khi khó khăn không quật ngã được ý chí của người Việt Nam</span><span class="english-title">When hardship cannot break the will of Vietnamese people</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lao động vất vả và niềm hy vọng nhỏ nhoi của người nghèo Việt Nam</span><span class="english-title">Hard labor and the faint hope of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nét đẹp tâm hồn người dân vùng cao nghèo khó Việt Nam</span><span class="english-title">The beautiful soul of poor highland people in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi cuộc sống khắc nghiệt thử thách lòng người Việt Nam</span><span class="english-title">Where harsh life tests the human spirit in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức mạnh phi thường của những bước chân nhỏ ở Việt Nam</span><span class="english-title">Extraordinary strength of small footsteps in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức sống mãnh liệt nơi núi rừng heo hút Việt Nam</span><span class="english-title">Vibrant life in remote Vietnamese mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thắp lửa hy vọng trong đêm tối nghèo khó ở Việt Nam</span><span class="english-title">Kindling hope in the dark nights of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thắp sáng những nụ cười tắt lịm của trẻ em nghèo Việt Nam</span><span class="english-title">Lighting up the faded smiles of poor Vietnamese children</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tình người ấm áp giữa mùa đông khắc nghiệt ở Việt Nam</span><span class="english-title">Warm human kindness amidst harsh winters in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ươm mầm tương lai trên mảnh đất cằn cỗi ở Việt Nam</span><span class="english-title">Nurturing future seeds on barren land in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ước mơ con chữ giữa núi rừng khắc nghiệt Việt Nam</span><span class="english-title">Dream of literacy amidst Vietnam's harsh mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ước mơ nhỏ bé giữa cuộc sống bộn bề của người nghèo Việt Nam</span><span class="english-title">Small dreams amidst the bustling lives of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vẻ đẹp tiềm ẩn của vùng đất và con người nghèo khó Việt Nam</span><span class="english-title">Hidden beauty of Vietnam's impoverished land and people</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vòng tay nhân ái sưởi ấm mùa đông ở Việt Nam</span><span class="english-title">Compassionate embrace warming winter in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vượt lên số phận: Những người con vùng cao kiên cường Việt Nam</span><span class="english-title">Overcoming destiny: Resilient highland people of Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vượt qua giới hạn của đói nghèo ở Việt Nam</span><span class="english-title">Transcending the limits of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nụ cười hiếm hoi của trẻ em vùng cao Việt Nam</span><span class="english-title">Rare smiles of highland children in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cuộc sống không điện ở Việt Nam: Bạn có tưởng tượng được không?</span><span class="english-title">Life without electricity in Vietnam: Can you imagine?</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Hành trình tìm kiếm một bữa ăn no ở Việt Nam</span><span class="english-title">The journey to find a full meal in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ước mơ nhỏ nhoi của cô bé vùng cao Việt Nam</span><span class="english-title">The small dream of a highland girl in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tiếng lòng người mẹ đơn thân nơi núi rừng Việt Nam</span><span class="english-title">The heartfelt voice of a single mother in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khi tuổi già không nơi nương tựa ở Việt Nam</span><span class="english-title">When old age has no support in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức mạnh của ý chí vượt lên số phận ở Việt Nam</span><span class="english-title">The power of will to overcome destiny in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Những câu chuyện cảm động từ vùng đất nghèo Việt Nam</span><span class="english-title">Touching stories from impoverished regions of Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vẻ đẹp kiên cường giữa cảnh đời khắc nghiệt ở Việt Nam</span><span class="english-title">Resilient beauty amidst harsh lives in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -533,13 +546,13 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cuộc sống nghèo khó ở vùng núi [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cuộc sống mưu sinh vất vả tại [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đường đến trường gian nan ở [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khó khăn chồng chất ở [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà tạm bợ vùng cao [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nghèo đói đeo bám người dân [Tên tỉnh/huyện cụ thể nếu có]</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có]</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cuộc sống nghèo khó ở vùng núi [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Impoverished life in the mountainous region of [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cuộc sống mưu sinh vất vả tại [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Arduous livelihood in [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đường đến trường gian nan ở [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Difficult path to school in [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khó khăn chồng chất ở [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Overwhelming difficulties in [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái nhà tạm bợ vùng cao [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Makeshift shelters in the highlands of [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nghèo đói đeo bám người dân [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Poverty haunting the people of [Specific Province/District if applicable], Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Thiếu thốn trăm bề ở núi rừng [Tên tỉnh/huyện cụ thể nếu có], Việt Nam</span><span class="english-title">Hundredfold hardships in the mountains of [Specific Province/District if applicable], Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -551,28 +564,28 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt trẻ thơ lạc lõng trên con đường đến trường</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối nuốt chửng cuộc sống vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và những nỗi sợ hãi thầm kín</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và sự cô đơn bao trùm</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn đạm bạc và những giọt nước mắt lặng lẽ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đôi bàn tay chai sạn và tương lai mờ mịt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc mơ về một tấm nệm ấm áp</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ không trọn vẹn và những lo toan</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây: Nỗi đau thấu xương</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát vọng nhỏ bé về một ngọn đèn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét kể chuyện đời nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi, hy vọng mỏng manh</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi những điều bình dị trở thành ước mơ xa xỉ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng thở dài dưới mái nhà dột nát</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị đắng của cuộc đời trong từng bữa ăn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vị mặn của nước mắt trong bữa cơm trắng muối</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bí mật đằng sau những mái nhà tạm bợ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện gì xảy ra khi không có nước sạch?</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ánh mắt khao khát một viên thuốc</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ánh mắt trẻ thơ lạc lõng trên con đường đến trường ở Việt Nam</span><span class="english-title">Lost eyes of children on the way to school in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối nuốt chửng cuộc sống vùng cao nghèo khó Việt Nam</span><span class="english-title">Darkness engulfing life in Vietnam's impoverished highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối và những nỗi sợ hãi thầm kín của người nghèo Việt Nam</span><span class="english-title">Darkness and hidden fears of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối và sự cô đơn bao trùm cộng đồng nghèo Việt Nam</span><span class="english-title">Darkness and loneliness enveloping poor communities in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa ăn đạm bạc và những giọt nước mắt lặng lẽ ở Việt Nam</span><span class="english-title">Simple meals and silent tears in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span><span class="english-title">Meals filled with tears: Hunger and hardship in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đôi bàn tay chai sạn và tương lai mờ mịt của người nghèo Việt Nam</span><span class="english-title">Calloused hands and a bleak future for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc mơ về một tấm nệm ấm áp cho người nghèo Việt Nam</span><span class="english-title">Dream of a warm mattress for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ không trọn vẹn và những lo toan của người nghèo Việt Nam</span><span class="english-title">Incomplete sleep and worries of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ trên cành cây: Nỗi đau thấu xương của người nghèo Việt Nam</span><span class="english-title">Sleeping on tree branches: Bone-piercing pain of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi Việt Nam</span><span class="english-title">Tears on the terraced fields: Arduous life in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khát vọng nhỏ bé về một ngọn đèn cho người nghèo Việt Nam</span><span class="english-title">Small desire for a lamp for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái tôn rỉ sét kể chuyện đời nghèo khó ở Việt Nam</span><span class="english-title">Rusted tin roofs tell stories of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mồ hôi rơi, hy vọng mỏng manh của người nghèo Việt Nam</span><span class="english-title">Sweat falls, fragile hope of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span><span class="english-title">Where dreams are left behind: Poverty in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi những điều bình dị trở thành ước mơ xa xỉ của người nghèo Việt Nam</span><span class="english-title">Where simple things become luxurious dreams for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tiếng thở dài dưới mái nhà dột nát ở Việt Nam</span><span class="english-title">Sighs under leaky roofs in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vị đắng của cuộc đời trong từng bữa ăn của người nghèo Việt Nam</span><span class="english-title">The bitterness of life in every meal of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vị mặn của nước mắt trong bữa cơm trắng muối ở Việt Nam</span><span class="english-title">The salty taste of tears in plain rice and salt meals in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bí mật đằng sau những mái nhà tạm bợ của người nghèo Việt Nam</span><span class="english-title">The secret behind the makeshift shelters of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chuyện gì xảy ra khi không có nước sạch ở Việt Nam?</span><span class="english-title">What happens when there's no clean water in Vietnam?</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ánh mắt khao khát một viên thuốc của người nghèo Việt Nam</span><span class="english-title">Eyes longing for a pill from the poor in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -584,37 +597,37 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bóng tối và nỗi sợ hãi bủa vây mỗi đêm</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa ăn thiếu chất, sức khỏe suy kiệt dần</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm rau đạm bạc, sức tàn lực kiệt: Cuộc sống thiếu thốn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cơm trắng muối, rau rừng: Bữa ăn hàng ngày của người nghèo Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ chập chờn trên đất lạnh: Nỗi khổ của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giấc ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi cái ăn cái mặc là cả một cuộc chiến</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khi mái nhà không che nổi mưa nắng: Cảnh đời vùng khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không điện, không nước sạch: Bóng tối và cơn khát ở núi rừng Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Lao động chân tay bấp bềnh: Mưu sinh nơi rẻo cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà dột nát, tương lai mịt mù</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái tôn rỉ sét, tấm bạt rách: Nơi trú ẩn vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mồ hôi rơi trên nương rẫy, đói nghèo vẫn bủa vây</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh vất vả, tương lai mờ mịt</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc ngủ là nỗi ám ảnh: Cuộc sống không tiện nghi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đêm tối không đèn: Cuộc sống chìm trong bóng tối</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mưu sinh từ phân bò: Cuộc đời lam lũ vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nước đọng vũng: Nguồn sống đầy rủi ro</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Mùa màng thất bát: Nỗi ám ảnh đói nghèo</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối bao trùm, không ánh điện: Sinh hoạt khó khăn vùng núi Việt Nam</span><span class="english-title">Darkness engulfing, no electricity: Difficult daily life in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bóng tối và nỗi sợ hãi bủa vây mỗi đêm ở Việt Nam</span><span class="english-title">Darkness and fear surrounding every night in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa ăn thiếu chất, sức khỏe suy kiệt dần ở Việt Nam</span><span class="english-title">Malnourished meals, gradually deteriorating health in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa cơm chan đầy nước mắt: Đói khổ ở Việt Nam</span><span class="english-title">Meals filled with tears: Hunger and hardship in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cơm rau đạm bạc, sức tàn lực kiệt: Cuộc sống thiếu thốn ở Việt Nam</span><span class="english-title">Simple rice and vegetables, exhausted strength: Life of scarcity in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cơm trắng muối, rau rừng: Bữa ăn hàng ngày của người nghèo Việt Nam</span><span class="english-title">Plain rice with salt, wild vegetables: Daily meals of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ chập chờn trên đất lạnh: Nỗi khổ của người nghèo Việt Nam</span><span class="english-title">Restless sleep on cold ground: The suffering of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giấc ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi Việt Nam</span><span class="english-title">Sleeping on tree branches, cold ground: Harsh mountain life in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giọt nước mắt trên nương rẫy: Cuộc sống lam lũ vùng núi Việt Nam</span><span class="english-title">Tears on the terraced fields: Arduous life in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khi cái ăn cái mặc là cả một cuộc chiến của người nghèo Việt Nam</span><span class="english-title">When food and clothing are a battle for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khi mái nhà không che nổi mưa nắng: Cảnh đời vùng khó Việt Nam</span><span class="english-title">When roofs can't block rain or sun: The plight of disadvantaged areas in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Không điện, không nước sạch: Bóng tối và cơn khát ở núi rừng Việt Nam</span><span class="english-title">No electricity, no clean water: Darkness and thirst in Vietnam's mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Lao động chân tay bấp bềnh: Mưu sinh nơi rẻo cao Việt Nam</span><span class="english-title">Unstable manual labor: Livelihood in Vietnam's remote highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái nhà dột nát, tương lai mịt mù của người nghèo Việt Nam</span><span class="english-title">Leaky roofs, bleak future for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái tôn rỉ sét, tấm bạt rách: Nơi trú ẩn vùng cao Việt Nam</span><span class="english-title">Rusted tin roofs, torn tarps: Shelters in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mồ hôi rơi trên nương rẫy, đói nghèo vẫn bủa vây ở Việt Nam</span><span class="english-title">Sweat falls on terraced fields, poverty still surrounds in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mưu sinh vất vả, tương lai mờ mịt của người nghèo Việt Nam</span><span class="english-title">Hard livelihood, bleak future for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ngủ trên cành cây, nền đất lạnh: Cuộc sống khắc nghiệt miền núi Việt Nam</span><span class="english-title">Sleeping on tree branches, cold ground: Harsh mountain life in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi giấc ngủ là nỗi ám ảnh: Cuộc sống không tiện nghi ở Việt Nam</span><span class="english-title">Where sleep is a nightmare: Life without amenities in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Giường đất lạnh: Nỗi ám ảnh mỗi đêm của người nghèo Việt Nam</span><span class="english-title">Cold dirt beds: The nightly nightmare of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Ngủ trên cành cây: Cuộc sống khắc nghiệt nơi rừng núi Việt Nam</span><span class="english-title">Sleeping on tree branches: Harsh life in Vietnam's forests and mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bữa cơm lá rừng: Cuộc sống lay lắt qua ngày ở Việt Nam</span><span class="english-title">Forest leaf meals: Day-to-day survival in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khát nước sạch: Cuộc chiến sinh tồn ở vùng cao Việt Nam</span><span class="english-title">Thirst for clean water: The struggle for survival in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đêm tối không đèn: Cuộc sống chìm trong bóng tối ở Việt Nam</span><span class="english-title">Dark nights without light: Life submerged in darkness in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mưu sinh từ phân bò: Cuộc đời lam lũ vùng cao Việt Nam</span><span class="english-title">Livelihood from cow dung: The arduous life in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đồng tiền mồ hôi: Nỗi lo từng bữa của người nông dân Việt Nam</span><span class="english-title">Sweat money: The daily worry of Vietnamese farmers</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mái nhà cheo leo: Nỗi sợ hãi mùa mưa bão ở Việt Nam</span><span class="english-title">Precarious roofs: The fear of rainy and stormy seasons in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nước đọng vũng: Nguồn sống đầy rủi ro ở Việt Nam</span><span class="english-title">Stagnant puddle water: A risky source of life in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Không có nhà vệ sinh: Vấn đề nhức nhối vùng sâu Việt Nam</span><span class="english-title">No toilets: A pressing issue in remote areas of Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sống trong hang đá: Cuộc đời nguyên thủy giữa hiện đại ở Việt Nam</span><span class="english-title">Living in caves: Primitive life amidst modernity in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Mùa màng thất bát: Nỗi ám ảnh đói nghèo ở Việt Nam</span><span class="english-title">Failed harvests: The haunting fear of poverty in Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -626,12 +639,12 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không tiền chữa, đành phó mặc số phận</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật không thuốc: Khi cái chết cận kề</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật không tiền chữa, đành phó mặc số phận ở Việt Nam</span><span class="english-title">Illness without money for treatment, resigned to fate in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật không thuốc, tương lai mịt mù: Góc khuất vùng cao Việt Nam</span><span class="english-title">Illness without medicine, bleak future: A hidden corner of Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Khát khao thuốc men: Khi bệnh tật bủa vây vùng cao Việt Nam</span><span class="english-title">Longing for medicine: When illness surrounds Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật không thuốc: Khi cái chết cận kề người nghèo Việt Nam</span><span class="english-title">Illness without medicine: When death is near for the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Bệnh tật triền miên: Vòng luẩn quẩn của nghèo đói ở Việt Nam</span><span class="english-title">Chronic illness: The vicious cycle of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Người khuyết tật: Cuộc chiến thầm lặng nơi vùng cao Việt Nam</span><span class="english-title">People with disabilities: The silent struggle in Vietnam's highlands</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -643,15 +656,15 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Chuyện chưa kể về những phận đời nghèo khó</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nơi cuộc sống khắc nghiệt thử thách lòng người</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Nỗi lo cơm áo gạo tiền đè nặng vai gầy</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Sức sống mãnh liệt nơi núi rừng heo hút</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Vượt qua giới hạn của đói nghèo</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Tiếng khóc trẻ thơ: Khi đói khát bủa vây</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Chuyện chưa kể về những phận đời nghèo khó ở Việt Nam</span><span class="english-title">Untold stories of impoverished lives in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Đằng sau vẻ đẹp hùng vĩ là cuộc sống nhọc nhằn của người nghèo Việt Nam</span><span class="english-title">Behind the majestic beauty is the arduous life of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi giấc mơ bị bỏ lại: Nghèo đói ở vùng cao Việt Nam</span><span class="english-title">Where dreams are left behind: Poverty in Vietnam's highlands</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nơi cuộc sống khắc nghiệt thử thách lòng người Việt Nam</span><span class="english-title">Where harsh life tests the human spirit in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Nỗi lo cơm áo gạo tiền đè nặng vai gầy của người nghèo Việt Nam</span><span class="english-title">The burden of food and money weighing on the thin shoulders of the poor in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Sức sống mãnh liệt nơi núi rừng heo hút Việt Nam</span><span class="english-title">Vibrant life in remote Vietnamese mountains</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Vượt qua giới hạn của đói nghèo ở Việt Nam</span><span class="english-title">Transcending the limits of poverty in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Tiếng khóc trẻ thơ: Khi đói khát bủa vây ở Việt Nam</span><span class="english-title">Children's cries: When hunger and thirst surround in Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">Cô đơn tuổi già: Người lớn tuổi sống một mình nơi heo hút Việt Nam</span><span class="english-title">Lonely old age: Elderly living alone in remote Vietnam</span></div></li>
         </ul>
 
         <div class="category-header-row">
@@ -663,12 +676,12 @@
             </span>
         </div>
         <ul class="category-list">
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Góc khuất của Việt Nam</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cần lắm sự sẻ chia</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi những ước mơ còn dang dở</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Nơi cuộc sống là một thử thách</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Vùng đất của những phận đời cần giúp đỡ</span></li>
-            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><span>[Tên tỉnh/huyện cụ thể nếu có]: Tiếng gọi từ trái tim núi rừng</span></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Góc khuất của Việt Nam</span><span class="english-title">[Specific Province/District if applicable], Vietnam: A hidden corner of Vietnam</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Nơi cần lắm sự sẻ chia</span><span class="english-title">[Specific Province/District if applicable], Vietnam: A place in great need of sharing</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Nơi những ước mơ còn dang dở</span><span class="english-title">[Specific Province/District if applicable], Vietnam: Where dreams remain unfinished</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Nơi cuộc sống là một thử thách</span><span class="english-title">[Specific Province/District if applicable], Vietnam: Where life is a challenge</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Vùng đất của những phận đời cần giúp đỡ</span><span class="english-title">[Specific Province/District if applicable], Vietnam: A land of lives needing help</span></div></li>
+            <li class="flex items-center"><input type="checkbox" class="mr-2 rounded-sm text-blue-600 focus:ring-blue-500"><div><span class="vietnamese-title">[Tên tỉnh/huyện cụ thể nếu có], Việt Nam: Tiếng gọi từ trái tim núi rừng</span><span class="english-title">[Specific Province/District if applicable], Vietnam: A call from the heart of the mountains</span></div></li>
         </ul>
 
         <script>
@@ -706,24 +719,81 @@
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
+            // Function to translate text using Gemini API
+            async function translateText(vietnameseTexts) {
+                const prompt = `Translate the following Vietnamese sentences to English, maintaining the order and providing one translation per line. Do not add any introductory or concluding remarks, just the translations:\n${vietnameseTexts.join('\n')}`;
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        responseMimeType: "text/plain" 
+                    }
+                };
+                const apiKey = ""; // Canvas will provide this
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const translatedText = result.candidates[0].content.parts[0].text;
+                        return translatedText.split('\n').map(s => s.trim());
+                    } else {
+                        console.error('Translation API response error:', result);
+                        return vietnameseTexts.map(() => 'Translation unavailable.'); 
+                    }
+                } catch (error) {
+                    console.error('Error during translation:', error);
+                    return vietnameseTexts.map(() => 'Translation error.'); 
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', async () => {
                 const searchInput = document.getElementById('searchInput');
                 const categoryLists = document.querySelectorAll('.container > ul.category-list');
-                const tipsSection = document.getElementById('tips');
+                
+                const allVietnameseTitles = [];
+                const titleElements = [];
 
-                // Assign unique IDs to checkboxes and attach event listeners
+                // Collect all Vietnamese titles and their corresponding elements
                 categoryLists.forEach(list => {
-                    const items = list.getElementsByTagName('li');
-                    Array.from(items).forEach((item, index) => {
-                        const checkbox = item.querySelector('input[type="checkbox"]');
-                        const textContent = item.querySelector('span').textContent.trim();
-                        // Create a simple, unique ID for each checkbox
-                        checkbox.id = `checkbox-${list.id}-${index}-${textContent.replace(/[^a-zA-Z0-9]/g, '').substring(0, 10)}`;
-                        checkbox.addEventListener('change', saveCheckboxStates);
+                    const items = list.querySelectorAll('li');
+                    items.forEach(item => {
+                        const vietnameseSpan = item.querySelector('.vietnamese-title');
+                        if (vietnameseSpan) {
+                            allVietnameseTitles.push(vietnameseSpan.textContent.trim());
+                            titleElements.push(item);
+                        }
                     });
                 });
 
-                // Load states after IDs are assigned
+                // Translate all titles
+                const translatedTitles = await translateText(allVietnameseTitles);
+
+                // Update the HTML with translated titles and assign unique IDs to checkboxes
+                titleElements.forEach((item, index) => {
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    const vietnameseSpan = item.querySelector('.vietnamese-title');
+                    const englishSpan = item.querySelector('.english-title');
+
+                    // Set English translation
+                    if (englishSpan && translatedTitles[index]) {
+                        englishSpan.textContent = translatedTitles[index];
+                    }
+
+                    // Create a simple, unique ID for each checkbox based on Vietnamese text
+                    // This ensures consistent IDs even after translation
+                    const originalVietnameseText = vietnameseSpan.textContent.trim();
+                    checkbox.id = `checkbox-${item.closest('ul').id}-${index}-${originalVietnameseText.replace(/[^a-zA-Z0-9]/g, '').substring(0, 10)}`;
+                    checkbox.addEventListener('change', saveCheckboxStates);
+                });
+
+                // Load states after IDs are assigned and content is updated
                 loadCheckboxStates();
 
                 // Dropdown functionality
@@ -750,7 +820,6 @@
                     });
                 });
 
-
                 searchInput.addEventListener('keyup', (event) => {
                     const searchTerm = event.target.value.toLowerCase();
                     let anyCategoryVisible = false;
@@ -763,8 +832,10 @@
 
                         for (let i = 0; i < items.length; i++) {
                             const item = items[i];
-                            const text = item.textContent || item.innerText;
-                            if (text.toLowerCase().includes(searchTerm)) {
+                            const vietnameseText = item.querySelector('.vietnamese-title')?.textContent.toLowerCase() || '';
+                            const englishText = item.querySelector('.english-title')?.textContent.toLowerCase() || '';
+
+                            if (vietnameseText.includes(searchTerm) || englishText.includes(searchTerm)) {
                                 item.style.display = 'flex'; /* Ensure flex display is restored */
                                 hasVisibleItemsInList = true;
                             } else {
@@ -774,8 +845,6 @@
 
                         // Get the associated category-header-row (which contains H2 and icon)
                         const categoryHeaderRow = list.previousElementSibling;
-                        // Get the preceding HR divider
-                        // Note: The main section divider is now before the categories, so no need to hide it here.
                         // Only hide category header rows if no items are visible.
                         if (categoryHeaderRow && categoryHeaderRow.classList.contains('category-header-row')) {
                             if (hasVisibleItemsInList) {
