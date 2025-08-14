@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Custom styling for the checkbox itself to ensure consistent size and appearance */
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #9ca3af;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            flex-shrink: 0; /* Prevents the checkbox from shrinking on smaller screens */
+        }
+        input[type="checkbox"]:checked {
+            background-color: #7c3aed; /* Deep purple */
+            border-color: #7c3aed;
+        }
+        input[type="checkbox"]:checked:after {
+            content: '\2713'; /* Correct checkmark character */
+            display: block;
+            color: white;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            text-align: center;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            transition: background-color 0.2s ease-in-out;
+            border-bottom: 1px solid #e5e7eb; /* Subtle line between items */
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item:hover {
+            background-color: #f9fafb;
+        }
+        .checklist-item-text {
+            flex-grow: 1;
+            line-height: 1.5rem;
+        }
+        .collapsible-content {
+            max-height: 1000px; /* A large value for the transition */
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .collapsible-content.collapsed {
+            max-height: 0;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 max-w-3xl w-full">
+        <!-- Header and Progress Tracker -->
+        <div class="flex items-center justify-between mb-6 border-b pb-4 border-gray-200">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900">Video Checklist</h1>
+            <div class="text-lg font-semibold text-gray-600">
+                <span id="progress-text">0 of 17</span> items completed
+            </div>
+        </div>
+
+        <div id="main-checklist" class="space-y-6">
+
+            <!-- Collapsible Section: During Filming -->
+            <div class="border border-gray-300 rounded-xl overflow-hidden">
+                <div id="filming-toggle" class="flex items-center justify-between p-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">During Filming</h2>
+                    <span id="filming-arrow" class="transform rotate-0 transition-transform duration-300 text-gray-500 text-2xl">+</span>
+                </div>
+                <ul id="filming-content" class="list-none text-gray-700 collapsible-content p-4">
+                    <li class="checklist-item">
+                        <input type="checkbox" id="filming-1">
+                        <label for="filming-1" class="checklist-item-text">Ask for likes, comments, and ad views earlier in the video.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="filming-2">
+                        <label for="filming-2" class="checklist-item-text">Occasionally, ask for donations for the Chicken Farm, and ask viewers to watch older videos to vote on which families deserve to receive the chickens. (Note: This is not necessary in every video.)</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="filming-3">
+                        <label for="filming-3" class="checklist-item-text">Occasionally, ask for donations for the Water Supply project. (Note: This is not necessary in every video.)</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="filming-4">
+                        <label for="filming-4" class="checklist-item-text">Occasionally, mention your salary versus expenses to explain the challenges of keeping up.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="filming-5">
+                        <label for="filming-5" class="checklist-item-text">At the end of the video, state that you don't expect anything in return and will never return to demand anything. This helps local viewers understand your mission and prevents them from being scammed.</label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Collapsible Section: Before Upload -->
+            <div class="border border-gray-300 rounded-xl overflow-hidden">
+                <div id="before-upload-toggle" class="flex items-center justify-between p-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Before Upload</h2>
+                    <span id="before-upload-arrow" class="transform rotate-0 transition-transform duration-300 text-gray-500 text-2xl">+</span>
+                </div>
+                <ul id="before-upload-content" class="list-none text-gray-700 collapsible-content p-4">
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-1">
+                        <label for="before-upload-1" class="checklist-item-text">Does the video have a catchy thumbnail that grabs the viewer's attention?</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-2">
+                        <label for="before-upload-2" class="checklist-item-text">Does the video have a catchy title that grabs the viewer's attention?</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-3">
+                        <label for="before-upload-3" class="checklist-item-text">Does the video have a good video title with strong keywords for SEO?</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-4">
+                        <label for="before-upload-4" class="checklist-item-text">Does the video have a good description with strong keywords for SEO?</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-5">
+                        <label for="before-upload-5" class="checklist-item-text">Does the video have a strong initial 15-30 second hook to get viewers to click?</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="before-upload-6">
+                        <label for="before-upload-6" class="checklist-item-text">Create End Screens.</label>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Collapsible Section: After Upload -->
+            <div class="border border-gray-300 rounded-xl overflow-hidden">
+                <div id="after-upload-toggle" class="flex items-center justify-between p-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">After Upload</h2>
+                    <span id="after-upload-arrow" class="transform rotate-0 transition-transform duration-300 text-gray-500 text-2xl">+</span>
+                </div>
+                <ul id="after-upload-content" class="list-none text-gray-700 collapsible-content p-4">
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-1">
+                        <label for="after-upload-1" class="checklist-item-text">Start a comment section with a question or comment that encourages viewers to participate.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-2">
+                        <label for="after-upload-2" class="checklist-item-text">Wait 2-3 days before reviewing and replying to comments.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-3">
+                        <label for="after-upload-3" class="checklist-item-text">Don't reply to comments by just clicking "like." Respond with a real comment for those that need a reply. This makes viewers feel heard and builds a stronger community for your channel.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-4">
+                        <label for="after-upload-4" class="checklist-item-text">Add the video to a playlist.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-5">
+                        <label for="after-upload-5" class="checklist-item-text">Create "Shorts" for the video. Make sure the "Short" is catchy enough to drive views to your main video.</label>
+                    </li>
+                    <li class="checklist-item">
+                        <input type="checkbox" id="after-upload-6">
+                        <label for="after-upload-6" class="checklist-item-text">Promote the new video on Facebook.</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="mt-6 flex justify-end">
+            <button id="reset-button" class="bg-red-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-red-700 transition-colors duration-200">
+                Reset Checklist
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progressText = document.getElementById('progress-text');
+            const resetButton = document.getElementById('reset-button');
+            const totalItems = checkboxes.length;
+            const storageKey = 'videoChecklistState';
+
+            // Collapsible section elements
+            const collapsibleSections = {
+                'filming-toggle': 'filming-content',
+                'before-upload-toggle': 'before-upload-content',
+                'after-upload-toggle': 'after-upload-content'
+            };
+
+            // Function to save the state of checkboxes and collapsible sections to local storage
+            function saveState() {
+                try {
+                    const state = {
+                        checked: {},
+                        collapsed: {}
+                    };
+                    checkboxes.forEach(checkbox => {
+                        state.checked[checkbox.id] = checkbox.checked;
+                    });
+                    for (const toggleId in collapsibleSections) {
+                        const contentId = collapsibleSections[toggleId];
+                        const content = document.getElementById(contentId);
+                        state.collapsed[contentId] = content.classList.contains('collapsed');
+                    }
+                    localStorage.setItem(storageKey, JSON.stringify(state));
+                } catch (error) {
+                    console.error('Error saving state to local storage:', error);
+                }
+            }
+
+            // Function to load the saved state from local storage
+            function loadState() {
+                try {
+                    const savedState = localStorage.getItem(storageKey);
+                    if (savedState) {
+                        const state = JSON.parse(savedState);
+
+                        // Load checkbox state
+                        checkboxes.forEach(checkbox => {
+                            if (state.checked[checkbox.id]) {
+                                checkbox.checked = true;
+                            }
+                        });
+
+                        // Load collapsible section state
+                        for (const toggleId in collapsibleSections) {
+                            const contentId = collapsibleSections[toggleId];
+                            const content = document.getElementById(contentId);
+                            const arrow = document.getElementById(toggleId.replace('toggle', 'arrow'));
+                            if (state.collapsed[contentId]) {
+                                content.classList.add('collapsed');
+                                arrow.textContent = '+';
+                            } else {
+                                content.classList.remove('collapsed');
+                                arrow.textContent = '-';
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error loading state from local storage:', error);
+                }
+            }
+
+            // Function to update the progress counter
+            function updateProgress() {
+                const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                progressText.textContent = `${checkedCount} of ${totalItems}`;
+            }
+
+            // Add event listeners
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    updateProgress();
+                    saveState();
+                });
+            });
+
+            // Add click listeners for collapsible sections
+            for (const toggleId in collapsibleSections) {
+                const contentId = collapsibleSections[toggleId];
+                const toggle = document.getElementById(toggleId);
+                const content = document.getElementById(contentId);
+                const arrow = document.getElementById(toggleId.replace('toggle', 'arrow'));
+                toggle.addEventListener('click', () => {
+                    content.classList.toggle('collapsed');
+                    if (content.classList.contains('collapsed')) {
+                        arrow.textContent = '+';
+                    } else {
+                        arrow.textContent = '-';
+                    }
+                    saveState();
+                });
+            }
+
+            // Add click listener for the reset button
+            resetButton.addEventListener('click', () => {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateProgress();
+                saveState();
+            });
+
+            // Initial setup
+            loadState();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
