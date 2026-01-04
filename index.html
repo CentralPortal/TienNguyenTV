@@ -15,181 +15,119 @@
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 90%;
             max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             text-align: center;
+            position: relative;
         }
 
         .modal-content input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .modal-content button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 5px;
+            width: 100%;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
         }
         
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .modal-content input:focus {
+            border-color: #3b82f6;
+            ring: 2px;
+            ring-color: #3b82f6;
         }
 
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
+        .close-button {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            color: #9ca3af;
+            font-size: 24px;
+            font-weight: bold;
             cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #111827;
         }
 
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-        <h1 class="text-4xl font-extrabold text-gray-800 mb-6 text-center">Tiến Nguyễn TV</h1>
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-tight">Tiến Nguyễn TV</h1>
 
         <section class="mb-8">
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Danh Sách Tài Liệu</h2>
-            <ul class="space-y-3">
+            <h2 class="text-xl font-semibold text-gray-600 mb-6 uppercase tracking-wider text-center">Danh Sách Tài Liệu</h2>
+            <ul class="space-y-4">
                 <li>
                     <a href="https://centralportal.github.io/TienNguyenTV/chi-tiet-mat-hang.html"
                        target="_blank"
-                       class="block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
+                       class="block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-6 rounded-xl
+                              transition duration-300 ease-in-out transform hover:-translate-y-1
+                              flex items-center justify-between shadow-lg">
                         <span>Chi tiết các gói quyên góp</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </li>
-                <!-- All other items have been commented out as requested. -->
-                <!--
-                <li>
-                    <a href="https://centralportal.github.io/TienNguyenTV/cau-hoi-phong-van.html"
-                       target="_blank"
-                       class="block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Câu hỏi phỏng vấn</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </li>
-                -->
-                <li>
-                    <a href="#"
-                       onclick="checkPassword('https://centralportal.github.io/TienNguyenTV/tieu-de.html')"
-                       class="block bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Tiêu đề video để thu hút người xem</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </li>
-                <!--
-                <li>
-                    <a href="https://centralportal.github.io/TienNguyenTV/trai-ga.html"
-                       target="_blank"
-                       class="block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Trại gà</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     </a>
                 </li>
 
                 <li>
-                    <a href="https://forms.gle/HYvEip99aVZUEsiz5"
-                       target="_blank"
-                       class="block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Thông Tin Gia Đình</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    <button onclick="checkPassword('https://centralportal.github.io/TienNguyenTV/cau-hoi-phong-van.html')"
+                       class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-xl
+                              transition duration-300 ease-in-out transform hover:-translate-y-1
+                              flex items-center justify-between shadow-lg">
+                        <span>Câu Hỏi Phỏng Vấn</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
-                    </a>
+                    </button>
                 </li>
 
                 <li>
-                    <a href="https://centralportal.github.io/TienNguyenTV/mo-ta-kenh-YouTube.html"
-                       target="_blank"
-                       class="block bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Mô tả kênh YouTube</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    <button onclick="checkPassword('https://centralportal.github.io/TienNguyenTV/tieu-de.html')"
+                       class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-6 rounded-xl
+                              transition duration-300 ease-in-out transform hover:-translate-y-1
+                              flex items-center justify-between shadow-lg">
+                        <span>Tiêu đề video thu hút</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
-                    </a>
+                    </button>
                 </li>
-                -->
+
                 <li>
-                    <a href="#"
-                       onclick="checkPassword('https://centralportal.github.io/TienNguyenTV/mo-ta-van-ban-video.html')"
-                       class="block bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
+                    <button onclick="checkPassword('https://centralportal.github.io/TienNguyenTV/mo-ta-van-ban-video.html')"
+                       class="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-6 rounded-xl
+                              transition duration-300 ease-in-out transform hover:-translate-y-1
+                              flex items-center justify-between shadow-lg">
                         <span>Mô Tả Video</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                         </svg>
-                    </a>
+                    </button>
                 </li>
-                 
-                <!--
-                <li>
-                    <a href="https://centralportal.github.io/TienNguyenTV/video_checklist_VN.html"
-                       target="_blank"
-                       class="block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-5 rounded-lg
-                              transition duration-300 ease-in-out transform hover:scale-105
-                              flex items-center justify-start shadow-md">
-                        <span>Danh Sách Kiểm Tra Video</span>
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                </li>
-                -->
             </ul>
         </section>
 
-        <footer class="text-center text-gray-500 text-sm mt-6">
+        <footer class="text-center text-gray-400 text-xs mt-8">
             <p>&copy; 2025 Tiến Nguyễn TV. All rights reserved.</p>
         </footer>
     </div>
@@ -197,11 +135,14 @@
     <!-- The custom password modal -->
     <div id="passwordModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p>Vui lòng nhập mật khẩu:</p>
-            <input type="password" id="passwordInput">
-            <button id="submitPassword">Gửi</button>
-            <p id="passwordError" class="text-red-500 text-sm mt-2"></p>
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h3 class="text-lg font-bold text-gray-800">Yêu cầu truy cập</h3>
+            <p class="text-gray-500 text-sm mt-1">Vui lòng nhập mật khẩu để tiếp tục</p>
+            <input type="password" id="passwordInput" placeholder="Nhập mật khẩu...">
+            <div class="flex flex-col gap-2">
+                <button id="submitPassword" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition">Xác nhận</button>
+            </div>
+            <p id="passwordError" class="text-red-500 text-xs mt-3 h-4"></p>
         </div>
     </div>
 
@@ -209,11 +150,9 @@
         const PASSWORD = "TienNguyenTV";
         let targetUrl = '';
         
-        // Get the modal, input, and buttons
         const modal = document.getElementById("passwordModal");
         const passwordInput = document.getElementById("passwordInput");
         const submitButton = document.getElementById("submitPassword");
-        const closeButton = document.querySelector(".close-button");
         const errorMessage = document.getElementById("passwordError");
 
         function checkPassword(url) {
@@ -221,36 +160,37 @@
             modal.style.display = "flex";
             errorMessage.textContent = "";
             passwordInput.value = "";
+            passwordInput.focus();
         }
 
-        submitButton.addEventListener("click", () => {
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function handleAuth() {
             if (passwordInput.value === PASSWORD) {
                 window.open(targetUrl, '_blank');
-                modal.style.display = "none";
+                closeModal();
             } else {
                 errorMessage.textContent = "Mật khẩu không đúng. Vui lòng thử lại.";
+                passwordInput.classList.add('border-red-500');
+                setTimeout(() => passwordInput.classList.remove('border-red-500'), 500);
             }
+        }
+
+        submitButton.addEventListener("click", handleAuth);
+
+        passwordInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") handleAuth();
         });
 
-        // Close the modal when the close button is clicked
-        closeButton.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        // Close the modal when the user clicks anywhere outside of the modal
         window.addEventListener("click", (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
+            if (event.target === modal) closeModal();
         });
 
-        // Close modal on escape key press
         window.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && modal.style.display === "flex") {
-                modal.style.display = "none";
-            }
+            if (event.key === "Escape") closeModal();
         });
-
     </script>
 </body>
 </html>
