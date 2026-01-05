@@ -3,144 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sách Kiểm Tra Sản Xuất Video</title>
+    <title>Danh Sách Kiểm Tra Sản Xuất Video - Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax for mathematical notation -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
         body {
-            background-color: #f8fafc;
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
+
         .checkbox-item:checked + span {
             text-decoration: line-through;
             color: #94a3b8;
         }
-        .category-card {
-            transition: transform 0.2s ease;
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .category-card:hover {
-            transform: translateY(-2px);
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .collapsible-active .collapsible-content {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-active .rotate-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <div class="max-w-4xl mx-auto">
-        <!-- Header -->
-        <header class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-slate-800 mb-2">Danh Sách Kiểm Tra Video</h1>
-            <p class="text-slate-600">Theo dõi quy trình làm việc từ trước khi quay đến khi quảng bá. Tiến độ được lưu tự động.</p>
-            
-            <div class="mt-6 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-sm font-medium text-slate-700">Tiến độ tổng thể</span>
-                    <span id="progress-text" class="text-sm font-bold text-blue-600">0%</span>
+<body class="text-slate-900 leading-relaxed">
+
+    <!-- Navigation / Progress Bar (Sticky) -->
+    <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 py-3">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <div class="bg-blue-600 p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
                 </div>
-                <div class="w-full bg-slate-100 rounded-full h-3">
-                    <div id="progress-bar" class="bg-blue-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
-                </div>
-                <button onclick="resetChecklist()" class="mt-4 text-xs text-red-500 hover:text-red-700 font-medium uppercase tracking-wider">Đặt lại tất cả nhiệm vụ</button>
+                <span class="font-bold text-lg hidden sm:inline">Video Checklist</span>
             </div>
-        </header>
-
-        <div id="checklist-container" class="space-y-6">
-            <!-- Nội dung sẽ được chèn bởi JS -->
+            
+            <div class="flex-1 max-w-md w-full">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Tiến độ hoàn thành</span>
+                    <span id="nav-progress-text" class="text-xs font-bold text-blue-600">0%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2">
+                    <div id="nav-progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <footer class="mt-12 pb-8 text-center text-slate-400 text-sm">
-            &copy; Công cụ Danh mục Kiểm tra Video Charity
-        </footer>
+    <div class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar: Table of Contents -->
+        <aside class="lg:col-span-1">
+            <div class="sticky top-24 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                    </svg>
+                    Mục lục
+                </h3>
+                <nav id="toc" class="space-y-1">
+                    <!-- TOC items injected by JS -->
+                </nav>
+                <hr class="my-6 border-slate-100">
+                <button onclick="showResetModal()" class="w-full py-2 px-4 rounded-xl border border-red-100 text-red-500 hover:bg-red-50 transition-colors text-sm font-medium flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Xóa tất cả
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lg:col-span-3">
+            <header class="mb-10">
+                <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">Danh Sách Kiểm Tra Sản Xuất Video</h1>
+                <p class="text-lg text-slate-600 max-w-2xl">
+                    Tối ưu hóa quy trình làm việc từ khâu chuẩn bị bối cảnh đến quản lý cộng đồng sau khi đăng tải.
+                </p>
+            </header>
+
+            <div id="checklist-container" class="space-y-6">
+                <!-- Cards injected by JS -->
+            </div>
+            
+            <!-- Example Math Section (for MathJax validation) -->
+            <div class="mt-12 p-8 bg-blue-50 rounded-2xl border border-blue-100">
+                <h4 class="font-bold text-blue-900 mb-2">Ghi chú về Hiệu suất YouTube</h4>
+                <p class="text-blue-800 text-sm italic">
+                    Công thức ước tính tỷ lệ giữ chân người xem trung bình có thể được biểu diễn như sau:
+                </p>
+                <div class="my-4 text-center text-xl text-blue-900">
+                    $$ R(t) = \frac{V(t)}{V(0)} \times 100\% $$
+                </div>
+                <p class="text-blue-800 text-xs">
+                    Trong đó $V(t)$ là số lượng người xem tại thời điểm $t$ và $V(0)$ là tổng số lượt xem ban đầu.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="custom-modal" class="hidden flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-md w-full border border-slate-100">
+            <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 text-center mb-2">Xác nhận đặt lại?</h3>
+            <p class="text-slate-500 text-center mb-8">Tất cả các mục đã chọn sẽ bị xóa. Hành động này không thể hoàn tác.</p>
+            <div class="flex gap-3">
+                <button onclick="hideResetModal()" class="flex-1 py-3 px-4 bg-slate-100 text-slate-600 font-bold rounded-2xl hover:bg-slate-200 transition-colors">Hủy</button>
+                <button onclick="confirmReset()" class="flex-1 py-3 px-4 bg-red-500 text-white font-bold rounded-2xl hover:bg-red-600 transition-shadow shadow-lg shadow-red-200">Đặt lại ngay</button>
+            </div>
+        </div>
     </div>
 
     <script>
         const checklistData = [
             {
+                id: "pre-production",
                 title: "Trước Khi Quay",
                 items: [
                     "Luân phiên thăm viếng giữa 3 địa điểm (Chú Nhị, Chị Út, Chị Vinh) để bối cảnh video luôn mới mẻ"
                 ]
             },
             {
+                id: "production",
                 title: "Trong Khi Quay",
                 items: [
                     "Giới thiệu rõ ràng về kênh và sứ mệnh để người xem mới nắm bắt được nội dung",
                     "Kêu gọi thích (like), bình luận và xem quảng cáo sớm hơn trong video",
-                    "Hướng mặt về phía máy ảnh và nói chuyện trực tiếp khi có thông điệp quan trọng (đừng vừa đi vừa quay lưng lại)",
+                    "Hướng mặt về phía máy ảnh và nói chuyện trực tiếp khi có thông điệp quan trọng",
                     "Định kỳ kêu gọi quyên góp (đừng đợi đến khi quỹ sắp cạn)",
                     "Nhắc nhở người xem vài lần về đợt quyên góp xây nhà mới khi đang chờ đợi nửa còn lại",
-                    "Thỉnh thoảng đề cập đến lương so với chi phí để giải thích những thách thức trong việc duy trì kênh",
+                    "Thỉnh thoảng đề cập đến lương so với chi phí để giải thích những thách thức duy trì kênh",
                     "Khuyến khích người xem xem các danh sách phát (playlist) để tìm nội dung tương tự",
-                    "Cuối video, khẳng định không mong cầu đáp lại và sẽ không bao giờ quay lại đòi hỏi điều gì (để tránh người dân bị lừa đảo)",
-                    "Giải thích tầm quan trọng của việc 'Like' và 'Comment' giúp thuật toán YouTube đề xuất video đến nhiều người hơn"
+                    "Cuối video, khẳng định không mong cầu đáp lại để tránh người dân bị lừa đảo",
+                    "Giải thích tầm quan trọng của 'Like' và 'Comment' giúp thuật toán YouTube đề xuất video"
                 ]
             },
             {
+                id: "pre-upload",
                 title: "Trước Khi Tải Lên (Upload)",
                 items: [
                     "Hình thu nhỏ (Thumbnail) có bắt mắt và thu hút người xem mới không?",
                     "Tiêu đề video có hấp dẫn để gây chú ý với người xem mới không?",
                     "Tiêu đề video có chứa từ khóa mạnh để tối ưu SEO không?",
-                    "Kiểm tra xem tiêu đề dài có bị mờ/che bởi mốc thời gian (timestamp) không?",
+                    "Kiểm tra xem tiêu đề dài có bị mờ/che bởi mốc thời gian không?",
                     "Mô tả video có chứa từ khóa mạnh để tối ưu SEO không?",
                     "Video có đoạn 'mồi' (hook) 15-30 giây đầu tiên đủ mạnh không?",
-                    "Lời thuyết minh có phù hợp với nội dung không?",
-                    "Lời thuyết minh có được đặt đúng vị trí trong video không?",
-                    "Tạo màn hình kết thúc (End Screens)"
+                    "Lời thuyết minh có phù hợp với nội dung và đúng vị trí không?",
+                    "Tạo màn hình kết thúc (End Screens) để giữ người xem ở lại kênh"
                 ]
             },
             {
+                id: "post-upload",
                 title: "Sau Khi Tải Lên",
                 items: [
                     "Đính kèm link các video liên quan trước đó trong phần bình luận",
-                    "Bắt đầu phần bình luận bằng một câu hỏi hoặc ý kiến để khuyến khích khán giả tương tác",
-                    "Cần tương tác tích cực hơn với người xem",
-                    "Không chỉ nhấn 'Tim', hãy trả lời bằng bình luận thực tế để người xem cảm thấy được lắng nghe",
+                    "Ghim bình luận bằng một câu hỏi để khuyến khích khán giả tương tác",
+                    "Tương tác tích cực: Trả lời bằng bình luận thực tế thay vì chỉ nhấn 'Tim'",
                     "Thêm video vào danh sách phát phù hợp",
                     "Tạo video 'Shorts' hấp dẫn để dẫn dắt người xem vào video chính",
-                    "Quảng bá video mới trên Facebook"
+                    "Quảng bá video mới trên cộng đồng Facebook/Zalo"
                 ]
             },
             {
-                title: "Các Nhiệm Vụ Khác",
+                id: "analytics",
+                title: "Phân Tích & Mục Tiêu",
                 items: [
-                    "Định kỳ xem video từ các kênh khác để học hỏi mẹo quảng bá và tăng người đăng ký",
-                    "Định kỳ hỏi Gemini về cách tăng người đăng ký và cách thu hút người xem",
+                    "Định kỳ xem video từ các kênh khác để học hỏi mẹo quảng bá",
+                    "Hỏi Gemini về cách tăng người đăng ký và cách thu hút người xem",
                     "Xem và tự đánh giá lại video của mình để tìm điểm cần cải thiện",
-                    "Đặt mục tiêu cụ thể về số lượt xem cho mỗi video (viết ra giấy kèm các hành động cụ thể)",
-                    "Đặt mục tiêu cụ thể về số lượng người đăng ký (viết ra giấy kèm các hành động cụ thể)"
+                    "Đặt mục tiêu cụ thể về số lượt xem cho mỗi video (viết ra giấy)",
+                    "Đặt mục tiêu cụ thể về số lượng người đăng ký mới hàng tháng"
                 ]
             }
         ];
 
-        function initChecklist() {
+        function initApp() {
             const container = document.getElementById('checklist-container');
+            const toc = document.getElementById('toc');
             const savedState = JSON.parse(localStorage.getItem('videoChecklistState') || '{}');
             
             checklistData.forEach((section, sIdx) => {
-                const sectionHtml = `
-                    <div class="category-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                        <div class="bg-slate-50 px-6 py-3 border-b border-slate-200">
-                            <h2 class="font-bold text-slate-800">${section.title}</h2>
-                        </div>
-                        <div class="p-6 space-y-4">
-                            ${section.items.map((item, iIdx) => {
-                                const itemId = `item-${sIdx}-${iIdx}`;
-                                const checked = savedState[itemId] ? 'checked' : '';
-                                return `
-                                    <label class="flex items-start space-x-3 cursor-pointer group">
-                                        <input type="checkbox" 
-                                               id="${itemId}" 
-                                               class="checkbox-item mt-1 h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 transition cursor-pointer" 
-                                               ${checked}
-                                               onchange="saveState()">
-                                        <span class="text-slate-700 leading-tight group-hover:text-slate-900 transition">${item}</span>
-                                    </label>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
+                // Generate TOC
+                const tocItem = `
+                    <a href="#${section.id}" class="block py-2 px-3 text-sm text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
+                        ${section.title}
+                    </a>
                 `;
-                container.innerHTML += sectionHtml;
+                toc.insertAdjacentHTML('beforeend', tocItem);
+
+                // Generate Section Card
+                const cardHtml = `
+                    <section id="${section.id}" class="category-card group bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden collapsible-active">
+                        <div class="flex items-center justify-between bg-white px-6 py-5 cursor-pointer select-none" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 font-bold text-xs">
+                                    ${sIdx + 1}
+                                </div>
+                                <h2 class="text-xl font-bold text-slate-800">${section.title}</h2>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 rotate-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="px-6 pb-6 space-y-4 border-t border-slate-50 pt-4">
+                                ${section.items.map((item, iIdx) => {
+                                    const itemId = `item-${sIdx}-${iIdx}`;
+                                    const checked = savedState[itemId] ? 'checked' : '';
+                                    return `
+                                        <label class="flex items-start space-x-4 cursor-pointer group p-2 -m-2 hover:bg-slate-50 rounded-xl transition-colors">
+                                            <div class="relative flex items-center mt-0.5">
+                                                <input type="checkbox" 
+                                                       id="${itemId}" 
+                                                       class="checkbox-item peer h-5 w-5 appearance-none rounded-md border border-slate-300 bg-white checked:bg-blue-600 checked:border-blue-600 transition-all cursor-pointer" 
+                                                       ${checked}
+                                                       onchange="saveState()">
+                                                <svg class="absolute w-3.5 h-3.5 mt-0.5 ml-0.5 text-white opacity-0 peer-checked:opacity-100 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                            </div>
+                                            <span class="text-slate-700 text-[15px] leading-snug font-medium transition-all">${item}</span>
+                                        </label>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </section>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
             });
             updateProgress();
+        }
+
+        function toggleSection(header) {
+            const card = header.parentElement;
+            card.classList.toggle('collapsible-active');
         }
 
         function saveState() {
@@ -156,21 +291,31 @@
         function updateProgress() {
             const checkboxes = document.querySelectorAll('.checkbox-item');
             const checked = document.querySelectorAll('.checkbox-item:checked');
-            const percentage = Math.round((checked.length / checkboxes.length) * 100) || 0;
+            const total = checkboxes.length;
+            const percentage = total > 0 ? Math.round((checked.length / total) * 100) : 0;
             
-            document.getElementById('progress-bar').style.width = percentage + '%';
-            document.getElementById('progress-text').innerText = percentage + '%';
+            // Update sticky nav progress
+            document.getElementById('nav-progress-bar').style.width = percentage + '%';
+            document.getElementById('nav-progress-text').innerText = percentage + '%';
         }
 
-        function resetChecklist() {
-            if(confirm("Bạn có chắc chắn muốn xóa tất cả tiến độ không?")) {
-                const checkboxes = document.querySelectorAll('.checkbox-item');
-                checkboxes.forEach(cb => cb.checked = false);
-                saveState();
-            }
+        function showResetModal() {
+            document.getElementById('custom-modal').classList.remove('hidden');
         }
 
-        window.onload = initChecklist;
+        function hideResetModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        function confirmReset() {
+            const checkboxes = document.querySelectorAll('.checkbox-item');
+            checkboxes.forEach(cb => cb.checked = false);
+            saveState();
+            hideResetModal();
+        }
+
+        // Initialize on load
+        window.onload = initApp;
     </script>
 </body>
 </html>
