@@ -3,39 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Câu Hỏi Phỏng Vấn</title>
+    <title>Câu Hỏi Phỏng Vấn (Open-Ended)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom font import for Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light gray background */
-            color: #374151; /* Dark gray text */
+            background-color: #f3f4f6;
+            color: #374151;
         }
-        /* Custom styling for details/summary to ensure consistent look */
         details summary {
-            list-style: none; /* Hide default arrow for summary */
+            list-style: none;
         }
         details summary::-webkit-details-marker {
-            display: none; /* Hide default marker for webkit browsers */
+            display: none;
         }
         details summary:focus {
-            outline: none; /* Remove outline on focus for better aesthetics */
+            outline: none;
         }
-        /* CSS for line-through effect */
         .line-through {
             text-decoration: line-through;
         }
-        /* Utility class to hide elements */
         .hidden-question {
             display: none;
         }
     </style>
-    <!-- MathJax for rendering mathematical notations (if needed in the future) -->
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
 </head>
 <body class="p-4 sm:p-8">
     <div class="container mx-auto max-w-4xl bg-white shadow-xl rounded-2xl p-6 sm:p-10 my-8">
@@ -43,30 +35,24 @@
             <h1 class="text-4xl font-extrabold text-blue-700 mb-2">
                 <span class="block">Câu Hỏi Phỏng Vấn</span>
             </h1>
-            <p class="text-lg text-gray-700">
-                <!-- Removed the specific introductory text as requested. -->
-            </p>
+            <p class="text-sm text-gray-500 italic">Phiên bản câu hỏi mở rộng (Open-ended questions)</p>
         </header>
 
-        <!-- Table of Contents Section -->
         <nav id="table-of-contents" class="mb-8 p-4 bg-gray-100 rounded-lg shadow-sm">
             <h2 class="text-xl font-bold text-gray-800 mb-3">Mục Lục</h2>
-            <ul id="toc-list" class="list-none pl-0 space-y-2">
-                <!-- TOC items will be injected here by JS -->
-            </ul>
+            <ul id="toc-list" class="list-none pl-0 space-y-2"></ul>
         </nav>
 
-        <!-- Toggle for showing/hiding checked questions -->
         <div class="mb-4 text-right">
             <label for="hideCompletedToggle" class="inline-flex items-center cursor-pointer">
                 <input type="checkbox" id="hideCompletedToggle" class="sr-only peer">
-                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                <span class="ms-3 text-sm font-bold">Ẩn/Hiển thị các câu hỏi đã kiểm tra</span>
+                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <span class="ms-3 text-sm font-bold">Ẩn các câu hỏi đã đánh dấu</span>
             </label>
         </div>
 
         <section class="space-y-6">
-            <!-- Category: Thông Tin Chung & Đời Sống (General Information & Daily Life) -->
+            <!-- Category: Thông Tin Chung & Đời Sống -->
             <details id="thong-tin-chung-doi-song" class="group mb-6 p-4 bg-blue-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-blue-600 cursor-pointer">
                     Thông Tin Chung & Đời Sống
@@ -74,33 +60,33 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Có kỷ niệm nào từ thời thơ ấu mà cô/chú/anh/chị vẫn mỉm cười khi nhớ lại không?</li>
-                        <li>Cô/chú/anh/chị bao nhiêu tuổi?</li>
-                        <li>Cô/chú/anh/chị có bao nhiêu đứa con?</li>
-                        <li>Cô/chú/anh/chị có mong muốn được thăm lại quê hương hoặc những nơi đã từng sống không?</li>
-                        <li>Cô/chú/anh/chị có sợ vào ban đêm không?</li>
-                        <li>Cô/chú/anh/chị có giữ liên lạc với người thân ở xa không?</li>
-                        <li>Cô/chú/anh/chị có nhà ở làng không?</li>
-                        <li>Cô/chú/anh/chị sống với ai ở đây?</li>
-                        <li>Chồng của cô/chú/anh/chị đâu rồi?</li>
-                        <li>Cô/chú/anh/chị có nhớ tên và tuổi của mình không?</li>
-                        <li>Có ai trong gia đình cô/chú/anh/chị từng bị bỏ rơi hoặc phải tự xoay sở từ khi còn nhỏ không? Điều đó ảnh hưởng thế nào đến họ?</li>
-                        <li>Khi có người lạ đến thăm, cô/chú/anh/chị thường cảm thấy lo lắng, ngạc nhiên hay vui mừng?</li>
-                        <li>Khi thấy tôi đến, cô/chú/anh/chị có sợ không?</li>
-                        <li>Mặc dù có nhiều khó khăn, nhưng có điều gì tích cực hay tốt đẹp về việc sống ở vùng núi này không?</li>
-                        <li>Một ngày bình thường của cô/chú/anh/chị diễn ra như thế nào, từ lúc thức dậy cho đến khi đi ngủ?</li>
-                        <li>Ngoài việc mưu sinh, có điều gì nhỏ nhặt khiến cô/chú/anh/chị cảm thấy vui vẻ hoặc thoải mái trong cuộc sống hàng ngày không?</li>
-                        <li>Tại sao cô/chú/anh/chị thích sống ở đây?</li>
-                        <li>Tại sao cô/chú/anh/chị không sống ở làng?</li>
-                        <li>Tên của cô/chú/anh/chị là gì?</li>
-                        <li>Điều gì là khó khăn nhất trong một ngày của cô/chú/anh/chị, và làm thế nào để cô/chú/anh/chị vượt qua được nó?</li>
-                        <li>Cô/chú/anh/chị đã sống ở đây bao lâu rồi?</li>
-                        <li>Cô/chú/anh/chị thường dành thời gian rảnh rỗi như thế nào, nếu có?</li>
+                        <li>Kể lại một kỷ niệm đẹp từ thời thơ ấu mà cô/chú vẫn luôn mỉm cười khi nhớ về?</li>
+                        <li>Chia sẻ về hành trình của cô/chú từ khi sinh ra cho đến độ tuổi hiện tại?</li>
+                        <li>Hãy kể về các con của cô/chú và những niềm tự hào mà họ mang lại?</li>
+                        <li>Nếu có cơ hội trở về quê hương hoặc những nơi từng sống, cô/chú mong muốn được làm điều gì nhất?</li>
+                        <li>Cảm giác của cô/chú như thế nào khi màn đêm buông xuống giữa không gian núi rừng này?</li>
+                        <li>Làm thế nào để cô/chú duy trì sợi dây tình cảm với những người thân đang ở xa?</li>
+                        <li>Sự khác biệt lớn nhất giữa cuộc sống ở làng và cuộc sống hiện tại của cô/chú là gì?</li>
+                        <li>Kể về những người đang cùng chung sống và sự gắn bó giữa mọi người trong gia đình?</li>
+                        <li>Chia sẻ về vai trò và sự hiện diện của người chồng/vợ trong cuộc đời cô/chú?</li>
+                        <li>Hồi tưởng lại những cột mốc quan trọng gắn liền với tên và tuổi của mình?</li>
+                        <li>Gia đình cô/chú đã cùng nhau vượt qua những giai đoạn khó khăn nhất như thế nào?</li>
+                        <li>Cô/chú thường có cảm xúc và suy nghĩ gì mỗi khi có người lạ bất ngờ ghé thăm?</li>
+                        <li>Ấn tượng đầu tiên của cô/chú về tôi khi mới xuất hiện là như thế nào?</li>
+                        <li>Điều gì khiến cô/chú cảm thấy gắn bó và yêu mến vùng núi này bất chấp những khó khăn?</li>
+                        <li>Kể về những hoạt động khiến cô/chú cảm thấy bận rộn hoặc thư thả từ lúc bình minh đến khi đêm về?</li>
+                        <li>Những niềm vui nhỏ bé nào giúp cô/chú xua tan mệt mỏi sau một ngày mưu sinh?</li>
+                        <li>Lý do sâu xa nào khiến cô/chú chọn gắn bó với mảnh đất này thay vì một nơi khác?</li>
+                        <li>Điều gì khiến cô/chú cảm thấy cuộc sống ở đây phù hợp với mình hơn là ở trong làng?</li>
+                        <li>Ý nghĩa đằng sau cái tên mà cha mẹ đã đặt cho cô/chú là gì?</li>
+                        <li>Mô tả cách thức cô/chú đối diện và giải quyết thử thách lớn nhất phát sinh trong ngày?</li>
+                        <li>Mảnh đất này đã thay đổi như thế nào trong suốt những năm tháng cô/chú sinh sống ở đây?</li>
+                        <li>Cô/chú thường tìm kiếm sự thư giãn hoặc niềm an ủi ở đâu khi có thời gian rảnh rỗi?</li>
                     </ol>
                 </div>
             </details>
 
-            <!-- Category: Nhà Ở & Điều Kiện Sinh Hoạt (Housing & Living Conditions) -->
+            <!-- Category: Nhà Ở & Điều Kiện Sinh Hoạt -->
             <details id="nha-o-dieu-kien-sinh-hoat" class="group mb-6 p-4 bg-green-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-green-600 cursor-pointer">
                     Nhà Ở & Điều Kiện Sinh Hoạt
@@ -108,34 +94,34 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Cảm giác khi ngủ trên những cành cây cứng hoặc trực tiếp trên nền đất là như thế nào? Điều đó ảnh hưởng đến cơ thể cô/chú/anh/chị ra sao?</li>
-                        <li>Cô/chú/anh/chị có bao giờ lo lắng về việc ngôi nhà của mình có thể bị sập hoặc hư hại trong thời tiết xấu không?</li>
-                        <li>Cô/chú/anh/chị có bị lạnh khi ngủ vào ban đêm không?</li>
-                        <li>Cô/chú/anh/chị làm những điều nhỏ nhặt gì để cố gắng làm cho không gian sống của mình cảm thấy giống như một ngôi nhà hơn?</li>
-                        <li>Cô/chú/anh/chị làm cách nào để giữ ấm trong những tháng lạnh hơn, đặc biệt là vào ban đêm?</li>
-                        <li>Cô/chú/anh/chị hãy mô tả nơi ở hiện tại của mình. Nó được làm từ vật liệu gì?</li>
-                        <li>Điều gì cô/chú/anh/chị mong muốn nhất có trong ngôi nhà của mình để nó thoải mái và an toàn hơn?</li>
-                        <li>Nếu có cơ hội, cô/chú/anh/chị muốn xây dựng một ngôi nhà như thế nào cho gia đình mình?</li>
-                        <li>Nếu có hệ thống vệ sinh (nhà vệ sinh, nơi tắm rửa) thì điều đó có ý nghĩa như thế nào đối với gia đình cô/chú/anh/chị?</li>
-                        <li>Nếu có điện, điều đầu tiên cô/chú/anh/chị muốn làm là gì?</li>
-                        <li>Khi mùa mưa đến, cô/chú/anh/chị thường chuẩn bị như thế nào để đối phó với ảnh hưởng của nó đến nơi ở và giấc ngủ của mình?</li>
-                        <li>Làm thế nào cô/chú/anh/chị bảo vệ gia đình mình khỏi thời tiết khắc nghiệt (mưa, gió, nắng) trong ngôi nhà hiện tại?</li>
-                        <li>Làm thế nào để cô/chú/anh/chị giữ cho không gian sống của mình không bị côn trùng hay động vật gặm nhấm xâm nhập?</li>
-                        <li>Môi trường sống của cô/chú/anh/chị có bị ảnh hưởng bởi động vật hoang dã (rắn, rết, côn trùng) như thế nào?</li>
-                        <li>Mỗi đêm, cô/chú/anh/chị chuẩn bị chỗ ngủ của mình như thế nào?</li>
-                        <li>Mưa có lọt qua mái nhà và ảnh hưởng đến giấc ngủ ban đêm không?</li>
-                        <li>Ngôi nhà hiện tại của gia đình cô/chú/anh/chị đã được xây dựng từ bao lâu rồi và bằng những vật liệu gì?</li>
-                        <li>Ngoài mái nhà bị dột, còn có vấn đề nào khác khiến ngôi nhà trở nên không an toàn hoặc khó chịu (ví dụ: mối mọt, gió lùa, bụi, động vật hoang dã xâm nhập)?</li>
-                        <li>Phần nào của ngôi nhà khiến cô/chú/anh/chị lo lắng nhất?</li>
-                        <li>Thiên nhiên và môi trường xung quanh đóng vai trò gì trong cuộc sống hàng ngày của cô/chú/anh/chị?</li>
-                        <li>Trong những trận mưa bão lớn, gia đình cô/chú/anh/chị thường tìm nơi trú ẩn ở đâu để đảm bảo an toàn?</li>
-                        <li>Từ 'nhà' thực sự có ý nghĩa gì đối với cô/chú/anh/chị, đặc biệt là trong điều kiện sống hiện tại?</li>
-                        <li>Việc thiếu điện và ánh sáng vào ban đêm ảnh hưởng đến những hoạt động nào của gia đình (nấu ăn, học tập, sinh hoạt)?</li>
+                        <li>Mô tả cảm giác thực sự của cơ thể sau mỗi đêm nghỉ ngơi trên địa hình không bằng phẳng như hiện tại?</li>
+                        <li>Những suy nghĩ nào thường xuất hiện trong đầu cô/chú mỗi khi trời nổi giông bão?</li>
+                        <li>Cách cô/chú chống chọi với cái lạnh thấu xương của núi rừng để có một giấc ngủ ngon?</li>
+                        <li>Cô/chú đã trang trí hoặc sắp xếp những gì để nơi ở này thực sự trở thành một "tổ ấm"?</li>
+                        <li>Kể về những sáng kiến sáng tạo của gia đình để giữ ấm trong mùa đông giá rét?</li>
+                        <li>Hãy dẫn tôi đi thăm và mô tả về những vật liệu tự nhiên đã tạo nên nơi ở này?</li>
+                        <li>Nếu được thay đổi một điều duy nhất để ngôi nhà an toàn hơn, cô/chú sẽ chọn làm gì?</li>
+                        <li>Ngôi nhà trong mơ mà cô/chú luôn mong muốn xây dựng cho gia đình trông như thế nào?</li>
+                        <li>Cuộc sống sinh hoạt của cả nhà sẽ thay đổi ra sao nếu có một hệ thống vệ sinh sạch sẽ ngay tại đây?</li>
+                        <li>Hãy tưởng tượng về khoảnh khắc đầu tiên khi bóng đèn điện được thắp sáng trong nhà, cô/chú sẽ làm gì?</li>
+                        <li>Kể về những công việc chuẩn bị kỳ công của gia đình trước khi mùa mưa bão kéo đến?</li>
+                        <li>Gia đình đã phối hợp với nhau như thế nào để bảo vệ nhau trước sự khắc nghiệt của thời tiết?</li>
+                        <li>Chia sẻ những kinh nghiệm ngăn chặn côn trùng và thú rừng xâm nhập vào không gian sống?</li>
+                        <li>Kể về những lần đối mặt với động vật hoang dã và cách cô/chú xử lý tình huống đó?</li>
+                        <li>Mô tả chi tiết các bước chuẩn bị cho chỗ ngủ mỗi tối để đảm bảo sự thoải mái nhất có thể?</li>
+                        <li>Trời mưa ảnh hưởng như thế nào đến sự yên tĩnh và giấc ngủ của cả gia đình?</li>
+                        <li>Lịch sử hình thành và những kỷ niệm gắn liền với việc dựng xây ngôi nhà hiện tại?</li>
+                        <li>Ngoài vấn đề dột nát, điều gì ở cấu trúc ngôi nhà khiến cô/chú cảm thấy bất tiện nhất?</li>
+                        <li>Tại sao góc này/phần này của ngôi nhà lại khiến cô/chú lo lắng nhiều nhất?</li>
+                        <li>Thiên nhiên xung quanh vừa là bạn, vừa là thử thách, cô/chú nhìn nhận mối quan hệ này như thế nào?</li>
+                        <li>Mô tả kế hoạch di chuyển và tìm nơi trú ẩn của gia đình khi có thiên tai lớn xảy ra?</li>
+                        <li>Đối với cô/chú, một nơi như thế nào thì mới được gọi là "Nhà" đúng nghĩa?</li>
+                        <li>Bóng tối vào ban đêm hạn chế những ước muốn hay dự định nào của gia đình cô/chú?</li>
                     </ol>
                 </div>
             </details>
 
-            <!-- Category: Lương Thực & Nước Sạch (Food & Clean Water) -->
+            <!-- Category: Lương Thực & Nước Sạch -->
             <details id="luong-thuc-nuoc-sach" class="group mb-6 p-4 bg-yellow-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-yellow-600 cursor-pointer">
                     Lương Thực & Nước Sạch
@@ -143,30 +129,21 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Cô/chú/anh/chị đã ăn trưa chưa?</li>
-                        <li>Cô/chú/anh/chị cảm thấy thế nào khi phải vật lộn để cung cấp đủ thức ăn cho các con?</li>
-                        <li>Cô/chú/anh/chị lấy nước ở đâu?</li>
-                        <li>Cô/chú/anh/chị thường ăn gì?</li>
-                        <li>Có khó khăn nào trong việc tìm kiếm các nguyên liệu khác ngoài gạo và muối cho bữa ăn không?</li>
-                        <li>Có khi nào gia đình cô/chú/anh/chị phải ăn những loại thực phẩm mà người khác ít khi ăn (ví dụ: côn trùng, động vật hoang dã nhỏ) để sống sót không?</li>
-                        <li>Gia đình cô/chú/anh/chị có nguồn protein nào thường xuyên không, dù là nhỏ nhất (như cua suối, ốc, côn trùng)?</li>
-                        <li>Gia đình cô/chú/anh/chị thường ăn một bữa ăn thật no đủ bao lâu một lần?</li>
-                        <li>Làm thế nào để gia đình cô/chú/anh/chị bảo quản thức ăn được lâu hơn khi không có tủ lạnh hoặc các phương tiện hiện đại khác?</li>
-                        <li>Loại rau dại hay cây rừng nào là món ăn chính của gia đình cô/chú/anh/chị khi không có gạo hoặc thức ăn khác?</li>
-                        <li>Mỗi ngày, gia đình cô/chú/anh/chị phải đi bộ bao xa để lấy nước? Nước đó có đủ dùng cho mọi sinh hoạt không?</li>
-                        <li>Ngoài việc đun sôi, gia đình cô/chú/anh/chị có cách nào khác để lọc hay làm sạch nước uống không?</li>
-                        <li>Phần khó khăn nhất trong việc đảm bảo đủ thức ăn là gì, và làm thế nào để cô/chú/anh/chị vượt qua điều đó?</li>
-                        <li>Thử thách lớn nhất mà cô/chú/anh/chị phải đối mặt khi cố gắng trồng trọt hoặc chăm sóc vật nuôi là gì?</li>
-                        <li>Việc thiếu nước sạch ảnh hưởng đến sức khỏe gia đình cô/chú/anh/chị như thế nào?</li>
-                        <li>Nếu có một nguồn nước sạch đáng tin cậy ở gần, cuộc sống gia đình cô/chú/anh/chị sẽ thay đổi ra sao?</li>
-                        <li>Khi nguồn nước suối gần nhà cạn kiệt vào mùa khô, gia đình cô/chú/anh/chị lấy nước từ đâu và việc đó có vất vả không?</li>
-                        <li>Điều gì khó khăn nhất trong việc tìm kiếm hoặc chuẩn bị thức ăn hàng ngày?</li>
-                        <li>Cô/chú/anh/chị có bao giờ phải chịu đói, hay lo lắng không đủ thức ăn cho gia đình, đặc biệt là các con không?</li>
+                        <li>Kể về thực đơn của bữa ăn gần nhất và cảm giác của cô/chú sau khi dùng bữa?</li>
+                        <li>Những tâm tư, trăn trở của cô/chú khi phải lo toan từng bữa ăn cho con cái?</li>
+                        <li>Kể về hành trình đi tìm và mang nước về cho gia đình mỗi ngày?</li>
+                        <li>Mô tả những món ăn quen thuộc và cách cô/chú chế biến chúng từ nguồn lực hạn hẹp?</li>
+                        <li>Làm thế nào cô/chú đa dạng hóa bữa ăn khi chỉ có những nguyên liệu cơ bản nhất?</li>
+                        <li>Trong những lúc ngặt nghèo nhất, gia đình đã tìm kiếm nguồn thức ăn từ thiên nhiên như thế nào?</li>
+                        <li>Cảm xúc của cả nhà trong những dịp hiếm hoi có một bữa ăn thịnh soạn và đầy đủ?</li>
+                        <li>Quá trình lấy nước tiêu tốn bao nhiêu sức lực và thời gian trong quỹ thời gian quý báu của cô/chú?</li>
+                        <li>Khó khăn lớn nhất trong việc duy trì bếp lửa và thức ăn hàng ngày là gì?</li>
+                        <li>Làm thế nào để cô/chú giữ vững tinh thần khi phải đối mặt với nỗi lo thiếu đói?</li>
                     </ol>
                 </div>
             </details>
 
-            <!-- Category: Sức Khỏe & Chăm Sóc Y Tế (Health & Healthcare) -->
+            <!-- Category: Sức Khỏe & Chăm Sóc Y Tế -->
             <details id="suc-khoe-cham-soc-y-te" class="group mb-6 p-4 bg-red-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-red-600 cursor-pointer">
                     Sức Khỏe & Chăm Sóc Y Tế
@@ -174,21 +151,16 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Cô/chú/anh/chị có nhận được sự hỗ trợ nào từ cộng đồng hoặc chính quyền địa phương liên quan đến các vấn đề sức khỏe không?</li>
-                        <li>Có tổ chức y tế hay cá nhân nào từng đến giúp đỡ về y tế ở đây không?</li>
-                        <li>Điều gì là nỗi lo lớn nhất của cô/chú/anh/chị về sức khỏe của bản thân và các thành viên trong gia đình?</li>
-                        <li>Khi bị ốm hoặc có người trong gia đình bị thương nặng mà không có tiền mua thuốc, cô/chú/anh/chị đã xoay sở như thế nào?</li>
-                        <li>Làm thế nào cô/chú/anh/chị đối phó với những cơn đau hoặc bệnh mãn tính khi không tiếp cận được y tế phù hợp?</li>
-                        <li>Ngoài vấn đề tài chính, những rào cản nào khác (ví dụ: khoảng cách, phương tiện đi lại, ngôn ngữ) khiến gia đình cô/chú/anh/chị khó tiếp cận các cơ sở y tế?</li>
-                        <li>Phòng khám hoặc bệnh viện gần nhất cách đây bao xa, và cô/chú/anh/chị đến đó bằng cách nào khi có người cần chăm sóc y tế khẩn cấp?</li>
-                        <li>Những thách challenges nào mà các con cô/chú/anh/chị phải đối mặt trong việc duy trì vệ sinh cá nhân?</li>
-                        <li>Những vấn đề sức khỏe phổ biến nhất mà gia đình cô/chú/anh/chị phải đối mặt ở vùng này là gì?</li>
-                        <li>Gia đình cô/chú/anh/chị có sử dụng các bài thuốc dân gian, cây thuốc hoặc phương pháp chữa bệnh truyền thống nào không, và chúng có hiệu quả ra sao?</li>
+                        <li>Sự hỗ trợ từ cộng đồng hoặc chính quyền đã giúp thay đổi cuộc sống của cô/chú như thế nào?</li>
+                        <li>Nỗi sợ hãi lớn nhất của cô/chú liên quan đến bệnh tật là gì và tại sao?</li>
+                        <li>Chia sẻ về một lần gia đình tự xoay sở vượt qua bệnh tật khi không có điều kiện tiếp cận y tế?</li>
+                        <li>Hành trình di chuyển đến cơ sở y tế gần nhất vất vả như thế nào đối với một người đang ốm?</li>
+                        <li>Những kiến thức về cây thuốc rừng mà cô/chú đã học được để tự bảo vệ sức khỏe?</li>
                     </ol>
                 </div>
             </details>
 
-            <!-- Category: Lao Động & Sinh Kế (Labor & Livelihood) -->
+            <!-- Category: Lao Động & Sinh Kế -->
             <details id="lao-dong-sinh-ke" class="group mb-6 p-4 bg-purple-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-purple-600 cursor-pointer">
                     Lao Động & Sinh Kế
@@ -196,26 +168,16 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Công việc hàng ngày của cô/chú/anh/chị có những rủi ro hoặc nguy hiểm nào không (ví dụ: làm việc trên địa hình dốc, tiếp xúc với hóa chất, động vật hoang dã)?</li>
-                        <li>Cô/chú/anh/chị có thể kể một lần mà cô/chú/anh/chị phải rất sáng tạo hoặc tận dụng những gì mình có để giải quyết một vấn đề nào đó không?</li>
-                        <li>Cô/chú/anh/chị có thể mô tả chi tiết hơn về các công việc mà mình đang làm để kiếm sống, như trồng trọt, thu gom phân bò, chăn bò, chăn dê không?</li>
-                        <li>Cô/chú/anh/chị làm nghề gì để kiếm sống?</li>
-                        <li>Có kỹ năng nào cô/chú/anh/chị mong muốn học để có công việc ổn định hơn hoặc thu nhập tốt hơn không?</li>
-                        <li>Có thành viên nào trong gia đình cô/chú/anh/chị phải đi làm ăn xa không? Điều đó ảnh hưởng đến cuộc sống của gia đình như thế nào?</li>
-                        <li>Khi mùa màng thất bát hoặc không có việc làm, gia đình cô/chú/anh/chị làm gì để vẫn có thể kiếm sống qua ngày?</li>
-                        <li>Làm thế nào cô/chú/anh/chị xoay sở để tiết kiệm được dù chỉ một chút tiền, với những khó khăn hàng ngày?</li>
-                        <li>Một ngày làm việc của cô/chú/anh/chị ở đây diễn ra như thế nào, từ lúc thức dậy cho đến khi kết thúc?</li>
-                        <li>Nếu có cơ hội học một kỹ năng hoặc nghề mới, cô/chú/anh/chị sẽ chọn học gì và tại sao điều đó lại thu hút cô/chú/anh/chị?</li>
-                        <li>Những công việc này có ổn định không? Cô/chú/anh/chị có việc làm mỗi ngày không, hay nó thay đổi theo mùa/thời điểm?</li>
-                        <li>Những kỹ năng hoặc kiến thức nào đã được truyền lại qua gia đình cô/chú/anh/chị mà rất cần thiết để sống ở đây?</li>
-                        <li>Ngoài việc mưu sinh, có bất kỳ hoạt động hoặc kỹ năng truyền thống nào mà gia đình cô/chú/anh/chị duy trì để tạo thêm thu nhập hoặc tự cung tự cấp không?</li>
-                        <li>Thu nhập hàng ngày hoặc hàng tuần của cô/chú/anh/chị từ công việc này thường là bao nhiêu? Nó có đủ để trang trải các nhu cầu cơ bản của gia đình không?</li>
-                        <li>Các con của cô/chú/anh/chị có bao giờ phải giúp đỡ làm những công việc này thay vì đi học không?</li>
+                        <li>Mô tả những rủi ro nghề nghiệp mà cô/chú phải đối mặt hằng ngày để đổi lấy thu nhập?</li>
+                        <li>Kể về những kỹ năng đặc biệt mà cô/chú cần có để duy trì công việc hiện tại?</li>
+                        <li>Thu nhập ít ỏi được cô/chú phân bổ như thế nào để trang trải cho tất cả nhu cầu?</li>
+                        <li>Những suy nghĩ của cô/chú khi thấy các con phải sớm phụ giúp việc mưu sinh?</li>
+                        <li>Bí quyết nào giúp cô/chú vẫn có thể tiết kiệm hoặc tích lũy giữa muôn vàn khó khăn?</li>
                     </ol>
                 </div>
             </details>
 
-            <!-- Category: Giáo Dục & Tương Lai Trẻ Em (Education & Children's Future) -->
+            <!-- Category: Giáo Dục & Tương Lai Trẻ Em -->
             <details id="giao-duc-tuong-lai-tre-em" class="group mb-6 p-4 bg-teal-50 rounded-lg shadow-sm">
                 <summary class="flex justify-between items-center text-xl font-semibold text-teal-600 cursor-pointer">
                     Giáo Dục & Tương Lai Trẻ Em
@@ -223,105 +185,11 @@
                 </summary>
                 <div class="mt-3">
                     <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Các con của cô/chú/anh/chị có bao giờ được chơi hoặc tương tác với trẻ em từ bên ngoài cộng đồng gần đó không?</li>
-                        <li>Các con của cô/chú/anh/chị có thể học thêm ở nhà vào buổi tối không (ví dụ: có đủ ánh sáng, sách vở)?</li>
-                        <li>Các con cô/chú/anh/chị cần những dụng cụ học tập nào mà hiện tại không có?</li>
-                        <li>Các con cô/chú/anh/chị có giúp lấy nước hoặc các công việc nhà khác không? Chúng cảm thấy thế nào về điều đó?</li>
-                        <li>Các con cô/chú/anh/chị có những ước mơ nào cho tương lai vượt ra ngoài những gì chúng thấy trong cộng đồng không? Đó là gì?</li>
-                        <li>Các con cô/chú/anh/chị hiểu gì về hoàn cảnh sống của gia đình mình? Cô/chú/anh/chị nói chuyện với chúng về điều đó như thế nào?</li>
-                        <li>Các con cô/chú/anh/chị làm gì để giúp gia đình với các công việc hàng ngày hoặc lao động?</li>
-                        <li>Các con cô/chú/anh/chị học và chơi với những đứa trẻ khác trong cộng đồng như thế nào?</li>
-                        <li>Các con cô/chú/anh/chị gặp phải những khó khăn nào trên đường đi học dài (ví dụ: thời tiết, đường nguy hiểm, mệt mỏi)?</li>
-                        <li>Các con cô/chú/anh/chị thích làm những điều gì nhất để vui chơi?</li>
-                        <li>Các con cô/chú/anh/chị thích những trò chơi hay hoạt động nào mà không cần nhiều nguồn lực?</li>
-                        <li>Có điều gì độc đáo hay đặc biệt về các con cô/chú/anh/chị mà cô/chú/anh/chị muốn chia sẻ không?</li>
-                        <li>Cô/chú/anh/chị an ủi các con như thế nào khi chúng sợ hãi hoặc buồn bã?</li>
-                        <li>Cô/chú/anh/chị đảm bảo các con an toàn và khỏe mạnh như thế nào, mặc dù nguồn lực còn hạn chế?</li>
-                        <li>Cô/chú/anh/chị đảm bảo các con được ăn uống đầy đủ như thế nào, đặc biệt khi thức ăn khan hiếm?</li>
-                        <li>Cô/chú/anh/chị có bất kỳ lo lắng cụ thể nào về sức khỏe hoặc tương lai của các con không?</li>
-                        <li>Cô/chú/anh/chị dạy các con về sự kiên cường và hy vọng trong những lúc khó khăn như thế nào?</li>
-                        <li>Cô/chú/anh/chị dạy các con về tầm quan trọng của văn hóa và truyền thống của mình như thế nào?</li>
-                        <li>Cô/chú/anh/chị dạy các con về các kỹ năng sinh tồn trong rừng?</li>
-                        <li>Cô/chú/anh/chị khuyến khích các con tiếp tục đi học như thế nào, ngay cả khi gặp khó khăn?</li>
-                        <li>Cô/chú/anh/chị kể cho các con những câu chuyện gì?</li>
-                        <li>Cô/chú/anh/chị kỷ niệm sinh nhật hoặc các cột mốc đặc biệt khác của các con như thế nào?</li>
-                        <li>Cô/chú/anh/chị muốn thế giới biết điều gì về những đứa trẻ sống trong các cộng đồng này?</li>
-                        <li>Cô/chú/anh/chị giúp các con học tập và phát triển bên ngoài trường học như thế nào, trong điều kiện nguồn lực hạn chế?</li>
-                        <li>Điều gì là điều các con cô/chú/anh/chị mong muốn nhất vào những dịp lễ Tết?</li>
-                        <li>Điều gì là thử thách lớn nhất mà các con cô/chú/anh/chị phải đối mặt để duy trì việc học (ví dụ: đói, thiếu đồ dùng, mệt mỏi)?</li>
-                        <li>Đối với trẻ em, những nguy hiểm hoặc khó khăn nào mà chúng phải đối mặt trên đường đi học hàng ngày?</li>
-                        <li>Khi nhìn vào thế hệ trẻ, cô/chú/anh/chị hy vọng điều gì cho chúng mà khác với những gì mình đã trải qua?</li>
-                        <li>Mỗi ngày, các con của cô/chú/anh/chị phải đi bộ bao xa để đến trường, và hành trình đó có những gì đặc biệt?</li>
-                        <li>Nếu các con cô/chú/anh/chị có thể ước một điều, cô/chú/anh/chị nghĩ đó sẽ là gì?</li>
-                        <li>Những hy vọng của cô/chú/anh/chị về sức khỏe và sự phát triển của các con là gì?</li>
-                        <li>Những niềm vui đơn giản hay khoảnh khắc hạnh phúc nào mà các con cô/chú/anh/chị thường trải nghiệm?</li>
-                        <li>Những khó khăn nào mà các con cô/chú/anh/chị phải đối mặt trong việc học hành, và cô/chú/anh/chị hỗ trợ chúng như thế nào?</li>
-                        <li>Ước mơ hay hoài bão của các con cô/chú/anh/chị khi lớn lên là gì?</li>
-                        <li>Có bất kỳ hỗ trợ nào từ nhà trường, chính quyền địa phương, hay các tổ chức khác để giúp các con đi học không (ví dụ: học bổng, bữa ăn bán trú)?</li>
-                    </ol>
-                </div>
-            </details>
-
-            <!-- Category: Gia Đình & Cộng Đồng (Family & Community) -->
-            <details id="gia-dinh-cong-dong" class="group mb-6 p-4 bg-indigo-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-indigo-600 cursor-pointer">
-                    Gia Đình & Cộng Đồng
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Có những câu chuyện cổ tích hay truyền thuyết nào về vùng đất này mà cô/chú/anh/chị thường kể?</li>
-                        <li>Có những câu chuyện truyền thống hay bài hát nào quan trọng đối với gia đình hoặc cộng đồng của cô/chú/anh/chị không?</li>
-                        <li>Có những phong tục, truyền thống hay lễ hội đặc biệt nào mà gia đình và cộng đồng cô/chú/anh/chị duy trì để gắn kết với nhau không?</li>
-                        <li>Cô/chú/anh/chị cảm thấy gần gũi nhất với ai ở đây, và họ đã giúp đỡ cô/chú/anh/chị trong cuộc sống như thế nào?</li>
-                        <li>Cô/chú/anh/chị kỷ niệm các sự kiện gia đình quan trọng hoặc ngày lễ như thế nào trong hoàn cảnh hiện tại?</li>
-                        <li>Cô/chú/anh/chị và hàng xóm giúp đỡ lẫn nhau như thế nào khi gặp khó khăn? Điều đó thường diễn ra ra sao?</li>
-                        <li>Gia đình cô/chú/anh/chị có thường xuyên nhận được sự thăm hỏi, giúp đỡ từ hàng xóm hoặc họ hàng không?</li>
-                    </ol>
-                </div>
-            </details>
-
-            <!-- Category: Ước Mơ, Hy Vọng & Thông Điệp (Dreams, Hopes & Messages) -->
-            <details id="uoc-mo-hy-vong-thong-diep" class="group mb-6 p-4 bg-orange-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-orange-600 cursor-pointer">
-                    Ước Mơ, Hy Vọng & Thông Điệp
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Có điều gì khác mà cô/chú/anh/chị muốn chia sẻ với chúng tôi mà chúng tôi chưa hỏi không?</li>
-                        <li>Điều gì là sự hiểu lầm lớn nhất mà những người bên ngoài cộng đồng có thể có về cuộc sống của cô/chú/anh/chị?</li>
-                        <li>Điều gì cô/chú/anh/chị muốn những người đến thăm như chúng tôi hiểu về cộng đồng của mình mà chúng tôi có thể không nhìn thấy ngay?</li>
-                        <li>Giữa rất nhiều khó khăn, điều gì giúp cô/chú/anh/chị tiếp tục cố gắng mỗi ngày?</li>
-                        <li>Nếu có ai đó có thể giúp đỡ ngay bây giờ, điều gì cấp thiết nhất sẽ tạo ra sự khác biệt lớn nhất trong cuộc sống hàng ngày của cô/chú/anh/chị?</li>
-                        <li>Nếu cô/chú/anh/chị có thể gửi một thông điệp đến mọi người trên thế giới về cuộc sống ở đây, cô/chú/anh/chị muốn họ biết điều gì?</li>
-                        <li>Nếu cô/chú/anh/chị có thể gửi một thông điệp đến những người quyên góp cho kênh của mình, cô/chú/anh/chị sẽ nói gì?</li>
-                        <li>Nếu cô/chú/anh/chị có thể thay đổi một điều về cuộc sống của mình ngay bây giờ, đó sẽ là gì?</li>
-                        <li>Nếu cô/chú/anh/chị có đủ mọi nguồn lực và không phải lo lắng về tiền bạc, điều đầu tiên cô/chú/anh/chị sẽ ước cho gia đình mình là gì?</li>
-                        <li>Nếu cô/chú/anh/chị có thể trò chuyện với một người sống ở một nơi rất khác trên thế giới, cô/chú/anh/chị muốn nói gì với họ về cuộc sống của mình?</li>
-                        <li>Nếu mọi người trên thế giới nhìn thấy cuộc sống hàng ngày của cô/chú/anh/chị, cô/chú/anh/chị muốn họ hiểu rõ nhất về những nhu cầu cụ thể nào?</li>
-                        <li>Trong những khoảnh khắc khó khăn nhất, điều gì giúp cô/chú/anh/chị giữ vững niềm hy vọng và tiếp tục cố gắng?</li>
-                        <li>Làm thế nào cô/chú/anh/chị giữ vững hy vọng về một tương lai tốt đẹp hơn cho bản thân và gia đình?</li>
-                        <li>Ngoài những nhu cầu cơ bản (nhà ở, ăn uống, thuốc men), cô/chú/anh/chị còn có ước mơ hay mong muốn nào khác cho cuộc sống của mình không?</li>
-                        <li>Cô/chú/anh/chị cảm thấy thế nào về tương lai của vùng này và những người sống ở đây?</li>
-                        <li>Cô/chú/anh/chị muốn chia sẻ thông điệp gì với những người ở xa đang cố gắng hiểu cuộc sống của cô/chú/anh/chị ở đây?</li>
-                    </ol>
-                </div>
-            </details>
-
-            <!-- Category: Nhu Cầu & Kêu Gọi Hỗ Trợ (Needs & Call for Support) -->
-            <details id="nhu-cau-keu-goi-ho-tro" class="group mb-6 p-4 bg-sky-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-sky-600 cursor-pointer">
-                    Nhu Cầu & Kêu Gọi Hỗ Trợ
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Sự hỗ trợ lâu dài nào cô/chú/anh/chị nghĩ sẽ tạo ra sự khác biệt lớn nhất cho cộng đồng của mình?</li>
-                        <li>Việc có một chỗ ở an toàn và ổn định sẽ có ý nghĩa như thế nào đối với gia đình cô/chú/anh/chị?</li>
-                        <li>Việc tiếp cận thuốc men cơ bản sẽ có ý nghĩa như thế nào đối với sức khỏe và cuộc sống của gia đình cô/chú/anh/chị?</li>
-                        <li>Việc tiếp cận thường xuyên với thực phẩm bổ dưỡng sẽ thay đổi cuộc sống hàng ngày của cô/chú/anh/chị như thế nào?</li>
-                        <li>Nếu cô/chú/anh/chị có thể yêu cầu sự giúp đỡ cụ thể, điều gì là quan trọng nhất đối với gia đình cô/chú/anh/chị ngay bây giờ (ví dụ: chỗ ở, thức ăn, thuốc men)?</li>
+                        <li>Kể về những khó khăn mà các con kể lại sau mỗi chặng đường dài đi bộ đến trường?</li>
+                        <li>Rào cản lớn nhất ngăn cản giấc mơ học tập của các con cô/chú hiện nay là gì?</li>
+                        <li>Các con thường tâm sự với cô/chú về ước mơ trở thành người như thế nào trong tương lai?</li>
+                        <li>Cô/chú thường dùng những lời khuyên hay câu chuyện nào để tiếp thêm động lực đi học cho con?</li>
+                        <li>Những thay đổi tích cực nào cô/chú nhận thấy ở các con từ khi chúng được đến trường?</li>
                     </ol>
                 </div>
             </details>
@@ -333,138 +201,92 @@
             const tocList = document.getElementById('toc-list');
             const hideCompletedToggle = document.getElementById('hideCompletedToggle');
             const allQuestionLists = document.querySelectorAll('ol');
+            const savedStates = JSON.parse(localStorage.getItem('interviewQuestionStates')) || {};
 
-            // --- TOC Generation ---
-            tocList.innerHTML = ''; // Clear existing TOC items
+            // TOC Generation
             const allDetailsSections = document.querySelectorAll('section > details');
-
             allDetailsSections.forEach(details => {
-                const summaryText = details.querySelector('summary').textContent.trim();
+                const summaryText = details.querySelector('summary').firstChild.textContent.trim();
                 const detailId = details.id;
-
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 a.href = '#' + detailId;
                 a.textContent = summaryText;
-                a.classList.add('text-blue-700', 'hover:underline', 'font-bold');
-
-                a.addEventListener('click', function(e) {
+                a.className = 'text-blue-700 hover:underline font-bold';
+                a.onclick = (e) => {
                     e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                        if (!targetElement.open) {
-                            targetElement.open = true;
-                        }
-                    }
-                });
+                    const target = document.getElementById(detailId);
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.open = true;
+                };
                 li.appendChild(a);
                 tocList.appendChild(li);
             });
 
-            // --- Checkbox and Local Storage Functionality ---
-            const savedStates = JSON.parse(localStorage.getItem('interviewQuestionStates')) || {};
+            function toggleCompletedQuestions() {
+                const isHideChecked = hideCompletedToggle.checked;
+                document.querySelectorAll('ol li').forEach(li => {
+                    const cb = li.querySelector('input');
+                    if (cb && cb.checked && isHideChecked) {
+                        li.classList.add('hidden-question');
+                    } else {
+                        li.classList.remove('hidden-question');
+                    }
+                });
+            }
 
             function applyQuestionStates() {
                 allQuestionLists.forEach(ol => {
                     const categoryId = ol.closest('details').id;
-                    const questionData = []; // To store original text and index for sorting
+                    const questionItems = Array.from(ol.children);
+                    const questionData = questionItems.map((li, index) => ({
+                        text: li.textContent.trim(),
+                        id: `${categoryId}_${index}`
+                    }));
 
-                    // First, extract current questions and their text
-                    Array.from(ol.children).forEach((liElement, index) => {
-                        const originalText = liElement.textContent.trim();
-                        questionData.push({
-                            text: originalText,
-                            originalIndex: index // Keep original index to maintain local storage key if sorting affects order
-                        });
-                    });
+                    // Sort Alphabetically by Vietnamese locale
+                    questionData.sort((a, b) => a.text.localeCompare(b.text, 'vi'));
 
-                    // Sort the questions alphabetically by text
-                    questionData.sort((a, b) => a.text.localeCompare(b.text, 'vi', { sensitivity: 'base' }));
-
-                    // Clear the current list
                     ol.innerHTML = '';
-
-                    // Re-render questions in sorted order
-                    questionData.forEach((data) => {
-                        const liElement = document.createElement('li');
-                        const questionKey = `${categoryId}_${data.originalIndex}`; // Use original index for local storage key
-
+                    questionData.forEach(data => {
+                        const li = document.createElement('li');
                         const label = document.createElement('label');
-                        label.className = 'flex items-start space-x-2 cursor-pointer';
+                        label.className = 'flex items-start space-x-2 cursor-pointer py-1';
 
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
-                        checkbox.className = 'form-checkbox h-4 w-4 mt-1 text-blue-600 rounded focus:ring-blue-500';
-                        checkbox.dataset.key = questionKey; // Set the data-key for local storage
+                        checkbox.className = 'form-checkbox h-4 w-4 mt-1 text-blue-600 rounded';
+                        checkbox.checked = savedStates[data.id] || false;
 
-                        const questionTextSpan = document.createElement('span');
-                        questionTextSpan.className = 'question-text';
-                        questionTextSpan.textContent = data.text; // Use the sorted text
+                        const span = document.createElement('span');
+                        span.textContent = data.text;
+                        if (checkbox.checked) span.classList.add('line-through', 'text-gray-400');
 
-                        // Load saved state
-                        checkbox.checked = savedStates[questionKey] || false;
-                        if (checkbox.checked) {
-                            questionTextSpan.classList.add('line-through', 'text-gray-500');
-                        } else {
-                            questionTextSpan.classList.remove('line-through', 'text-gray-500');
-                        }
-
-                        // Add event listener
-                        checkbox.addEventListener('change', (event) => {
-                            const isChecked = event.target.checked;
-                            const key = event.target.dataset.key;
-
-                            if (isChecked) {
-                                questionTextSpan.classList.add('line-through', 'text-gray-500');
-                            } else {
-                                questionTextSpan.classList.remove('line-through', 'text-gray-500');
-                            }
-
-                            savedStates[key] = isChecked;
+                        checkbox.onchange = () => {
+                            savedStates[data.id] = checkbox.checked;
                             localStorage.setItem('interviewQuestionStates', JSON.stringify(savedStates));
+                            span.classList.toggle('line-through', checkbox.checked);
+                            span.classList.toggle('text-gray-400', checkbox.checked);
                             toggleCompletedQuestions();
-                        });
+                        };
 
-                        label.appendChild(checkbox);
-                        label.appendChild(questionTextSpan);
-                        liElement.appendChild(label);
-                        ol.appendChild(liElement);
+                        label.append(checkbox, span);
+                        li.appendChild(label);
+                        ol.appendChild(li);
                     });
                 });
             }
 
-            // --- Toggle Completed Questions Logic ---
-            const hideToggleState = localStorage.getItem('hideCompletedToggleState') === 'true';
-            hideCompletedToggle.checked = hideToggleState;
-
-            function toggleCompletedQuestions() {
-                const isHideChecked = hideCompletedToggle.checked;
-                allQuestionLists.forEach(ol => {
-                    ol.querySelectorAll('li').forEach(liElement => {
-                        const checkbox = liElement.querySelector('input[type="checkbox"]');
-                        if (checkbox && checkbox.checked) {
-                            if (isHideChecked) {
-                                liElement.classList.add('hidden-question');
-                            } else {
-                                liElement.classList.remove('hidden-question');
-                            }
-                        } else {
-                            // Ensure non-checked questions are always visible
-                            liElement.classList.remove('hidden-question');
-                        }
-                    });
-                });
-            }
-
-            hideCompletedToggle.addEventListener('change', () => {
+            hideCompletedToggle.onchange = () => {
                 localStorage.setItem('hideCompletedToggleState', hideCompletedToggle.checked);
                 toggleCompletedQuestions();
-            });
+            };
 
-            // Initial application of states and toggle on load
+            const savedToggle = localStorage.getItem('hideCompletedToggleState') === 'true';
+            hideCompletedToggle.checked = savedToggle;
+
             applyQuestionStates();
-            toggleCompletedQuestions(); // Apply initial hide/show state
+            toggleCompletedQuestions();
         });
     </script>
 </body>
