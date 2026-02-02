@@ -11,7 +11,6 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .model-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .model-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
-        /* Reduced image container size to save vertical space */
         .img-container { 
             background: radial-gradient(circle, #ffffff 0%, #f1f5f9 100%); 
             width: 45%;
@@ -220,25 +219,61 @@
                         <h4 class="text-white font-bold text-lg mb-3 vn-text border-b border-white/10 pb-1">Trang Thiết Bị</h4>
                         <ul class="text-indigo-100 text-xs space-y-2 vn-text">
                             <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2"></i> <span>Bồn nước 1000 lít</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2"></i> <span>Đèn Năng Lượng MT</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2"></i> <span>Quạt Năng Lượng MT</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2"></i> <span>Đèn Năng Lượng Mặt Trời</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2"></i> <span>Quạt Năng Lượng Mặt Trời</span></li>
                         </ul>
                     </div>
 
-                    <!-- Column 2 -->
+                    <!-- Column 2 (Detailed Food Section) -->
                     <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
                         <h4 class="text-white font-bold text-lg mb-3 vn-text border-b border-white/10 pb-1">Thực Phẩm</h4>
-                        <div class="space-y-1.5 text-indigo-100 text-xs vn-text">
-                            <div class="flex justify-between border-b border-white/5 pb-0.5"><span>Gia vị đầy đủ</span></div>
-                            <div class="flex justify-between border-b border-white/5 pb-0.5"><span>Mì tôm (1 thùng)</span></div>
-                            <div class="flex justify-between border-b border-white/5 pb-0.5"><span>Gạo sạch (10kg)</span></div>
-                            <div class="flex justify-between"><span>Đồ khô dự trữ</span></div>
+                        <div class="grid grid-cols-2 gap-x-2 gap-y-1.5 text-indigo-100 text-[10px] leading-tight vn-text">
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Dầu ăn</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Nước tương</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Nước mắm</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 bịch Muối lớn</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1kg Đường ngọt</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 bịch Bột ngọt</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 thùng Mì tôm</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 bao Gạo 10kg</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 kg Cá khô</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 lốc cá hộp</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Column 3 -->
+                    <!-- Column 3 (Updated Title) -->
                     <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="text-white font-bold text-lg mb-3 vn-text border-b border-white/10 pb-1">Phòng Ngủ</h4>
+                        <h4 class="text-white font-bold text-lg mb-3 vn-text border-b border-white/10 pb-1">Nhu Yếu Phẩm Giấc Ngủ</h4>
                         <ul class="text-indigo-100 text-xs space-y-2 vn-text">
                             <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2"></i> <span>Gối & Áo gối</span></li>
                             <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2"></i> <span>Mền & Mùng</span></li>
