@@ -10,69 +10,115 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .model-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .model-card:hover { transform: translateY(-8px); shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
-        .img-container { background: radial-gradient(circle, #ffffff 0%, #f1f5f9 100%); }
-        .gradient-text { background: linear-gradient(90deg, #1d4ed8, #4338ca); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .vn-title { 
-            line-height: 1.6; 
-            padding-top: 0.2em; 
-            padding-bottom: 0.2em;
-            display: inline-block;
+        .model-card:hover { transform: translateY(-4px); shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
+        /* Image container set to 50% width and center aligned */
+        .img-container { 
+            background: radial-gradient(circle, #ffffff 0%, #f1f5f9 100%); 
+            width: 50%;
+            margin: 0 auto;
+            aspect-ratio: 1 / 1; /* Ensures proportional height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .vn-text { line-height: 1.5; }
+        .vn-text { line-height: 1.4; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- Premium Header -->
-    <header class="relative py-20 px-6 overflow-hidden bg-white border-b border-slate-200">
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 gradient-text vn-title">Tiến Nguyễn TV</h1>
-            <p class="text-slate-500 text-xl font-light tracking-wide uppercase mb-8">Mái ấm cho người nghèo vùng cao</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://www.tiennguyentv.com/nha-moi" target="_blank" 
-                   class="inline-flex items-center px-8 py-3 bg-red-600 text-white rounded-full font-bold shadow-lg shadow-red-200 hover:bg-red-700 hover:shadow-red-300 transition-all">
-                    <i class="fas fa-play-circle mr-2 text-xl"></i> Những ngôi nhà được xây dựng
-                </a>
-            </div>
-        </div>
-    </header>
-
     <!-- Housing Models List -->
-    <section class="max-w-7xl mx-auto py-20 px-6">
-        <div class="flex flex-col items-center mb-16 text-center">
-            <h2 class="text-4xl font-bold text-slate-800 mb-4 vn-text">Danh Sách Mẫu</h2>
-            <div class="h-1.5 w-24 bg-blue-600 rounded-full"></div>
+    <section class="max-w-7xl mx-auto py-6 px-6">
+        <div class="flex flex-col items-center mb-6 text-center">
+            <h2 class="text-3xl font-bold text-slate-800 vn-text">Danh Sách Mẫu Nhà</h2>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Model A -->
-            <div class="model-card bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
-                <div class="img-container h-64 w-full flex items-center justify-center p-6">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="max-h-full max-w-full object-contain drop-shadow-2xl" alt="Mẫu A">
+            <!-- Model E -->
+            <div class="model-card bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-lg shadow-slate-200/50 flex flex-col">
+                <div class="img-container mt-4 rounded-2xl overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="w-full h-full object-cover drop-shadow-xl" alt="Mẫu E">
                 </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800 vn-text">Mẫu A</h3>
-                    <div class="bg-blue-50/50 p-4 rounded-2xl mb-6">
-                        <p class="text-slate-700 text-base leading-relaxed vn-text">
-                            Ngôi nhà có thiết kế cân đối. <span class="font-semibold text-blue-800">Chính giữa là hai cửa chính, hai bên có hai cửa sổ</span> nhìn rất đều nhau. Nhà còn có cửa sau cho thoáng mát, hiên nhà rộng và cầu thang ngay giữa giúp việc đi lại rất dễ dàng.
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 vn-text">Mẫu E</h3>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4">
+                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
+                            Mẫu này giống hệt mẫu D nhưng các vị trí được đảo ngược lại, với <span class="font-semibold text-blue-800">cửa chính nằm bên tay phải</span>. Nhà rất sáng sủa nhờ có 3 cửa sổ xung quanh, có thêm cửa thoát hiểm phía sau và một khoảng hiên ở giữa.
                         </p>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Thông số tham khảo</p>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="flex justify-between items-center text-sm">
+                    <div class="mt-auto pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-1 gap-1">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 3m x 4m</span>
+                                <span class="font-semibold text-slate-700">2,100 USD</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 3m x 5m</span>
+                                <span class="font-semibold text-slate-700">2,300 USD</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 4m x 5m</span>
+                                <span class="font-semibold text-slate-700">2,500 USD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model D -->
+            <div class="model-card bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-lg shadow-slate-200/50 flex flex-col">
+                <div class="img-container mt-4 rounded-2xl overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png" class="w-full h-full object-cover drop-shadow-xl" alt="Mẫu D">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 vn-text">Mẫu D</h3>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4">
+                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
+                            Thiết kế độc đáo với <span class="font-semibold text-blue-800">cửa chính nằm lệch về bên trái</span>. Hệ thống cửa sổ được đặt ở nhiều hướng khác nhau. Cửa sau, hiên nhà và cầu thang ở giữa kết nối thuận tiện.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-1 gap-1">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 3m x 4m</span>
+                                <span class="font-semibold text-slate-700">2,100 USD</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 3m x 5m</span>
+                                <span class="font-semibold text-slate-700">2,300 USD</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-slate-500">KT 4m x 5m</span>
+                                <span class="font-semibold text-slate-700">2,500 USD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model C -->
+            <div class="model-card bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-lg shadow-slate-200/50 flex flex-col">
+                <div class="img-container mt-4 rounded-2xl overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png" class="w-full h-full object-cover drop-shadow-xl" alt="Mẫu C">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 vn-text">Mẫu C</h3>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4">
+                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
+                            Kiểu nhà này có <span class="font-semibold text-blue-800">cầu thang nằm bên trái hiên nhà</span>. Nhà được xây chắc chắn với hai cửa chính phía trước, hai cửa sổ hai bên và cửa sau thoáng đãng.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-1 gap-1">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 4m</span>
                                 <span class="font-semibold text-slate-700">2,000 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,250 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 4m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,350 USD</span>
                             </div>
@@ -82,29 +128,28 @@
             </div>
 
             <!-- Model B -->
-            <div class="model-card bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
-                <div class="img-container h-64 w-full flex items-center justify-center p-6">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png" class="max-h-full max-w-full object-contain drop-shadow-2xl" alt="Mẫu B">
+            <div class="model-card bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-lg shadow-slate-200/50 flex flex-col">
+                <div class="img-container mt-4 rounded-2xl overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png" class="w-full h-full object-cover drop-shadow-xl" alt="Mẫu B">
                 </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800 vn-text">Mẫu B</h3>
-                    <div class="bg-blue-50/50 p-4 rounded-2xl mb-6">
-                        <p class="text-slate-700 text-base leading-relaxed vn-text">
-                            Kiểu nhà này tiết kiệm diện tích nhờ có <span class="font-semibold text-blue-800">cầu thang được đặt gọn gàng ở bên phải</span>. Nhà có hai cửa chính ở giữa, hai cửa sổ để đón ánh sáng tự nhiên, một cửa sau để thoát hiểm và hiên nhà rất thoáng gió.
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 vn-text">Mẫu B</h3>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4">
+                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
+                            Tiết kiệm diện tích với <span class="font-semibold text-blue-800">cầu thang đặt bên phải</span>. Nhà có hai cửa chính, hai cửa sổ đón sáng, cửa sau thoát hiểm và hiên nhà thoáng gió.
                         </p>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Thông số tham khảo</p>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="flex justify-between items-center text-sm">
+                    <div class="mt-auto pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-1 gap-1">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 4m</span>
                                 <span class="font-semibold text-slate-700">2,000 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,250 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 4m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,350 USD</span>
                             </div>
@@ -113,96 +158,31 @@
                 </div>
             </div>
 
-            <!-- Model C -->
-            <div class="model-card bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
-                <div class="img-container h-64 w-full flex items-center justify-center p-6">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png" class="max-h-full max-w-full object-contain drop-shadow-2xl" alt="Mẫu C">
+            <!-- Model A -->
+            <div class="model-card bg-white border border-slate-100 rounded-[2rem] overflow-hidden shadow-lg shadow-slate-200/50 flex flex-col">
+                <div class="img-container mt-4 rounded-2xl overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="w-full h-full object-cover drop-shadow-xl" alt="Mẫu A">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800 vn-text">Mẫu C</h3>
-                    <div class="bg-blue-50/50 p-4 rounded-2xl mb-6">
-                        <p class="text-slate-700 text-base leading-relaxed vn-text">
-                            Kiểu nhà này có <span class="font-semibold text-blue-800">cầu thang nằm bên trái hiên nhà</span>. Nhà được xây rất chắc chắn với hai cửa chính phía trước, hai cửa sổ hai bên và cửa sau giúp không khí trong nhà luôn thoáng mát.
+                    <h3 class="text-xl font-bold mb-2 text-slate-800 vn-text">Mẫu A</h3>
+                    <div class="bg-blue-50/50 p-4 rounded-xl mb-4">
+                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
+                            Thiết kế cân đối với <span class="font-semibold text-blue-800">hai cửa chính ở giữa, hai cửa sổ hai bên</span>. Có cửa sau thoáng mát, hiên nhà rộng và cầu thang trung tâm.
                         </p>
                     </div>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Thông số tham khảo</p>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="flex justify-between items-center text-sm">
+                    <div class="mt-auto pt-3 border-t border-slate-100">
+                        <div class="grid grid-cols-1 gap-1">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 4m</span>
                                 <span class="font-semibold text-slate-700">2,000 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 3m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,250 USD</span>
                             </div>
-                            <div class="flex justify-between items-center text-sm">
+                            <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500">KT 4m x 5m</span>
                                 <span class="font-semibold text-slate-700">2,350 USD</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model D -->
-            <div class="model-card bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
-                <div class="img-container h-64 w-full flex items-center justify-center p-6">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png" class="max-h-full max-w-full object-contain drop-shadow-2xl" alt="Mẫu D">
-                </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800 vn-text">Mẫu D</h3>
-                    <div class="bg-blue-50/50 p-4 rounded-2xl mb-6">
-                        <p class="text-slate-700 text-base leading-relaxed vn-text">
-                            Đây là một thiết kế khác lạ và độc đáo với <span class="font-semibold text-blue-800">cửa chính nằm lệch về bên trái</span>. Hệ thống cửa sổ được đặt ở nhiều hướng khác nhau (một cái phía trước và hai cái bên hông). Cửa sau, hiên nhà và cầu thang ở giữa được kết nối với nhau giúp bạn đi lại giữa các phòng rất thuận tiện.
-                        </p>
-                    </div>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Thông số tham khảo</p>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 3m x 4m</span>
-                                <span class="font-semibold text-slate-700">2,100 USD</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 3m x 5m</span>
-                                <span class="font-semibold text-slate-700">2,300 USD</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 4m x 5m</span>
-                                <span class="font-semibold text-slate-700">2,500 USD</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model E -->
-            <div class="model-card bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 flex flex-col">
-                <div class="img-container h-64 w-full flex items-center justify-center p-6">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="max-h-full max-w-full object-contain drop-shadow-2xl" alt="Mẫu E">
-                </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-3 text-slate-800 vn-text">Mẫu E</h3>
-                    <div class="bg-blue-50/50 p-4 rounded-2xl mb-6">
-                        <p class="text-slate-700 text-base leading-relaxed vn-text">
-                            Mẫu này giống hệt mẫu D nhưng các vị trí được đảo ngược lại, với <span class="font-semibold text-blue-800">cửa chính nằm bên tay phải</span>. Nhà rất sáng sủa nhờ có 3 cửa sổ xung quanh, có thêm cửa thoát hiểm phía sau và một khoảng hiên ở giữa để ngồi nghỉ ngơi, thư giãn.
-                        </p>
-                    </div>
-                    <div class="mt-auto pt-4 border-t border-slate-100">
-                        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3">Thông số tham khảo</p>
-                        <div class="grid grid-cols-1 gap-2">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 3m x 4m</span>
-                                <span class="font-semibold text-slate-700">2,100 USD</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 3m x 5m</span>
-                                <span class="font-semibold text-slate-700">2,300 USD</span>
-                            </div>
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="text-slate-500">KT 4m x 5m</span>
-                                <span class="font-semibold text-slate-700">2,500 USD</span>
                             </div>
                         </div>
                     </div>
@@ -211,84 +191,64 @@
 
         </div>
 
-        <!-- Attention Box for Pricing Note -->
-        <div class="mt-20 max-w-4xl mx-auto p-8 bg-amber-50 border-l-8 border-amber-400 rounded-r-[2rem] shadow-md">
-            <div class="flex items-center space-x-4 mb-3">
-                <div class="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white shadow-sm">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <h4 class="font-bold text-amber-900 text-xl vn-text">Thông tin quan trọng về chi phí</h4>
+        <!-- Attention Box -->
+        <div class="mt-8 max-w-3xl mx-auto p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-2xl shadow-sm">
+            <div class="flex items-center space-x-3 mb-1">
+                <i class="fas fa-exclamation-triangle text-amber-500 text-sm"></i>
+                <h4 class="font-bold text-amber-900 text-sm vn-text">Lưu ý chi phí</h4>
             </div>
-            <p class="text-amber-900/80 leading-loose text-lg italic vn-text pl-2">
-                Giá thành có thể biến động dựa trên chi phí vận chuyển và lắp đặt thực tế tại các địa bàn vùng cao đặc biệt khó khăn.
+            <p class="text-amber-800 text-xs vn-text italic">
+                Giá có thể thay đổi theo chi phí vận chuyển và lắp đặt thực tế tại địa bàn.
             </p>
         </div>
     </section>
 
-    <!-- Comprehensive Support Package -->
-    <section class="max-w-7xl mx-auto py-20 px-6 pb-20">
-        <div class="bg-indigo-900 rounded-[3.5rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
-            
+    <!-- Support Package -->
+    <section class="max-w-7xl mx-auto py-4 px-6 pb-10">
+        <div class="bg-indigo-900 rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative overflow-hidden">
             <div class="relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white vn-text leading-tight">Gói Hỗ Trợ Toàn Diện Kèm Theo</h2>
-                    <p class="text-indigo-200 mt-4 max-w-2xl mx-auto text-lg vn-text font-light italic">Mỗi ngôi nhà bàn giao đi kèm đầy đủ trang thiết bị và thực phẩm thiết yếu.</p>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-white vn-text">Gói Hỗ Trợ Toàn Diện</h2>
+                    <p class="text-indigo-200 mt-1 text-xs vn-text">Đi kèm đầy đủ trang thiết bị và thực phẩm thiết yếu.</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                    <!-- Column 1: Equipment -->
-                    <div class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 flex flex-col">
-                        <div class="w-14 h-14 bg-blue-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
-                            <i class="fas fa-tools text-2xl"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-xl mb-4 vn-text border-b border-white/10 pb-2">Thiết Bị Cơ Bản</h4>
-                        <ul class="text-indigo-100 text-base space-y-3 vn-text opacity-90">
-                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 shrink-0"></i> 1 Bồn chứa nước 1000 lít</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 shrink-0"></i> 1 Đèn Năng Lượng Mặt Trời</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-blue-400 mt-1 mr-3 shrink-0"></i> 1 Quạt Năng Lượng Mặt Trời</li>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <!-- Column 1 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h4 class="text-white font-bold text-lg mb-2 vn-text border-b border-white/10 pb-1">Thiết Bị</h4>
+                        <ul class="text-indigo-100 text-xs space-y-1 vn-text">
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Bồn nước 1000 lít</li>
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Đèn Năng Lượng MT</li>
+                            <li><i class="fas fa-check text-blue-400 mr-2"></i> Quạt Năng Lượng MT</li>
                         </ul>
                     </div>
 
-                    <!-- Column 2: Food -->
-                    <div class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 flex flex-col">
-                        <div class="w-14 h-14 bg-green-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/30">
-                            <i class="fas fa-utensils text-2xl"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-xl mb-4 vn-text border-b border-white/10 pb-2">Thực Phẩm Thiết Yếu</h4>
-                        <div class="grid grid-cols-1 gap-y-2 text-indigo-100 text-sm vn-text opacity-90">
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>2 chai Dầu ăn</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>2 chai Nước tương</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>2 chai Nước mắm</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>2 bịch Muối lớn</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>1kg Đường ngọt / 1 bịch Bột ngọt</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>1 thùng Mì tôm (30 gói)</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between border-b border-white/5 pb-1"><span>1 bao Gạo 10kg</span> <i class="fas fa-cube text-white/20"></i></div>
-                            <div class="flex justify-between"><span>2kg Cá khô / 2 lốc cá hộp</span> <i class="fas fa-cube text-white/20"></i></div>
+                    <!-- Column 2 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h4 class="text-white font-bold text-lg mb-2 vn-text border-b border-white/10 pb-1">Thực Phẩm</h4>
+                        <div class="grid grid-cols-1 gap-1 text-indigo-100 text-[10px] vn-text">
+                            <div class="flex justify-between border-b border-white/5"><span>Dầu ăn, Nước mắm, Muối</span></div>
+                            <div class="flex justify-between border-b border-white/5"><span>Đường, Bột ngọt</span></div>
+                            <div class="flex justify-between border-b border-white/5"><span>Mì tôm (1 thùng)</span></div>
+                            <div class="flex justify-between border-b border-white/5"><span>Gạo (10kg)</span></div>
+                            <div class="flex justify-between"><span>Cá khô / Cá hộp</span></div>
                         </div>
                     </div>
 
-                    <!-- Column 3: Sleep Necessities -->
-                    <div class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 flex flex-col">
-                        <div class="w-14 h-14 bg-purple-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30">
-                            <i class="fas fa-moon text-2xl"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-xl mb-4 vn-text border-b border-white/10 pb-2">Nhu Yếu Phẩm Giấc Ngủ</h4>
-                        <ul class="text-indigo-100 text-base space-y-3 vn-text opacity-90">
-                            <li class="flex items-center"><i class="fas fa-bed text-purple-400 mr-3"></i> Gối & Áo gối</li>
-                            <li class="flex items-center"><i class="fas fa-bed text-purple-400 mr-3"></i> Mền & Mùng</li>
-                            <li class="flex items-center"><i class="fas fa-bed text-purple-400 mr-3"></i> Nệm</li>
-                            <li class="flex items-center"><i class="fas fa-star text-yellow-400 mr-3"></i> Chiếu loại tốt</li>
+                    <!-- Column 3 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <h4 class="text-white font-bold text-lg mb-2 vn-text border-b border-white/10 pb-1">Phòng Ngủ</h4>
+                        <ul class="text-indigo-100 text-xs space-y-1 vn-text">
+                            <li><i class="fas fa-bed text-purple-400 mr-2"></i> Gối & Áo gối</li>
+                            <li><i class="fas fa-bed text-purple-400 mr-2"></i> Mền & Mùng</li>
+                            <li><i class="fas fa-bed text-purple-400 mr-2"></i> Nệm & Chiếu</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Footer Optional Note -->
-                <div class="pt-8 border-t border-white/10 text-center">
-                    <p class="text-indigo-300 text-lg vn-text">
-                        <i class="fas fa-plus-circle mr-2 text-indigo-400"></i>
-                        <span class="font-bold text-white">Tủ quần áo:</span> Đây là hạng mục tùy chọn có thể bổ sung thêm theo yêu cầu.
+                <div class="pt-4 border-t border-white/10 text-center">
+                    <p class="text-indigo-300 text-xs vn-text italic">
+                        <span class="font-bold text-white">Tủ quần áo:</span> Tùy chọn bổ sung theo yêu cầu.
                     </p>
                 </div>
             </div>
