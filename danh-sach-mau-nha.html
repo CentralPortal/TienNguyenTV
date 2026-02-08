@@ -10,55 +10,54 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .model-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .model-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        .model-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
         .img-container { 
             background: radial-gradient(circle, #ffffff 0%, #f1f5f9 100%); 
-            width: 85%; 
-            margin: 15px auto 0; 
+            width: 80%; /* Tăng kích thước lên 80% chiều rộng thẻ */
+            margin: 5px auto 0; 
             aspect-ratio: 1 / 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .vn-text { line-height: 1.4; }
+        .vn-text { line-height: 1.3; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased">
+<body class="bg-slate-50 text-slate-900">
 
     <!-- Housing Models List -->
-    <section class="max-w-7xl mx-auto py-10 px-6">
-        <div class="flex flex-col items-center mb-10 text-center">
-            <h2 class="text-4xl font-extrabold text-slate-900 vn-text tracking-tight">Danh Sách Mẫu Nhà</h2>
-            <div class="h-1 w-20 bg-blue-600 mt-4 rounded-full"></div>
+    <section class="max-w-7xl mx-auto pt-2 pb-4 px-6">
+        <div class="flex flex-col items-center mb-1.5 text-center">
+            <h2 class="text-3xl font-bold text-slate-800 vn-text">Danh Sách Mẫu Nhà</h2>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
             
             <!-- Model E -->
-            <div class="model-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col">
-                <div class="img-container overflow-hidden rounded-2xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="w-full h-full object-contain drop-shadow-2xl p-4" alt="Mẫu E" onerror="this.src='https://via.placeholder.com/300?text=Model+E'">
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Phải" onerror="this.src='https://via.placeholder.com/300?text=Model+E'">
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800 vn-text text-center">Mẫu E</h3>
-                    <div class="bg-blue-50/80 p-4 rounded-xl mb-4 border border-blue-100/50">
-                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
-                            Giống mẫu D nhưng đảo ngược, <span class="font-bold text-blue-800 underline decoration-blue-200 decoration-2 underline-offset-2">cửa chính bên phải</span>. Nhà sáng sủa với 3 cửa sổ và hiên giữa.
+                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Phải</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            Giống mẫu D nhưng đảo ngược, <span class="font-semibold text-blue-800">cửa chính bên phải</span>. Nhà sáng sủa với 3 cửa sổ và hiên giữa.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-4">
-                        <table class="w-full text-sm">
+                    <div class="mt-auto border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 4m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,100 USD</td>
+                                <td class="py-1 text-slate-500">KT 4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,100 USD</td>
                             </tr>
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,300 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,300 USD</td>
                             </tr>
                             <tr>
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 4m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,500 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,500 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -66,30 +65,30 @@
             </div>
 
             <!-- Model D -->
-            <div class="model-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col">
-                <div class="img-container overflow-hidden rounded-2xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png" class="w-full h-full object-contain drop-shadow-2xl p-4" alt="Mẫu D" onerror="this.src='https://via.placeholder.com/300?text=Model+D'">
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Trái" onerror="this.src='https://via.placeholder.com/300?text=Model+D'">
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800 vn-text text-center">Mẫu D</h3>
-                    <div class="bg-blue-50/80 p-4 rounded-xl mb-4 border border-blue-100/50">
-                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
-                            Thiết kế độc đáo, <span class="font-bold text-blue-800 underline decoration-blue-200 decoration-2 underline-offset-2">cửa chính lệch trái</span>. Cửa sổ đa hướng và cầu thang giữa kết nối thuận tiện.
+                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Trái</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            Thiết kế độc đáo, <span class="font-semibold text-blue-800">cửa chính lệch trái</span>. Cửa sổ đa hướng và cầu thang giữa kết nối thuận tiện.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-4">
-                        <table class="w-full text-sm">
+                    <div class="mt-auto border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 4m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,100 USD</td>
+                                <td class="py-1 text-slate-500">KT 4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,100 USD</td>
                             </tr>
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,300 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,300 USD</td>
                             </tr>
                             <tr>
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 4m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,500 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,500 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -97,30 +96,30 @@
             </div>
 
             <!-- Model C -->
-            <div class="model-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col">
-                <div class="img-container overflow-hidden rounded-2xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png" class="w-full h-full object-contain drop-shadow-2xl p-4" alt="Mẫu C" onerror="this.src='https://via.placeholder.com/300?text=Model+C'">
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Lối Trái" onerror="this.src='https://via.placeholder.com/300?text=Model+C'">
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800 vn-text text-center">Mẫu C</h3>
-                    <div class="bg-blue-50/80 p-4 rounded-xl mb-4 border border-blue-100/50">
-                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
-                            <span class="font-bold text-blue-800 underline decoration-blue-200 decoration-2 underline-offset-2">Cầu thang bên trái hiên</span>. 2 cửa chính phía trước, 2 cửa sổ bên và cửa sau thoáng đãng.
+                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Trái</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            <span class="font-semibold text-blue-800">Cầu thang bên trái hiên</span>. 2 cửa chính phía trước, 2 cửa sổ bên và cửa sau thoáng đãng.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-4">
-                        <table class="w-full text-sm">
+                    <div class="mt-auto border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 4m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,000 USD</td>
+                                <td class="py-1 text-slate-500">KT 4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
                             </tr>
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,250 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
                             </tr>
                             <tr>
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 4m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,350 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -128,30 +127,30 @@
             </div>
 
             <!-- Model B -->
-            <div class="model-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col">
-                <div class="img-container overflow-hidden rounded-2xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png" class="w-full h-full object-contain drop-shadow-2xl p-4" alt="Mẫu B" onerror="this.src='https://via.placeholder.com/300?text=Model+B'">
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Lối Phải" onerror="this.src='https://via.placeholder.com/300?text=Model+B'">
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800 vn-text text-center">Mẫu B</h3>
-                    <div class="bg-blue-50/80 p-4 rounded-xl mb-4 border border-blue-100/50">
-                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
-                            Tiết kiệm diện tích với <span class="font-bold text-blue-800 underline decoration-blue-200 decoration-2 underline-offset-2">cầu thang bên phải</span>. 2 cửa chính, 2 cửa sổ và hiên thoáng gió.
+                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Phải</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            Tiết kiệm diện tích với <span class="font-semibold text-blue-800">cầu thang bên phải</span>. 2 cửa chính, 2 cửa sổ và hiên thoáng gió.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-4">
-                        <table class="w-full text-sm">
+                    <div class="mt-auto border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 4m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,000 USD</td>
+                                <td class="py-1 text-slate-500">KT 4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
                             </tr>
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,250 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
                             </tr>
                             <tr>
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 4m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,350 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -159,30 +158,30 @@
             </div>
 
             <!-- Model A -->
-            <div class="model-card bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm flex flex-col">
-                <div class="img-container overflow-hidden rounded-2xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="w-full h-full object-contain drop-shadow-2xl p-4" alt="Mẫu A" onerror="this.src='https://via.placeholder.com/300?text=Model+A'">
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Trung Tâm" onerror="this.src='https://via.placeholder.com/300?text=Model+A'">
                 </div>
-                <div class="p-6 flex flex-col flex-grow">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800 vn-text text-center">Mẫu A</h3>
-                    <div class="bg-blue-50/80 p-4 rounded-xl mb-4 border border-blue-100/50">
-                        <p class="text-slate-700 text-sm leading-relaxed vn-text">
-                            Cân đối: <span class="font-bold text-blue-800 underline decoration-blue-200 decoration-2 underline-offset-2">2 cửa chính giữa, 2 cửa sổ hai bên</span>. Hiên rộng và cầu thang trung tâm.
+                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Trung Tâm</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            Cân đối: <span class="font-semibold text-blue-800">2 cửa chính giữa, 2 cửa sổ hai bên</span>. Hiên rộng và cầu thang trung tâm.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-4">
-                        <table class="w-full text-sm">
+                    <div class="mt-auto border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 4m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,000 USD</td>
+                                <td class="py-1 text-slate-500">KT 4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
                             </tr>
                             <tr class="border-b border-slate-50">
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 3m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,250 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
                             </tr>
                             <tr>
-                                <td class="py-2 text-slate-500">KT 5m Ngang x 4m Dài</td>
-                                <td class="py-2 text-right font-bold text-slate-900">2,350 USD</td>
+                                <td class="py-1 text-slate-500">KT 5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -192,108 +191,113 @@
         </div>
 
         <!-- Attention Box -->
-        <div class="mt-12 max-w-2xl mx-auto p-5 bg-amber-50 border-l-4 border-amber-400 rounded-r-2xl shadow-sm">
-            <div class="flex items-center space-x-3 mb-2">
-                <div class="bg-amber-100 p-1.5 rounded-full">
-                    <i class="fas fa-exclamation-triangle text-amber-600 text-sm"></i>
-                </div>
-                <h4 class="font-bold text-amber-900 text-base vn-text uppercase tracking-wider">Lưu ý quan trọng</h4>
+        <div class="mt-6 max-w-2xl mx-auto p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl shadow-sm">
+            <div class="flex items-center space-x-2 mb-0.5">
+                <i class="fas fa-exclamation-circle text-amber-500 text-sm"></i>
+                <h4 class="font-bold text-amber-900 text-sm vn-text">Lưu ý</h4>
             </div>
-            <p class="text-amber-800 text-xs vn-text italic ml-10 leading-relaxed font-medium">
-                Giá niêm yết có thể thay đổi tùy thuộc vào vị trí địa lý, chi phí vận chuyển và mức độ phức tạp khi lắp đặt tại từng địa phương cụ thể.
+            <p class="text-amber-800 text-[10px] vn-text italic ml-6 leading-tight">
+                Giá thay đổi tùy vị trí địa lý, vận chuyển và độ khó lắp đặt tại địa phương.
             </p>
         </div>
     </section>
 
     <!-- Support Package -->
-    <section class="max-w-7xl mx-auto py-12 px-6 mb-16">
-        <div class="bg-indigo-950 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden border border-white/5">
-            <div class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+    <section class="max-w-7xl mx-auto py-4 px-6 pb-10">
+        <div class="bg-indigo-950 rounded-[2rem] p-6 md:p-8 shadow-xl relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl"></div>
             
             <div class="relative z-10">
-                <div class="text-center mb-10">
-                    <span class="inline-block px-4 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-xs font-bold uppercase tracking-widest mb-4 border border-blue-500/30">An Tâm Lạc Nghiệp</span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-white vn-text mb-3">Gói Hỗ Trợ Toàn Diện</h2>
-                    <p class="text-indigo-200 max-w-xl mx-auto text-sm vn-text opacity-90">Cung cấp đầy đủ các trang thiết bị tiện nghi và nhu yếu phẩm để gia đình nhanh chóng ổn định cuộc sống mới.</p>
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white vn-text mb-1">Gói Hỗ Trợ Toàn Diện</h2>
+                    <p class="text-indigo-300 max-w-xl mx-auto text-[11px] vn-text">Thiết bị tiện nghi và thực phẩm thiết yếu giúp ổn định cuộc sống.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Column 1: Trang Thiết Bị -->
-                    <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
-                        <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 border border-blue-500/30">
-                            <i class="fas fa-tools text-blue-400"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-lg mb-4 vn-text border-b border-white/10 pb-2">Trang Thiết Bị</h4>
-                        <ul class="text-indigo-100 text-xs space-y-3 vn-text">
-                            <li class="flex items-center"><i class="fas fa-circle-check text-blue-400 mr-2.5 text-[10px]"></i> <span>Bồn nước 1000 lít</span></li>
-                            <li class="flex items-center"><i class="fas fa-circle-check text-blue-400 mr-2.5 text-[10px]"></i> <span>Đèn Năng Lượng Mặt Trời</span></li>
-                            <li class="flex items-center"><i class="fas fa-circle-check text-blue-400 mr-2.5 text-[10px]"></i> <span>Quạt Năng Lượng Mặt Trời</span></li>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-2">
+                    <!-- Column 1 -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
+                            <i class="fas fa-tools text-blue-400 mr-2 text-sm"></i>
+                            Trang Thiết Bị
+                        </h4>
+                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
+                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Bồn nước 1000 lít</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Đèn Năng Lượng Mặt Trời</span></li>
+                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Quạt Năng Lượng Mặt Trời</span></li>
                         </ul>
                     </div>
 
-                    <!-- Column 2: Thực Phẩm -->
-                    <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
-                        <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 border border-green-500/30">
-                            <i class="fas fa-utensils text-green-400"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-lg mb-4 vn-text border-b border-white/10 pb-2">Thực Phẩm</h4>
-                        <div class="grid grid-cols-1 gap-y-2 text-indigo-100 text-[10px] leading-tight vn-text">
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Dầu ăn (2 chai)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                    <!-- Column 2 (Detailed Food Section) -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
+                            <i class="fas fa-basket-shopping text-green-400 mr-2 text-sm"></i>
+                            Thực Phẩm
+                        </h4>
+                        <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-indigo-100 text-[10px] leading-tight vn-text">
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Dầu ăn</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Nước tương (2 chai)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Nước tương</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Nước mắm (2 chai)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 chai Nước mắm</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Muối (2 bịch lớn)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 bịch Muối lớn</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Gạo (bao 10kg)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1kg Đường ngọt</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Mì tôm (1 thùng)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 bịch Bột ngọt</span>
                             </div>
-                            <div class="flex items-center justify-between border-b border-white/5 pb-1">
-                                <span>Cá khô (2kg)</span>
-                                <i class="fas fa-check text-green-400"></i>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 thùng Mì tôm</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>1 bao Gạo 10kg</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 kg Cá khô</span>
+                            </div>
+                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
+                                <i class="fas fa-check text-green-400 text-[8px]"></i>
+                                <span>2 lốc cá hộp</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Column 3: Giấc Ngủ -->
-                    <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
-                        <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 border border-purple-500/30">
-                            <i class="fas fa-bed text-purple-400"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-lg mb-4 vn-text border-b border-white/10 pb-2">Giấc Ngủ</h4>
-                        <ul class="text-indigo-100 text-xs space-y-3 vn-text">
-                            <li class="flex items-center"><i class="fas fa-circle-check text-purple-400 mr-2.5 text-[10px]"></i> <span>Gối & Áo gối</span></li>
-                            <li class="flex items-center"><i class="fas fa-circle-check text-purple-400 mr-2.5 text-[10px]"></i> <span>Mền & Mùng</span></li>
-                            <li class="flex items-center"><i class="fas fa-circle-check text-purple-400 mr-2.5 text-[10px]"></i> <span>Nệm & Chiếu</span></li>
+                    <!-- Column 3 -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
+                            <i class="fas fa-moon text-purple-400 mr-2 text-sm"></i>
+                            Giấc Ngủ
+                        </h4>
+                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
+                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Gối & Áo gối</span></li>
+                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Mền & Mùng</span></li>
+                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Nệm & Chiếu</span></li>
                         </ul>
                     </div>
 
-                    <!-- Column 4: Tùy chọn -->
-                    <div class="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
-                        <div class="w-10 h-10 bg-amber-500/20 rounded-lg flex items-center justify-center mb-4 border border-amber-500/30">
-                            <i class="fas fa-plus text-amber-400"></i>
-                        </div>
-                        <h4 class="text-white font-bold text-lg mb-4 vn-text border-b border-white/10 pb-2">Tùy Chọn Thêm</h4>
-                        <ul class="text-indigo-100 text-xs space-y-3 vn-text">
-                            <li class="flex items-center bg-white/5 p-2 rounded-lg border border-white/10">
-                                <i class="fas fa-star text-amber-400 mr-2.5 text-[10px]"></i>
-                                <span>Tủ quần áo (theo yêu cầu)</span>
-                            </li>
+                    <!-- Column 4 -->
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
+                            <i class="fas fa-star text-amber-400 mr-2 text-sm"></i>
+                            Tùy chọn theo yêu cầu
+                        </h4>
+                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
+                            <li class="flex items-start"><i class="fas fa-plus-circle text-amber-400 mt-0.5 mr-2 text-[10px]"></i> <span>Tủ quần áo</span></li>
                         </ul>
                     </div>
                 </div>
