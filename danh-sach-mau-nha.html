@@ -9,7 +9,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .model-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .model-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); height: 100%; display: flex; flex-direction: column; }
         .model-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
         .img-container { 
             background: radial-gradient(circle, #ffffff 0%, #f1f5f9 100%); 
@@ -21,6 +21,32 @@
             justify-content: center;
         }
         .vn-text { line-height: 1.3; }
+        
+        /* Segmented Control / Toggle Styling */
+        .toggle-pill {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 9999px;
+            width: fit-content;
+            margin: 12px auto;
+            border: 1px solid #e2e8f0;
+        }
+        .toggle-btn {
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #64748b;
+            white-space: nowrap;
+        }
+        .toggle-btn.active {
+            background: white;
+            color: #1e40af;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -31,21 +57,28 @@
             <h2 class="text-3xl font-bold text-slate-800 vn-text">Danh Sách Mẫu Nhà</h2>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
             
-            <!-- Model E -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+            <!-- BLOCK 1: Mẫu Đơn (Interactive 2-way) -->
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Phải" onerror="this.src='https://via.placeholder.com/300?text=Model+E'">
+                    <img id="mau-don-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn">
                 </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Phải</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+
+                <div class="toggle-pill">
+                    <button class="toggle-btn active" id="btn-don-phai" onclick="switchMauDon('right')">Cửa Phải</button>
+                    <button class="toggle-btn" id="btn-don-trai" onclick="switchMauDon('left')">Cửa Trái</button>
+                </div>
+
+                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
+                    <h3 id="mau-don-title" class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Phải</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow">
                         <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Giống <span class="font-semibold text-blue-800">Mẫu Đơn - Cửa Trái</span> nhưng đảo ngược, cửa chính bên phải. Nhà sáng sủa với 3 cửa sổ và hiên giữa. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
+                            Nhà sáng sủa với 3 cửa sổ và hiên giữa rộng rãi. Thiết kế có thể đảo ngược hướng cửa chính và cầu thang để phù hợp với hướng đất. Phía sau nhà được tích hợp thêm cửa hậu thông thoáng.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
+
+                    <div class="border-t border-slate-100 pt-2">
                         <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
                                 <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
@@ -64,19 +97,61 @@
                 </div>
             </div>
 
-            <!-- Model New: Mẫu Đơn - Cửa Phải (Dáng Sâu) -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
+            <!-- BLOCK 2: Mẫu Cơ Bản (Interactive 3-way: Trái | Trung Tâm | Phải) -->
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_F_4x5.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Phải (Dáng Sâu)" onerror="this.src='https://via.placeholder.com/300?text=Model+F+4x5'">
+                    <img id="mau-co-ban-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Trung Tâm">
                 </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Phải (Dáng Sâu)</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
+
+                <div class="toggle-pill">
+                    <button class="toggle-btn" id="btn-cb-trai" onclick="switchCoBan('left')">Lối Trái</button>
+                    <button class="toggle-btn active" id="btn-cb-giua" onclick="switchCoBan('center')">Trung Tâm</button>
+                    <button class="toggle-btn" id="btn-cb-phai" onclick="switchCoBan('right')">Lối Phải</button>
+                </div>
+
+                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
+                    <h3 id="mau-co-ban-title" class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Trung Tâm</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow">
                         <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Thiết kế tương tự <span class="font-semibold text-blue-800">"Mẫu Đơn - Cửa Phải"</span> nhưng được tối ưu với <span class="font-semibold">chiều ngang 3m/4m/5m và chiều dài 5m</span>. Bức tường gần cửa sổ phía trước sẽ có 1 cửa sổ. Bức tường gần cửa chính phía trước sẽ có 2 cửa sổ. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
+                            Dòng sản phẩm truyền thống tối ưu chi phí. Thiết kế linh hoạt với các tùy chọn vị trí cầu thang (Trái, Phải hoặc Giữa) để phù hợp với cảnh quan xung quanh. Bao gồm 2 cửa chính phía trước và cửa hậu tiện lợi.
                         </p>
                     </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
+
+                    <div class="border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
+                            <tr class="border-b border-slate-50">
+                                <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
+                            </tr>
+                            <tr class="border-b border-slate-50">
+                                <td class="py-1 text-slate-500">5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1 text-slate-500">5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCK 3: Mẫu Đơn Dáng Sâu -->
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_F_4x5.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Dáng Sâu">
+                </div>
+                <!-- Spacer for layout consistency with toggles -->
+                <div class="h-[52px]"></div> 
+                
+                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn (Dáng Sâu)</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow">
+                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
+                            Tối ưu cho chiều dài lớn (5m). Bức tường gần cửa sổ có 1 cửa, tường gần cửa chính có 2 cửa sổ. Tích hợp cửa hậu tiện lợi cho việc di chuyển phía sau nhà.
+                        </p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-2">
                         <table class="w-full text-[11px]">
                             <tr class="border-b border-slate-50">
                                 <td class="py-1 text-slate-500">3m Ngang x 5m Dài</td>
@@ -89,161 +164,6 @@
                             <tr>
                                 <td class="py-1 text-slate-500">5m Ngang x 5m Dài</td>
                                 <td class="py-1 text-right font-bold text-slate-800">2,- - - USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model D -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Trái" onerror="this.src='https://via.placeholder.com/300?text=Model+D'">
-                </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Trái</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
-                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Thiết kế độc đáo, <span class="font-semibold text-blue-800">cửa chính lệch trái</span>. Cửa sổ đa hướng và cầu thang giữa kết nối thuận tiện. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
-                        </p>
-                    </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,100 USD</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">5m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,300 USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-500">5m Ngang x 4m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,500 USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model F (Mẫu Đơn - Cửa Trái Dáng Sâu) -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_F_3x5.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Cửa Trái (Dáng Sâu)" onerror="this.src='https://via.placeholder.com/300?text=Model+F'">
-                </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Trái (Dáng Sâu)</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
-                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Thiết kế tương tự <span class="font-semibold text-blue-800">"Mẫu Đơn - Cửa Trái"</span> nhưng được tối ưu với <span class="font-semibold">chiều ngang 3m/4m/5m và chiều dài 5m</span>. Bức tường gần cửa sổ phía trước sẽ có 1 cửa sổ. Bức tường gần cửa chính phía trước sẽ có 2 cửa sổ. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
-                        </p>
-                    </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">3m Ngang x 5m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,- - - USD</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">4m Ngang x 5m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,- - - USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-500">5m Ngang x 5m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,- - - USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model C -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Lối Trái" onerror="this.src='https://via.placeholder.com/300?text=Model+C'">
-                </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Trái</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
-                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            <span class="font-semibold text-blue-800">Cầu thang bên trái hiên</span>. 2 cửa chính phía trước, 2 cửa sổ bên và cửa sau thoáng đãng. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
-                        </p>
-                    </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">5m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-500">5m Ngang x 4m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model B -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Lối Phải" onerror="this.src='https://via.placeholder.com/300?text=Model+B'">
-                </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Phải</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
-                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Tiết kiệm diện tích với <span class="font-semibold text-blue-800">cầu thang bên phải</span>. 2 cửa chính, 2 cửa sổ và hiên thoáng gió. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
-                        </p>
-                    </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">5m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-500">5m Ngang x 4m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Model A -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50 flex flex-col">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Trung Tâm" onerror="this.src='https://via.placeholder.com/300?text=Model+A'">
-                </div>
-                <div class="px-5 pb-5 pt-1.5 flex flex-col flex-grow">
-                    <h3 class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Trung Tâm</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3">
-                        <p class="text-slate-700 text-[11px] leading-relaxed vn-text">
-                            Cân đối: <span class="font-semibold text-blue-800">2 cửa chính giữa, 2 cửa sổ hai bên</span>. Hiên rộng và cầu thang trung tâm. Phía sau nhà được tích hợp thêm cửa hậu, giúp việc di chuyển ra khu vực bếp ngoài trời hoặc nguồn nước phía sau trở nên dễ dàng và thông thoáng hơn.
-                        </p>
-                    </div>
-                    <div class="mt-auto border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">4m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,000 USD</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-500">5m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,250 USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-500">5m Ngang x 4m Dài</td>
-                                <td class="py-1 text-right font-bold text-slate-800">2,350 USD</td>
                             </tr>
                         </table>
                     </div>
@@ -253,117 +173,108 @@
         </div>
 
         <!-- Attention Box -->
-        <div class="mt-6 max-w-2xl mx-auto p-3 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl shadow-sm">
-            <div class="flex items-center space-x-2 mb-0.5">
+        <div class="mt-8 max-w-2xl mx-auto p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl shadow-sm">
+            <div class="flex items-center space-x-2 mb-1">
                 <i class="fas fa-exclamation-circle text-amber-500 text-sm"></i>
-                <h4 class="font-bold text-amber-900 text-sm vn-text">Lưu ý</h4>
+                <h4 class="font-bold text-amber-900 text-sm vn-text">Lưu ý về báo giá</h4>
             </div>
             <p class="text-amber-800 text-[10px] vn-text italic ml-6 leading-tight">
-                Giá thay đổi tùy vị trí địa lý, vận chuyển và độ khó lắp đặt tại địa phương.
+                Giá trên là giá tham khảo. Chi phí thực tế có thể thay đổi tùy thuộc vào vị trí địa lý, phí vận chuyển và độ khó trong quá trình lắp đặt tại địa phương của bạn.
             </p>
         </div>
     </section>
 
     <!-- Support Package -->
-    <section class="max-w-7xl mx-auto py-4 px-6 pb-10">
-        <div class="bg-indigo-950 rounded-[2rem] p-6 md:p-8 shadow-xl relative overflow-hidden">
-            <div class="absolute -top-12 -right-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-2xl"></div>
-            
-            <div class="relative z-10">
-                <div class="text-center mb-6">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white vn-text mb-1">Gói Hỗ Trợ Toàn Diện</h2>
-                    <p class="text-indigo-300 max-w-xl mx-auto text-[11px] vn-text">Thiết bị tiện nghi và thực phẩm thiết yếu giúp ổn định cuộc sống.</p>
+    <section class="max-w-7xl mx-auto py-8 px-6 pb-12">
+        <div class="bg-indigo-950 rounded-[2.5rem] p-8 md:p-10 shadow-xl relative overflow-hidden">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-white vn-text mb-2">Gói Hỗ Trợ Toàn Diện</h2>
+                <p class="text-indigo-300 text-sm vn-text">Cung cấp thiết bị tiện nghi và thực phẩm thiết yếu cho gia đình.</p>
+             </div>
+             
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <!-- Equipment -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                    <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-tools text-blue-400 mr-2"></i>Trang Thiết Bị</h4>
+                    <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
+                        <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-1 mr-2 text-[10px]"></i> Bồn nước 1000 lít</li>
+                        <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-1 mr-2 text-[10px]"></i> Đèn & Quạt Năng Lượng Mặt Trời</li>
+                    </ul>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-2">
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
-                            <i class="fas fa-tools text-blue-400 mr-2 text-sm"></i>
-                            Trang Thiết Bị
-                        </h4>
-                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
-                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Bồn nước 1000 lít</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Đèn Năng Lượng Mặt Trời</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-0.5 mr-2 text-[10px]"></i> <span>Quạt Năng Lượng Mặt Trời</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
-                            <i class="fas fa-basket-shopping text-green-400 mr-2 text-sm"></i>
-                            Thực Phẩm
-                        </h4>
-                        <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-indigo-100 text-[10px] leading-tight vn-text">
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 chai Dầu ăn</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 chai Nước tương</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 chai Nước mắm</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 bịch Muối lớn</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>1kg Đường ngọt</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>1 bịch Bột ngọt</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>1 thùng Mì tôm</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>1 bao Gạo 10kg</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 kg Cá khô</span>
-                            </div>
-                            <div class="flex items-center space-x-1 border-b border-white/5 pb-0.5">
-                                <i class="fas fa-check text-green-400 text-[8px]"></i>
-                                <span>2 lốc cá hộp</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
-                            <i class="fas fa-moon text-purple-400 mr-2 text-sm"></i>
-                            Giấc Ngủ
-                        </h4>
-                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
-                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Gối & Áo gối</span></li>
-                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Mền & Mùng</span></li>
-                            <li class="flex items-start"><i class="fas fa-bed text-purple-400 mt-0.5 mr-2 text-[10px]"></i> <span>Nệm & Chiếu</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold text-base mb-3 vn-text border-b border-white/10 pb-1 flex items-center">
-                            <i class="fas fa-star text-amber-400 mr-2 text-sm"></i>
-                            Tùy chọn theo yêu cầu
-                        </h4>
-                        <ul class="text-indigo-100 text-[11px] space-y-1.5 vn-text">
-                            <li class="flex items-start"><i class="fas fa-plus-circle text-amber-400 mt-0.5 mr-2 text-[10px]"></i> <span>1 Tủ quần áo (65 USD)</span></li>
-                            <li class="flex items-start"><i class="fas fa-plus-circle text-amber-400 mt-0.5 mr-2 text-[10px]"></i> <span>1 Nệm phục (25 USD)</span></li>
-                            <li class="flex items-start"><i class="fas fa-plus-circle text-amber-400 mt-0.5 mr-2 text-[10px]"></i> <span>1 Đèn năng lượng mặt trời phụ (85 USD)</span></li>
-                        </ul>
-                    </div>
+                <!-- Food -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                    <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-basket-shopping text-green-400 mr-2"></i>Thực Phẩm</h4>
+                    <ul class="text-indigo-100 text-[11px] space-y-2 vn-text leading-tight">
+                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Gia vị: Dầu ăn, Nước mắm, Muối, Đường...</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Đồ khô: Gạo, Mì tôm, Cá khô, Cá hộp...</li>
+                    </ul>
                 </div>
-            </div>
+                <!-- Sleep -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                    <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-moon text-purple-400 mr-2"></i>Giấc Ngủ</h4>
+                    <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
+                        <li class="flex items-start"><i class="fas fa-check text-purple-400 mt-1 mr-2 text-[10px]"></i> Gối & Mền</li>
+                        <li class="flex items-start"><i class="fas fa-check text-purple-400 mt-1 mr-2 text-[10px]"></i> Mùng, Nệm & Chiếu</li>
+                    </ul>
+                </div>
+                <!-- Options -->
+                <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                    <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-star text-amber-400 mr-2"></i>Tùy Chọn Thêm</h4>
+                    <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
+                        <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Tủ quần áo (65 USD)</li>
+                        <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Nệm phụ (25 USD)</li>
+                    </ul>
+                </div>
+             </div>
         </div>
     </section>
 
+    <script>
+        // Logic for Mẫu Đơn (2-way toggle)
+        function switchMauDon(side) {
+            const img = document.getElementById('mau-don-img');
+            const title = document.getElementById('mau-don-title');
+            const btnPhai = document.getElementById('btn-don-phai');
+            const btnTrai = document.getElementById('btn-don-trai');
+            
+            if (side === 'left') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_D.png';
+                title.innerText = 'Mẫu Đơn - Cửa Trái';
+                btnTrai.classList.add('active');
+                btnPhai.classList.remove('active');
+            } else {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_E.png';
+                title.innerText = 'Mẫu Đơn - Cửa Phải';
+                btnPhai.classList.add('active');
+                btnTrai.classList.remove('active');
+            }
+        }
+
+        // Logic for Mẫu Cơ Bản (3-way toggle)
+        function switchCoBan(pos) {
+            const img = document.getElementById('mau-co-ban-img');
+            const title = document.getElementById('mau-co-ban-title');
+            const btnTrai = document.getElementById('btn-cb-trai');
+            const btnGiua = document.getElementById('btn-cb-giua');
+            const btnPhai = document.getElementById('btn-cb-phai');
+
+            // Reset all buttons
+            [btnTrai, btnGiua, btnPhai].forEach(b => b.classList.remove('active'));
+
+            if (pos === 'left') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_C.png';
+                title.innerText = 'Mẫu Lối Trái';
+                btnTrai.classList.add('active');
+            } else if (pos === 'center') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_A.png';
+                title.innerText = 'Mẫu Trung Tâm';
+                btnGiua.classList.add('active');
+            } else if (pos === 'right') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_B.png';
+                title.innerText = 'Mẫu Lối Phải';
+                btnPhai.classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
