@@ -80,7 +80,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
             
-            <!-- BLOCK 1 (TRƯỚC LÀ BLOCK 2): Mẫu Đơn Cửa Bên -->
+            <!-- BLOCK 1: Mẫu Đơn Cửa Bên -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img id="mau-don-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/single-door-right.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn">
@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            <!-- BLOCK 2 (TRƯỚC LÀ BLOCK 1): Mẫu Đơn Cửa Giữa -->
+            <!-- BLOCK 2: Mẫu Đơn Cửa Giữa -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img id="mau-don-thang-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/sd-dw-right-stairs.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn Thang">
@@ -170,7 +170,7 @@
                 </div>
             </div>
 
-            <!-- BLOCK 3 (TRƯỚC LÀ BLOCK 4): Mẫu Cơ Bản -->
+            <!-- BLOCK 3: Mẫu Cơ Bản -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img id="mau-co-ban-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/double-doors-center-stairs.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Trung Tâm">
@@ -217,50 +217,7 @@
                 </div>
             </div>
 
-            <!-- BLOCK 4 (TRƯỚC LÀ BLOCK 3): Mẫu Song Cửa -->
-            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
-                <div class="img-container overflow-hidden rounded-xl">
-                    <img id="mau-song-cua-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-right-stairs.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Song Cửa">
-                </div>
-
-                <div class="mt-3">
-                    <div class="hint-text">
-                        <i class="fas fa-arrow-down"></i> Nhấn để chọn lối đi
-                    </div>
-                    <div class="toggle-pill">
-                        <button class="toggle-btn" id="btn-sc-trai" onclick="switchSongCua('left')">Lối Trái</button>
-                        <button class="toggle-btn active" id="btn-sc-phai" onclick="switchSongCua('right')">Lối Phải</button>
-                    </div>
-                </div>
-
-                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
-                    <h3 id="mau-song-cua-title" class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Phải - Song Cửa</h3>
-                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow border border-blue-100">
-                        <ul class="text-slate-700 text-[11px] leading-relaxed vn-text list-disc ml-4 space-y-0.5">
-                            <li>2 cửa chính phía trước</li>
-                            <li>2 cửa sổ phía trước</li>
-                            <li>2 cửa sổ ở hai bên thông thoáng</li>
-                            <li>1 cửa hậu tiện lợi</li>
-                            <li>Hiên nhà phía trước có lan can</li>
-                        </ul>
-                    </div>
-
-                    <div class="border-t border-slate-100 pt-2">
-                        <table class="w-full text-[11px]">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 3m Dài</td>
-                                <td class="py-1 text-right font-bold text-blue-800">2,??? USD</td>
-                            </tr>
-                            <tr>
-                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 4m Dài</td>
-                                <td class="py-1 text-right font-bold text-blue-800">2,??? USD</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BLOCK 5: Mẫu Đơn Dáng Sâu (VẪN ẨN) -->
+            <!-- Khối mẫu "Mẫu Đơn Dáng Sâu" vẫn được giữ lại dưới dạng ẩn -->
             <div class="model-card hidden bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_F_4x5.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Dáng Sâu">
@@ -344,7 +301,7 @@
     </section>
 
     <script>
-        // JS for Block 1 (Mẫu Đơn - Cửa Bên)
+        // JS cho Khối 1 (Mẫu Đơn - Cửa Bên)
         function switchMauDon(side) {
             const img = document.getElementById('mau-don-img');
             const title = document.getElementById('mau-don-title');
@@ -364,7 +321,7 @@
             }
         }
 
-        // JS for Block 2 (Mẫu Đơn - Cửa Giữa)
+        // JS cho Khối 2 (Mẫu Đơn - Cửa Giữa)
         function switchDonThang(side) {
             const img = document.getElementById('mau-don-thang-img');
             const title = document.getElementById('mau-don-thang-title');
@@ -384,7 +341,7 @@
             }
         }
 
-        // JS for Block 3 (Mẫu Cơ Bản)
+        // JS cho Khối 3 (Mẫu Cơ Bản)
         function switchCoBan(pos) {
             const img = document.getElementById('mau-co-ban-img');
             const title = document.getElementById('mau-co-ban-title');
@@ -406,26 +363,6 @@
                 img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/double-doors-right-stairs.png';
                 title.innerText = 'Mẫu Lối Phải';
                 btnPhai.classList.add('active');
-            }
-        }
-
-        // JS for Block 4 (Mẫu Song Cửa)
-        function switchSongCua(side) {
-            const img = document.getElementById('mau-song-cua-img');
-            const title = document.getElementById('mau-song-cua-title');
-            const btnPhai = document.getElementById('btn-sc-phai');
-            const btnTrai = document.getElementById('btn-sc-trai');
-            
-            if (side === 'left') {
-                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-left-stairs.jpg';
-                title.innerText = 'Mẫu Lối Trái - Song Cửa';
-                btnTrai.classList.add('active');
-                btnPhai.classList.remove('active');
-            } else {
-                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-right-stairs.jpg';
-                title.innerText = 'Mẫu Lối Phải - Song Cửa';
-                btnPhai.classList.add('active');
-                btnTrai.classList.remove('active');
             }
         }
     </script>
