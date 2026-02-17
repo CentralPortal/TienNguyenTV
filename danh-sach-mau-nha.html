@@ -22,7 +22,6 @@
         }
         .vn-text { line-height: 1.3; }
         
-        /* Segmented Control / Toggle Styling - Enhanced Contrast */
         .toggle-pill {
             display: flex;
             background: #e2e8f0;
@@ -45,7 +44,7 @@
             background: transparent;
         }
         .toggle-btn.active {
-            background: #1e40af; /* Deep Blue for high contrast */
+            background: #1e40af;
             color: white;
             box-shadow: 0 2px 6px rgba(30, 64, 175, 0.3);
             animation: pulse-soft 2s infinite;
@@ -59,7 +58,7 @@
 
         .hint-text {
             font-size: 11px;
-            color: #1e40af; /* High contrast blue */
+            color: #1e40af;
             text-align: center;
             margin-bottom: 6px;
             display: flex;
@@ -74,7 +73,6 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- Housing Models List -->
     <section class="max-w-7xl mx-auto pt-4 pb-4 px-6">
         <div class="flex flex-col items-center mb-6 text-center">
             <h2 class="text-3xl font-bold text-slate-800 vn-text">Danh Sách Mẫu Nhà</h2>
@@ -82,7 +80,50 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
             
-            <!-- BLOCK 1: Mẫu Đơn -->
+            <!-- BLOCK 1: Mẫu Đơn Cửa Giữa -->
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img id="mau-don-thang-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/sd-dw-right-stairs.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn Thang">
+                </div>
+
+                <div class="mt-3">
+                    <div class="hint-text">
+                        <i class="fas fa-arrow-down"></i> Nhấn để đổi vị trí cầu thang
+                    </div>
+                    <div class="toggle-pill">
+                        <button class="toggle-btn" id="btn-dt-trai" onclick="switchDonThang('left')">Thang Trái</button>
+                        <button class="toggle-btn active" id="btn-dt-phai" onclick="switchDonThang('right')">Thang Phải</button>
+                    </div>
+                </div>
+
+                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
+                    <h3 id="mau-don-thang-title" class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Đơn - Cửa Giữa, Thang Phải</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow border border-blue-100">
+                        <ul class="text-slate-700 text-[11px] leading-relaxed vn-text list-disc ml-4 space-y-0.5">
+                            <li>1 cửa chính phía trước</li>
+                            <li>2 cửa sổ phía trước</li>
+                            <li>2 cửa sổ ở hai bên thông thoáng</li>
+                            <li>1 cửa hậu tiện lợi</li>
+                            <li>Hiên nhà phía trước có lan can</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
+                            <tr class="border-b border-slate-50">
+                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-blue-800">2,300 USD</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-blue-800">2,500 USD</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCK 2: Mẫu Đơn Cửa Bên -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img id="mau-don-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/single-door-right.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn">
@@ -129,7 +170,50 @@
                 </div>
             </div>
 
-            <!-- BLOCK 2: Mẫu Cơ Bản -->
+            <!-- BLOCK 3: Mẫu Song Cửa (MỚI) -->
+            <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
+                <div class="img-container overflow-hidden rounded-xl">
+                    <img id="mau-song-cua-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-right-stairs.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Song Cửa">
+                </div>
+
+                <div class="mt-3">
+                    <div class="hint-text">
+                        <i class="fas fa-arrow-down"></i> Nhấn để chọn lối đi
+                    </div>
+                    <div class="toggle-pill">
+                        <button class="toggle-btn" id="btn-sc-trai" onclick="switchSongCua('left')">Lối Trái</button>
+                        <button class="toggle-btn active" id="btn-sc-phai" onclick="switchSongCua('right')">Lối Phải</button>
+                    </div>
+                </div>
+
+                <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
+                    <h3 id="mau-song-cua-title" class="text-xl font-bold mb-1 text-slate-800 vn-text text-center">Mẫu Lối Phải - Song Cửa</h3>
+                    <div class="bg-blue-50/50 p-3 rounded-lg mb-3 flex-grow border border-blue-100">
+                        <ul class="text-slate-700 text-[11px] leading-relaxed vn-text list-disc ml-4 space-y-0.5">
+                            <li>2 cửa chính phía trước</li>
+                            <li>2 cửa sổ phía trước</li>
+                            <li>2 cửa sổ ở hai bên thông thoáng</li>
+                            <li>1 cửa hậu tiện lợi</li>
+                            <li>Hiên nhà phía trước có lan can</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-slate-100 pt-2">
+                        <table class="w-full text-[11px]">
+                            <tr class="border-b border-slate-50">
+                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 3m Dài</td>
+                                <td class="py-1 text-right font-bold text-blue-800">2,??? USD</td>
+                            </tr>
+                            <tr>
+                                <td class="py-1 text-slate-600 font-semibold">5m Ngang x 4m Dài</td>
+                                <td class="py-1 text-right font-bold text-blue-800">2,??? USD</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCK 4: Mẫu Cơ Bản -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img id="mau-co-ban-img" src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/double-doors-center-stairs.png" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Trung Tâm">
@@ -176,12 +260,11 @@
                 </div>
             </div>
 
-            <!-- BLOCK 3: Mẫu Đơn Dáng Sâu -->
+            <!-- BLOCK 5: Mẫu Đơn Dáng Sâu -->
             <div class="model-card bg-white border border-slate-100 rounded-[1.5rem] overflow-hidden shadow-md shadow-slate-200/50">
                 <div class="img-container overflow-hidden rounded-xl">
                     <img src="https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/Model_F_4x5.jpg" class="w-full h-full object-contain drop-shadow-lg" alt="Mẫu Đơn - Dáng Sâu">
                 </div>
-                <!-- Spacer for layout consistency with toggles in other cards -->
                 <div class="h-[80px]"></div> 
                 
                 <div class="px-5 pb-5 pt-0 flex flex-col flex-grow">
@@ -208,7 +291,6 @@
 
         </div>
 
-        <!-- Attention Box -->
         <div class="mt-8 max-w-2xl mx-auto p-4 bg-amber-50 border-l-4 border-amber-400 rounded-r-xl shadow-sm">
             <div class="flex items-center space-x-2 mb-1">
                 <i class="fas fa-exclamation-circle text-amber-500 text-sm"></i>
@@ -229,7 +311,6 @@
              </div>
              
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <!-- Equipment -->
                 <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
                     <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-tools text-blue-400 mr-2"></i>Trang Thiết Bị</h4>
                     <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
@@ -237,15 +318,13 @@
                         <li class="flex items-start"><i class="fas fa-check text-blue-400 mt-1 mr-2 text-[10px]"></i> Đèn & Quạt Năng Lượng Mặt Trời</li>
                     </ul>
                 </div>
-                <!-- Food -->
                 <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
                     <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-basket-shopping text-green-400 mr-2"></i>Thực Phẩm</h4>
                     <ul class="text-indigo-100 text-[11px] space-y-2 vn-text leading-tight">
-                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Gia vị: Dầu ăn, Nước mắm, Muối, Đường...</li>
-                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Đồ khô: Gạo, Mì tôm, Cá khô, Cá hộp...</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Gia vị: Dầu ăn, Nước mắm, Muối...</li>
+                        <li class="flex items-start"><i class="fas fa-check text-green-400 mt-1 mr-2 text-[10px]"></i> Đồ khô: Gạo, Mì tôm, Cá khô...</li>
                     </ul>
                 </div>
-                <!-- Sleep -->
                 <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
                     <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-moon text-purple-400 mr-2"></i>Giấc Ngủ</h4>
                     <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
@@ -253,13 +332,11 @@
                         <li class="flex items-start"><i class="fas fa-check text-purple-400 mt-1 mr-2 text-[10px]"></i> Mùng, Nệm & Chiếu</li>
                     </ul>
                 </div>
-                <!-- Options -->
                 <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
                     <h4 class="text-white font-bold text-lg mb-4 vn-text flex items-center"><i class="fas fa-star text-amber-400 mr-2"></i>Tùy Chọn Thêm</h4>
                     <ul class="text-indigo-100 text-[12px] space-y-2 vn-text">
                         <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Tủ quần áo (65 USD)</li>
-                        <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Đèn Năng Lượng Mặt Trời (85 USD)</li>
-                        <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Nệm phụ (25 USD)</li>
+                        <li class="flex items-start"><i class="fas fa-plus text-amber-400 mt-1 mr-2 text-[10px]"></i> Đèn NLMT (85 USD)</li>
                     </ul>
                 </div>
              </div>
@@ -267,6 +344,27 @@
     </section>
 
     <script>
+        // JS for Block 1
+        function switchDonThang(side) {
+            const img = document.getElementById('mau-don-thang-img');
+            const title = document.getElementById('mau-don-thang-title');
+            const btnPhai = document.getElementById('btn-dt-phai');
+            const btnTrai = document.getElementById('btn-dt-trai');
+            
+            if (side === 'left') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/sd-dw-left-stairs.jpg';
+                title.innerText = 'Mẫu Đơn - Cửa Giữa, Thang Trái';
+                btnTrai.classList.add('active');
+                btnPhai.classList.remove('active');
+            } else {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/sd-dw-right-stairs.jpg';
+                title.innerText = 'Mẫu Đơn - Cửa Giữa, Thang Phải';
+                btnPhai.classList.add('active');
+                btnTrai.classList.remove('active');
+            }
+        }
+
+        // JS for Block 2
         function switchMauDon(side) {
             const img = document.getElementById('mau-don-img');
             const title = document.getElementById('mau-don-title');
@@ -286,6 +384,27 @@
             }
         }
 
+        // JS for Block 3 (New - Song Cửa)
+        function switchSongCua(side) {
+            const img = document.getElementById('mau-song-cua-img');
+            const title = document.getElementById('mau-song-cua-title');
+            const btnPhai = document.getElementById('btn-sc-phai');
+            const btnTrai = document.getElementById('btn-sc-trai');
+            
+            if (side === 'left') {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-left-stairs.jpg';
+                title.innerText = 'Mẫu Lối Trái - Song Cửa';
+                btnTrai.classList.add('active');
+                btnPhai.classList.remove('active');
+            } else {
+                img.src = 'https://raw.githubusercontent.com/CentralPortal/TienNguyenTV/main/images/dd-dw-right-stairs.jpg';
+                title.innerText = 'Mẫu Lối Phải - Song Cửa';
+                btnPhai.classList.add('active');
+                btnTrai.classList.remove('active');
+            }
+        }
+
+        // JS for Block 4
         function switchCoBan(pos) {
             const img = document.getElementById('mau-co-ban-img');
             const title = document.getElementById('mau-co-ban-title');
