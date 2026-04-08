@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Câu Hỏi Phỏng Vấn (Open-Ended)</title>
+    <title>Câu Hỏi Phỏng Vấn (Dễ Hiểu)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -27,173 +27,192 @@
         .hidden-question {
             display: none;
         }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 </head>
 <body class="p-4 sm:p-8">
     <div class="container mx-auto max-w-4xl bg-white shadow-xl rounded-2xl p-6 sm:p-10 my-8">
-        <header class="text-center mb-8">
+        <header class="text-center mb-8 border-b pb-6">
             <h1 class="text-4xl font-extrabold text-blue-700 mb-2">
                 <span class="block">Câu Hỏi Phỏng Vấn</span>
             </h1>
-            <p class="text-sm text-gray-500 italic">Phiên bản câu hỏi mở rộng (Open-ended questions)</p>
+            <p class="text-sm text-gray-500 italic">Ngôn ngữ đơn giản, gần gũi</p>
         </header>
 
-        <nav id="table-of-contents" class="mb-8 p-4 bg-gray-100 rounded-lg shadow-sm">
-            <h2 class="text-xl font-bold text-gray-800 mb-3">Mục Lục</h2>
-            <ul id="toc-list" class="list-none pl-0 space-y-2"></ul>
-        </nav>
-
-        <div class="mb-4 text-right">
-            <label for="hideCompletedToggle" class="inline-flex items-center cursor-pointer">
-                <input type="checkbox" id="hideCompletedToggle" class="sr-only peer">
-                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                <span class="ms-3 text-sm font-bold">Ẩn các câu hỏi đã đánh dấu</span>
-            </label>
+        <!-- Search and Filter Bar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <nav id="table-of-contents" class="flex-1 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">Mục Lục</h2>
+                <ul id="toc-list" class="flex flex-wrap gap-x-4 gap-y-1 list-none pl-0"></ul>
+            </nav>
+            
+            <div class="flex items-center bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                <label for="hideCompletedToggle" class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="hideCompletedToggle" class="sr-only peer">
+                    <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    <span class="ms-3 text-sm font-semibold text-gray-700">Ẩn câu đã xong</span>
+                </label>
+            </div>
         </div>
 
         <section class="space-y-6">
             <!-- Category: Thông Tin Chung & Đời Sống -->
-            <details id="thong-tin-chung-doi-song" class="group mb-6 p-4 bg-blue-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-blue-600 cursor-pointer">
-                    Thông Tin Chung & Đời Sống
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="thong-tin-chung-doi-song" class="group p-4 bg-blue-50/50 border border-blue-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-blue-700 cursor-pointer">
+                    Chuyện Đời Thường & Gia Đình
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Kể lại một kỷ niệm đẹp từ thời thơ ấu mà cô/chú vẫn luôn mỉm cười khi nhớ về?</li>
-                        <li>Chia sẻ về hành trình của cô/chú từ khi sinh ra cho đến độ tuổi hiện tại?</li>
-                        <li>Hãy kể về các con của cô/chú và những niềm tự hào mà họ mang lại?</li>
-                        <li>Nếu có cơ hội trở về quê hương hoặc những nơi từng sống, cô/chú mong muốn được làm điều gì nhất?</li>
-                        <li>Cảm giác của cô/chú như thế nào khi màn đêm buông xuống giữa không gian núi rừng này?</li>
-                        <li>Làm thế nào để cô/chú duy trì sợi dây tình cảm với những người thân đang ở xa?</li>
-                        <li>Sự khác biệt lớn nhất giữa cuộc sống ở làng và cuộc sống hiện tại của cô/chú là gì?</li>
-                        <li>Kể về những người đang cùng chung sống và sự gắn bó giữa mọi người trong gia đình?</li>
-                        <li>Chia sẻ về vai trò và sự hiện diện của người chồng/vợ trong cuộc đời cô/chú?</li>
-                        <li>Hồi tưởng lại những cột mốc quan trọng gắn liền với tên và tuổi của mình?</li>
-                        <li>Gia đình cô/chú đã cùng nhau vượt qua những giai đoạn khó khăn nhất như thế nào?</li>
-                        <li>Cô/chú thường có cảm xúc và suy nghĩ gì mỗi khi có người lạ bất ngờ ghé thăm?</li>
-                        <li>Ấn tượng đầu tiên của cô/chú về tôi khi mới xuất hiện là như thế nào?</li>
-                        <li>Điều gì khiến cô/chú cảm thấy gắn bó và yêu mến vùng núi này bất chấp những khó khăn?</li>
-                        <li>Kể về những hoạt động khiến cô/chú cảm thấy bận rộn hoặc thư thả từ lúc bình minh đến khi đêm về?</li>
-                        <li>Những niềm vui nhỏ bé nào giúp cô/chú xua tan mệt mỏi sau một ngày mưu sinh?</li>
-                        <li>Lý do sâu xa nào khiến cô/chú chọn gắn bó với mảnh đất này thay vì một nơi khác?</li>
-                        <li>Điều gì khiến cô/chú cảm thấy cuộc sống ở đây phù hợp với mình hơn là ở trong làng?</li>
-                        <li>Ý nghĩa đằng sau cái tên mà cha mẹ đã đặt cho cô/chú là gì?</li>
-                        <li>Mô tả cách thức cô/chú đối diện và giải quyết thử thách lớn nhất phát sinh trong ngày?</li>
-                        <li>Mảnh đất này đã thay đổi như thế nào trong suốt những năm tháng cô/chú sinh sống ở đây?</li>
-                        <li>Cô/chú thường tìm kiếm sự thư giãn hoặc niềm an ủi ở đâu khi có thời gian rảnh rỗi?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Hồi nhỏ cô/chú có kỷ niệm nào vui nhất mà đến giờ vẫn nhớ không?</li>
+                        <li>Cô/chú kể cho cháu nghe về cuộc đời mình từ lúc nhỏ đến bây giờ nhé?</li>
+                        <li>Cô/chú có mấy người con? Các anh chị khiến cô/chú tự hào nhất ở điểm nào?</li>
+                        <li>Nếu được về lại quê cũ một chuyến, cô/chú muốn làm việc gì đầu tiên?</li>
+                        <li>Ở giữa núi rừng vắng vẻ thế này, lúc đêm về cô/chú thấy trong lòng thế nào?</li>
+                        <li>Làm sao để cô/chú giữ liên lạc và tình cảm với người thân ở xa?</li>
+                        <li>Sống ở đây và sống ở trong làng thì bên nào cô/chú thấy thoải mái hơn?</li>
+                        <li>Trong nhà mình bây giờ có những ai đang sống cùng cô/chú?</li>
+                        <li>Người bạn đời (chồng/vợ) có ý nghĩa như thế nào đối với cuộc đời cô/chú?</li>
+                        <li>Tên của cô/chú có ý nghĩa gì đặc biệt không? Ai đặt tên đó cho mình ạ?</li>
+                        <li>Gia đình mình đã cùng nhau vượt qua những lúc khó khăn nhất như thế nào?</li>
+                        <li>Mỗi lần thấy người lạ ghé nhà, cô/chú thấy vui hay thấy lo lắng ạ?</li>
+                        <li>Lần đầu gặp cháu, cô/chú thấy cháu là người thế nào?</li>
+                        <li>Vì sao cô/chú lại chọn ở lại đây dù cuộc sống còn nhiều vất vả?</li>
+                        <li>Một ngày của cô/chú thường bắt đầu và kết thúc như thế nào?</li>
+                        <li>Mỗi khi đi làm về mệt, điều gì làm cô/chú thấy vui vẻ trở lại?</li>
+                        <li>Tại sao cô/chú không dọn vào làng ở cho đông vui mà lại ở chỗ này?</li>
+                        <li>Khi gặp chuyện khó khăn trong ngày, cô/chú thường làm gì để giải quyết?</li>
+                        <li>Hồi trước với bây giờ, vùng đất này có thay đổi gì nhiều không cô/chú?</li>
+                        <li>Lúc rảnh rỗi không phải làm việc, cô/chú thường thích làm gì nhất?</li>
                     </ol>
                 </div>
             </details>
 
             <!-- Category: Nhà Ở & Điều Kiện Sinh Hoạt -->
-            <details id="nha-o-dieu-kien-sinh-hoat" class="group mb-6 p-4 bg-green-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-green-600 cursor-pointer">
-                    Nhà Ở & Điều Kiện Sinh Hoạt
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="nha-o-dieu-kien-sinh-hoat" class="group p-4 bg-green-50/50 border border-green-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-green-700 cursor-pointer">
+                    Chuyện Nhà Cửa & Ăn Ở
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Mô tả cảm giác thực sự của cơ thể sau mỗi đêm nghỉ ngơi trên địa hình không bằng phẳng như hiện tại?</li>
-                        <li>Những suy nghĩ nào thường xuất hiện trong đầu cô/chú mỗi khi trời nổi giông bão?</li>
-                        <li>Cách cô/chú chống chọi với cái lạnh thấu xương của núi rừng để có một giấc ngủ ngon?</li>
-                        <li>Cô/chú đã trang trí hoặc sắp xếp những gì để nơi ở này thực sự trở thành một "tổ ấm"?</li>
-                        <li>Kể về những sáng kiến sáng tạo của gia đình để giữ ấm trong mùa đông giá rét?</li>
-                        <li>Hãy dẫn tôi đi thăm và mô tả về những vật liệu tự nhiên đã tạo nên nơi ở này?</li>
-                        <li>Nếu được thay đổi một điều duy nhất để ngôi nhà an toàn hơn, cô/chú sẽ chọn làm gì?</li>
-                        <li>Ngôi nhà trong mơ mà cô/chú luôn mong muốn xây dựng cho gia đình trông như thế nào?</li>
-                        <li>Cuộc sống sinh hoạt của cả nhà sẽ thay đổi ra sao nếu có một hệ thống vệ sinh sạch sẽ ngay tại đây?</li>
-                        <li>Hãy tưởng tượng về khoảnh khắc đầu tiên khi bóng đèn điện được thắp sáng trong nhà, cô/chú sẽ làm gì?</li>
-                        <li>Kể về những công việc chuẩn bị kỳ công của gia đình trước khi mùa mưa bão kéo đến?</li>
-                        <li>Gia đình đã phối hợp với nhau như thế nào để bảo vệ nhau trước sự khắc nghiệt của thời tiết?</li>
-                        <li>Chia sẻ những kinh nghiệm ngăn chặn côn trùng và thú rừng xâm nhập vào không gian sống?</li>
-                        <li>Kể về những lần đối mặt với động vật hoang dã và cách cô/chú xử lý tình huống đó?</li>
-                        <li>Mô tả chi tiết các bước chuẩn bị cho chỗ ngủ mỗi tối để đảm bảo sự thoải mái nhất có thể?</li>
-                        <li>Trời mưa ảnh hưởng như thế nào đến sự yên tĩnh và giấc ngủ của cả gia đình?</li>
-                        <li>Lịch sử hình thành và những kỷ niệm gắn liền với việc dựng xây ngôi nhà hiện tại?</li>
-                        <li>Ngoài vấn đề dột nát, điều gì ở cấu trúc ngôi nhà khiến cô/chú cảm thấy bất tiện nhất?</li>
-                        <li>Tại sao góc này/phần này của ngôi nhà lại khiến cô/chú lo lắng nhiều nhất?</li>
-                        <li>Thiên nhiên xung quanh vừa là bạn, vừa là thử thách, cô/chú nhìn nhận mối quan hệ này như thế nào?</li>
-                        <li>Mô tả kế hoạch di chuyển và tìm nơi trú ẩn của gia đình khi có thiên tai lớn xảy ra?</li>
-                        <li>Đối với cô/chú, một nơi như thế nào thì mới được gọi là "Nhà" đúng nghĩa?</li>
-                        <li>Bóng tối vào ban đêm hạn chế những ước muốn hay dự định nào của gia đình cô/chú?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Ngủ trên nền đất không bằng phẳng thế này, sáng dậy cô/chú có thấy đau người không?</li>
+                        <li>Mỗi khi trời sắp có mưa to gió lớn, cô/chú lo lắng nhất điều gì?</li>
+                        <li>Mùa đông ở đây lạnh lắm, cô/chú làm sao để ngủ ngon giấc được ạ?</li>
+                        <li>Cô/chú làm thế nào để trang trí cho căn nhà mình ấm cúng hơn?</li>
+                        <li>Gia đình mình có cách nào hay để giữ ấm khi trời rét đậm không?</li>
+                        <li>Ngôi nhà này được dựng lên bằng những loại gỗ hay vật liệu gì thế cô/chú?</li>
+                        <li>Nếu có thể sửa một thứ để nhà mình chắc chắn hơn, cô/chú muốn sửa gì nhất?</li>
+                        <li>Cô/chú có bao giờ mơ về một ngôi nhà xây thật đẹp không? Nó trông như thế nào ạ?</li>
+                        <li>Nếu có nhà vệ sinh sạch sẽ ngay tại đây, sinh hoạt của nhà mình sẽ sướng hơn thế nào?</li>
+                        <li>Nếu mai kia nhà mình có điện, người đầu tiên cô/chú muốn khoe là ai?</li>
+                        <li>Trước mùa mưa bão, cả nhà mình phải chuẩn bị những gì để nhà không bị hỏng?</li>
+                        <li>Mọi người trong nhà giúp đỡ nhau thế nào để cùng vượt qua những ngày thời tiết xấu?</li>
+                        <li>Làm sao để cô/chú ngăn côn trùng hay thú rừng không vào trong nhà phá phách?</li>
+                        <li>Đã bao giờ cô/chú gặp thú dữ chưa? Lúc đó mình xử lý thế nào ạ?</li>
+                        <li>Mỗi tối trước khi đi ngủ, cô/chú phải chuẩn bị chỗ nằm như thế nào cho ấm?</li>
+                        <li>Tiếng mưa rơi trên mái nhà có làm cả nhà khó ngủ không cô/chú?</li>
+                        <li>Hồi đó cô/chú dựng ngôi nhà này mất bao lâu? Có ai giúp mình không ạ?</li>
+                        <li>Ngoài chuyện bị dột, ngôi nhà này còn chỗ nào làm cô/chú thấy khổ nhất không?</li>
+                        <li>Tại sao cô/chú lại lo cho cái góc nhà kia nhất mỗi khi gió thổi mạnh?</li>
+                        <li>Cô/chú thấy thiên nhiên quanh đây là bạn hay là thứ làm mình vất vả thêm?</li>
+                        <li>Nếu có bão lớn, cả nhà mình định chạy đi đâu để lánh nạn ạ?</li>
+                        <li>Theo cô/chú, thế nào thì mới được gọi là một ngôi nhà hạnh phúc?</li>
+                        <li>Vì không có điện, buổi tối cô/chú có muốn làm gì mà không làm được không?</li>
                     </ol>
                 </div>
             </details>
 
             <!-- Category: Lương Thực & Nước Sạch -->
-            <details id="luong-thuc-nuoc-sach" class="group mb-6 p-4 bg-yellow-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-yellow-600 cursor-pointer">
-                    Lương Thực & Nước Sạch
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="luong-thuc-nuoc-sach" class="group p-4 bg-yellow-50/50 border border-yellow-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-yellow-700 cursor-pointer">
+                    Chuyện Ăn Uống & Nước Sinh Hoạt
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Kể về thực đơn của bữa ăn gần nhất và cảm giác của cô/chú sau khi dùng bữa?</li>
-                        <li>Những tâm tư, trăn trở của cô/chú khi phải lo toan từng bữa ăn cho con cái?</li>
-                        <li>Kể về hành trình đi tìm và mang nước về cho gia đình mỗi ngày?</li>
-                        <li>Mô tả những món ăn quen thuộc và cách cô/chú chế biến chúng từ nguồn lực hạn hẹp?</li>
-                        <li>Làm thế nào cô/chú đa dạng hóa bữa ăn khi chỉ có những nguyên liệu cơ bản nhất?</li>
-                        <li>Trong những lúc ngặt nghèo nhất, gia đình đã tìm kiếm nguồn thức ăn từ thiên nhiên như thế nào?</li>
-                        <li>Cảm xúc của cả nhà trong những dịp hiếm hoi có một bữa ăn thịnh soạn và đầy đủ?</li>
-                        <li>Quá trình lấy nước tiêu tốn bao nhiêu sức lực và thời gian trong quỹ thời gian quý báu của cô/chú?</li>
-                        <li>Khó khăn lớn nhất trong việc duy trì bếp lửa và thức ăn hàng ngày là gì?</li>
-                        <li>Làm thế nào để cô/chú giữ vững tinh thần khi phải đối mặt với nỗi lo thiếu đói?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Bữa cơm gần nhất nhà mình ăn món gì vậy ạ? Cả nhà có ăn no không?</li>
+                        <li>Mỗi ngày thức dậy, cô/chú có lo lắng chuyện kiếm cái ăn cho các con không?</li>
+                        <li>Cô/chú phải đi lấy nước ở đâu về dùng? Đường đi có xa và dốc lắm không?</li>
+                        <li>Trong bếp nhà mình thường có sẵn những món gì để nấu ăn qua ngày ạ?</li>
+                        <li>Làm sao để từ những thứ đơn giản mà cô/chú nấu được bữa cơm ngon cho cả nhà?</li>
+                        <li>Những lúc hết đồ ăn, cô/chú có phải vào rừng tìm thêm rau củ gì không?</li>
+                        <li>Cả nhà mình vui thế nào mỗi khi có một bữa cơm ngon, có thịt có cá ạ?</li>
+                        <li>Mỗi ngày cô/chú mất bao nhiêu thời gian chỉ để đi gùi nước về nhà?</li>
+                        <li>Việc nhóm bếp và chuẩn bị đồ ăn hằng ngày có gì vất vả nhất không cô/chú?</li>
+                        <li>Làm sao để cô/chú luôn vững tin dù nhiều khi trong nhà chẳng còn gì ăn?</li>
                     </ol>
                 </div>
             </details>
 
             <!-- Category: Sức Khỏe & Chăm Sóc Y Tế -->
-            <details id="suc-khoe-cham-soc-y-te" class="group mb-6 p-4 bg-red-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-red-600 cursor-pointer">
-                    Sức Khỏe & Chăm Sóc Y Tế
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="suc-khoe-cham-soc-y-te" class="group p-4 bg-red-50/50 border border-red-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-red-700 cursor-pointer">
+                    Chuyện Sức Khỏe & Thuốc Men
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Sự hỗ trợ từ cộng đồng hoặc chính quyền đã giúp thay đổi cuộc sống của cô/chú như thế nào?</li>
-                        <li>Nỗi sợ hãi lớn nhất của cô/chú liên quan đến bệnh tật là gì và tại sao?</li>
-                        <li>Chia sẻ về một lần gia đình tự xoay sở vượt qua bệnh tật khi không có điều kiện tiếp cận y tế?</li>
-                        <li>Hành trình di chuyển đến cơ sở y tế gần nhất vất vả như thế nào đối với một người đang ốm?</li>
-                        <li>Những kiến thức về cây thuốc rừng mà cô/chú đã học được để tự bảo vệ sức khỏe?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Từ trước tới giờ, có ai đến giúp đỡ hay hỗ trợ gì cho nhà mình chưa ạ?</li>
+                        <li>Điều gì về bệnh tật làm cô/chú sợ nhất cho bản thân và gia đình?</li>
+                        <li>Đã bao giờ có người trong nhà bị ốm nặng mà không đi viện được chưa? Lúc đó làm sao ạ?</li>
+                        <li>Từ đây ra trạm y tế gần nhất mất bao lâu? Đi đường đó có khổ lắm không cô/chú?</li>
+                        <li>Cô/chú có biết loại lá rừng hay cây thuốc nào để chữa những bệnh thông thường không?</li>
                     </ol>
                 </div>
             </details>
 
             <!-- Category: Lao Động & Sinh Kế -->
-            <details id="lao-dong-sinh-ke" class="group mb-6 p-4 bg-purple-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-purple-600 cursor-pointer">
-                    Lao Động & Sinh Kế
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="lao-dong-sinh-ke" class="group p-4 bg-purple-50/50 border border-purple-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-purple-700 cursor-pointer">
+                    Chuyện Làm Lụng & Kiếm Sống
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Mô tả những rủi ro nghề nghiệp mà cô/chú phải đối mặt hằng ngày để đổi lấy thu nhập?</li>
-                        <li>Kể về những kỹ năng đặc biệt mà cô/chú cần có để duy trì công việc hiện tại?</li>
-                        <li>Thu nhập ít ỏi được cô/chú phân bổ như thế nào để trang trải cho tất cả nhu cầu?</li>
-                        <li>Những suy nghĩ của cô/chú khi thấy các con phải sớm phụ giúp việc mưu sinh?</li>
-                        <li>Bí quyết nào giúp cô/chú vẫn có thể tiết kiệm hoặc tích lũy giữa muôn vàn khó khăn?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Đi làm hằng ngày cô/chú có gặp nguy hiểm gì không (như ngã, trơn trượt)?</li>
+                        <li>Để làm được công việc này, cô/chú phải học những gì hay cần sức khỏe thế nào?</li>
+                        <li>Số tiền ít ỏi kiếm được, cô/chú phải tính toán thế nào để đủ chi tiêu cho cả nhà?</li>
+                        <li>Thấy các con còn nhỏ đã phải phụ ba mẹ làm việc, trong lòng cô/chú nghĩ gì?</li>
+                        <li>Làm sao cô/chú vẫn dành dụm được một ít tiền dù cuộc sống còn nhiều khó khăn?</li>
                     </ol>
                 </div>
             </details>
 
             <!-- Category: Giáo Dục & Tương Lai Trẻ Em -->
-            <details id="giao-duc-tuong-lai-tre-em" class="group mb-6 p-4 bg-teal-50 rounded-lg shadow-sm">
-                <summary class="flex justify-between items-center text-xl font-semibold text-teal-600 cursor-pointer">
-                    Giáo Dục & Tương Lai Trẻ Em
-                    <svg class="w-5 h-5 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            <details id="giao-duc-tuong-lai-tre-em" class="group p-4 bg-teal-50/50 border border-teal-100 rounded-xl transition-all duration-200">
+                <summary class="flex justify-between items-center text-xl font-bold text-teal-700 cursor-pointer">
+                    Chuyện Học Hành Của Các Con
+                    <svg class="w-6 h-6 transform transition-transform duration-300 group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </summary>
-                <div class="mt-3">
-                    <ol class="list-decimal pl-6 space-y-2 text-gray-700">
-                        <li>Kể về những khó khăn mà các con kể lại sau mỗi chặng đường dài đi bộ đến trường?</li>
-                        <li>Rào cản lớn nhất ngăn cản giấc mơ học tập của các con cô/chú hiện nay là gì?</li>
-                        <li>Các con thường tâm sự với cô/chú về ước mơ trở thành người như thế nào trong tương lai?</li>
-                        <li>Cô/chú thường dùng những lời khuyên hay câu chuyện nào để tiếp thêm động lực đi học cho con?</li>
-                        <li>Những thay đổi tích cực nào cô/chú nhận thấy ở các con từ khi chúng được đến trường?</li>
+                <div class="mt-4">
+                    <ol class="list-none pl-0 space-y-1 text-gray-700">
+                        <li>Mấy đứa nhỏ đi bộ đi học xa thế, về nhà chúng nó có hay kêu mệt không cô/chú?</li>
+                        <li>Bây giờ điều gì là khó khăn nhất khiến các con dễ phải nghỉ học giữa chừng?</li>
+                        <li>Mấy đứa nhỏ nhà mình sau này lớn lên muốn làm nghề gì, cô/chú có biết không?</li>
+                        <li>Cô/chú hay nói gì để động viên các con cố gắng đến trường học chữ?</li>
+                        <li>Từ ngày đi học, cô/chú thấy các con mình có ngoan và hiểu biết hơn không?</li>
                     </ol>
                 </div>
             </details>
         </section>
+        
+        <footer class="mt-12 pt-8 border-t text-center text-gray-400 text-xs">
+            Mọi thay đổi của bạn sẽ được lưu lại trên máy này.
+        </footer>
     </div>
 
     <script>
@@ -205,14 +224,14 @@
 
             // TOC Generation
             const allDetailsSections = document.querySelectorAll('section > details');
-            allDetailsSections.forEach(details => {
+            allDetailsSections.forEach((details, index) => {
                 const summaryText = details.querySelector('summary').firstChild.textContent.trim();
                 const detailId = details.id;
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 a.href = '#' + detailId;
                 a.textContent = summaryText;
-                a.className = 'text-blue-700 hover:underline font-bold';
+                a.className = 'text-blue-600 hover:text-blue-800 text-sm font-semibold transition-colors';
                 a.onclick = (e) => {
                     e.preventDefault();
                     const target = document.getElementById(detailId);
@@ -221,6 +240,12 @@
                 };
                 li.appendChild(a);
                 tocList.appendChild(li);
+                if (index < allDetailsSections.length - 1) {
+                    const sep = document.createElement('span');
+                    sep.textContent = '•';
+                    sep.className = 'text-gray-300 px-1';
+                    li.after(sep);
+                }
             });
 
             function toggleCompletedQuestions() {
@@ -238,29 +263,33 @@
             function applyQuestionStates() {
                 allQuestionLists.forEach(ol => {
                     const categoryId = ol.closest('details').id;
-                    const questionItems = Array.from(ol.children);
-                    const questionData = questionItems.map((li, index) => ({
+                    const questionData = Array.from(ol.querySelectorAll('li')).map((li, index) => ({
                         text: li.textContent.trim(),
                         id: `${categoryId}_${index}`
                     }));
 
-                    // Sort Alphabetically by Vietnamese locale
-                    questionData.sort((a, b) => a.text.localeCompare(b.text, 'vi'));
-
+                    // We keep original order here to maintain the "flow" of conversation rather than strict alphabet
+                    // (But let's keep the logic stable in case user wants alphabet back later)
                     ol.innerHTML = '';
                     questionData.forEach(data => {
                         const li = document.createElement('li');
+                        li.className = 'transition-all duration-200 hover:bg-white/50 rounded-lg group/item px-2';
+                        
                         const label = document.createElement('label');
-                        label.className = 'flex items-start space-x-2 cursor-pointer py-1';
+                        label.className = 'flex items-start space-x-3 cursor-pointer py-2 w-full';
 
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
-                        checkbox.className = 'form-checkbox h-4 w-4 mt-1 text-blue-600 rounded';
+                        checkbox.className = 'form-checkbox h-5 w-5 mt-0.5 text-blue-600 rounded-md border-gray-300 focus:ring-blue-500 transition-all';
                         checkbox.checked = savedStates[data.id] || false;
 
                         const span = document.createElement('span');
                         span.textContent = data.text;
-                        if (checkbox.checked) span.classList.add('line-through', 'text-gray-400');
+                        span.className = 'text-gray-700 leading-relaxed';
+                        
+                        if (checkbox.checked) {
+                            span.classList.add('line-through', 'text-gray-400');
+                        }
 
                         checkbox.onchange = () => {
                             savedStates[data.id] = checkbox.checked;
