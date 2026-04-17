@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Điều Khiển Tuân Thủ YouTube 2026 - @TienNguyenTVOfficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutrals & Muted Earth Tones -->
+    <!-- Application Structure Plan: The SPA uses a dashboard structure with a dynamic checklist and progress tracking. This structure is chosen because the source report is a checklist. A dashboard allows the user to actively engage with the criteria, track their progress visually via a donut chart (overall readiness) and a radar chart (category strength), and logically group the rules into manageable tabs. This gamifies the compliance process and ensures no rule is missed before uploading a video. -->
+    <!-- Visualization & Content Choices: 
+         - Overall Progress -> Goal: Inform -> Donut Chart (Chart.js) -> Justification: Quickly shows how close the video is to 100% compliance.
+         - Category Strengths -> Goal: Compare -> Radar Chart (Chart.js) -> Justification: Highlights which specific policy areas (e.g., Thumbnail vs. Content) need more attention.
+         - Interactive Checklist -> Goal: Organize/Inform -> HTML Forms + JS -> Justification: Best way to interact with pass/fail criteria.
+         - Confirmation: NO SVG graphics used. NO Mermaid JS used. Relying on Unicode and Canvas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf9f6;
+            color: #2d2a26;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        .tab-btn.active {
+            background-color: #8b5a2b;
+            color: white;
+            font-weight: 600;
+        }
+
+        .checkbox-custom:checked + label {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+        
+        .progress-circle {
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="mb-8 text-center md:text-left bg-white p-6 rounded-2xl shadow-sm border border-stone-200 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h1 class="text-3xl font-bold text-stone-800 mb-2">Bảng Điều Khiển Tuân Thủ YouTube 2026</h1>
+                <p class="text-stone-600 text-lg">Kênh: <span class="font-semibold text-amber-700">@TienNguyenTVOfficial</span> | Dự án: Nâng cao Nhận thức Nhân đạo</p>
+                <p class="text-sm text-stone-500 mt-2 max-w-2xl">Công cụ này giúp bạn đánh giá mức độ an toàn và tuân thủ của video trước khi xuất bản, dựa trên các bản cập nhật nguyên tắc cộng đồng và thân thiện với nhà quảng cáo mới nhất năm 2026 dành cho nội dung nhạy cảm và nhân đạo.</p>
+            </div>
+            <div class="flex flex-col items-center bg-stone-50 p-4 rounded-xl border border-stone-200">
+                <span class="text-sm font-semibold text-stone-500 uppercase tracking-wider mb-1">Độ An Toàn Video</span>
+                <div class="relative w-24 h-24">
+                    <canvas id="progressChart"></canvas>
+                    <div class="absolute inset-0 flex items-center justify-center flex-col">
+                        <span id="progressText" class="text-xl font-bold text-stone-800">0%</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">Các Hạng Mục Kiểm Tra</h2>
+                    <p class="text-stone-600 mb-6">Mục này chứa toàn bộ các tiêu chí bắt buộc từ báo cáo. Hãy chọn từng thẻ bên dưới và đánh dấu vào các mục bạn đã hoàn thành để đảm bảo video không vi phạm quy tắc "EDSA" hay bị gắn cờ "Nội dung giật gân".</p>
+                    
+                    <div id="tabsContainer" class="flex flex-wrap gap-2 mb-6">
+                    </div>
+
+                    <div id="checklistContainer" class="bg-stone-50 p-4 rounded-xl border border-stone-200 min-h-[300px]">
+                    </div>
+                </div>
+
+                <div class="bg-stone-800 text-stone-50 p-6 rounded-2xl shadow-sm mt-6">
+                    <h2 class="text-xl font-bold mb-4 flex items-center gap-2">✅ Kiểm tra Cuối cùng: Bài kiểm tra "Nhân phẩm"</h2>
+                    <p class="text-stone-300 mb-4 text-sm">Hãy tự hỏi bản thân 3 câu hỏi này trước khi nhấn nút Xuất bản. Đây là yếu tố cốt lõi của thuật toán E-E-A-T năm 2026.</p>
+                    <ul class="space-y-3 font-medium">
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500">1.</span>
+                            <span>Nếu một nhà quảng cáo xem video này, họ có cảm thấy thương hiệu của họ đang đặt cạnh một <strong>bộ phim tài liệu đáng tôn trọng</strong> không?</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500">2.</span>
+                            <span><strong>Ý định giúp đỡ</strong> có rõ ràng trong 60 giây đầu tiên không?</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-amber-500">3.</span>
+                            <span>Tôi đã cung cấp <strong>bằng chứng về tác động</strong> của những khoản quyên góp trước đó chưa?</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h2 class="text-xl font-bold text-stone-800 mb-4 border-b border-stone-100 pb-2">Phân Tích Tuân Thủ</h2>
+                    <p class="text-stone-600 text-sm mb-4">Biểu đồ Radar này hiển thị sức mạnh tuân thủ của video trên 5 lĩnh vực chính. Đảm bảo khu vực biểu đồ được lấp đầy tối đa để tối ưu hóa khả năng kiếm tiền.</p>
+                    <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 p-6 rounded-2xl shadow-sm border border-amber-200">
+                    <h3 class="font-bold text-amber-900 mb-2">💡 Lời khuyên cho @TienNguyenTVOfficial</h3>
+                    <p class="text-amber-800 text-sm">Vì nội dung của bạn thường xuyên có cảnh người dân làm nông hoặc nhặt phân bò, hãy nhớ sử dụng các thuật ngữ như "Sinh kế truyền thống" hoặc "Khó khăn nông nghiệp" trong mô tả. Điều này giúp AI hiểu rằng sự thiếu vệ sinh là một phần của <em>công việc</em> chứ không phải nội dung cố tình gây sốc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            {
+                id: 'metadata',
+                icon: '🛑',
+                title: 'Tiêu đề & Siêu dữ liệu',
+                items: [
+                    { id: 'm1', text: 'Tránh Từ khóa Bị hạn chế: Đã thay "Chết đói", "Bi kịch" bằng "Nghịch cảnh", "Thực tế vùng cao".' },
+                    { id: 'm2', text: 'Bối cảnh Giáo dục: Tiêu đề thể hiện rõ tính chất phim tài liệu (VD: "Phim tài liệu: Thực tế...").' },
+                    { id: 'm3', text: 'Không Ngôn ngữ Gây sốc: Không viết hoa toàn bộ các từ tiêu cực.' },
+                    { id: 'm4', text: 'Tiết lộ Mô tả: Hai dòng đầu có ghi "Video này nhằm mục đích giáo dục và nâng cao nhận thức...".' },
+                    { id: 'm5', text: 'Kiểm tra tính Chính xác: Không có các tuyên bố giật gân, sai sự thật (Lừa đảo/Inauthentic).' }
+                ]
+            },
+            {
+                id: 'thumbnail',
+                icon: '🖼️',
+                title: 'Hình thu nhỏ (Thumbnail)',
+                items: [
+                    { id: 't1', text: 'Không hiển thị đau đớn: Không có vết thương hở, bệnh ngoài da cực đoan làm trọng tâm.' },
+                    { id: 't2', text: 'Không Clickbait Đau khổ: Không ghép thêm nước mắt hoặc dùng biểu cảm sốc giả tạo.' },
+                    { id: 't3', text: 'Bộ lọc Vệ sinh: Dùng góc rộng, không chụp cận cảnh chất thải hoặc sự bẩn thỉu.' },
+                    { id: 't4', text: 'An toàn Trẻ em: Trẻ em trên ảnh mặc quần áo đầy đủ, không tạo cảm giác lợi dụng câu view.' },
+                    { id: 't5', text: 'Thiết kế Tối giản: Không dùng vòng tròn đỏ, mũi tên. Dùng khuôn mặt hy vọng/phong cảnh.' }
+                ]
+            },
+            {
+                id: 'content',
+                icon: '👶',
+                title: 'Nội dung & Quy tắc EDSA',
+                items: [
+                    { id: 'c1', text: '30 Giây Đầu tiên: Bắt đầu bằng sứ mệnh, không bắt đầu bằng hình ảnh ghê rợn hay trẻ em khóc.' },
+                    { id: 'c2', text: 'Quy tắc Nhân phẩm: Không quay soi mói lúc ăn uống kham khổ. Khắc họa với sự tôn trọng.' },
+                    { id: 'c3', text: 'Chính sách Y tế: Không đưa "thuốc thần kỳ", đã làm mờ các vết thương/bệnh tật khó nhìn.' },
+                    { id: 'c4', text: 'Lao động Trẻ em: Đã đóng khung rõ ràng cảnh làm việc nhà là phim tài liệu, không khuyến khích.' },
+                    { id: 'c5', text: 'Sự hiện diện Con người: Có giọng đọc hoặc người thật xuất hiện (Không phải Rác AI).' }
+                ]
+            },
+            {
+                id: 'fundraising',
+                icon: '✍️',
+                title: 'Gây quỹ & Minh bạch',
+                items: [
+                    { id: 'f1', text: 'Kêu gọi Hỗ trợ: Dùng từ "Hỗ trợ sứ mệnh" thay vì "Hãy gửi tiền ngay" (Không ăn xin).' },
+                    { id: 'f2', text: 'Minh bạch Liên kết: Sử dụng tổ chức uy tín hoặc giải thích cực kỳ rõ ràng nếu dùng quỹ cá nhân.' },
+                    { id: 'f3', text: 'Bằng chứng E-E-A-T: Video có chứa cảnh quay cho thấy kết quả quyên góp (phát quà, lợp mái).' },
+                    { id: 'f4', text: 'Không cưỡng ép (CTA): Thông điệp là "Chung tay giúp đỡ cộng đồng".' }
+                ]
+            },
+            {
+                id: 'tech',
+                icon: '🤖',
+                title: 'Thuật toán & Kỹ thuật',
+                items: [
+                    { id: 'te1', text: 'Tiết lộ AI: Đã tích ô "Nội dung đã chỉnh sửa" nếu có dùng AI dịch thuật/lồng tiếng.' },
+                    { id: 'te2', text: 'Khả năng Tiếp cận: Đã bổ sung phụ đề Tiếng Việt VÀ Tiếng Anh.' },
+                    { id: 'te3', text: 'Cấu trúc Câu chuyện: Video kết thúc bằng sự tiến triển hoặc Lời kêu gọi hành động, không phải vòng lặp bi kịch.' }
+                ]
+            }
+        ];
+
+        let state = {
+            activeTab: 'metadata',
+            checkedItems: {}
+        };
+
+        let progressChartInstance = null;
+        let radarChartInstance = null;
+
+        function init() {
+            categories.forEach(cat => {
+                cat.items.forEach(item => {
+                    state.checkedItems[item.id] = false;
+                });
+            });
+
+            renderTabs();
+            renderChecklist(state.activeTab);
+            initCharts();
+            updateDashboard();
+        }
+
+        function renderTabs() {
+            const container = document.getElementById('tabsContainer');
+            container.innerHTML = '';
+            
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `tab-btn px-4 py-2 rounded-full border border-stone-300 text-sm transition-colors duration-200 ${state.activeTab === cat.id ? 'active' : 'bg-white text-stone-600 hover:bg-stone-100'}`;
+                btn.innerHTML = `${cat.icon} ${cat.title}`;
+                btn.onclick = () => {
+                    state.activeTab = cat.id;
+                    renderTabs();
+                    renderChecklist(cat.id);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderChecklist(categoryId) {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+            
+            const category = categories.find(c => c.id === categoryId);
+            
+            category.items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'flex items-start gap-3 p-3 mb-2 bg-white rounded-lg border border-stone-200 shadow-sm transition-all hover:shadow-md';
+                
+                const isChecked = state.checkedItems[item.id];
+                
+                div.innerHTML = `
+                    <div class="flex-shrink-0 mt-0.5">
+                        <input type="checkbox" id="${item.id}" class="checkbox-custom w-5 h-5 text-[#8b5a2b] bg-stone-100 border-stone-300 rounded focus:ring-[#8b5a2b] cursor-pointer" ${isChecked ? 'checked' : ''} onchange="toggleItem('${item.id}')">
+                    </div>
+                    <label for="${item.id}" class="text-stone-700 text-sm cursor-pointer select-none transition-colors ${isChecked ? 'line-through text-stone-400' : ''}">
+                        ${item.text}
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        window.toggleItem = function(itemId) {
+            state.checkedItems[itemId] = !state.checkedItems[itemId];
+            renderChecklist(state.activeTab);
+            updateDashboard();
+        }
+
+        function calculateProgress() {
+            const total = Object.keys(state.checkedItems).length;
+            const checked = Object.values(state.checkedItems).filter(v => v).length;
+            return { total, checked, percentage: total === 0 ? 0 : Math.round((checked / total) * 100) };
+        }
+
+        function getCategoryScores() {
+            return categories.map(cat => {
+                const catTotal = cat.items.length;
+                const catChecked = cat.items.filter(item => state.checkedItems[item.id]).length;
+                return (catChecked / catTotal) * 100;
+            });
+        }
+
+        function initCharts() {
+            const progressCtx = document.getElementById('progressChart').getContext('2d');
+            progressChartInstance = new Chart(progressCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [0, 100],
+                        backgroundColor: ['#4f8a65', '#e5e7eb'],
+                        borderWidth: 0,
+                        cutout: '80%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { animateScale: true },
+                    plugins: { tooltip: { enabled: false }, legend: { display: false } }
+                }
+            });
+
+            const radarCtx = document.getElementById('radarChart').getContext('2d');
+            radarChartInstance = new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: categories.map(c => c.title),
+                    datasets: [{
+                        label: 'Mức độ tuân thủ (%)',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: 'rgba(139, 90, 43, 0.2)',
+                        borderColor: 'rgba(139, 90, 43, 1)',
+                        pointBackgroundColor: 'rgba(139, 90, 43, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(139, 90, 43, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                font: { family: 'Inter', size: 11, weight: '600' },
+                                color: '#444'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                max: 100,
+                                stepSize: 25,
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '% Hoàn thành';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateDashboard() {
+            const progress = calculateProgress();
+            const catScores = getCategoryScores();
+
+            document.getElementById('progressText').innerText = `${progress.percentage}%`;
+            
+            let color = '#d97757'; 
+            if (progress.percentage >= 50) color = '#d4a373';
+            if (progress.percentage >= 80) color = '#8b5a2b';
+            if (progress.percentage === 100) color = '#4f8a65';
+
+            document.getElementById('progressText').style.color = color;
+
+            progressChartInstance.data.datasets[0].data = [progress.percentage, 100 - progress.percentage];
+            progressChartInstance.data.datasets[0].backgroundColor = [color, '#e5e7eb'];
+            progressChartInstance.update();
+
+            radarChartInstance.data.datasets[0].data = catScores;
+            if(progress.percentage === 100) {
+                radarChartInstance.data.datasets[0].backgroundColor = 'rgba(79, 138, 101, 0.2)';
+                radarChartInstance.data.datasets[0].borderColor = 'rgba(79, 138, 101, 1)';
+                radarChartInstance.data.datasets[0].pointBackgroundColor = 'rgba(79, 138, 101, 1)';
+            } else {
+                radarChartInstance.data.datasets[0].backgroundColor = 'rgba(139, 90, 43, 0.2)';
+                radarChartInstance.data.datasets[0].borderColor = 'rgba(139, 90, 43, 1)';
+                radarChartInstance.data.datasets[0].pointBackgroundColor = 'rgba(139, 90, 43, 1)';
+            }
+            radarChartInstance.update();
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
