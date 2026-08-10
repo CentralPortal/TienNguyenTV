@@ -65,6 +65,7 @@
 </head>
 <body class="font-sans min-h-full flex flex-col bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased transition-colors duration-200 selection:bg-red-500 selection:text-white">
 
+    <!-- Header Banner -->
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm py-5 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -73,12 +74,13 @@
         </div>
     </header>
 
+    <!-- Main Content Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5">
 
         <!-- Notification Toast Container -->
         <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 border border-emerald-400">
             <i class="fa-solid fa-circle-check text-lg"></i>
-            <span id="toastMsg" class="text-sm font-medium">Đã sao chép thành công!</span>
+            <span id="toastMsg" class="text-sm font-medium">Đã cập nhật trạng thái!</span>
         </div>
 
         <!-- CATEGORIES CONTAINER -->
@@ -88,6 +90,7 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-5 text-center text-xs text-slate-500 transition-colors">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p>© 2026 TienNguyenTVOfficial Title Collection Manager. Công cụ quản lý tiêu đề video vùng cao.</p>
@@ -107,7 +110,7 @@
                 <h3 class="text-base font-bold text-slate-900 dark:text-white">Đặt lại trạng thái</h3>
             </div>
             <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-                Bạn có chắc chắn muốn xóa tất cả trạng thái đã lưu trong trình duyệt?
+                Bạn có chắc chắn muốn xóa tất cả trạng thái đánh dấu đã lưu trong trình duyệt?
             </p>
             <div class="flex items-center justify-end gap-3 pt-2">
                 <button onclick="closeResetModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition cursor-pointer">
@@ -121,9 +124,24 @@
     </div>
 
     <script>
+        /* State Variables */
         const STORAGE_KEY = 'tien_nguyen_tv_checked_titles_v3';
         let checkedMap = {};
 
+        /* Theme initializer to prevent ReferenceError */
+        function initTheme() {
+            try {
+                if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {
+                console.warn('Theme initialization skipped:', e);
+            }
+        }
+
+        /* Full 6 Categories with 60 titles each (360 total titles) */
         const categoriesData = [
             {
                 id: "cat1",
@@ -134,26 +152,66 @@
                 bgColor: "bg-amber-500/10",
                 borderColor: "border-amber-500/20",
                 titles: [
-                    { t: "TẬN CÙNG đói khổ: Gia đình 11 người trong căn chòi rách nát", t1: "11 MẢNH ĐỜI", t2: "CHÒI RÁCH NÁT" },
-                    { t: "XÓT XA cảnh mẹ già ngủ chuồng bò giữa rừng sâu hẻo lánh", t1: "MẸ GIÀ 80 TUỔI", t2: "NGỦ CHUỒNG BÒ" },
-                    { t: "ÁM ẢNH ngôi nhà mục nát không vách giữa đỉnh núi cao", t1: "NƠI Ở MỤC NÁT", t2: "KHÔNG CÓ VÁCH" },
-                    { t: "TRỜI MƯA bão, căn lều tarps tơi tả không chỗ trú thân", t1: "MƯA BẢO TƠI TẢ", t2: "KHÔNG CHỖ TRÚ" },
-                    { t: "CẢNH ĐỜI tơi tả: Ngủ trên cành cây, uống nước suối tồn tại", t1: "NGỦ CÀNH CÂY", t2: "UỐNG NƯỚC SUỐI" },
-                    { t: "LẠC VÀO hang đất: Nơi ở của gia đình giống thời nguyên thủy", t1: "SỐNG TRONG HANG", t2: "THỜI NGUYÊN THỦY" },
-                    { t: "XÓT THƯƠNG đôi vợ chồng già ngủ chuồng heo giữa núi rừng", t1: "CỤ BÀ 90 TUỔI", t2: "NGỦ CHUỒNG HEO" },
-                    { t: "NGÔI NHÀ mục nát te tua, gió thổi là bay bất cứ lúc nào", t1: "NHÀ SẮP SẬP", t2: "GIÓ THỔI LÀ BAY" },
-                    { t: "TRỐN CHUI trong bụi cây: Hoàn cảnh nghèo nhất bản làng", t1: "TRỐN TRONG BỤI", t2: "NGHÈO NHẤT BẢN" },
-                    { t: "TÚP LỀU rách nát che chở 4 mảnh đời qua mùa đông lạnh", t1: "4 MẢNH ĐỜI", t2: "LỀU LẠNH CẮT DA" },
-                    { t: "BẤT HẠNH: Căn nhà d dột nát, cơm không đủ ăn, nước không có", t1: "NHÀ DỘT NÁT", t2: "KHÔNG CÓ CƠM" },
-                    { t: "SỐNG BIỆT LẬP trên núi: Căn nhà nhỏ treo leo giữa vực thẳm", t1: "TREO LEO VỰC THẨM", t2: "SỐNG BIỆT LẬP" },
-                    { t: "NGẬM NGÙI nhìn cảnh nhà sập, không tiền mua thuốc men", t1: "NHÀ SẬP HOÀN TOÀN", t2: "KHÔNG TIỀN THUỐC" },
-                    { t: "ÁNH SÁNG mịt mù trong ngôi nhà không điện, không nước sạch", t1: "KHÔNG ĐIỆN NƯỚC", t2: "MỊT MÙ TƯƠNG LAI" },
-                    { t: "CUỘC SỐNG lang thang: Nay đây mai đó trong rừng hoang", t1: "LANG THANG RỪNG", t2: "NAY ĐÂY MAI ĐÓ" },
-                    { t: "CHẠNH LÒNG nhìn căn chòi xiêu vẹo của cụ bà neo đơn", t1: "CỤ BÀ NEO ĐƠN", t2: "CHÒI XIÊU VẸO" },
-                    { t: "NƠI Ở khắc nghiệt: Chó ăn đá, gà ăn sỏi, người ăn lá rừng", t1: "ĐẤT KHẮC NGHIỆT", t2: "ĂN LÁ RỪNG" },
-                    { t: "KHU Ổ CHUỘT vùng cao: Những mảnh đời bị lãng quên", t1: "BỊ LÃNG QUÊN", t2: "Ổ CHUỘT NÚI" },
-                    { t: "KIỆT SỨC chống chọi mưa bão trong ngôi nhà rách nát", t1: "KIỆT SỨC MƯA BẢO", t2: "NHÀ RÁCH NÁT" },
-                    { t: "BỎ LÀNG lên núi: Trú ẩn trong căn chòi rách tả tơi", t1: "BỎ LÀNG LÊN NÚI", t2: "TÚP LỀU TƠI TẢ" }
+                    { t: "TẬN CÙNG: 11 người sống trong căn nhà rách nát, kẻ đi người ở", t1: "11 MẢNH ĐỜI", t2: "CHÒI RÁCH NÁT" },
+                    { t: "XÓT XA: Cụ bà 100 tuổi sống ẩn danh trong căn chòi mục nát", t1: "CỤ BÀ 100 TUỔI", t2: "CHÒI MỤC NÁT" },
+                    { t: "ÁM ẢNH: Ngôi nhà nhỏ treo leo giữa vách đá núi rừng", t1: "TREO LEO VÁCH ĐÁ", t2: "NHÀ GIỮA RỪNG" },
+                    { t: "TRỜI MƯA: Căn chòi rách te tua, không một chỗ khô ráo để ngủ", t1: "TRỜI MƯA TE TUA", t2: "KHÔNG CHỖ NGỦ" },
+                    { t: "CẢNH ĐỜI: Ngủ chuồng bò, uống nước suối để tồn tại qua ngày", t1: "NGỦ CHUỒNG BÒ", t2: "UỐNG NƯỚC SUỐI" },
+                    { t: "TRÚ ẨN: Căn nhà nhỏ xíu nằm giữa thung lũng sâu hẻo lánh", t1: "NHÀ NHỎ XÍU", t2: "THUNG LŨNG SÂU" },
+                    { t: "KHẮC NGHIỆT: Chó ăn đá, gà ăn sỏi tại vùng đất nắng cháy", t1: "NẮNG CHÁY DA", t2: "ĐẤT KHẮC NGHIỆT" },
+                    { t: "XÓT THƯƠNG: Đôi vợ chồng già ngủ bụi chuối vì nhà sập đổ", t1: "NGỦ BỤI CHUỐI", t2: "NHÀ SẬP ĐỔ" },
+                    { t: "BẤT HẠNH: Căn nhà dột nát, thua cả chuồng gà giữa rừng sâu", t1: "THUA CHUỒNG GÀ", t2: "NHÀ DỘT NÁT" },
+                    { t: "BIỆT LẬP: Người đàn ông ẩn tu nơi tận cùng thế giới", t1: "SỐNG BIỆT LẬP", t2: "ẨN TU RỪNG SÂU" },
+                    { t: "CHÁT LÒNG: Căn nhà rách tả tơi, đắp chiếu nằm chờ qua đêm", t1: "ĐẮP CHIẾU NẰM", t2: "NHÀ TẢ TƠI" },
+                    { t: "TRÚ TẠM: Gia đình nghèo ở trong bụi cây, cách biệt xã hội", t1: "Ở TRONG BỤI CÂY", t2: "CÁCH BIỆT XÃ HỘI" },
+                    { t: "NGƯỜI RỪNG: Phát hiện nơi ở bí ẩn đẹp lung linh trên núi cao", t1: "NƠI Ở BÍ ẨN", t2: "ĐẸP LUNG LINH" },
+                    { t: "ÁNH SÁNG: Ngôi nhà 20 năm không điện, tối mò chỉ biết mò cơm", t1: "20 NĂM KHÔNG ĐIỆN", t2: "TỐI MÒ ĂN CƠM" },
+                    { t: "TỒN TẠI: Ngôi nhà nứt vách, gió thổi bay lúc nào không hay", t1: "NHÀ NỨT VÁCH", t2: "SẮP BAY NĂM NÀY" },
+                    { t: "CHÙM TIÊU ĐỀ: Ngôi nhà ổ chuột của những mảnh đời bị lãng quên", t1: "NHÀ Ổ CHUỘT", t2: "BỊ LÃNG QUÊN" },
+                    { t: "CẢNH KHỔ: Căn nhà cũ nát nương tựa 7 anh em mồ côi", t1: "7 ANH EM MỒ CÔI", t2: "NHÀ CỦ NÁT" },
+                    { t: "RỚT NƯỚC MẮT: Cụ ông 82 tuổi sống trong nhà rách với 2 con chó", t1: "CỤ ÔNG 82 TUỔI", t2: "SỐNG CÙNG 2 CHÓ" },
+                    { t: "NƠI HOANG VẮNG: Ngôi nhà cô lập giữa núi rừng không ai biết", t1: "CÔ LẬP NÚI RỪNG", t2: "KHÔNG AI BIẾT" },
+                    { t: "TRỜI ĐÔNG: Chui vào hang đất để tránh cái lạnh thấu xương", t1: "CHUI HANG ĐẤT", t2: "LẠNH THẤU XƯƠNG" },
+                    { t: "KHỔ TẬN: Ngôi nhà xiêu vẹo, bữa đói bữa no nơi rừng thẳm", t1: "NHÀ XIÊU VẸO", t2: "BỮA ĐÓI BỮA NO" },
+                    { t: "ÁM ẢNH: Ngôi nhà rách nát te tua, rắn rết chuột kiến bủa vây", t1: "RẮN RẾT BỦA VÂY", t2: "NHÀ RÁCH TE TUA" },
+                    { t: "SỐNG TẠM: Căn chòi chắp vá từ rác thải của người vô gia cư", t1: "CHẮP VÁ RÁC THẢI", t2: "SỐNG VÔ GIA CƯ" },
+                    { t: "DƯỚI THUNG LŨNG: Bốn mẹ con trú ẩn dưới căn lều rách tả tơi", t1: "4 MẸ CON", t2: "LỀU RÁCH TẢ TƠI" },
+                    { t: "CHẠNH LÒNG: Cụ bà neo đơn ngủ trong rừng mấy chục năm", t1: "CỤ BÀ NEO ĐƠN", t2: "NGỦ RỪNG MẤY CHỤC NĂM" },
+                    { t: "KHÁM PHÁ: Ngôi nhà bí ẩn của người rừng trên đỉnh núi hoang", t1: "NGƯỜI RỪNG BÍ ẨN", t2: "ĐỈNH NÚI HOANG" },
+                    { t: "ĐÊM TỐI: Nơi ở của người nghèo khiến ai đến cũng ớn lạnh", t1: "ỚN LẠNH NƠI Ở", t2: "ĐÊM TỐI RỪNG SÂU" },
+                    { t: "SỰ THẬT: Người đàn ông ngủ chung với gà chó, 1 tháng tắm 1 lần", t1: "NGỦ CHUNG GÀ CHÓ", t2: "1 THÁNG TẮM 1 LẦN" },
+                    { t: "CỰC KHỔ: 10 người chen chúc trong chòi nát, đào khoai ăn lá", t1: "10 NGƯỜI CHEN CHÚC", t2: "ĐÀO KHOAI ĂN LÁ" },
+                    { t: "TRÚ ẨN: Hai mẹ con bị bỏ rơi chạy vô rừng che lều sống tạm", t1: "HAI MẸ CON BỎ RƠI", t2: "CHE LỀU SỐNG TẠM" },
+                    { t: "XÓT XA: Chàng trai mồ côi sống trong lều làm từ rác thải", t1: "MỒ CÔI NGHÈO", t2: "LỀU RÁC THẢI" },
+                    { t: "NGÔI NHÀ ĐẤT: Cuộc sống nguyên thủy của đôi vợ chồng trẻ", t1: "NGÔI NHÀ ĐẤT", t2: "SỐNG NGUYÊN THỦY" },
+                    { t: "TẠM BỢ: Căn chòi cũ mục nát nơi đỉnh núi không bóng người", t1: "CHÒI MỤC NÁT", t2: "KHÔNG BÓNG NGƯỜI" },
+                    { t: "KHẮC NGHIỆT: Nơi nắng cháy da người, nước quý hơn vàng", t1: "NẮNG CHÁY DA", t2: "NƯỚC QUÝ NHƯ VÀNG" },
+                    { t: "HOÀN CẢNH: Gia đình nghèo ở rẫy, nhà rách ướt như chuột lột", t1: "GIA ĐÌNH NGHÈO RẪY", t2: "ƯỚT NHƯ CHUỘT LỘT" },
+                    { t: "ĐÁNG THƯƠNG: Cụ ông sống trong nhà bỏ hoang bên nghĩa địa", t1: "CỤ ÔNG BÊN NGHĨA ĐỊA", t2: "NHÀ BỎ HOANG" },
+                    { t: "BIẾN CỐ: Nhà sập sau bão, mẹ già không nơi nương tựa", t1: "NHÀ SẬP SAU BÃO", t2: "MẸ GIÀ BƠ VƠ" },
+                    { t: "TRỐN CHẠY: Cô gái ôm con chạy lên đỉnh núi ở chòi mục nát", t1: "ÔM CON TRỐN CHẠY", t2: "CHÒI MỤC NÁT" },
+                    { t: "SỐ PHẬN: Người phụ nữ sống ẩn cư bị quái vật lạ tấn công", t1: "SỐNG ẨN CƯ", t2: "QUÁI VẬT TẤN CÔNG" },
+                    { t: "KHÔNG TIN NỔI: Sống 30 năm ở rừng trong căn nhà mục nát", t1: "30 NĂM Ở RỪNG", t2: "NHÀ MỤC NÁT" },
+                    { t: "XÓT THƯƠNG: Người và thú vật sống chung một nhà rách nát", t1: "SỐNG CHUNG THÚ VẬT", t2: "NHÀ RÁCH NÁT" },
+                    { t: "BẤT NGỜ: Ngôi nhà rách nát bỗng hóa thành biệt thự đẹp", t1: "BẤT NGỜ ĐỔI ĐỜI", t2: "HÓA BIỆT THỰ" },
+                    { t: "KIỆT SỨC: Vượt đèo dốc tìm người nghèo ở nơi hẻo lánh", t1: "VƯỢT ĐÈO DỐC", t2: "TÌM NGƯỜI NGHÈO" },
+                    { t: "ĐẮNG CAY: Cha mẹ lam lũ cả đời, cuối đời ở nhà dột nát", t1: "LAM LŨ CẢ ĐỜI", t2: "NHÀ DỘT NÁT" },
+                    { t: "CHIA LY: Tạm biệt ông lão ở nhà hoang, nước mắt tuôn rơi", t1: "TẠM BIỆT ÔNG LÃO", t2: "NƯỚC MẮT TUÔN RƠI" },
+                    { t: "ÁNH SÁNG: Đưa mặt trời vào rừng, sưởi ấm căn chòi rách", t1: "MẶT TRỜI VÀO RỪNG", t2: "SƯỞI ẤM CHÒI RÁCH" },
+                    { t: "THIÊN ĐƯỜNG: Nơi ở của người rừng đẹp như truyện cổ tích", t1: "NƠI Ở NGƯỜI RỪNG", t2: "ĐẸP NHƯ CỔ TÍCH" },
+                    { t: "ĐÊM KHUYA: Tiếng hát rùng rợn vang vọng nơi chòi hoang", t1: "TIẾNG HÁT RÙNG RỢN", t2: "CHÒI HOANG ĐÊM KHUYA" },
+                    { t: "ƯỚC MƠ: Cô gái xinh đẹp ăn ngủ trong căn nhà mục nát", t1: "CÔ GÁI XINH ĐẸP", t2: "NHÀ MỤC NÁT" },
+                    { t: "THÂN PHẬN: Đi nhặt đồ bỏ, bới đất tìm từng miếng ăn", t1: "NHẶT ĐỒ BỎ", t2: "BỚI ĐẤT TÌM ĂN" },
+                    { t: "TRỐN ĐÀN ÔNG: Cô gái chạy vô rừng sống trong hang đất", t1: "TRỐN ĐÀN ÔNG", t2: "SỐNG HANG ĐẤT" },
+                    { t: "KÌ LẠ: Người đàn ông không dám ra ngoài vì sợ ánh sáng", t1: "SỢ ÁNH SÁNG", t2: "KHÔNG DÁM RA NGOÀI" },
+                    { t: "CỨU GIÚP: Sửa nhà cho cụ bà sống với rắn rết chuột muỗi", t1: "SỬA NHÀ CỤ BÀ", t2: "RẮN RẾT BỦA VÂY" },
+                    { t: "TÀN TẬT: Người đàn ông cụt chân sống neo đơn ở rừng", t1: "CỤT CHÂN NEO ĐƠN", t2: "SỐNG MỘT MÌNH" },
+                    { t: "TRÙNG HỢP: Ngôi nhà nhỏ nằm treo leo giữa núi rừng", t1: "NHÀ NHỎ TREO LEO", t2: "GIỮA NÚI RỪNG" },
+                    { t: "THƯƠNG CẢM: Cụ bà 92 tuổi bị con cái bỏ rơi bơ vơ", t1: "CỤ BÀ 92 TUỔI", t2: "CON CÁI BỎ RƠI" },
+                    { t: "HẾT HỒN: Rắn hổ mang khổng lồ chui vô nhà người nghèo", t1: "RẮN HỔ MANG KHỔNG LỒ", t2: "CHUI VÀO NHÀ" },
+                    { t: "CẢM ĐỘNG: Giọt nước mắt của người nghèo khi có nhà mới", t1: "GIỌT NƯỚC MẮT", t2: "KHI CÓ NHÀ MỚI" },
+                    { t: "BIỆT LẬP: Người rừng 70 năm sống cách biệt xã hội", t1: "70 NĂM Ở RỪNG", t2: "CÁCH BIỆT XÃ HỘI" },
+                    { t: "KẾT THÚC: 30 năm ăn bờ ngủ bụi đã có nơi trú ẩn trọn vẹn", t1: "30 NĂM ĂN BỜ NGỦ BỤI", t2: "TRÚ ẨN TRỌN VẸN" }
                 ]
             },
             {
@@ -174,7 +232,57 @@
                     { t: "NGÀM ĐẮNG nuốt cay món khoai rừng đắng chát vùng cao", t1: "KHOAI RỪNG ĐẮNG", t2: "NUỐT CAY ĐẮNG" },
                     { t: "BỮA ĂN rẻ tiền nhất Việt Nam: Lá rừng chấm muối ớt", t1: "LÁ RỪNG MUỐI ỚT", t2: "BỮA ĂN 0 ĐỒNG" },
                     { t: "BẤT NGỜ món chuột rừng nấu canh chua của gia đình nghèo", t1: "CHUỘT RỪNG", t2: "CANH CHUA NGHÈO" },
-                    { t: "XÓT THƯƠNG cảnh ăn cám để tồn tại qua mùa giáp hạt", t1: "CẢNH ĂN CÁM", t2: "QUA MÙA GIÁP HẠT" }
+                    { t: "XÓT THƯƠNG cảnh ăn cám để tồn tại qua mùa giáp hạt", t1: "CẢNH ĂN CÁM", t2: "QUA MÙA GIÁP HẠT" },
+                    { t: "THỰC PHẨM cứu đói: Hái nấm rừng, uống nước bùn sình", t1: "HÁI NẤM RỪNG", t2: "UỐNG NƯỚC BÙN" },
+                    { t: "BỮA ĂN nhớ đời: Đánh đổi mồ hôi lấy bát cơm trắng", t1: "BÁT CƠM TRẮNG", t2: "ĐỔ MỒ HÔI MÁU" },
+                    { t: "CƠM CHAN nước mắt: Hoàn cảnh éo le của mẹ đơn thân", t1: "CƠM CHAN NƯỚC MẮT", t2: "MẸ ĐƠN THÂN" },
+                    { t: "ĐẮNG CAY: Món lá rừng đắng lè lưỡi nhưng vẫn phải ăn", t1: "LÁ RỪNG ĐẮNG", t2: "VẪN PHẢI ĂN" },
+                    { t: "KHÔNG TIN nổi: Sống 10 năm chỉ bằng chuối và nước suối", t1: "10 NĂM ĂN CHUỐI", t2: "UỐNG NƯỚC SUỐI" },
+                    { t: "NẤU RAU dại cứu đói: Bữa ăn đắng chát của trẻ em nghèo", t1: "RAU DẠI CỨU ĐÓI", t2: "BỮA ĂN ĐẮNG" },
+                    { t: "XÓT XA nhìn bát măng đắng không gia vị qua ngày", t1: "MĂNG ĐẮNG", t2: "KHÔNG GIA VỊ" },
+                    { t: "MÓN CỦ MÌ sống trừ bữa của cụ toàn giữa núi hoang", t1: "CỦ MÌ SỐNG", t2: "CỤ GIÀ NÚI HOANG" },
+                    { t: "THÈM CƠM THỊT: Giấc mơ chưa từng có của bé trai 7 tuổi", t1: "THÈM CƠM THỊT", t2: "GIẤC MƠ 7 TUỔI" },
+                    { t: "NẮM CƠM ĐỘN ngô mốc: Bữa ăn sinh tồn mưu sinh vùng cao", t1: "CƠM ĐỘN NGÔ MỐC", t2: "SINH TỒN NÚI" },
+                    { t: "CẢNH ĐỜI éo le: Chia nhau từng củ sắn luộc qua cơn đói", t1: "CHIA CỦ SẮN", t2: "QUA CƠN ĐÓI" },
+                    { t: "UỐNG NƯỚC SUỐI cầm hơi: 3 ngày chưa có hạt gạo vào bụng", t1: "3 NGÀY NHỊN CƠM", t2: "UỐNG NƯỚC SUỐI" },
+                    { t: "ĐẮNG CHÁT món củ mài luộc qua bữa của hai mẹ con", t1: "CỦ MÀI LUỘC", t2: "HAI MẸ CON" },
+                    { t: "CƠM NGUỘI chấm muối hột: Nghị lực của cậu học sinh nghèo", t1: "CƠM NGUỘI MUỐI HỘT", t2: "CẬU BÉ NGHÈO" },
+                    { t: "XÓT THƯƠNG mâm cơm ngày Tết chỉ có đĩa rau rừng luộc", t1: "CƠM TẾT NGHÈO", t2: "CHỈ RAU RỪNG" },
+                    { t: "XÓT XA bát cháo loãng nấu bằng ngọn rau cỏ cứu đói", t1: "CHÁO LOÃNG RAU DẠI", t2: "CỨU ĐÓI MÙA MƯA" },
+                    { t: "CỦ ĐẮNG RỪNG SÂU: Món ăn sinh tồn qua mùa rét giá", t1: "CỦ ĐẮNG RỪNG", t2: "SINH TỒN RÉT GIÁ" },
+                    { t: "XÓT THƯƠNG hai em bé ăn hạt sắn mốc thay cơm tối", t1: "HẠT SẮN MỐC", t2: "THAY CƠM TỐI" },
+                    { t: "NẤU CANH THÂN CHUỐI: Bữa ăn chống đói của gia đình 8 người", t1: "CANH THÂN CHUỐI", t2: "CHỐNG ĐÓI TẠM" },
+                    { t: "BẮT CẶP mâm cơm đắng chát bằng lá rừng ngâm muối", t1: "LÁ RỪNG NGÂM MUỐI", t2: "CƠM ĐẮNG CHÁT" },
+                    { t: "CƠM NGUỘI CHAN NƯỚC LÃ: Nghị lực mưu sinh nơi đỉnh đèo", t1: "CHAN NƯỚC LÃ", t2: "CƠM NGUỘI QUA BỮA" },
+                    { t: "BÁT MĂNG TANG ĐẮNG: Món sinh tồn nghèo khó của cụ gia", t1: "MĂNG TANG ĐẮNG", t2: "BÁT CƠM NGHÈO" },
+                    { t: "ĂN VỎ CÂY RỪNG: Cách mưu sinh giữ mạng của cụ bà góa", t1: "ĂN VỎ CÂY RỪNG", t2: "GIỮ MẠNG SỐNG" },
+                    { t: "XÓT XA hai đứa trẻ nhai ngô sống vượt qua cơn đói", t1: "NHAI NGÔ SỐNG", t2: "VƯỢT CƠN ĐÓI" },
+                    { t: "BỮA CƠM MÙA GIÁP HẠT: Chỉ có muối hột và nước suối đun", t1: "MÙA GIÁP HẠT", t2: "MUỐI HỘT NƯỚC SUỐI" },
+                    { t: "MÓN RAU TÀU BAY LUỘC: Thức ăn trừ bữa của mồ côi vùng cao", t1: "RAU TÀU BAY", t2: "TRỪ BỮA MỒ CÔI" },
+                    { t: "XÓT THƯƠNG bát cháo sắn loãng trôi qua cổ họng đứa bé", t1: "CHÁO SẮN LOÃNG", t2: "ĐỨA BÉ NGHÈO" },
+                    { t: "MÓN NẤM CỦ ĐỘC LẠ: Bữa cơm nghèo chống chọi cơn đói đêm", t1: "NẤM CỦ ĐỘC LẠ", t2: "CHỐNG ĐÓI ĐÊM" },
+                    { t: "TẬN CÙNG NGHÈO KHÓ: Bán củi đổi 1 lon gạo nấu cho 5 con", t1: "1 LON GẠO", t2: "NUÔI 5 CON" },
+                    { t: "XÓT XA cảnh ăn củ khoai mốc trừ bữa ngày rét đậm", t1: "KHOAI MỐC TRỪ BỮA", t2: "RÉT ĐẬM VÙNG NÚI" },
+                    { t: "NHẶT TRÁI CÂY RỪNG RỤNG: Thức ăn nuôi 3 em mồ côi", t1: "TRÁI RỪNG RỤNG", t2: "NUÔI 3 EM" },
+                    { t: "CƠM TRẮNG LÀ XA XỈ: Giấc mơ mâm cơm có gia vị của bé nghèo", t1: "CƠM TRẮNG XA XỈ", t2: "ƯỚC MƠ GIA VỊ" },
+                    { t: "CỦ RỪNG ĐẮNG LÈ LƯỠI: Món ăn luộc cứu đói hai mẹ con", t1: "CỦ RỪNG ĐẮNG", t2: "CỨU ĐÓI MẸ CON" },
+                    { t: "BẮT CẶP bữa ăn chỉ có đọt măng rừng luộc chấm muối", t1: "ĐỌT MĂNG RỪNG", t2: "CHẤM MUỐI HỘT" },
+                    { t: "XÓT THƯƠNG cụ già 80 tuổi ăn củ mì luộc trừ cơm", t1: "CỤ 80 TUỔI", t2: "CỦ MÌ TRỪ CƠM" },
+                    { t: "BỮA ĂN SINH TỒN: Luộc ngọn đu đủ đắng chát qua ngày", t1: "NGỌN ĐỦ ĐỦ ĐẮNG", t2: "BỮA ĂN SINH TỒN" },
+                    { t: "TẠM BỢ MÙA RÉT: Ăn cơm độn bo bo mốc nghèo khó", t1: "CƠM ĐỘN BO BO", t2: "RÉT LẠNH VÙNG NÚI" },
+                    { t: "UỐNG NƯỚC LÃ CHỐNG ĐÓI: Đêm dài dẵng của trẻ em neo đơn", t1: "UỐNG NƯỚC CHỐNG ĐÓI", t2: "ĐÊM DÀI DẴNG" },
+                    { t: "CƠM ĐỘN NGÔ BUNG: Món ăn nghèo gắn liền cả đời người", t1: "CƠM ĐỘN NGÔ BUNG", t2: "SỐNG GẮN BÓ" },
+                    { t: "BÁT SẮN LUỘC CHẤM ỚT: Món ăn sinh tồn mùa lũ quét", t1: "SẮN LUỘC CHẤM ỚT", t2: "MÙA LŨ QUÉT" },
+                    { t: "XÓT XA hai chị em nhường nhau từng thìa cháo ngô loãng", t1: "NHƯỜNG THÌA CHÁO", t2: "HAI CHỊ EM" },
+                    { t: "CẠN GẠO MÙA MƯA: Ăn lá cây rừng trừ bữa qua tuần", t1: "CẠN GẠO MÙA MƯA", t2: "ĂN LÁ CÂY RỪNG" },
+                    { t: "NẤU CỦ CẢI DẠI CỨU ĐÓI: Mâm cơm rớt nước mắt của mẹ nghèo", t1: "CỦ CẢI DẠI", t2: "CƠM CHAN NƯỚC MẮT" },
+                    { t: "XÓT THƯƠNG mâm cơm toàn rau dại luộc không có hạt gạo", t1: "TOÀN RAU DẠI", t2: "KHÔNG HẠT GẠO" },
+                    { t: "BỮA ĂN 0 ĐỒNG: Đột nhập hái trái dại sinh tồn trên đỉnh đèo", t1: "HÁI TRÁI DẠI", t2: "BỮA ĂN 0 ĐỒNG" },
+                    { t: "CƠM ĐỘN KHOAI MỤC: Nghị lực vượt khó của cậu bé nghèo", t1: "CƠM ĐỘN KHOAI MỤC", t2: "CẬU BÉ NGHÈO" },
+                    { t: "XÓT XA cụ già nhịn đói 2 ngày nhường bát cơm cho cháu", t1: "NHỊN ĐÓI 2 NGÀY", t2: "NHƯỜNG CƠM CHO CHÁU" },
+                    { t: "MÓN LÁ RỪNG CHẤM MUỐI ỚT: Bữa ăn thường nhật của người ẩn cư", t1: "LÁ RỪNG MUỐI ỚT", t2: "NGƯỜI ẨN CƯ" },
+                    { t: "UỐNG NƯỚC BÙN SÌNH LỌC TẠM: Cơn khát cháy cổ giữa đại ngàn", t1: "UỐNG NƯỚC BÙN", t2: "CƠN KHÁT ĐẠI NGÀN" },
+                    { t: "TẬN CÙNG ĐÓI KHỔ: Chia nhau bát cháo sắn loãng tơi tả qua đêm", t1: "CHÁO SẮN LOÃNG", t2: "TẬN CÙNG ĐÓI KHỔ" }
                 ]
             },
             {
@@ -190,7 +298,62 @@
                     { t: "MỒ CÔI không nơi nương tựa: 2 chị em dắt nhau lụm phân bò", t1: "2 CHỊ EM MỒ CÔI", t2: "LỤM PHÂN BÒ" },
                     { t: "HÀNH TRÌNH tìm con chữ: Đi bộ 10km đường núi để đến trường", t1: "ĐI BỘ 10KM", t2: "TÌM CON CHỮ" },
                     { t: "XÓT XA đứa bé không biết mặt cha, lụm ve chai nuôi bà", t1: "BÉ VE CHAI", t2: "NUÔI BÀ LẠI" },
-                    { t: "NGHỊ LỰC phi thường: Cậu bé 9 tuổi gánh chuối phụ cha mẹ", t1: "BÉ 9 TUỔI", t2: "GÁNH CHUỐI NÚI" }
+                    { t: "NGHỊ LỰC phi thường: Cậu bé 9 tuổi gánh chuối phụ cha mẹ", t1: "BÉ 9 TUỔI", t2: "GÁNH CHUỐI NÚI" },
+                    { t: "GIẤC MƠ con chữ: Nhịn đói để dành tiền mua sách vở", t1: "NHỊN ĐÓI MUA SÁCH", t2: "HAM HỌC TỚI BÙN" },
+                    { t: "THIÊN THẦN bãi rác: Đứa trẻ mồ côi sống giữa đống rác thải", t1: "SỐNG BÃI RÁC", t2: "BÉ MỒ CÔI" },
+                    { t: "BỎ HỌC vì nghèo: Cô bé vùng cao chăn bò nuôi mẹ điên", t1: "CHĂN BÒ", t2: "NUÔI MẸ ĐIÊN" },
+                    { t: "LỤM PHÂN đổi gạo: Cuộc sống vất vả của em bé học giỏi nhất", t1: "LỤM PHÂN ĐỔI GẠO", t2: "BÉ HỌC GIỎI" },
+                    { t: "3 ĐỨA TRẺ mồ côi tự chăm nhau trong căn chòi mục nát", t1: "3 TRẺ MỒ CÔI", t2: "TỰ CHĂM NHAU" },
+                    { t: "ƯỚC MƠ nhỏ nhoi: Được ăn một bữa cơm có thịt cá hộp", t1: "CƠM CÓ THỊT", t2: "ƯỚC MƠ NHỎ NHOI" },
+                    { t: "XÓT THƯƠNG: Đứa bé mang hình hài kỳ lạ vẫn cố gắng mưu sinh", t1: "HÌNH HÀI KỲ LẠ", t2: "CỐ CẮT MƯU SINH" },
+                    { t: "GÀ TRỐNG nuôi con: 2 cha con trú ẩn hẻo lánh giữa rừng", t1: "GÀ TRỐNG NUÔI CON", t2: "SỐNG TRONG RỪNG" },
+                    { t: "TƯƠNG LAI mịt mù của những đứa trẻ vùng đất nắng cháy", t1: "TƯƠNG LAI MỊT MÙ", t2: "TRẺ EM NÚI" },
+                    { t: "HIẾU THẢO: Cô gái nghèo gánh cả gia đình trên đôi vai gầy", t1: "GÁNH GIA ĐÌNH", t2: "VAI GẦY 15 TUỔI" },
+                    { t: "ĐÔI CHÂN TRẦN lội bùn 15km đến lớp học vùng cao", t1: "LỘI BÙN 15KM", t2: "ĐÔI CHÂN TRẦN" },
+                    { t: "CẶP SÁCH rách tả tơi: Ước mơ thành cô giáo của bé mồ côi", t1: "CẶP SÁCH RÁCH", t2: "ƯỚC MƠ CÔ GIÁO" },
+                    { t: "XÓT XA bé trai 6 tuổi biết tự nấu cơm nuôi em nhỏ", t1: "BÉ 6 TUỔI", t2: "NẤU CƠM NUÔI EM" },
+                    { t: "CẬU BÉ mù một bên mắt vẫn chăm chỉ nhặt củi đổi sách", t1: "MÙ MỘT BÊN MẮT", t2: "NHẶT CỦI ĐỔI SÁCH" },
+                    { t: "SƯỞI ẤM ngày đông: Đôi dép tổ ong rách rưới của bé nghèo", t1: "DÉP TỔ ONG RÁCH", t2: "RÉT ĐÊM LẠNH" },
+                    { t: "NGHỊ LỰC phi thường: Vừa chăn dê vừa ôn thi đại học", t1: "CHĂN DÊ VÙNG NÚI", t2: "ÔN THI ĐẠI HỌC" },
+                    { t: "ĐẾN TRƯỜNG ngày mưa: Chiếc áo mưa làm từ bao tải cũ", t1: "ÁO MƯA BAO TẢI", t2: "ĐẾN TRƯỜNG MƯA" },
+                    { t: "THẦN ĐỒNG vùng cao: Bữa đói bữa no vẫn đứng đầu lớp", t1: "BỮA ĐÓI BỮA NO", t2: "ĐỨNG ĐẦU LỚP" },
+                    { t: "3 NĂM mồ côi cha mẹ: Bé gái 10 tuổi làm trụ cột gia đình", t1: "BÉ 10 TUỔI", t2: "TRỤ CỘT GIA ĐÌNH" },
+                    { t: "NƯỚC MẮT con trẻ: Lần đầu tiên trong đời được ăn kẹo ngọt", t1: "LẦN ĐẦU ĂN KẸO", t2: "NƯỚC MẮT RỚT" },
+                    { t: "CẬU BÉ CHÂN TRẦN: Đi bộ 12km đường núi đá hái rau rừng", t1: "ĐI BỘ 12KM", t2: "CẬU BÉ CHÂN TRẦN" },
+                    { t: "XÓT THƯƠNG em bé 5 tuổi gùi củi giúp mẹ liệt giường", t1: "BÉ 5 TUỔI GÙI CỦI", t2: "MẸ LIỆT GIƯỜNG" },
+                    { t: "ĐÔI MẮT TRONG TRẺO của em bé mồ côi cả cha lẫn mẹ", t1: "MỒ CÔI CHA MẸ", t2: "ĐÔI MẮT TRONG" },
+                    { t: "BÉ GÁI 8 TUỔI vừa bế em vừa viết bài dưới đèn dầu", t1: "BẾ EM VIẾT BÀI", t2: "ĐÈN DẦU LẬP LOÈ" },
+                    { t: "NGHỊ LỰC VƯỢT KHÓ: Học sinh nghèo đạt điểm cao nhất trường", t1: "ĐIỂM CAO NHẤT", t2: "NGHỊ LỰC VƯỢT KHÓ" },
+                    { t: "ƯỚC MƠ ĐÔI DÉP MỚI của ba đứa trẻ trần chân lội suối", t1: "ĐÔI DÉP MỚI", t2: "TRẦN CHÂN LỘI SUỐI" },
+                    { t: "BỎ HỌC ĐỂ MƯU SINH: Cậu bé 11 tuổi đi làm phụ hồ nuôi em", t1: "CẬU BÉ 11 TUỔI", t2: "PHỤ HỒ NUÔI EM" },
+                    { t: "XÓT XA cô bé vùng cao đội mưa đi xin chữ từng nhà", t1: "ĐỘI MƯA XIN CHỮ", t2: "CÔ BÉ VÙNG CAO" },
+                    { t: "CHIẾC CẶP BẢO TẢI: Món quà đi học duy nhất của bé nghèo", t1: "CẶP BAO TẢI", t2: "MÓN QUÀ HỌC ĐƯỜNG" },
+                    { t: "EM BÉ VÙNG CAO gùi rau dại đổi lấy vài quyển vở cũ", t1: "GÙI RAU ĐỔI VỞ", t2: "EM BÉ VÙNG CAO" },
+                    { t: "3 ANH EM MỒ CÔI nương tựa nhau qua mùa rét lạnh", t1: "3 ANH EM MỒ CÔI", t2: "NƯƠNG TỰA NHAU" },
+                    { t: "LƯỢM PHÂN BÒ ĐỔI SÁCH: Nghị lực phi thường của bé trai", t1: "LƯỢM PHÂN ĐỔI SÁCH", t2: "BÉ TRAI NGHÈO" },
+                    { t: "GIẤC MƠ ÁO ẤM: Đêm đông co quắp dưới tấm mền rách", t1: "GIẤC MƠ ÁO ẤM", t2: "TẤM MỀN RÁCH" },
+                    { t: "XÓT THƯƠNG em bé khuyết tật chân leo núi đến trường", t1: "BÉ KHUYẾT TẬT", t2: "LEO NÚI TÌM CHỮ" },
+                    { t: "CẬU BÉ 7 TUỔI tự bắt cá suối làm thức ăn cho bà nội", t1: "BẮT CÁ NUÔI BÀ", t2: "CẬU BÉ 7 TUỔI" },
+                    { t: "BẬT KHÓC KHI ĐƯỢC TẶNG SÁCH: Niềm vui của bé mồ côi", t1: "MỪNG RỚT NƯỚC MẮT", t2: "ĐƯỢC TẶNG SÁCH" },
+                    { t: "HIẾU THẢO VÙNG CAO: Vừa chăn dê vừa mang sách theo học", t1: "VỪA CHĂN DÊ", t2: "VỪA MANG SÁCH" },
+                    { t: "ĐÔI BÀN TAY SƯNG RỘP vì chặt củi bán lấy tiền học phí", t1: "TAY SƯNG RỘP", t2: "ĐỔI TIỀN HỌC PHÍ" },
+                    { t: "MẸ MẤT SỚM, CHA ĐI XA: Hai đứa trẻ tự nấu cơm ngô ăn", t1: "MẸ MẤT CHA XA", t2: "TỰ NẤU CƠM NGÔ" },
+                    { t: "CÔ BÉ MỒ CÔI co quắp trong chòi nứa chờ anh đi làm về", t1: "MỒ CÔI CÔ ĐƠN", t2: "CHỜ ANH TRAI" },
+                    { t: "CẶP SÁCH LÀM TỪ BAO GẠO: Ước mơ vươn lên của học sinh nghèo", t1: "CẶP BAO GẠO", t2: "ƯỚC MƠ VƯƠN LÊN" },
+                    { t: "XÓT XA hai em bé lội suối cuồn cuộn nước để đến trường", t1: "LỘI SUỐI LŨ", t2: "TÌM CON CHỮ" },
+                    { t: "ĐÔI CHÂN RỚT MÁU vì giẫm đá hộc trên đường đi học", t1: "ĐÔI CHÂN RỚT MÁU", t2: "GIẪM ĐÁ HỘC" },
+                    { t: "GIẤC MƠ CÓ MẠNH THƯỜNG QUÂN: Cậu bé nghèo học giỏi nhất bản", t1: "BÉ HỌC GIỎI NHẤT", t2: "MƠ CÓ MẠNH THƯỜNG QUÂN" },
+                    { t: "3 MẢNH ĐỜI MỒ CÔI: Bữa ăn chỉ có măng đắng chấm muối", t1: "3 MỒ CÔI NGHÈO", t2: "MĂNG CHẤM MUỐI" },
+                    { t: "CÔ BÉ CHĂN DÊ hát giữa núi rừng ước mơ trở thành cô giáo", t1: "CÔ BÉ CHĂN DÊ", t2: "ƯỚC MƠ CÔ GIÁO" },
+                    { t: "BẠN GIỎI VÙNG CAO: Đi nhặt ve chai sau giờ học nuôi mẹ bệnh", t1: "NHẶT VE CHAI", t2: "NUÔI MẸ BỆNH" },
+                    { t: "XÓT THƯƠNG cậu bé 10 tuổi một mình chăm sóc em sơ sinh", t1: "BÉ 10 TUỔI", t2: "CHĂM EM SƠ SINH" },
+                    { t: "HÀNH TRÌNH ĐẾN TRƯỜNG: Vượt 3 ngọn núi mờ sương mỗi sáng", t1: "VƯỢT 3 NGỌN NÚI", t2: "MỖI SÁNG ĐẾN LỚP" },
+                    { t: "CHIẾC ÁO MỚI DUY NHẤT: Món quà Tết bất ngờ cho bé mồ côi", t1: "ÁO MỚI DUY NHẤT", t2: "MÓN QUÀ TẾT" },
+                    { t: "BỌC CƠM NGUỘI ĐẾN TRƯỜNG: Bữa trưa đạm bạc của bé nghèo", t1: "BỌC CƠM NGUỘI", t2: "BỮA TRƯA ĐẠM BẠC" },
+                    { t: "NGHỊ LỰC SỐNG: Đứa trẻ không có tay vẫn tập viết bằng chân", t1: "VIẾT BẰNG CHÂN", t2: "NGHỊ LỰC PHI THƯỜNG" },
+                    { t: "TƯƠNG LAI RẠNG RỠ: Cậu bé chăn bò thi đậu trường chuyên", t1: "BÉ CHĂN BÒ", t2: "ĐẬU TRƯỜNG CHUYÊN" },
+                    { t: "XÓT XA cảnh hai anh em chia nhau nửa mẩu bánh mì khô", t1: "CHIA MẨU BÁNH MÌ", t2: "HAI ANH EM" },
+                    { t: "GIỌT NƯỚC MẮT HẠNH PHÚC khi bé mồ côi có bộ sách giáo khoa", t1: "SÁCH GIÁO KHOA MỚI", t2: "NƯỚC MẮT HẠNH PHÚC" }
                 ]
             },
             {
@@ -205,7 +368,63 @@
                     { t: "KIỆT SỨC mưu sinh: Còng lưng gùi phân bò vượt vách đá", t1: "GÙI PHÂN BÒ", t2: "VƯỢT VÁCH ĐÁ" },
                     { t: "TRUY TÌM người rừng bí ẩn sống ẩn cư suốt 20 năm", t1: "NGƯỜI RỪNG 20 NĂM", t2: "SỐNG ẨN CƯ" },
                     { t: "LỤM ĐÁ xây nhà: Hành trình tìm nơi trú ẩn giữa rừng già", t1: "LỤM ĐÁ XÂY NHÀ", t2: "TRÚ ẨN RỪNG GIÀ" },
-                    { t: "CÔNG VIỆC cực khổ: Trèo đèo lội suối hái trái cây rừng", t1: "LỘI SUỐI HÁI TRÁI", t2: "CỰC KHỔ MƯU SINH" }
+                    { t: "CÔNG VIỆC cực khổ: Trèo đèo lội suối hái trái cây rừng", t1: "LỘI SUỐI HÁI TRÁI", t2: "CỰC KHỔ MƯU SINH" },
+                    { t: "BÁU VẬT người rừng: Chiếc gùi quý giá cứu sống ông cụ", t1: "CHIẾC GÙI CỔ", t2: "CỨU SỐNG CỤ GIÀ" },
+                    { t: "THÂN PHẬN người nghèo: Làm việc cả đời vẫn không đủ ăn", t1: "CẢ ĐỜI LÀM LỤM", t2: "VẪN KHÔNG ĐỦ ĂN" },
+                    { t: "LẠC VÀO vùng đất rắn: Nơi mưu sinh đầy nguy hiểm", t1: "VÙNG ĐẤT RẮN", t2: "MƯU SINH NGUY HIỂM" },
+                    { t: "LỜI TÂM SỰ nghẹn ngào của người đàn bà sống trong hang đá", t1: "SỐNG HANG ĐÁ", t2: "TÂM SỰ NGHẸN NGÀO" },
+                    { t: "BỎ PHỐ lên rừng: Anh chàng miền Tây sống ẩn cư 10 năm", t1: "BỎ PHỐ LÊN RỪNG", t2: "ẨN CƯ 10 NĂM" },
+                    { t: "MỘT MÌNH giữa rừng sâu: Cuộc sống không cần tiền bạc", t1: "MỘT MÌNH RỪNG SÂU", t2: "KHÔNG CẦN TIỀN" },
+                    { t: "CƠM ÁO gạo tiền: Tay xách vai mang vượt đèo dốc núi", t1: "TAY XÁCH VAI MANG", t2: "VƯỢT ĐÈO DỐC" },
+                    { t: "PHÁT HIỆN bộ tộc nghèo sống cách biệt với xã hội", t1: "SỐNG CÁCH BIỆT", t2: "BỘ TỘC NGHÈO" },
+                    { t: "KỲ LẠ ông lão sống biệt lập trên đỉnh núi cao không ai tới", t1: "SỐNG ĐỈNH NÚI", t2: "KHÔNG AI TỚI" },
+                    { t: "ĐÊM TỐI lang thang rừng sâu: Hành trình tìm kiếm bữa cơm", t1: "ĐÊM TỐI RỪNG SÂU", t2: "TÌM BỮA CƠM" },
+                    { t: "VÙNG ĐẤT khắc nghiệt: Nắng cháy da người, nước quý như vàng", t1: "NẮNG CHÁY DA", t2: "NƯỚC QUÝ NHƯ VÀNG" },
+                    { t: "ĐÁNH CƯỢC MẠNG SỐNG: Trèo vách đá đứng gùi củi khô", t1: "TRÈO VÁCH ĐÁ", t2: "GÙI CỦI KHÔ" },
+                    { t: "SỐNG NHƯ THỜI CỔ ĐẠI: Không điện, không điện thoại giữa rừng", t1: "SỐNG CỔ ĐẠI", t2: "KHÔNG ĐIỆN THOẠI" },
+                    { t: "CẢNH MƯU SINH hiểm trở: Bắt cá suối giữa dòng nước xoáy", t1: "BẮT CÁ SUỐI", t2: "NƯỚC XOÁY NGUY HIỂM" },
+                    { t: "CỤ BÀ 85 tuổi hàng ngày gùi 20kg củi qua đèo dốc", t1: "CỤ BÀ 85 TUỔI", t2: "GÙI 20KG CỦI" },
+                    { t: "MƯU SINH tàn khốc: Bào chế thuốc nam nuôi cả gia đình", t1: "BÀO THUỐC NAM", t2: "NUÔI GIA ĐÌNH" },
+                    { t: "ẨN CƯ VÙNG BĂNG GIÁ: Ngôi nhà cô đơn trên đỉnh núi quanh năm mây phủ", t1: "NHÀ CÔ ĐƠN", t2: "MÂY PHỦ ĐỈNH NÚI" },
+                    { t: "VẪN KIÊN CƯỜNG: Bác thợ đốn củi khuyết tật hai chân", t1: "KHUYẾT TẬT 2 CHÂN", t2: "ĐỐN CỦI NUÔI CON" },
+                    { t: "HÀNH TRÌNH tìm mật ong rừng trên ngọn cây cao 30 mét", t1: "TÌM MẬT ONG", t2: "TRÈO CÂY 30M" },
+                    { t: "XÓT XA đôi bàn tay sưng rộp của người mẹ vác đá hộc", t1: "BÀN TAY SƯNG RỘP", t2: "MẸ VÁC ĐÁ HỘC" },
+                    { t: "ĐÊM TRẮNG săn thú rừng cứu đói gia đình nghèo", t1: "ĐÊM TRẮNG SĂN THÚ", t2: "CỨU ĐÓI GIA ĐÌNH" },
+                    { t: "GÙI ĐÁ XÂY MỘ: Công việc nặng nhọc đổi lấy 50k qua ngày", t1: "GÙI ĐÁ NẶNG NHỌC", t2: "ĐỔI 50K QUA NGÀY" },
+                    { t: "CỤ BÀ 80 TUỔI trèo đèo vác củi bán nuôi cháu nội", t1: "CỤ 80 TUỔI VÁC CỦI", t2: "NUÔI CHÁU NỘI" },
+                    { t: "MƯU SINH TRONG MƯA BÃO: Lội sông vắt cá nuôi gia đình", t1: "MƯU SINH MƯA BÃO", t2: "LỘI SÔNG VẮT CÁ" },
+                    { t: "LỤM SẮT VỤN VÙNG CAO: Hành trình gùi ve chai vượt 10km", t1: "LỤM VE CHAI NÚI", t2: "VƯỢT 10KM ĐÈO" },
+                    { t: "XÓT XA người phụ nữ mù một mắt cõng củi giữa trưa nắng", t1: "MÙ MỘT MẮT", t2: "CÕNG CỦI GIỮA NẮNG" },
+                    { t: "BÒ CẮT RAU RỪNG: Cụ ông 88 tuổi bền bỉ kiếm sống", t1: "CỤ 88 TUỔI", t2: "BÒ CẮT RAU RỪNG" },
+                    { t: "MƯU SINH HIỂM TRỞ: Đu dây qua suối chảy xiết đốn củi", t1: "ĐU DÂY QUA SUỐI", t2: "ĐỐN CỦI BÁN" },
+                    { t: "ĐÀO CỦ RỪNG ĐỔI GẠO: Công việc nhọc nhằn dưới mưa phùn", t1: "ĐÀO CỦ ĐỔI GẠO", t2: "MƯA PHÙN RÉT LẠNH" },
+                    { t: "BỎ PHỐ VỀ RỪNG 15 NĂM: Cuộc sống tự cung tự cấp độc lạ", t1: "ẨN CƯ 15 NĂM", t2: "TỰ CUNG TỰ CẤP" },
+                    { t: "XÓT THƯƠNG bác góa phụ gùi 30kg bắp qua vách núi", t1: "GÙI 30KG BẮP", t2: "VƯỢT VÁCH NÚI" },
+                    { t: "CUỘC SỐNG 'NGƯỜI RỪNG': Một mình săn bắn hái lượm sống qua ngày", t1: "SỐNG 'NGƯỜI RỪNG'", t2: "SĂN BẮN HÁI LƯỢM" },
+                    { t: "LỤM LÁ CỌ ĐỔI TIỀN: BÀ CỤ 82 tuổi không ngơi nghỉ tay", t1: "LỤM LÁ CỌ", t2: "CỤ BÀ 82 TUỔI" },
+                    { t: "CỐNG CỤC MƯU SINH: Chui hầm đá tìm quặng măng đen", t1: "CHUI HẦM ĐÁ", t2: "CỐNG CỤC MƯU SINH" },
+                    { t: "CUỘC SỐNG CÔ ĐỘC của cụ ông độc thân trên đồi vắng", t1: "CUỘC SỐNG CÔ ĐỘC", t2: "CỤ ÔNG ĐỒI VẮNG" },
+                    { t: "MƯU SINH ĐÊM LẠNH: Đèn pin soi ếch suối đổi bát cơm", t1: "SOI ẾCH SUỐI", t2: "MƯU SINH ĐÊM LẠNH" },
+                    { t: "ĐÀO SÂM RỪNG NGUY HIỂM: Trèo vách đá ngàn thước kiếm ăn", t1: "ĐÀO SÂM RỪNG", t2: "VÁCH ĐÁ NGÀN THƯỚC" },
+                    { t: "BÀ MẸ ĐƠN THÂN gùi đá làm đường nuôi 4 con ăn học", t1: "MẸ GÙI ĐÁ", t2: "NUÔI 4 CON HỌC" },
+                    { t: "CUỘC SỐNG KHÔNG ĐIỆN NƯỚC: Gia đình ẩn cư 20 năm sâu trong thung lũng", t1: "KHÔNG ĐIỆN NƯỚC", t2: "ẨN CƯ 20 NĂM" },
+                    { t: "XÓT XA đôi bàn chân nứt nẻ chảy máu của bác tiều phu", t1: "CHÂN NỨT CHẢY MÁU", t2: "BÁC TIỀU PHU" },
+                    { t: "GÙI MĂNG BẠC LƯNG: Mẹ nghèo đi từ 4 giờ sáng lên núi sâu", t1: "GÙI MĂNG BẠC LƯNG", t2: "ĐI TỪ 4G SÁNG" },
+                    { t: "SỐNG TRONG HANG CÙNG BẦY SÓI: Câu chuyện ẩn cư có thật", t1: "SỐNG TRONG HANG", t2: "CÂU CHUYỆN CÓ THẬT" },
+                    { t: "MƯU SINH MÙA LŨ: Đốt than củi đổi lấy gói mì tôm", t1: "ĐỐT THAN CỦI", t2: "ĐỔI GÓI MÌ TÔM" },
+                    { t: "CỤ ÔNG 90 TUỔI vẫn cày ruộng bằng cuốc tay rách tơi", t1: "CỤ 90 TUỔI", t2: "CÀY RUỘNG TAY" },
+                    { t: "GÙI PHÂN BÒ ĐỈNH NÚI: Đổi lấy miếng ăn mệt nhoài", t1: "GÙI PHÂN BÒ", t2: "MỆT NHOÀI MƯU SINH" },
+                    { t: "GIA ĐÌNH 'NGƯỜI RỪNG' giữa thời hiện đại: Không giao tiếp bên ngoài", t1: "GIA ĐÌNH 'NGƯỜI RỪNG'", t2: "KHÔNG GIAO TIẾP" },
+                    { t: "VÁC CỦI VƯỢT ĐÈO LỄ: Mẹ góa 50kg vác lưng gù", t1: "VÁC CỦI VƯỢT ĐÈO", t2: "MẸ GÓA LƯNG GÙ" },
+                    { t: "TÌM CÂY THUỐC QUÝ: Chuyến mưu sinh 3 ngày trong rừng sâu", t1: "TÌM THUỐC QUÝ", t2: "3 NGÀY RỪNG SÂU" },
+                    { t: "SỐNG ẨN DỰC THẲM: Ngôi nhà nhỏ làm bằng tre tự dựng", t1: "NHÀ TRE TỰ DỰNG", t2: "SỐNG VỰC THẲM" },
+                    { t: "MƯU SINH BẰNG BẪY RỪNG: Bát cơm nhọc nhằn của thợ bẫy", t1: "THỢ BẪY RỪNG", t2: "BÁT CƠM NHỌC NHẰN" },
+                    { t: "ĐÔI TAY TÊ BĂNG vì hái măng rừng trong sương giá", t1: "TAY TÊ BĂNG", t2: "HÁI MĂNG SƯƠNG GIÁ" },
+                    { t: "BỐ ĐƠN THÂN gùi con sau lưng trèo đèo vác đá mưu sinh", t1: "GÙI CON SAU LƯNG", t2: "VÁC ĐÁ MƯU SINH" },
+                    { t: "LỤM NẤM ĐỘC MƯU SINH: Đánh đổi tính mạng lấy đĩa ăn", t1: "LỤM NẤM RỪNG", t2: "ĐÁNH ĐỔI TÍNH MẠNG" },
+                    { t: "SỐNG TRÊN ĐỈNH MÂY: Ngôi nhà gỗ đơn độc của thợ rừng", t1: "NGÔI NHÀ ĐỈNH MÂY", t2: "THỢ RỪNG CÔ ĐỘC" },
+                    { t: "CẦN CÙ MƯU SINH: Cụ bà hái rau rừng bán từng mớ 2 nghìn", t1: "RAU RỪNG 2 KHỦNG", t2: "CẦN CÙ MƯU SINH" },
+                    { t: "MƯU SINH CỰC NHỌC: Cõng ngô vượt 5km dốc đứng rùng rợn", t1: "CÕNG NGÔ VƯỢT DỐC", t2: "CỰC NHỌC VÙNG NÚI" }
                 ]
             },
             {
@@ -219,7 +438,64 @@
                 titles: [
                     { t: "PHÉP MÀU xuất hiện: Mạnh thường quân tặng ngôi nhà mơ ước", t1: "PHÉP MÀU XUẤT HIỆN", t2: "TẶNG NHÀ MƠ ƯỚC" },
                     { t: "VỠ ÒA hạnh phúc: Tặng bò giống cho gia đình nghèo đổi đời", t1: "TẶNG BÒ GIỐNG", t2: "VỠ ÒA ĐỔI ĐỜI" },
-                    { t: "HÀNH TRÌNH mang nước sạch lên núi cao: Niềm vui của dân bản", t1: "NƯỚC SẠCH LÊN NÚI", t2: "NIỀM VUI BẢN LÀNG" }
+                    { t: "HÀNH TRÌNH mang nước sạch lên núi cao: Niềm vui của dân bản", t1: "NƯỚC SẠCH LÊN NÚI", t2: "NIỀM VUI BẢN LÀNG" },
+                    { t: "THAY ĐỔI diện mạo mới: Người rừng lần đầu có điện sáng", t1: "LẦN ĐẦU CÓ ĐIỆN", t2: "SÁNG CẢ BẢN LÀNG" },
+                    { t: "MÓN QUÀ vô giá: Tặng xe máy cần câu cơm cho người khuyết tật", t1: "TẶNG XE MÁY", t2: "CẦN CÂU CƠM" },
+                    { t: "GIỌT NƯỚC MẮT hạnh phúc khi nhận được túi gạo cứu đói", t1: "NHẬN GẠO CỨU ĐÓI", t2: "RỚT NƯỚC MẮT" },
+                    { t: "XÂY DỰNG ước mơ: Cây cầu tình thương nối liền bản nghèo", t1: "CÂY CẦU TÌNH THƯƠNG", t2: "NỐI BẢN NGHÈO" },
+                    { t: "CỨU TRỢ khẩn cấp: Mang thuốc men đến tận tay mẹ già neo đơn", t1: "CỨU TRỢ KHẨN CẤP", t2: "MANG THUỐC CHO MẸ" },
+                    { t: "BẤT NGỜ trúng 'xổ số': Nhận quà khủng từ ân nhân phương xa", t1: "NHẬN QUÀ KHỦNG", t2: "ÂN NHÂN PHƯƠNG XA" },
+                    { t: "HẾT NỢ nần: Phép màu giúp gia đình thoát cảnh nô lệ chăn bò", t1: "HẾT NỢ NẦN", t2: "THOÁT CẢNH NÔ LỆ" },
+                    { t: "NỤ CƯỜI rạng rỡ của cụ bà 100 tuổi khi có nhà mới", t1: "CỤ BÀ 100 TUỔI", t2: "CÓ NHÀ MỚI RỒI" },
+                    { t: "TƯƠNG LAI tươi sáng: Trao học bổng cho học sinh nghèo vượt khó", t1: "TRAO HỌC BỔNG", t2: "TƯƠNG LAI SÁNG" },
+                    { t: "CÂY THUỐC quý trời ban: Món quà cứu người nơi rừng sâu", t1: "CÂY THUỐC QUÝ", t2: "CỨU NGƯỜI RỪNG" },
+                    { t: "HÀNH TRÌNH yêu thương: Vượt ngàn chông gai đến với người nghèo", t1: "VƯỢT CHÔNG GAI", t2: "ĐẾN BẢN NGHÈO" },
+                    { t: "KẾT THÚC có hậu: Gia đình mồ côi đã có mái ấm trọn vẹn", t1: "KẾT THÚC CÓ HẬU", t2: "MÁI ẤM TRỌN VẸN" },
+                    { t: "NGÀY HỘI BẢN LÀNG: Khai trương giếng nước sạch tình thương", t1: "GIẾNG NƯỚC SẠCH", t2: "NGÀY HỘI BẢN LÀNG" },
+                    { t: "LẦN ĐẦU TRONG ĐỜI 3 em bé mồ côi được đi siêu thị mua áo mới", t1: "LẦN ĐẦU ĐI SIÊU THỊ", t2: "MUA ÁO MỚI" },
+                    { t: "TRAO TẶNG SỔ TIẾT KIỆM: Cuộc đời sang trang cho cụ bà", t1: "SỔ TIẾT KIỆM", t2: "SANG TRANG CUỘC ĐỜI" },
+                    { t: "BÁC SĨ TỪ THIỆN: Khám chữa bệnh miễn phí cho bà con vùng xa", t1: "BÁC SĨ TỪ THIỆN", t2: "KHÁM BỆNH 0 ĐỒNG" },
+                    { t: "MÁI ẤM MỚI: Bàn giao chìa khóa ngôi nhà mơ ước", t1: "BÀN GIAO NHÀ MỚI", t2: "MÁI ẤM TRONG MƠ" },
+                    { t: "ẤM LÒNG ĐÊM ĐÔNG: Tặng chăn bông và áo ấm cho 100 em nhỏ", t1: "TẶNG 100 ÁO ẤM", t2: "ẤM LÒNG ĐÊM ĐÔNG" },
+                    { t: "SỰ SỐNG HỒI SINH: Ca phẫu thuật miễn phí cho bé trai khuyết tật", t1: "PHẪU THUẬT 0 ĐỒNG", t2: "BÉ KHUYẾT TẬT" },
+                    { t: "NƯỚC MẮT LĂN TRÊN MÁ: Lần đầu gia đình nghèo được ăn bữa cơm đầy đủ", t1: "BỮA CƠM ĐẦY ĐỦ", t2: "NƯỚC MẮT HẠNH PHÚC" },
+                    { t: "MẠNH THƯỜNG QUÂN hỗ trợ nuôi 3 em mồ côi đến năm 18 tuổi", t1: "NUÔI TỚI 18 TUỔI", t2: "MẠNH THƯỜNG QUÂN" },
+                    { t: "CHUYẾN XE TÌNH THƯƠNG: Mang Tết ấm áp về với bản nghèo hẻo lánh", t1: "MANG TẾT VỀ BẢN", t2: "CHUYẾN XE TÌNH THƯƠNG" },
+                    { t: "VỠ ÒA HẠNH PHÚC: Tặng móng heo và 10tấn gạo cho bản nghèo", t1: "TẶNG 10 TẤN GẠO", t2: "VỠ ÒA HẠNH PHÚC" },
+                    { t: "TRAO CẦN CÂU CƠM: Tặng xuồng máy cho ông lão đánh cá nghèo", t1: "TẶNG XUỒNG MÁY", t2: "TRAO CẦN CÂU CƠM" },
+                    { t: "PHÉP MÀU TỚI BẢN: Tặng 50 con bò giống cho bà con nghèo", t1: "TẶNG 50 BÒ GIỐNG", t2: "PHÉP MÀU TỚI BẢN" },
+                    { t: "MẶT TRỜI MỚI: Dẫn điện lưới quốc gia về vùng thung lũng biệt lập", t1: "DẪN ĐIỆN VỀ BẢN", t2: "ÁNH SÁNG MỚI" },
+                    { t: "MẮT SÁNG TRỞ LẠI: Mổ mắt từ thiện miễn phí cho cụ ông 85 tuổi", t1: "MỔ MẮT 0 ĐỒNG", t2: "MẮT SÁNG TRỞ LẠI" },
+                    { t: "TẶNG ĐÔI CHÂN GIẢ: Nụ cười rạng rỡ của người thương binh nghèo", t1: "TẶNG CHÂN GIẢ", t2: "NỤ CƯỜI HẠNH PHÚC" },
+                    { t: "LẦN ĐẦU CÓ BẬT ĐÈN: Đêm không còn u tối của gia đình 5 con", t1: "ĐÈN ĐIỆN SÁNG", t2: "LẦN ĐẦU TRONG ĐỜI" },
+                    { t: "BÁT CƠM TÌNH NGHĨA: Nấu 500 suất cơm miễn phí cho học sinh vùng cao", t1: "500 SUẤT CƠM", t2: "BÁT CƠM TÌNH NGHĨA" },
+                    { t: "CỨU TRỢ MÙA LŨ: Vượt dòng nước xoáy mang mì tôm đến bản bị cô lập", t1: "VƯỢT LŨ CỨU TRỢ", t2: "MÌ TÔM TỚI BẢN" },
+                    { t: "TẶNG TIỂU BẢN MỚI: Xây trường học kiên cố cho em nhỏ vùng đèo", t1: "XÂY TRƯỜNG MỚI", t2: "EM NHỎ NÙI CAO" },
+                    { t: "ĐỔI ĐỜI THẬT RỒI: Tặng đàn dê 20 con phát triển kinh tế gia đình", t1: "TẶNG ĐÀN DÊ 20 CON", t2: "ĐỔI ĐỜI THẬT RỒI" },
+                    { t: "NẠP SÁNG TƯƠNG LAI: Tặng 100 xe đạp cho học sinh vượt khó", t1: "TẶNG 100 XE ĐẠP", t2: "SÁNG TƯƠNG LAI" },
+                    { t: "TÁI CƠ CẤU CUỘC SỐNG: Tặng vốn kinh doanh cho mẹ đơn thân nghèo", t1: "TẶNG VỐN MƯU SINH", t2: "MẸ ĐƠN THÂN" },
+                    { t: "MÓN QUÀ BẤT NGỜ: Ân nhân giấu mặt hỗ trợ chữa bệnh cho bé trai", t1: "ÂN NHÂN GIẤU MẶT", t2: "HỖ TRỢ CHỮA BỆNH" },
+                    { t: "CÂY CẦU DÂN TRÍ: Khai trương cầu bê tông thay thế dây cáp hiểm trở", t1: "CẦU BÊ TÔNG MỚI", t2: "THAY DÂY CÁP" },
+                    { t: "NƯỚC MẮT NGHẸN NGÀO khi nhận được thẻ bảo hiểm y tế miễn phí", t1: "THẺ BẢO HIỂM 0 ĐỒNG", t2: "NƯỚC MẮT NGHẸN NGÀO" },
+                    { t: "TẶNG MÁY BƠM NƯỚC: Niềm vui của cụ bà góa cả đời gùi nước suối", t1: "TẶNG MÁY BƠM", t2: "HẾT GÙI NƯỚC SUỐI" },
+                    { t: "ẤM ÁP TÌNH NGƯỜI: Mang quần áo mùa đông đến tận tay bà con", t1: "ÁO ẤM MÙA ĐÔNG", t2: "ẤM ÁP TÌNH NGƯỜI" },
+                    { t: "KẾT THÚC CẢNH ĐÓI: Tặng hũ gạo tình thương đủ ăn cả năm", t1: "HŨ GẠO TÌNH THƯƠNG", t2: "HẾT CẢNH ĐÓI" },
+                    { t: "TẶNG BÌNH ẮC QUY SẠC ĐIỆN: Lần đầu gia đình có quạt mát mùa hè", t1: "BÌNH ẮC QUY MỚI", t2: "LẦN ĐẦU CÓ QUẠT" },
+                    { t: "MÓN QUÀ THÁNG 12: Tặng chăn đệm sưởi ấm cho các cụ già neo đơn", t1: "TẶNG CHĂN ĐỆM", t2: "SƯỞI ẤM ĐÊM ĐÔNG" },
+                    { t: "CUỘC SỐNG SANG TRANG MỚI: Tặng 100 triệu mua đất làm nhà cho 3 mẹ con", t1: "TẶNG 100 TRIỆU", t2: "MUA ĐẤT XÂY NHÀ" },
+                    { t: "BẤT NGỜ TRÚNG 'SỐ VÀNG': Nhà tài trợ nuôi 2 cháu mồ côi ăn học đại học", t1: "NUÔI HỌC ĐẠI HỌC", t2: "2 CHÁU MỒ CÔI" },
+                    { t: "HÀNH TRÌNH TỬ TẾ: Vượt 500km mang yêu thương tới đồng bào miền núi", t1: "VƯỢT 500KM", t2: "MANG YÊU THƯƠNG" },
+                    { t: "NỤ CƯỜI TRẺ THƠ: Ngày hội cắt tóc và phát kẹo miễn phí vùng cao", t1: "CẮT TÓC 0 ĐỒNG", t2: "NỤ CƯỜI TRẺ THƠ" },
+                    { t: "MÁI TÓC TÌNH NGHĨA: Trao tặng xe lăn điện cho bác cựu chiến binh", t1: "TẶNG XE LĂN ĐIỆN", t2: "CỰU CHIẾN BINH" },
+                    { t: "ĐIỂM TỰA MỚI: Tặng xưởng may nhỏ cho cô gái khuyết tật vươn lên", t1: "TẶNG XƯỞNG MAY", t2: "GÁI KHUYẾT TẬT" },
+                    { t: "TRÁI TIM NHÂN ÁI: Mang mùa xuân ấm áp về vùng biên giới nghèo", t1: "MANG XUÂN VỀ BẢN", t2: "TRÁI TIM NHÂN ÁI" },
+                    { t: "MỚI TIN LÀ THẬT: Cụ già 90 tuổi ôm lấy đoàn từ thiện bật khóc", t1: "CỤ 90 BẬT KHÓC", t2: "MỚI TIN LÀ THẬT" },
+                    { t: "GIỌT NƯỚC MẮT TRI ÂN của cậu học sinh nghèo đậu thủ khoa", t1: "ĐẬU THỦ KHOA", t2: "GIỌT NƯỚC MẮT TRI ÂN" },
+                    { t: "XÂY DỰNG TƯƠNG LAI: Bàn giao tủ sách cộng đồng cho trẻ em núi", t1: "TỦ SÁCH CỘNG ĐỒNG", t2: "MỞ RA TƯƠNG LAI" },
+                    { t: "TRAO TẶNG GÀ GIỐNG: Mô hình phát triển kinh tế cho 20 hộ nghèo", t1: "TẶNG GÀ GIỐNG", t2: "THOÁT NGHÈO BỀN VƯỜNG" },
+                    { t: "NIỀM VUI MÙA THUÔN: Lần đầu tiên bản nghèo được chiếu phim lưu động", t1: "CHIẾU PHIM 0 ĐỒNG", t2: "NIỀM VUI BẢN LÀNG" },
+                    { t: "BẤT NGỜ LỚN NHẤT ĐỜI: Tặng sổ tiết kiệm chữa bệnh cho người mẹ nghèo", t1: "SỔ TIẾT KIỆM CHỮA BỆNH", t2: "MÓN QUÀ VÔ GIÁ" },
+                    { t: "HẠNH PHÚC TRỌN VẸN: Lễ bàn giao công trình nước sạch và nhà tình thương", t1: "NHÀ MỚI NƯỚC SẠCH", t2: "HẠNH PHÚC TRỌN VẸN" }
                 ]
             },
             {
@@ -234,40 +510,70 @@
                     { t: "ĐỔI ĐỜI THẬT RỒI! Căn nhà trong mơ mọc lên giữa rừng sâu sau 20 năm chờ đợi", t1: "ĐỔI ĐỜI THẬT RỒI!", t2: "CĂN NHÀ TRONG MƠ" },
                     { t: "ƯỚC MƠ THÀNH SỰ THẬT: Người mẹ nghèo bật khóc nức nở khi bước chân vào nhà mới", t1: "MẸ NGHÈO BẬT KHÓC", t2: "VÀO NHÀ MỚI" },
                     { t: "BẤT NGỜ ĐẾN PHÚT CUỐI: Ngôi nhà tình thương \"biến hình\" từ túp lều rách nát", t1: "BIẾN HÌNH TÚP LỀU", t2: "NHÀ TÌNH THƯƠNG" },
-                    { t: "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không dám tin mình đã có nhà khang trang", t1: "THAY ĐỔI SỐ PHẬN", t2: "CÓ NHÀ KHANG TRANG" }
+                    { t: "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không dám tin mình đã có nhà khang trang", t1: "THAY ĐỔI SỐ PHẬN", t2: "CÓ NHÀ KHANG TRANG" },
+                    { t: "GIẤC MƠ CÓ THẬT: Căn nhà đẹp như lâu đài xuất hiện giữa vùng sỏi đá khô cằn", t1: "NHÀ NHƯ LÂU ĐÀI", t2: "GIẤC MƠ CÓ THẬT" },
+                    { t: "SAU MỘT ĐÊM CHỢP MẮT: Người phụ nữ đơn thân nghèo khổ bất ngờ có nơi ở mới", t1: "MẸ ĐƠN THÂN", t2: "NƠI Ở MỚI" },
+                    { t: "CHẠM TAY VÀO ƯỚC MƠ: Niềm vui vỡ òa của gia đình 10 năm sống dưới tấm bạt rách", t1: "10 NĂM BẠT RÁCH", t2: "CHẠM TAY ƯỚC MƠ" },
+                    { t: "ĐIỀU KỲ DIỆU GIỮA RỪNG: Tặng nhà tiền chế cho hộ nghèo nhất vùng núi Linh Thuận", t1: "TẶNG NHÀ TIỀN CHẾ", t2: "ĐIỀU KỲ DIỆU" },
+                    { t: "KẾT THÚC CẢNH KHỔ: Từ nay mấy mẹ con không còn phải ngủ dưới nền đất lạnh", t1: "KẾT THÚC CẢNH KHỔ", t2: "HẾT NGỦ ĐẤT LẠNH" },
+                    { t: "HÀNH TRÌNH ĐỔI ĐỜI: Ước mơ lớn nhất cuộc đời cụ bà 70 tuổi đã hoàn thành", t1: "CỤ BÀ 70 TUỔI", t2: "HÀNH TRÌNH ĐỔI ĐỜI" },
+                    { t: "ĐỔI ĐỜI SAU 1 ĐÊM: Căn nhà trong mơ mọc lên giữa rừng sâu cho mẹ đơn thân", t1: "ĐỔI ĐỜI SAU 1 ĐÊM", t2: "NHÀ TRONG MƠ" },
+                    { t: "BẤT NGỜ ĐỔI ĐỜI: Sau một đêm chợp mắt, ước mơ 20 năm đã thành sự thật", t1: "BẤT NGỜ ĐỔI ĐỜI", t2: "ƯỚC MƠ 20 NĂM" },
+                    { t: "PHÉP MÀU GIỮA RỪNG: Đổi đời sau 1 đêm cho gia đình nghèo nhất vùng núi", t1: "PHÉP MÀU GIỮA RỪNG", t2: "ĐỔI ĐỜI 1 ĐÊM" },
+                    { t: "BẤT NGỜ SAU MỘT ĐÊM: Người phụ nữ dùng số tiền lớn đổi lấy căn nhà mơ ước", t1: "BẤT NGỜ SAU 1 ĐÊM", t2: "CĂN NHÀ MƠ ƯỚC" },
+                    { t: "ĐỔI ĐỜI THẬT RỒI! Căn nhà xanh mọc lên thay thế túp lều nát sau 1 đêm", t1: "CĂN NHÀ XANH", t2: "THAY TÚP LỀU NÁT" },
+                    { t: "CHƯA ĐẦY MỘT ĐÊM: Gia đình nghèo vỡ òa khi chạm tay vào ước mơ lớn nhất đời", t1: "CHƯA ĐẦY 1 ĐÊM", t2: "VỠ ÒA ƯỚC MƠ" },
+                    { t: "SỰ THẬT NGỠ NHƯ MƠ: 4 mẹ con bất ngờ đổi đời chỉ sau một đêm chợp mắt", t1: "4 MẸ CON ĐỔI ĐỜI", t2: "NGỠ NHƯ LÀ MƠ" },
+                    { t: "BẤT NGỜ ĐỔI VẬN: Ngôi nhà tình thương hiện hữu sau bao năm sống khổ", t1: "BẤT NGỜ ĐỔI VẬN", t2: "HẾT SỐNG KHỔ" },
+                    { t: "KỲ TÍCH XUẤT HIỆN: Đổi đời chỉ sau một đêm nhờ tấm lòng của Mạnh Thường Quân", t1: "KỲ TÍCH XUẤT HIỆN", t2: "MẠNH THƯỜNG QUÂN" },
+                    { t: "HÀNH TRÌNH ĐỔI ĐỜI: Từ túp lều rách đến căn nhà đẹp lung linh chỉ sau 1 đêm", t1: "TỪ LỀU RÁCH", t2: "ĐẾN NHÀ LUNG LINH" },
+                    { t: "ƯỚC MƠ THÀNH SỰ THẬT: Người mẹ nghèo bật khóc nức nở khi có nhà mới", t1: "MẸ NGHÈO BẬT KHÓC", t2: "CÓ NHÀ MỚI RỒI" },
+                    { t: "VỠ ÒA CẢM XÚC: Tặng nhà tình thương cho gia đình 10 năm sống trong hang đá", t1: "10 NĂM HANG ĐÁ", t2: "VỠ ÒA CẢM XÚC" },
+                    { t: "NƯỚC MẮT TUÔN RƠI: Ước mơ có nhà khang trang của cụ bà đã thành hiện thực", t1: "NƯỚC MẮT TUÔN RƠI", t2: "NHÀ KHANG TRANG" },
+                    { t: "CHẠM TAY VÀO ƯỚC MƠ: Niềm vui vỡ òa của gia đình nghèo nhất núi rừng", t1: "NGHÈO NHẤT NÚI", t2: "CHẠM TAY ƯỚC MƠ" },
+                    { t: "ƯỚC MƠ CẢ ĐỜI: Cụ bà 70 tuổi bật khóc khi nhận món quà cực lớn ở tuổi xế chiều", t1: "CỤ BÀ 70 TUỔI", t2: "MÓN QUÀ CỰC LỚN" },
+                    { t: "NƯỚC MẮT HẠNH PHÚC: Ước mơ của cô thiếu nữ nghèo cuối cùng đã thành sự thật", t1: "THIẾU NỮ NGHÈO", t2: "NƯỚC MẮT HẠNH PHÚC" },
+                    { t: "VỠ ÒA TRONG NƯỚC MẮT: Người phụ nữ sống giữa rừng vui mừng như trúng số", t1: "SỐNG GIỮA RỪNG", t2: "VUI NHƯ TRÚNG SỐ" },
+                    { t: "ƯỚC MƠ KHÔNG CÒN LÀ GIẤC MƠ: 3 mẹ con vỡ òa khi nhận căn nhà tình thương", t1: "3 MẸ CON VỠ ÒA", t2: "NHẬN NHÀ MỚI" },
+                    { t: "KHR ƯỚC MƠ THÀNH HIỆN THỰC: Người mẹ trẻ nghèo khổ mừng rớt nước mắt", t1: "MẸ TRẺ NGHÈO", t2: "MỪNG RỚT NƯỚC MẮT" },
+                    { t: "ƯỚC MƠ LỚN NHẤT ĐỜI: Hành trình xây nhà cho gia đình 20 năm sống khổ cực", t1: "20 NĂM KHỔ CỰC", t2: "XÂY NHÀ MỚI" },
+                    { t: "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không tin mình đã có nhà khang trang", t1: "HAI BÀ CHÁU", t2: "THAY ĐỔI SỐ PHẬN" },
+                    { t: "KẾT THÚC CẢNH KHỔ: Từ nay 3 mẹ con không còn phải ngủ dưới đất lạnh", t1: "3 MẸ CON", t2: "HẾT NGỦ ĐẤT LẠNH" },
+                    { t: "HỒI SINH CUỘC ĐỜI: Căn nhà cũ nát biến thành tổ ấm đẹp lung linh", t1: "NHÀ CỦ NÁT", t2: "TỔ ẤM LUNG LINH" },
+                    { t: "SỐ PHẬN MỚI BẮT ĐẦU: Bàn giao chìa khóa ngôi nhà mơ ước cho hộ nghèo", t1: "BÀN GIAO CHÌA KHÓA", t2: "SỐ PHẬN MỚI" },
+                    { t: "TỪ HANG ĐÁ VỀ NHÀ MỚI: Sự thay đổi ngoạn mục của gia đình nghèo vùng cao", t1: "TỪ HANG ĐÁ", t2: "VỀ NHÀ MỚI" },
+                    { t: "GIÃ TỪ TÚP LỀU NÁT: Người phụ nữ nhặt rác vỡ òa khi có nhà mới che nắng mưa", t1: "MẸ NHẶT RÁC", t2: "GIÃ TỪ LỀU NÁT" },
+                    { t: "KHÔNG CÒN SỐNG KHỔ: Tặng nhà cho người phụ nữ bị chồng đánh đập", t1: "KHÔNG CÒN SỐNG KHỔ", t2: "TẶNG NHÀ TÌNH THƯƠNG" },
+                    { t: "HẾT CẢNH MÀN TRỜI CHIẾU ĐẤT: Món quà vô giá cho mẹ đơn thân nuôi con nhỏ", t1: "MÓN QUÀ VÔ GIÁ", t2: "MẸ ĐƠN THÂN" },
+                    { t: "CUỘC SỐNG SANG TRANG: Người cha nuôi con tai nạn lao động bất ngờ đổi vận", t1: "CHA TAI NẠN", t2: "CUỘC SỐNG SANG TRANG" },
+                    { t: "THAY ĐỔI CUỘC ĐỜI MÃI MÃI: Ngôi nhà trong mơ cho người mẹ trẻ góa chồng", t1: "MẸ TRẺ GÓA CHỒNG", t2: "NHÀ TRONG MƠ" },
+                    { t: "ĐỔI ĐỜI CHO 3 MẸ CON: Căn nhà mơ ước mọc lên từ vùng đất sỏi đá", t1: "ĐỔI ĐỜI 3 MẸ CON", t2: "ĐẤT SỎI ĐÁ" },
+                    { t: "ƯỚC MƠ CỦA CÔ GÁI TRẺ: Mái ấm tình thương che nắng mưa cho mẹ con em", t1: "CÔ GÁI TRẺ", t2: "MÁI ẤM TÌNH THƯƠNG" },
+                    { t: "MÓN QUÀ CỰC LỚN: Cụ bà đơn thân vỡ òa khi ước mơ thành hiện thực", t1: "CỤ BÀ ĐƠN THÂN", t2: "MÓN QUÀ CỰC LỚN" },
+                    { t: "NIỀM VUI VỚI BÀ MỤ ĐỠ ĐẺ: Tặng nhà cho người cả đời giúp đỡ đồng bào", t1: "BÀ MỤ ĐỠ ĐẺ", t2: "TẶNG NHÀ MỚI" },
+                    { t: "ƯỚC MƠ CỦA NGƯỜI ĐÀN ÔNG BỆNH TẬT: Mái ấm mới thay thế chuồng bò hôi hám", t1: "THAY CHUỒNG BÒ", t2: "MÁI ẤM MỚI" },
+                    { t: "THAY ĐỔI ĐỜI \"VỢ CHỒNG NGƯỜI RỪNG\": Món quà quý giá sau 30 năm sống bụi", t1: "VỢ CHỒNG RỪNG", t2: "30 NĂM SỐNG BỤI" },
+                    { t: "ƯỚC MƠ CỦA HAI BÀ CHÁU: Căn nhà mới khang trang xóa tan nỗi lo bão lũ", t1: "HAI BÀ CHÁU", t2: "XÓA LO BẢO LŨ" },
+                    { t: "TẶNG NHÀ CHO NGƯỜI KHUYẾT TẬT: Ước mơ giản đơn của người mẹ đơn thân nghèo", t1: "NGƯỜI KHUYẾT TẬT", t2: "ƯỚC MƠ GIẢN ĐƠN" },
+                    { t: "ĐỔI ĐỜI CHO CÔ THIẾU NỮ 19 TUỔI: Có nhà, có gà để phát triển kinh tế", t1: "THIẾU NỮ 19 TUỔI", t2: "CÓ NHÀ CÓ GÀ" },
+                    { t: "ƯỚC MƠ THÀNH THẬT CHO 4 MẸ CON: Căn nhà rộng rãi cho những tâm hồn nhỏ", t1: "4 MẸ CON NGHÈO", t2: "CĂN NHÀ RỘNG RÃI" },
+                    { t: "TẠI SAO LẠI KHÓC? Sự thật sau giọt nước mắt khi ước mơ thành hiện thực", t1: "TẠI SAO LẠI KHÓC?", t2: "SỰ THẬT GIỌT NƯỚC MẮT" },
+                    { t: "BÍ MẬT DƯỚI GỐC ĐIỀU: Ngôi nhà xanh mọc lên khiến cả làng chúc mừng", t1: "BÍ MẬT GỐC ĐIỀU", t2: "CẢ LÀNG CHÚC MỪNG" },
+                    { t: "ĐỪNG TỪ BỎ ƯỚC MƠ! Hoàn cảnh thê thảm nhất vùng núi cuối cùng cũng bớt khổ", t1: "ĐỪNG TỪ BỎ!", t2: "CUỐI CÙNG BỚT KHỔ" },
+                    { t: "GIẤC MƠ GIỮA NÚI RỪNG: Căn nhà đẹp lung linh thay đổi hoàn toàn một số phận", t1: "GIẤC MƠ NÚI RỪNG", t2: "NHÀ ĐẸP LUNG LINH" },
+                    { t: "ĐỔI ĐỜI NHƯ TRÚNG SỐ: Món quà bất ngờ khiến người mẹ nghèo không thốt nên lời", t1: "ĐỔI ĐỜI TRÚNG SỐ", t2: "MÓN QUÀ BẤT NGỜ" },
+                    { t: "CÂY CHUYỆN CẢM ĐỘNG: Tặng nhà cho gia đình 10 năm sống hang đá đổi vận", t1: "SỐNG HANG ĐÁ 10 NĂM", t2: "TẶNG NHÀ ĐỔI VẬN" },
+                    { t: "ƯỚC MƠ ĐƯỢC THỜ CÚNG: Căn nhà mới ấm cúng để chị mang ảnh chồng về thờ", t1: "ƯỚC MƠ THỜ CÚNG", t2: "RINH ẢNH CHỒNG VỀ" },
+                    { t: "HÀNH TRÌNH TỚI HẠNH PHÚC: Thực hiện ước mơ cho gia đình nghèo nhất vùng cao", t1: "NGHÈO NHẤT VÙNG", t2: "HẠNH PHÚC ĐẾN RỒI" },
+                    { t: "BẤT NGỜ NHÂN ĐÔI: Vừa có nhà mới, vừa có quà lớn từ Mạnh Thường Quân", t1: "BẤT NGỜ NHÂN ĐÔI", t2: "CÓ NHÀ CÓ QUÀ" },
+                    { t: "VỠ ÒA HẠNH PHÚC CUỐI NGÀY: ƯỚC MƠ CÓ NHÀ CỦA NGƯỜI NGHÈO ĐÃ HOÀN THÀNH", t1: "HẠNH PHÚC CUỐI NGÀY", t2: "ƯỚC MƠ HOÀN THÀNH" }
                 ]
             }
         ];
 
-        function initTheme() {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        }
-
+        /* Helper Functions */
         function getTitleId(catId, index) {
             return `${catId}_title_${index}`;
-        }
-
-        function loadState() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    checkedMap = JSON.parse(saved);
-                }
-            } catch (e) {
-                console.error('Failed to load state', e);
-            }
-        }
-
-        function saveState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedMap));
-            } catch (e) {
-                console.error('Failed to save state', e);
-            }
         }
 
         function renderTitleItems(cat) {
@@ -277,9 +583,15 @@
                 const thumb2 = (typeof item === 'object' && item.t2) ? item.t2 : 'XÓT XA';
                 const titleId = getTitleId(cat.id, idx);
                 const isChecked = !!checkedMap[titleId];
+                const titleNumber = idx + 1;
+
                 return `
                     <div id="item_wrapper_${titleId}" class="flex flex-col sm:flex-row sm:items-center gap-3 p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
                         <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                            <!-- Title Sequence Number -->
+                            <span class="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 min-w-[28px] text-right shrink-0 select-none font-mono">
+                                ${titleNumber}.
+                            </span>
                             <input type="checkbox" 
                                    id="${titleId}" 
                                    ${isChecked ? 'checked' : ''} 
@@ -291,6 +603,7 @@
                                        class="text-sm sm:text-base font-medium select-none cursor-pointer block leading-snug transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
                                     ${titleText}
                                 </label>
+                                <!-- Thumbnail Text Badges -->
                                 <div class="mt-2 flex flex-wrap items-center gap-1.5 text-xs select-none">
                                     <span class="text-slate-400 dark:text-slate-500 font-medium text-[11px] mr-0.5">
                                         <i class="fa-solid fa-image text-[10px] mr-1 opacity-70"></i>Chữ Ảnh thu nhỏ:
@@ -327,6 +640,25 @@
             }
         }
 
+        function loadState() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    checkedMap = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Failed to load state', e);
+            }
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedMap));
+            } catch (e) {
+                console.error('Failed to save state', e);
+            }
+        }
+
         function toggleCategory(catId) {
             const content = document.getElementById(`content_${catId}`);
             const chevron = document.getElementById(`icon_chevron_${catId}`);
@@ -354,6 +686,7 @@
                 catCard.id = `card_${cat.id}`;
 
                 catCard.innerHTML = `
+                    <!-- Accordion Header -->
                     <div class="p-4 flex items-center justify-between cursor-pointer select-none gap-3 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition"
                          onclick="toggleCategory('${cat.id}')">
                         <div class="flex items-center space-x-3.5 flex-1 min-w-0">
@@ -361,20 +694,30 @@
                                 <i class="fa-solid ${cat.icon}"></i>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
+                                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 shrink-0">
+                                        ${cat.titles.length} tiêu đề
+                                    </span>
+                                </div>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${cat.desc}</p>
                             </div>
                         </div>
+
+                        <!-- Collapsible Chevron Button -->
                         <div id="icon_chevron_${cat.id}" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-transform duration-300 shrink-0">
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </div>
                     </div>
+
+                    <!-- Accordion Content Body -->
                     <div id="content_${cat.id}" class="accordion-content border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-950/40">
                         <div class="p-3.5 sm:p-4 space-y-2" id="list_${cat.id}">
                             ${renderTitleItems(cat)}
                         </div>
                     </div>
                 `;
+
                 container.appendChild(catCard);
             });
         }
@@ -400,6 +743,7 @@
 
         function closeResetModal() {
             const modal = document.getElementById('resetModal');
+            if (modal) modal.classList.hidden = true;
             if (modal) modal.classList.add('hidden');
         }
 
@@ -427,6 +771,7 @@
             }
         }
 
+        /* Initial Loading Event */
         window.addEventListener('DOMContentLoaded', () => {
             initTheme();
             loadState();
