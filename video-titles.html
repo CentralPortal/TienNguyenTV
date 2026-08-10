@@ -56,6 +56,8 @@
             background: #475569;
         }
         .accordion-content {
+            max-height: 0;
+            opacity: 0;
             transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in-out;
             overflow: hidden;
         }
@@ -94,6 +96,10 @@
                         <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tiến độ:</span>
                         <span id="overallProgressText" class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">0 / 0 (0%)</span>
                     </div>
+
+                    <button onclick="copyUnusedTitles()" class="px-3 py-1.5 text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-amber-700 dark:text-amber-300 rounded-xl transition border border-amber-200 dark:border-amber-800/50 flex items-center gap-1.5 shadow-sm" title="Sao chép danh sách tiêu đề chưa dùng">
+                        <i class="fa-regular fa-copy text-amber-500"></i> Sao chép chưa dùng
+                    </button>
 
                     <button onclick="expandAll()" class="px-3 py-1.5 text-xs font-semibold bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl transition border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-1.5">
                         <i class="fa-solid fa-angles-down text-slate-400"></i> Mở tất cả
@@ -147,28 +153,6 @@
 
     <!-- Main Content Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5">
-
-        <!-- SEO Tips Info Banner -->
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-colors">
-            <div class="flex items-start space-x-3.5">
-                <div class="p-2.5 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-xl border border-amber-500/20 shrink-0">
-                    <i class="fa-solid fa-lightbulb text-lg"></i>
-                </div>
-                <div>
-                    <h3 class="text-sm font-bold text-amber-800 dark:text-amber-300">Tiêu chuẩn tiêu đề chuẩn YouTube SEO & CTR:</h3>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                        • <strong>Độ dài &lt; 70 ký tự:</strong> Hiển thị trọn vẹn trên thiết bị di động.<br>
-                        • <strong>Hook cảm xúc mạnh:</strong> Viết HOA từ nhạy cảm xúc (TẬN CÙNG, XÓT XA, BẤT HẠNH, PHÉP MÀU).<br>
-                        • <strong>An toàn chính sách:</strong> Tập trung mục đích nhân đạo, hỗ trợ, tránh từ kích động.
-                    </p>
-                </div>
-            </div>
-            <div class="flex items-center gap-2 self-end md:self-center shrink-0">
-                <button onclick="copyUnusedTitles()" class="px-3.5 py-2 text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-xl transition flex items-center gap-2 shadow-sm">
-                    <i class="fa-regular fa-copy text-amber-500"></i> Sao chép danh sách chưa dùng
-                </button>
-            </div>
-        </div>
 
         <!-- Notification Toast Container -->
         <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 border border-emerald-400">
@@ -598,8 +582,6 @@
             return cat.titles.map((titleText, idx) => {
                 const titleId = getTitleId(cat.id, idx);
                 const isChecked = !!checkedMap[titleId];
-                const charCount = titleText.length;
-                const isSeoGood = charCount <= 70;
 
                 return `
                     <div id="item_wrapper_${titleId}" class="title-item flex items-center justify-between gap-3 p-3 rounded-xl bg-white dark:bg-slate-900/80 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-800 transition group ${isChecked ? 'opacity-60 bg-slate-100/50 dark:bg-slate-950/40' : ''}"
@@ -617,24 +599,6 @@
                             <label for="${titleId}" class="text-sm font-medium cursor-pointer leading-relaxed break-words flex-1 select-none ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-white'}">
                                 ${titleText}
                             </label>
-                        </div>
-
-                        <!-- Meta Info & Copy Button -->
-                        <div class="flex items-center space-x-2 shrink-0">
-                            <!-- SEO badge -->
-                            <span class="hidden sm:inline-block text-[11px] font-mono px-2 py-0.5 rounded-md ${isSeoGood ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/40' : 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800/40'}" title="${charCount} ký tự (Nên < 70 ký tự)">
-                                ${charCount} ký tự
-                            </span>
-
-                            <!-- Used Badge -->
-                            <span id="badge_used_${titleId}" class="${isChecked ? 'inline-block' : 'hidden'} text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/50">
-                                Đã dùng
-                            </span>
-
-                            <!-- Copy Button -->
-                            <button onclick="copyToClipboard('${titleText.replace(/'/g, "\\'")}', this)" class="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition" title="Sao chép tiêu đề">
-                                <i class="fa-regular fa-copy text-sm"></i>
-                            </button>
                         </div>
                     </div>
                 `;
@@ -655,14 +619,18 @@
                 wrapper.classList.add('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
                 label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
                 label.classList.remove('text-slate-800', 'dark:text-slate-200');
-                badge.classList.remove('hidden');
-                badge.classList.add('inline-block');
+                if (badge) {
+                    badge.classList.remove('hidden');
+                    badge.classList.add('inline-block');
+                }
             } else {
                 wrapper.classList.remove('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
                 label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
                 label.classList.add('text-slate-800', 'dark:text-slate-200');
-                badge.classList.add('hidden');
-                badge.classList.remove('inline-block');
+                if (badge) {
+                    badge.classList.add('hidden');
+                    badge.classList.remove('inline-block');
+                }
             }
 
             updateCategoryCounter(catId);
@@ -690,12 +658,12 @@
                         wrapper.classList.add('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
                         label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
                         label.classList.remove('text-slate-800', 'dark:text-slate-200');
-                        badge.classList.remove('hidden');
+                        if (badge) badge.classList.remove('hidden');
                     } else {
                         wrapper.classList.remove('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
                         label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
                         label.classList.add('text-slate-800', 'dark:text-slate-200');
-                        badge.classList.add('hidden');
+                        if (badge) badge.classList.add('hidden');
                     }
                 }
             });
@@ -934,7 +902,7 @@
             initTheme();
             loadState();
             renderCategories();
-            expandAll();
+            collapseAll();
         });
     </script>
 </body>
