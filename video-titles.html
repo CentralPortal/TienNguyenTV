@@ -65,7 +65,6 @@
 </head>
 <body class="font-sans min-h-full flex flex-col bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased transition-colors duration-200 selection:bg-red-500 selection:text-white">
 
-    <!-- Header Banner -->
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm py-5 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -74,7 +73,6 @@
         </div>
     </header>
 
-    <!-- Main Content Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-5">
 
         <!-- Notification Toast Container -->
@@ -90,7 +88,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-5 text-center text-xs text-slate-500 transition-colors">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p>© 2026 TienNguyenTVOfficial Title Collection Manager. Công cụ quản lý tiêu đề video vùng cao.</p>
@@ -100,7 +97,7 @@
         </div>
     </footer>
 
-    <!-- Custom Modal for Reset Confirmation (No browser confirm() used) -->
+    <!-- Custom Modal for Reset Confirmation -->
     <div id="resetModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
             <div class="flex items-center gap-3 text-red-600 dark:text-red-400">
@@ -123,328 +120,130 @@
         </div>
     </div>
 
-    <!-- JavaScript Application Logic -->
     <script>
+        const STORAGE_KEY = 'tien_nguyen_tv_checked_titles_v3';
+        let checkedMap = {};
+
         const categoriesData = [
             {
                 id: "cat1",
                 title: "I. Nhà ở tạm bợ & Hoàn cảnh khắc nghiệt",
-                badge: "60 tiêu đề",
                 desc: "Tập trung vào sự tương phản giữa con người và nơi ở rách nát.",
                 icon: "fa-house-crack",
                 color: "text-amber-600 dark:text-amber-400",
                 bgColor: "bg-amber-500/10",
                 borderColor: "border-amber-500/20",
                 titles: [
-                    "TẬN CÙNG đói khổ: Gia đình 11 người trong căn chòi rách nát",
-                    "XÓT XA cảnh mẹ già ngủ chuồng bò giữa rừng sâu hẻo lánh",
-                    "ÁM ẢNH ngôi nhà mục nát không vách giữa đỉnh núi cao",
-                    "TRỜI MƯA bão, căn lều tarps tơi tả không chỗ trú thân",
-                    "CẢNH ĐỜI tơi tả: Ngủ trên cành cây, uống nước suối tồn tại",
-                    "LẠC VÀO hang đất: Nơi ở của gia đình giống thời nguyên thủy",
-                    "XÓT THƯƠNG đôi vợ chồng già ngủ chuồng heo giữa núi rừng",
-                    "NGÔI NHÀ mục nát te tua, gió thổi là bay bất cứ lúc nào",
-                    "TRỐN CHUI trong bụi cây: Hoàn cảnh nghèo nhất bản làng",
-                    "TÚP LỀU rách nát che chở 4 mảnh đời qua mùa đông lạnh",
-                    "BẤT HẠNH: Căn nhà dột nát, cơm không đủ ăn, nước không có",
-                    "SỐNG BIỆT LẬP trên núi: Căn nhà nhỏ treo leo giữa vực thẳm",
-                    "NGẬM NGÙI nhìn cảnh nhà sập, không tiền mua thuốc men",
-                    "ÁNH SÁNG mịt mù trong ngôi nhà không điện, không nước sạch",
-                    "CUỘC SỐNG lang thang: Nay đây mai đó trong rừng hoang",
-                    "CHẠNH LÒNG nhìn căn chòi xiêu vẹo của cụ bà neo đơn",
-                    "NƠI Ở khắc nghiệt: Chó ăn đá, gà ăn sỏi, người ăn lá rừng",
-                    "KHU Ổ CHUỘT vùng cao: Những mảnh đời bị lãng quên",
-                    "KIỆT SỨC chống chọi mưa bão trong ngôi nhà rách nát",
-                    "BỎ LÀNG lên núi: Trú ẩn trong căn chòi rách tả tơi",
-                    "CĂN LỀU xiêu vẹo giữa gió bão: Đêm đông không chăn ấm",
-                    "TẬN CÙNG bế tắc: Ngôi nhà sắp sập của 5 đứa trẻ mồ côi",
-                    "XÓT XA cụ già 80 tuổi trú mưa dưới mái bạt rách nát",
-                    "CẢNH CẢNH hoang tàn: Căn nhà ván nứa thủng lỗ chỗ giữa đèo",
-                    "ĐÊM LẠNH cắt da: Căn chòi hoang không có nổi cánh cửa",
-                    "SỐNG CHUNG với muỗi vắt trong ngôi nhà đất thụt lùi",
-                    "NƠI TÚC TRÚ qua ngày của người đàn bà tâm thần neo đơn",
-                    "CĂN CHÒI lá cọ xơ xác giữa thung lũng sương mù",
-                    "XÓT THƯƠNG mái nhà tranh d dột ướt từ trong ra ngoài",
-                    "CUỘC SỐNG ngục tối: Căn phòng không cửa sổ của bé khuyết tật"
+                    { t: "TẬN CÙNG đói khổ: Gia đình 11 người trong căn chòi rách nát", t1: "11 MẢNH ĐỜI", t2: "CHÒI RÁCH NÁT" },
+                    { t: "XÓT XA cảnh mẹ già ngủ chuồng bò giữa rừng sâu hẻo lánh", t1: "MẸ GIÀ 80 TUỔI", t2: "NGỦ CHUỒNG BÒ" },
+                    { t: "ÁM ẢNH ngôi nhà mục nát không vách giữa đỉnh núi cao", t1: "NƠI Ở MỤC NÁT", t2: "KHÔNG CÓ VÁCH" },
+                    { t: "TRỜI MƯA bão, căn lều tarps tơi tả không chỗ trú thân", t1: "MƯA BẢO TƠI TẢ", t2: "KHÔNG CHỖ TRÚ" },
+                    { t: "CẢNH ĐỜI tơi tả: Ngủ trên cành cây, uống nước suối tồn tại", t1: "NGỦ CÀNH CÂY", t2: "UỐNG NƯỚC SUỐI" },
+                    { t: "LẠC VÀO hang đất: Nơi ở của gia đình giống thời nguyên thủy", t1: "SỐNG TRONG HANG", t2: "THỜI NGUYÊN THỦY" },
+                    { t: "XÓT THƯƠNG đôi vợ chồng già ngủ chuồng heo giữa núi rừng", t1: "CỤ BÀ 90 TUỔI", t2: "NGỦ CHUỒNG HEO" },
+                    { t: "NGÔI NHÀ mục nát te tua, gió thổi là bay bất cứ lúc nào", t1: "NHÀ SẮP SẬP", t2: "GIÓ THỔI LÀ BAY" },
+                    { t: "TRỐN CHUI trong bụi cây: Hoàn cảnh nghèo nhất bản làng", t1: "TRỐN TRONG BỤI", t2: "NGHÈO NHẤT BẢN" },
+                    { t: "TÚP LỀU rách nát che chở 4 mảnh đời qua mùa đông lạnh", t1: "4 MẢNH ĐỜI", t2: "LỀU LẠNH CẮT DA" },
+                    { t: "BẤT HẠNH: Căn nhà d dột nát, cơm không đủ ăn, nước không có", t1: "NHÀ DỘT NÁT", t2: "KHÔNG CÓ CƠM" },
+                    { t: "SỐNG BIỆT LẬP trên núi: Căn nhà nhỏ treo leo giữa vực thẳm", t1: "TREO LEO VỰC THẨM", t2: "SỐNG BIỆT LẬP" },
+                    { t: "NGẬM NGÙI nhìn cảnh nhà sập, không tiền mua thuốc men", t1: "NHÀ SẬP HOÀN TOÀN", t2: "KHÔNG TIỀN THUỐC" },
+                    { t: "ÁNH SÁNG mịt mù trong ngôi nhà không điện, không nước sạch", t1: "KHÔNG ĐIỆN NƯỚC", t2: "MỊT MÙ TƯƠNG LAI" },
+                    { t: "CUỘC SỐNG lang thang: Nay đây mai đó trong rừng hoang", t1: "LANG THANG RỪNG", t2: "NAY ĐÂY MAI ĐÓ" },
+                    { t: "CHẠNH LÒNG nhìn căn chòi xiêu vẹo của cụ bà neo đơn", t1: "CỤ BÀ NEO ĐƠN", t2: "CHÒI XIÊU VẸO" },
+                    { t: "NƠI Ở khắc nghiệt: Chó ăn đá, gà ăn sỏi, người ăn lá rừng", t1: "ĐẤT KHẮC NGHIỆT", t2: "ĂN LÁ RỪNG" },
+                    { t: "KHU Ổ CHUỘT vùng cao: Những mảnh đời bị lãng quên", t1: "BỊ LÃNG QUÊN", t2: "Ổ CHUỘT NÚI" },
+                    { t: "KIỆT SỨC chống chọi mưa bão trong ngôi nhà rách nát", t1: "KIỆT SỨC MƯA BẢO", t2: "NHÀ RÁCH NÁT" },
+                    { t: "BỎ LÀNG lên núi: Trú ẩn trong căn chòi rách tả tơi", t1: "BỎ LÀNG LÊN NÚI", t2: "TÚP LỀU TƠI TẢ" }
                 ]
             },
             {
                 id: "cat2",
                 title: "II. Bữa cơm nghèo & Thực phẩm sinh tồn",
-                badge: "60 tiêu đề",
                 desc: "Sử dụng các từ khóa gây tò mò về món ăn lạ như lá cây, muối trắng.",
                 icon: "fa-bowl-rice",
                 color: "text-red-600 dark:text-red-400",
                 bgColor: "bg-red-500/10",
                 borderColor: "border-red-500/20",
                 titles: [
-                    "BỮA CƠM muối trắng lá rừng: Nghị lực sống phi thường",
-                    "ĐẮNG LÈ LƯỠI món lá đu đủ rừng cứu đói qua ngày",
-                    "XÓT XA bữa cơm trắng nước lã của 3 đứa trẻ mồ côi",
-                    "MÓN ĂN độc lạ của người rừng: Ăn để tồn tại qua cơn đói",
-                    "THÈM CHẢY nước miếng món chuối luộc thay cơm suốt 20 năm",
-                    "TẬN CÙNG đói khổ: Nhịn ăn nhường gạo cho con thơ",
-                    "NGÀM ĐẮNG nuốt cay món khoai rừng đắng chát vùng cao",
-                    "BỮA ĂN rẻ tiền nhất Việt Nam: Lá rừng chấm muối ớt",
-                    "BẤT NGỜ món chuột rừng nấu canh chua của gia đình nghèo",
-                    "XÓT THƯƠNG cảnh ăn cám để tồn tại qua mùa giáp hạt",
-                    "THỰC PHẨM cứu đói: Hái nấm rừng, uống nước bùn sình",
-                    "BỮA ĂN nhớ đời: Đánh đổi mồ hôi lấy bát cơm trắng",
-                    "CƠM CHAN nước mắt: Hoàn cảnh éo le của mẹ đơn thân",
-                    "ĐẮNG CAY: Món lá rừng đắng lè lưỡi nhưng vẫn phải ăn",
-                    "KHÔNG TIN nổi: Sống 10 năm chỉ bằng chuối và nước suối",
-                    "NẤU OẢN dại cứu đói: Bữa ăn đắng chát của trẻ em nghèo",
-                    "XÓT XA nhìn bát măng đắng không gia vị qua ngày",
-                    "MÓN CỦ MÌ sống trừ bữa của cụ già giữa núi hoang",
-                    "THÈM CƠM THỊT: Giấc mơ chưa từng có của bé trai 7 tuổi",
-                    "NẮM CƠM ĐỘN ngô mốc: Bữa ăn sinh tồn mưu sinh vùng cao",
-                    "CẢNH ĐỜI éo le: Chia nhau từng củ sắn luộc qua cơn đói",
-                    "UỐNG NƯỚC SUỐI cầm hơi: 3 ngày chưa có hạt gạo vào bụng",
-                    "ĐẮNG CHÁT món củ mài luộc qua bữa của hai mẹ con",
-                    "CƠM NGUỘI chấm muối hột: Nghị lực của cậu học sinh nghèo",
-                    "XÓT THƯƠNG mâm cơm ngày Tết chỉ có đĩa rau rừng luộc"
+                    { t: "BỮA CƠM muối trắng lá rừng: Nghị lực sống phi thường", t1: "CƠM LÁ RỪNG", t2: "CHỈ CÓ MUỐI!" },
+                    { t: "ĐẮNG LÈ LƯỠI món lá đu đủ rừng cứu đói qua ngày", t1: "LÁ ĐU ĐỦ RỪNG", t2: "ĐẮNG LÈ LƯỠI" },
+                    { t: "XÓT XA bữa cơm trắng nước lã của 3 đứa trẻ mồ côi", t1: "CƠM NƯỚC LÃ", t2: "3 TRẺ MỒ CÔI" },
+                    { t: "MÓN ĂN độc lạ của người rừng: Ăn để tồn tại qua cơn đói", t1: "MÓN ĂN ĐỘC LẠ", t2: "ĂN ĐỂ TỒN TẠI" },
+                    { t: "THÈM CHẢY nước miếng món chuối luộc thay cơm suốt 20 năm", t1: "CHUỐI THAY CƠM", t2: "SUỐT 20 NĂM" },
+                    { t: "TẬN CÙNG đói khổ: Nhịn ăn nhường gạo cho con thơ", t1: "MẸ NHỊN ĐÓI", t2: "NHƯỜNG GẠO CHO CON" },
+                    { t: "NGÀM ĐẮNG nuốt cay món khoai rừng đắng chát vùng cao", t1: "KHOAI RỪNG ĐẮNG", t2: "NUỐT CAY ĐẮNG" },
+                    { t: "BỮA ĂN rẻ tiền nhất Việt Nam: Lá rừng chấm muối ớt", t1: "LÁ RỪNG MUỐI ỚT", t2: "BỮA ĂN 0 ĐỒNG" },
+                    { t: "BẤT NGỜ món chuột rừng nấu canh chua của gia đình nghèo", t1: "CHUỘT RỪNG", t2: "CANH CHUA NGHÈO" },
+                    { t: "XÓT THƯƠNG cảnh ăn cám để tồn tại qua mùa giáp hạt", t1: "CẢNH ĂN CÁM", t2: "QUA MÙA GIÁP HẠT" }
                 ]
             },
             {
                 id: "cat3",
                 title: "III. Trẻ em mồ côi & Nghị lực đi học",
-                badge: "60 tiêu đề",
                 desc: "Khai thác hình ảnh trẻ em vất vả nhưng ham học để lấy nước mắt người xem.",
                 icon: "fa-graduation-cap",
                 color: "text-blue-600 dark:text-blue-400",
                 bgColor: "bg-blue-500/10",
                 borderColor: "border-blue-500/20",
                 titles: [
-                    "CÔ BÉ chăn bò dễ thương: Ước mơ một lần được mặc áo mới",
-                    "MỒ CÔI không nơi nương tựa: 2 chị em dắt nhau lụm phân bò",
-                    "HÀNH TRÌNH tìm con chữ: Đi bộ 10km đường núi để đến trường",
-                    "XÓT XA đứa bé không biết mặt cha, lụm ve chai nuôi bà",
-                    "NGHỊ LỰC phi thường: Cậu bé 9 tuổi gánh chuối phụ cha mẹ",
-                    "GIẤC MƠ con chữ: Nhịn đói để dành tiền mua sách vở",
-                    "THIÊN THẦN bãi rác: Đứa trẻ mồ côi sống giữa đống rác thải",
-                    "BỎ HỌC vì nghèo: Cô bé vùng cao chăn bò nuôi mẹ điên",
-                    "LỤM PHÂN đổi gạo: Cuộc sống vất vả của em bé học giỏi nhất",
-                    "3 ĐỨA TRẺ mồ côi tự chăm nhau trong căn chòi mục nát",
-                    "ƯỚC MƠ nhỏ nhoi: Được ăn một bữa cơm có thịt cá hộp",
-                    "XÓT THƯƠNG: Đứa bé mang hình hài kỳ lạ vẫn cố gắng mưu sinh",
-                    "GÀ TRỐNG nuôi con: 2 cha con trú ẩn hẻo lánh giữa rừng",
-                    "TƯƠNG LAI mịt mù của những đứa trẻ vùng đất nắng cháy",
-                    "HIẾU THẢO: Cô gái nghèo gánh cả gia đình trên đôi vai gầy",
-                    "ĐÔI CHÂN TRẦN lội bùn 15km đến lớp học vùng cao",
-                    "CẶP SÁCH rách tả tơi: Ước mơ thành cô giáo của bé mồ côi",
-                    "XÓT XA bé trai 6 tuổi biết tự nấu cơm nuôi em nhỏ",
-                    "CẬU BÉ mù một bên mắt vẫn chăm chỉ nhặt củi đổi sách",
-                    "SƯỞI ẤM ngày đông: Đôi dép tổ ong rách rưới của bé nghèo",
-                    "NGHỊ LỰC phi thường: Vừa chăn dê vừa ôn thi đại học",
-                    "ĐẾN TRƯỜNG ngày mưa: Chiếc áo mưa làm từ bao tải cũ",
-                    "THẦN ĐỒNG vùng cao: Bữa đói bữa no vẫn đứng đầu lớp",
-                    "3 NĂM mồ côi cha mẹ: Bé gái 10 tuổi làm trụ cột gia đình",
-                    "NƯỚC MẮT con trẻ: Lần đầu tiên trong đời được ăn kẹo ngọt"
+                    { t: "CÔ BÉ chăn bò dễ thương: Ước mơ một lần được mặc áo mới", t1: "BÉ CHĂN BÒ", t2: "ƯỚC MƠ ÁO MỚI" },
+                    { t: "MỒ CÔI không nơi nương tựa: 2 chị em dắt nhau lụm phân bò", t1: "2 CHỊ EM MỒ CÔI", t2: "LỤM PHÂN BÒ" },
+                    { t: "HÀNH TRÌNH tìm con chữ: Đi bộ 10km đường núi để đến trường", t1: "ĐI BỘ 10KM", t2: "TÌM CON CHỮ" },
+                    { t: "XÓT XA đứa bé không biết mặt cha, lụm ve chai nuôi bà", t1: "BÉ VE CHAI", t2: "NUÔI BÀ LẠI" },
+                    { t: "NGHỊ LỰC phi thường: Cậu bé 9 tuổi gánh chuối phụ cha mẹ", t1: "BÉ 9 TUỔI", t2: "GÁNH CHUỐI NÚI" }
                 ]
             },
             {
                 id: "cat4",
                 title: "IV. Mưu sinh vất vả & Đời sống ẩn cư",
-                badge: "60 tiêu đề",
                 desc: "Tập trung vào các công việc nặng nhọc và cuộc sống như 'người rừng'.",
                 icon: "fa-person-digging",
                 color: "text-emerald-600 dark:text-emerald-400",
                 bgColor: "bg-emerald-500/10",
                 borderColor: "border-emerald-500/20",
                 titles: [
-                    "KIỆT SỨC mưu sinh: Còng lưng gùi phân bò vượt vách đá",
-                    "TRUY TÌM người rừng bí ẩn sống ẩn cư suốt 20 năm",
-                    "LỤM ĐÁ xây nhà: Hành trình tìm nơi trú ẩn giữa rừng già",
-                    "CÔNG VIỆC cực khổ: Trèo đèo lội suối hái trái cây rừng",
-                    "BÁU VẬT người rừng: Chiếc gùi quý giá cứu sống ông cụ",
-                    "THÂN PHẬN người nghèo: Làm việc cả đời vẫn không đủ ăn",
-                    "LẠC VÀO vùng đất rắn: Nơi mưu sinh đầy nguy hiểm",
-                    "LỜI TÂM SỰ nghẹn ngào của người đàn bà sống trong hang đá",
-                    "BỎ PHỐ lên rừng: Anh chàng miền Tây sống ẩn cư 10 năm",
-                    "MỘT MÌNH giữa rừng sâu: Cuộc sống không cần tiền bạc",
-                    "CƠM ÁO gạo tiền: Tay xách vai mang vượt đèo dốc núi",
-                    "PHÁT HIỆN bộ tộc nghèo sống cách biệt với xã hội",
-                    "KỲ LẠ ông lão sống biệt lập trên đỉnh núi cao không ai tới",
-                    "ĐÊM TỐI lang thang rừng sâu: Hành trình tìm kiếm bữa cơm",
-                    "VÙNG ĐẤT khắc nghiệt: Nắng cháy da người, nước quý như vàng",
-                    "ĐÁNH CƯỢC MẠNG SỐNG: Trèo vách đá đứng gùi củi khô",
-                    "SỐNG NHƯ THỜI CỔ ĐẠI: Không điện, không điện thoại giữa rừng",
-                    "CẢNH MƯU SINH hiểm trở: Bắt cá suối giữa dòng nước xoáy",
-                    "CỤ BÀ 85 tuổi hàng ngày gùi 20kg củi qua đèo dốc",
-                    "MƯU SINH tàn khốc: Bào chế thuốc nam nuôi cả gia đình",
-                    "ẨN CƯ VÙNG BĂNG GIÁ: Ngôi nhà cô đơn trên đỉnh núi quanh năm mây phủ",
-                    "VẪN KIÊN CƯỜNG: Bác thợ đốn củi khuyết tật hai chân",
-                    "HÀNH TRÌNH tìm mật ong rừng trên ngọn cây cao 30 mét",
-                    "XÓT XA đôi bàn tay sưng rộp của người mẹ vác đá hộc",
-                    "ĐÊM TRẮNG săn thú rừng cứu đói gia đình nghèo"
+                    { t: "KIỆT SỨC mưu sinh: Còng lưng gùi phân bò vượt vách đá", t1: "GÙI PHÂN BÒ", t2: "VƯỢT VÁCH ĐÁ" },
+                    { t: "TRUY TÌM người rừng bí ẩn sống ẩn cư suốt 20 năm", t1: "NGƯỜI RỪNG 20 NĂM", t2: "SỐNG ẨN CƯ" },
+                    { t: "LỤM ĐÁ xây nhà: Hành trình tìm nơi trú ẩn giữa rừng già", t1: "LỤM ĐÁ XÂY NHÀ", t2: "TRÚ ẨN RỪNG GIÀ" },
+                    { t: "CÔNG VIỆC cực khổ: Trèo đèo lội suối hái trái cây rừng", t1: "LỘI SUỐI HÁI TRÁI", t2: "CỰC KHỔ MƯU SINH" }
                 ]
             },
             {
                 id: "cat5",
                 title: "V. Thiện nguyện, Phép màu & Thay đổi cuộc đời",
-                badge: "60 tiêu đề",
                 desc: "Kêu gọi sự đồng cảm và khoảnh khắc nhận quà để kết thúc video có hậu.",
                 icon: "fa-hand-holding-heart",
                 color: "text-purple-600 dark:text-purple-400",
                 bgColor: "bg-purple-500/10",
                 borderColor: "border-purple-500/20",
                 titles: [
-                    "PHÉP MÀU xuất hiện: Mạnh thường quân tặng ngôi nhà mơ ước",
-                    "VỠ ÒA hạnh phúc: Tặng bò giống cho gia đình nghèo đổi đời",
-                    "HÀNH TRÌNH mang nước sạch lên núi cao: Niềm vui của dân bản",
-                    "THAY ĐỔI diện mạo mới: Người rừng lần đầu có điện sáng",
-                    "MÓN QUÀ vô giá: Tặng xe máy cần câu cơm cho người khuyết tật",
-                    "GIỌT NƯỚC MẮT hạnh phúc khi nhận được túi gạo cứu đói",
-                    "XÂY DỰNG ước mơ: Cây cầu tình thương nối liền bản nghèo",
-                    "CỨU TRỢ khẩn cấp: Mang thuốc men đến tận tay mẹ già neo đơn",
-                    "BẤT NGỜ trúng 'xổ số': Nhận quà khủng từ ân nhân phương xa",
-                    "HẾT NỢ nần: Phép màu giúp gia đình thoát cảnh nô lệ chăn bò",
-                    "NỤ CƯỜI rạng rỡ của cụ bà 100 tuổi khi có nhà mới",
-                    "TƯƠNG LAI tươi sáng: Trao học bổng cho học sinh nghèo vượt khó",
-                    "CÂY THUỐC quý trời ban: Món quà cứu người nơi rừng sâu",
-                    "HÀNH TRÌNH yêu thương: Vượt ngàn chông gai đến với người nghèo",
-                    "KẾT THÚC có hậu: Gia đình mồ côi đã có mái ấm trọn vẹn",
-                    "NGÀY HỘI BẢN LÀNG: Khai trương giếng nước sạch tình thương",
-                    "LẦN ĐẦU TRONG ĐỜI 3 em bé mồ côi được đi siêu thị mua áo mới",
-                    "TRAO TẶNG SỔ TIẾP TIẾT CẠNH: Cuộc đời sang trang cho cụ bà",
-                    "BÁC SĨ TỪ THIỆN: Khám chữa bệnh miễn phí cho bà con vùng xa",
-                    "MÁI ẤM MỚI: Bàn giao căn nhà tình thương thay thế túp lều cũ",
-                    "ẤM LÒNG ĐÊM ĐÔNG: Tặng chăn bông và áo ấm cho 100 em nhỏ",
-                    "SỰ SỐNG HỒI SINH: Ca phẫu thuật miễn phí cho bé trai khuyết tật",
-                    "NƯỚC MẮT LĂN TRÊN MÁ: Lần đầu gia đình nghèo được ăn bữa cơm đầy đủ",
-                    "MẠNH THƯỜNG QUÂN hỗ trợ nuôi 3 em mồ côi đến năm 18 tuổi",
-                    "CHUYẾN XE TÌNH THƯƠNG: Mang Tết ấm áp về với bản nghèo hẻo lánh"
+                    { t: "PHÉP MÀU xuất hiện: Mạnh thường quân tặng ngôi nhà mơ ước", t1: "PHÉP MÀU XUẤT HIỆN", t2: "TẶNG NHÀ MƠ ƯỚC" },
+                    { t: "VỠ ÒA hạnh phúc: Tặng bò giống cho gia đình nghèo đổi đời", t1: "TẶNG BÒ GIỐNG", t2: "VỠ ÒA ĐỔI ĐỜI" },
+                    { t: "HÀNH TRÌNH mang nước sạch lên núi cao: Niềm vui của dân bản", t1: "NƯỚC SẠCH LÊN NÚI", t2: "NIỀM VUI BẢN LÀNG" }
                 ]
             },
             {
                 id: "cat6",
                 title: "VI. Tặng nhà tiền chế & Đổi đời gia cảnh nghèo",
-                badge: "60 tiêu đề",
                 desc: "Khoảnh khắc trao tặng nhà mới, thay đổi số phận kỳ diệu sau một đêm.",
                 icon: "fa-house-chimney-user",
                 color: "text-teal-600 dark:text-teal-400",
                 bgColor: "bg-teal-500/10",
                 borderColor: "border-teal-500/20",
                 titles: [
-                    "ĐỔI ĐỜI THẬT RỒI! Căn nhà trong mơ mọc lên giữa rừng sâu sau 20 năm chờ đợi",
-                    "ƯỚC MƠ THÀNH SỰ THẬT: Người mẹ nghèo bật khóc nức nở khi bước chân vào nhà mới",
-                    "BẤT NGỜ ĐẾN PHÚT CUỐI: Ngôi nhà tình thương \"biến hình\" từ túp lều rách nát",
-                    "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không dám tin mình đã có nhà khang trang",
-                    "GIẤC MƠ CÓ THẬT: Căn nhà đẹp như lâu đài xuất hiện giữa vùng sỏi đá khô cằn",
-                    "SAU MỘT ĐÊM CHỢP MẮT: Người phụ nữ đơn thân nghèo khổ bất ngờ có nơi ở mới",
-                    "CHẠM TAY VÀO ƯỚC MƠ: Niềm vui vỡ òa của gia đình 10 năm sống dưới tấm bạt rách",
-                    "ĐIỀU KỲ DIỆU GIỮA RỪNG: Tặng nhà tiền chế cho hộ nghèo nhất vùng núi Linh Thuận",
-                    "KẾT THÚC CẢNH KHỔ: Từ nay mấy mẹ con không còn phải ngủ dưới nền đất lạnh",
-                    "HÀNH TRÌNH ĐỔI ĐỜI: Ước mơ lớn nhất cuộc đời cụ bà 70 tuổi đã hoàn thành",
-                    "ĐỔI ĐỜI SAU 1 ĐÊM: Căn nhà trong mơ mọc lên giữa rừng sâu cho mẹ đơn thân",
-                    "BẤT NGỜ ĐỔI ĐỜI: Sau một đêm chợp mắt, ước mơ 20 năm đã thành sự thật",
-                    "PHÉP MÀU GIỮA RỪNG: Đổi đời sau 1 đêm cho gia đình nghèo nhất vùng núi",
-                    "BẤT NGỜ SAU MỘT ĐÊM: Người phụ nữ dùng số tiền lớn đổi lấy căn nhà mơ ước",
-                    "ĐỔI ĐỜI THẬT RỒI! Căn nhà xanh mọc lên thay thế túp lều nát sau 1 đêm",
-                    "CHƯA ĐẦY MỘT ĐÊM: Gia đình nghèo vỡ òa khi chạm tay vào ước mơ lớn nhất đời",
-                    "SỰ THẬT NGỠ NHƯ MƠ: 4 mẹ con bất ngờ đổi đời chỉ sau một đêm chợp mắt",
-                    "BẤT NGỜ ĐỔI VẬN: Ngôi nhà tình thương hiện hữu sau bao năm sống khổ",
-                    "KỲ TÍCH XUẤT HIỆN: Đổi đời chỉ sau một đêm nhờ tấm lòng của Mạnh Thường Quân",
-                    "HÀNH TRÌNH ĐỔI ĐỜI: Từ túp lều rách đến căn nhà đẹp lung linh chỉ sau 1 đêm",
-                    "ƯỚC MƠ THÀNH SỰ THẬT: Người mẹ nghèo bật khóc nức nở khi có nhà mới",
-                    "VỠ ÒA CẢM XÚC: Tặng nhà tình thương cho gia đình 10 năm sống trong hang đá",
-                    "NƯỚC MẮT TUÔN RƠI: Ước mơ có nhà khang trang của cụ bà đã thành hiện thực",
-                    "CHẠM TAY VÀO ƯỚC MƠ: Niềm vui vỡ òa của gia đình nghèo nhất núi rừng",
-                    "ƯỚC MƠ CẢ ĐỜI: Cụ bà 70 tuổi bật khóc khi nhận món quà cực lớn ở tuổi xế chiều",
-                    "NƯỚC MẮT HẠNH PHÚC: Ước mơ của cô thiếu nữ nghèo cuối cùng đã thành sự thật",
-                    "VỠ ÒA TRONG NƯỚC MẮT: Người phụ nữ sống giữa rừng vui mừng như trúng số",
-                    "ƯỚC MƠ KHÔNG CÒN LÀ GIẤC MƠ: 3 mẹ con vỡ òa khi nhận căn nhà tình thương",
-                    "KHI ƯỚC MƠ THÀNH HIỆN THỰC: Người mẹ trẻ nghèo khổ mừng rớt nước mắt",
-                    "ƯỚC MƠ LỚN NHẤT ĐỜI: Hành trình xây nhà cho gia đình 20 năm sống khổ cực",
-                    "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không tin mình đã có nhà khang trang",
-                    "KẾT THÚC CẢNH KHỔ: Từ nay 3 mẹ con không còn phải ngủ dưới đất lạnh",
-                    "HỒI SINH CUỘC ĐỜI: Căn nhà cũ nát biến thành tổ ấm đẹp lung linh",
-                    "SỐ PHẬN MỚI BẮT ĐẦU: Bàn giao chìa khóa ngôi nhà mơ ước cho hộ nghèo",
-                    "TỪ HANG ĐÁ VỀ NHÀ MỚI: Sự thay đổi ngoạn mục của gia đình nghèo vùng cao",
-                    "GIÃ TỪ TÚP LỀU NÁT: Người phụ nữ nhặt rác vỡ òa khi có nhà mới che nắng mưa",
-                    "KHÔNG CÒN SỐNG KHỔ: Tặng nhà cho người phụ nữ bị chồng đánh đập",
-                    "HẾT CẢNH MÀN TRỜI CHIẾU ĐẤT: Món quà vô giá cho mẹ đơn thân nuôi con nhỏ",
-                    "CUỘC SỐNG SANG TRANG: Người cha nuôi con tai nạn lao động bất ngờ đổi vận",
-                    "THAY ĐỔI CUỘC ĐỜI MÃI MÃI: Ngôi nhà trong mơ cho người mẹ trẻ góa chồng",
-                    "ĐỔI ĐỜI CHO 3 MẸ CON: Căn nhà mơ ước mọc lên từ vùng đất sỏi đá",
-                    "ƯỚC MƠ CỦA CÔ GÁI TRẺ: Mái ấm tình thương che nắng mưa cho mẹ con em",
-                    "MÓN QUÀ CỰC LỚN: Cụ bà đơn thân vỡ òa khi ước mơ thành hiện thực",
-                    "NIỀM VUI VỚI BÀ MỤ ĐỠ ĐẺ: Tặng nhà cho người cả đời giúp đỡ đồng bào",
-                    "ƯỚC MƠ CỦA NGƯỜI ĐÀN ÔNG BỆNH TẬT: Mái ấm mới thay thế chuồng bò hôi hám",
-                    "THAY ĐỔI ĐỜI \"VỢ CHỒNG NGƯỜI RỪNG\": Món quà quý giá sau 30 năm sống bụi",
-                    "ƯỚC MƠ CỦA HAI BÀ CHÁU: Căn nhà mới khang trang xóa tan nỗi lo bão lũ",
-                    "TẶNG NHÀ CHO NGƯỜI KHUYẾT TẬT: Ước mơ giản đơn của người mẹ đơn thân nghèo",
-                    "ĐỔI ĐỜI CHO CÔ THIẾU NỮ 19 TUỔI: Có nhà, có gà để phát triển kinh tế",
-                    "ƯỚC MƠ THÀNH THẬT CHO 4 MẸ CON: Căn nhà rộng rãi cho những tâm hồn nhỏ",
-                    "TẠI SAO LẠI KHÓC? Sự thật sau giọt nước mắt khi ước mơ thành hiện thực",
-                    "BÍ MẬT DƯỚI GỐC ĐIỀU: Ngôi nhà xanh mọc lên khiến cả làng chúc mừng",
-                    "ĐỪNG TỪ BỎ ƯỚC MƠ! Hoàn cảnh thê thảm nhất vùng núi cuối cùng cũng bớt khổ",
-                    "GIẤC MƠ GIỮA NÚI RỪNG: Căn nhà đẹp lung linh thay đổi hoàn toàn một số phận",
-                    "ĐỔI ĐỜI NHƯ TRÚNG SỐ: Món quà bất ngờ khiến người mẹ nghèo không thốt nên lời",
-                    "CÂU CHUYỆN CẢM ĐỘNG: Tặng nhà cho gia đình 10 năm sống hang đá đổi vận",
-                    "ƯỚC MƠ ĐƯỢC THỜ CÚNG: Căn nhà mới ấm cúng để chị mang ảnh chồng về thờ",
-                    "HÀNH TRÌNH TỚI HẠNH PHÚC: Thực hiện ước mơ cho gia đình nghèo nhất vùng cao",
-                    "BẤT NGỜ NHÂN ĐÔI: Vừa có nhà mới, vừa có quà lớn từ Mạnh Thường Quân",
-                    "VỠ ÒA HẠNH PHÚC CUỐI NGÀY: Ước mơ có nhà của người nghèo đã hoàn thành"
+                    { t: "ĐỔI ĐỜI THẬT RỒI! Căn nhà trong mơ mọc lên giữa rừng sâu sau 20 năm chờ đợi", t1: "ĐỔI ĐỜI THẬT RỒI!", t2: "CĂN NHÀ TRONG MƠ" },
+                    { t: "ƯỚC MƠ THÀNH SỰ THẬT: Người mẹ nghèo bật khóc nức nở khi bước chân vào nhà mới", t1: "MẸ NGHÈO BẬT KHÓC", t2: "VÀO NHÀ MỚI" },
+                    { t: "BẤT NGỜ ĐẾN PHÚT CUỐI: Ngôi nhà tình thương \"biến hình\" từ túp lều rách nát", t1: "BIẾN HÌNH TÚP LỀU", t2: "NHÀ TÌNH THƯƠNG" },
+                    { t: "THAY ĐỔI SỐ PHẬN: Hai bà cháu nghèo không dám tin mình đã có nhà khang trang", t1: "THAY ĐỔI SỐ PHẬN", t2: "CÓ NHÀ KHANG TRANG" }
                 ]
             }
         ];
 
-        let checkedMap = {};
-        let activeFilter = 'all'; 
-        let searchQuery = '';
-        let currentTheme = 'light';
-
-        const STORAGE_KEY = 'tien_nguyen_tv_checked_titles_v3';
-        const THEME_KEY = 'tien_nguyen_tv_theme';
-
         function initTheme() {
-            const savedTheme = localStorage.getItem(THEME_KEY);
-            if (savedTheme) {
-                currentTheme = savedTheme;
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
             } else {
-                currentTheme = 'light';
-            }
-            applyTheme();
-        }
-
-        function toggleTheme() {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            localStorage.setItem(THEME_KEY, currentTheme);
-            applyTheme();
-            showToast(currentTheme === 'dark' ? 'Đã chuyển sang Chế độ Tối' : 'Đã chuyển sang Chế độ Sáng');
-        }
-
-        function applyTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('themeIcon');
-            if (currentTheme === 'dark') {
-                html.classList.add('dark');
-                if (icon) icon.className = 'fa-solid fa-moon text-amber-300';
-            } else {
-                html.classList.remove('dark');
-                if (icon) icon.className = 'fa-solid fa-sun text-amber-500';
-            }
-        }
-
-        // Load checkbox states from browser localStorage
-        function loadState() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    checkedMap = JSON.parse(saved);
-                }
-            } catch (e) {
-                console.error('Failed to load state from localStorage', e);
-            }
-        }
-
-        // Save updated checkbox states to browser localStorage
-        function saveState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedMap));
-            } catch (e) {
-                console.error('Failed to save state to localStorage', e);
+                document.documentElement.classList.remove('dark');
             }
         }
 
@@ -452,45 +251,6 @@
             return `${catId}_title_${index}`;
         }
 
-        function renderTitleItems(cat) {
-            return cat.titles.map((titleText, idx) => {
-                const titleId = getTitleId(cat.id, idx);
-                const isChecked = !!checkedMap[titleId];
-                return `
-                    <div id="item_wrapper_${titleId}" class="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
-                        <input type="checkbox" 
-                               id="${titleId}" 
-                               ${isChecked ? 'checked' : ''} 
-                               onchange="toggleCheck('${titleId}')"
-                               class="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer shrink-0 transition">
-                        <label for="${titleId}" 
-                               id="label_${titleId}" 
-                               class="text-sm sm:text-base font-medium select-none cursor-pointer flex-1 transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
-                            ${titleText}
-                        </label>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function toggleCheck(titleId) {
-            const checkbox = document.getElementById(titleId);
-            const label = document.getElementById(`label_${titleId}`);
-            if (checkbox && label) {
-                if (checkbox.checked) {
-                    checkedMap[titleId] = true;
-                    label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
-                    label.classList.remove('text-slate-800', 'dark:text-slate-200');
-                } else {
-                    delete checkedMap[titleId];
-                    label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
-                    label.classList.add('text-slate-800', 'dark:text-slate-200');
-                }
-                saveState(); // Instantly write to localStorage
-            }
-        }
-
-        // Load state from local storage
         function loadState() {
             try {
                 const saved = localStorage.getItem(STORAGE_KEY);
@@ -508,29 +268,43 @@
             } catch (e) {
                 console.error('Failed to save state', e);
             }
-            updateProgressCounters();
-        }
-
-        function getTitleId(catId, index) {
-            return `${catId}_title_${index}`;
         }
 
         function renderTitleItems(cat) {
-            return cat.titles.map((titleText, idx) => {
+            return cat.titles.map((item, idx) => {
+                const titleText = typeof item === 'string' ? item : item.t;
+                const thumb1 = (typeof item === 'object' && item.t1) ? item.t1 : 'NỔI BẬT';
+                const thumb2 = (typeof item === 'object' && item.t2) ? item.t2 : 'XÓT XA';
                 const titleId = getTitleId(cat.id, idx);
                 const isChecked = !!checkedMap[titleId];
                 return `
-                    <div id="item_wrapper_${titleId}" class="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
-                        <input type="checkbox" 
-                               id="${titleId}" 
-                               ${isChecked ? 'checked' : ''} 
-                               onchange="toggleCheck('${titleId}')"
-                               class="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer shrink-0 transition">
-                        <label for="${titleId}" 
-                               id="label_${titleId}" 
-                               class="text-sm sm:text-base font-medium select-none cursor-pointer flex-1 transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
-                            ${titleText}
-                        </label>
+                    <div id="item_wrapper_${titleId}" class="flex flex-col sm:flex-row sm:items-center gap-3 p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
+                        <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0">
+                            <input type="checkbox" 
+                                   id="${titleId}" 
+                                   ${isChecked ? 'checked' : ''} 
+                                   onchange="toggleCheck('${titleId}')"
+                                   class="w-5 h-5 mt-0.5 sm:mt-0 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer shrink-0 transition">
+                            <div class="flex-1 min-w-0">
+                                <label for="${titleId}" 
+                                       id="label_${titleId}" 
+                                       class="text-sm sm:text-base font-medium select-none cursor-pointer block leading-snug transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
+                                    ${titleText}
+                                </label>
+                                <div class="mt-2 flex flex-wrap items-center gap-1.5 text-xs select-none">
+                                    <span class="text-slate-400 dark:text-slate-500 font-medium text-[11px] mr-0.5">
+                                        <i class="fa-solid fa-image text-[10px] mr-1 opacity-70"></i>Chữ Thumbnail:
+                                    </span>
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 dark:bg-amber-950/80 dark:text-amber-200 font-bold tracking-wide uppercase text-[11px] border border-amber-300/80 dark:border-amber-700/60 shadow-2xs">
+                                        ${thumb1}
+                                    </span>
+                                    <span class="text-slate-300 dark:text-slate-700 text-xs">+</span>
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-red-100 text-red-900 dark:bg-red-950/80 dark:text-red-200 font-bold tracking-wide uppercase text-[11px] border border-red-300/80 dark:border-red-700/60 shadow-2xs">
+                                        ${thumb2}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -571,6 +345,7 @@
 
         function renderCategories() {
             const container = document.getElementById('categoriesContainer');
+            if (!container) return;
             container.innerHTML = '';
 
             categoriesData.forEach((cat) => {
@@ -579,7 +354,6 @@
                 catCard.id = `card_${cat.id}`;
 
                 catCard.innerHTML = `
-                    <!-- Accordion Header -->
                     <div class="p-4 flex items-center justify-between cursor-pointer select-none gap-3 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition"
                          onclick="toggleCategory('${cat.id}')">
                         <div class="flex items-center space-x-3.5 flex-1 min-w-0">
@@ -587,27 +361,20 @@
                                 <i class="fa-solid ${cat.icon}"></i>
                             </div>
                             <div class="min-w-0 flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
-                                </div>
+                                <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${cat.desc}</p>
                             </div>
                         </div>
-
-                        <!-- Collapsible Chevron Button -->
                         <div id="icon_chevron_${cat.id}" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-transform duration-300 shrink-0">
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </div>
                     </div>
-
-                    <!-- Accordion Content Body -->
                     <div id="content_${cat.id}" class="accordion-content border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-950/40">
                         <div class="p-3.5 sm:p-4 space-y-2" id="list_${cat.id}">
                             ${renderTitleItems(cat)}
                         </div>
                     </div>
                 `;
-
                 container.appendChild(catCard);
             });
         }
@@ -619,174 +386,13 @@
                 if (content) {
                     content.style.maxHeight = '0px';
                     content.style.opacity = '0';
+                }
+                if (chevron) {
                     chevron.style.transform = 'rotate(0deg)';
                 }
             });
         }
 
-        function updateCategoryCounter(catId) {
-            // Stats elements removed for cleaner UI
-            return;
-        }
-
-        function updateProgressCounters() {
-            // Progress elements removed for cleaner UI
-            return;
-        }
-
-        function confirmResetAll() {
-            if (confirm('Bạn có chắc chắn muốn đặt lại toàn bộ danh sách tiêu đề về trạng thái chưa dùng?')) {
-                checkedMap = {};
-                saveState();
-                renderCategories();
-                expandAll();
-                showToast('Đã đặt lại tất cả tiêu đề thành công!');
-            }
-        }
-
-        function setFilter(filter) {
-            activeFilter = filter;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('text-slate-900', 'dark:text-white', 'bg-white', 'dark:bg-slate-800', 'shadow-sm', 'border', 'border-slate-200', 'dark:border-slate-700');
-                btn.classList.add('text-slate-500', 'dark:text-slate-400');
-            });
-
-            const activeBtn = document.getElementById(`filter-${filter}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-slate-500', 'dark:text-slate-400');
-                activeBtn.classList.add('text-slate-900', 'dark:text-white', 'bg-white', 'dark:bg-slate-800', 'shadow-sm', 'border', 'border-slate-200', 'dark:border-slate-700');
-            }
-
-            applyFilterAndSearch();
-        }
-
-        function handleSearch() {
-            const input = document.getElementById('searchInput');
-            if (!input) return;
-            searchQuery = input.value.toLowerCase().trim();
-            
-            const clearBtn = document.getElementById('clearSearchBtn');
-            if (clearBtn) {
-                if (searchQuery.length > 0) clearBtn.classList.remove('hidden');
-                else clearBtn.classList.add('hidden');
-            }
-
-            applyFilterAndSearch();
-        }
-
-        function clearSearch() {
-            const input = document.getElementById('searchInput');
-            if (input) {
-                input.value = '';
-                handleSearch();
-            }
-        }
-
-        function applyFilterAndSearch() {
-            categoriesData.forEach(cat => {
-                let visibleInCat = 0;
-
-                cat.titles.forEach((titleText, idx) => {
-                    const titleId = getTitleId(cat.id, idx);
-                    const itemWrapper = document.getElementById(`item_wrapper_${titleId}`);
-                    if (!itemWrapper) return;
-
-                    const isChecked = !!checkedMap[titleId];
-                    const matchesSearch = titleText.toLowerCase().includes(searchQuery);
-
-                    let matchesFilter = true;
-                    if (activeFilter === 'used') matchesFilter = isChecked;
-                    if (activeFilter === 'unused') matchesFilter = !isChecked;
-
-                    if (matchesSearch && matchesFilter) {
-                        itemWrapper.classList.remove('hidden');
-                        visibleInCat++;
-                    } else {
-                        itemWrapper.classList.add('hidden');
-                    }
-                });
-
-                if (searchQuery.length > 0) {
-                    const content = document.getElementById(`content_${cat.id}`);
-                    if (content && visibleInCat > 0) {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        content.style.opacity = '1';
-                    }
-                }
-            });
-        }
-
-        function copyToClipboard(text, btnElement) {
-            const tempInput = document.createElement('textarea');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            if (btnElement) {
-                const icon = btnElement.querySelector('i');
-                if (icon) {
-                    icon.className = 'fa-solid fa-check text-emerald-600 dark:text-emerald-400 text-sm';
-                    setTimeout(() => {
-                        icon.className = 'fa-regular fa-copy text-sm';
-                    }, 1500);
-                }
-            }
-
-            showToast('Đã sao chép tiêu đề!');
-        }
-
-        function copyUnusedTitles() {
-            let unusedList = [];
-            categoriesData.forEach(cat => {
-                cat.titles.forEach((titleText, idx) => {
-                    const titleId = getTitleId(cat.id, idx);
-                    if (!checkedMap[titleId]) {
-                        unusedList.push(titleText);
-                    }
-                });
-            });
-
-            if (unusedList.length === 0) {
-                showToast('Tất cả tiêu đề đều đã được dùng!');
-                return;
-            }
-
-            const textToCopy = unusedList.join('\n');
-            const tempInput = document.createElement('textarea');
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-
-            showToast(`Đã sao chép ${unusedList.length} tiêu đề chưa dùng!`);
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toastMsg');
-            toastMsg.textContent = msg;
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            loadState();
-            renderCategories();
-            collapseAll();
-        });
-    </script>
-</body>
-</html>
         function openResetModal() {
             const modal = document.getElementById('resetModal');
             if (modal) modal.classList.remove('hidden');
