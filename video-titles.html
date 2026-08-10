@@ -66,88 +66,11 @@
 <body class="font-sans min-h-full flex flex-col bg-slate-100 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased transition-colors duration-200 selection:bg-red-500 selection:text-white">
 
     <!-- Header Banner -->
-    <header class="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                
-                <!-- Channel Info Header -->
-                <div class="flex items-center space-x-3.5">
-                    <div class="bg-red-600 text-white p-2.5 rounded-2xl shadow-md shadow-red-500/20 flex items-center justify-center shrink-0">
-                        <i class="fa-brands fa-youtube text-2xl"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2.5 flex-wrap">
-                            <h1 class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white">
-                                @TienNguyenTVOfficial
-                            </h1>
-                            <span id="headerTotalBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-500/30">
-                                360+ Tiêu Đề
-                            </span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">
-                            Quản Lý & Tối Ưu CTR YouTube - Đời Sống Khắc Nghiệt Vùng Cao
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Global Action Controls & Theme Toggle -->
-                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                    <div class="bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 rounded-xl px-3.5 py-1.5 flex items-center gap-2.5">
-                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tiến độ:</span>
-                        <span id="overallProgressText" class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400">0 / 0 (0%)</span>
-                    </div>
-
-                    <button onclick="copyUnusedTitles()" class="px-3 py-1.5 text-xs font-semibold bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 dark:hover:bg-amber-900/60 text-amber-700 dark:text-amber-300 rounded-xl transition border border-amber-200 dark:border-amber-800/50 flex items-center gap-1.5 shadow-sm" title="Sao chép danh sách tiêu đề chưa dùng">
-                        <i class="fa-regular fa-copy text-amber-500"></i> Sao chép chưa dùng
-                    </button>
-
-                    <button onclick="expandAll()" class="px-3 py-1.5 text-xs font-semibold bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl transition border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-angles-down text-slate-400"></i> Mở tất cả
-                    </button>
-                    
-                    <button onclick="collapseAll()" class="px-3 py-1.5 text-xs font-semibold bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl transition border border-slate-200 dark:border-slate-700 shadow-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-angles-up text-slate-400"></i> Thu gọn
-                    </button>
-
-                    <button onclick="confirmResetAll()" class="px-3 py-1.5 text-xs font-semibold bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-100 dark:hover:bg-rose-900/60 text-rose-700 dark:text-rose-300 rounded-xl transition border border-rose-200 dark:border-rose-800/50 flex items-center gap-1.5" title="Đặt lại tất cả checkbox">
-                        <i class="fa-solid fa-rotate-right"></i> Đặt lại
-                    </button>
-
-                    <!-- Theme Switcher Button -->
-                    <button onclick="toggleTheme()" id="themeToggleBtn" class="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-400 rounded-xl transition border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center shrink-0" title="Chuyển đổi Chế độ Sáng / Tối">
-                        <i id="themeIcon" class="fa-solid fa-sun text-sm"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Overall Progress Bar -->
-            <div class="mt-3.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 overflow-hidden border border-slate-200 dark:border-slate-700/50">
-                <div id="overallProgressBar" class="bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
-            </div>
-
-            <!-- Search and Filter Bar -->
-            <div class="mt-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <div class="relative w-full sm:w-96">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Tìm kiếm tiêu đề (vd: đói khổ, mồ côi,..." 
-                        class="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-9 py-2 text-sm text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition">
-                    <button onclick="clearSearch()" id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <div class="flex items-center space-x-1 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 w-full sm:w-auto justify-center sm:justify-start">
-                    <button onclick="setFilter('all')" id="filter-all" class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-900 dark:text-white bg-white dark:bg-slate-800 shadow-sm border border-slate-200 dark:border-slate-700 flex items-center gap-1.5">
-                        Tất cả <span id="cnt-all" class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">0</span>
-                    </button>
-                    <button onclick="setFilter('unused')" id="filter-unused" class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1.5">
-                        Chưa dùng <span id="cnt-unused" class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">0</span>
-                    </button>
-                    <button onclick="setFilter('used')" id="filter-used" class="filter-btn px-3 py-1 text-xs font-semibold rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white flex items-center gap-1.5">
-                        Đã dùng <span id="cnt-used" class="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">0</span>
-                    </button>
-                </div>
-            </div>
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm py-5 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Tiêu đề video
+            </h1>
         </div>
     </header>
 
@@ -751,10 +674,14 @@
             if (overallText) overallText.textContent = `${totalUsed} / ${totalTitles} (${percent}%)`;
             if (overallBar) overallBar.style.width = `${percent}%`;
 
-            // Update badge counts
-            document.getElementById('cnt-all').textContent = totalTitles;
-            document.getElementById('cnt-unused').textContent = totalUnused;
-            document.getElementById('cnt-used').textContent = totalUsed;
+            // Update badge counts safely
+            const cntAll = document.getElementById('cnt-all');
+            const cntUnused = document.getElementById('cnt-unused');
+            const cntUsed = document.getElementById('cnt-used');
+
+            if (cntAll) cntAll.textContent = totalTitles;
+            if (cntUnused) cntUnused.textContent = totalUnused;
+            if (cntUsed) cntUsed.textContent = totalUsed;
         }
 
         function confirmResetAll() {
@@ -785,6 +712,7 @@
 
         function handleSearch() {
             const input = document.getElementById('searchInput');
+            if (!input) return;
             searchQuery = input.value.toLowerCase().trim();
             
             const clearBtn = document.getElementById('clearSearchBtn');
@@ -798,8 +726,10 @@
 
         function clearSearch() {
             const input = document.getElementById('searchInput');
-            input.value = '';
-            handleSearch();
+            if (input) {
+                input.value = '';
+                handleSearch();
+            }
         }
 
         function applyFilterAndSearch() {
