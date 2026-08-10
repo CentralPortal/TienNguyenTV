@@ -428,178 +428,48 @@
             return `${catId}_title_${index}`;
         }
 
-        function renderCategories() {
-            const container = document.getElementById('categoriesContainer');
-            container.innerHTML = '';
-
-            categoriesData.forEach((cat) => {
-                const catCard = document.createElement('div');
-                catCard.className = 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-slate-300 dark:hover:border-slate-700';
-                catCard.id = `card_${cat.id}`;
-
-                const totalInCat = cat.titles.length;
-                let usedInCat = 0;
-                cat.titles.forEach((_, idx) => {
-                    if (checkedMap[getTitleId(cat.id, idx)]) usedInCat++;
-                });
-
-                const percent = totalInCat > 0 ? Math.round((usedInCat / totalInCat) * 100) : 0;
-
-                catCard.innerHTML = `
-                    <!-- Accordion Header -->
-                    <div class="p-4 sm:p-4.5 flex flex-col sm:flex-row items-start sm:items-center justify-between cursor-pointer select-none gap-3 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition"
-                         onclick="toggleCategory('${cat.id}')">
-                        <div class="flex items-center space-x-3.5 flex-1 min-w-0">
-                            <div class="w-10 h-10 rounded-xl ${cat.bgColor} ${cat.color} border ${cat.borderColor} flex items-center justify-center text-lg shrink-0 shadow-xs">
-                                <i class="fa-solid ${cat.icon}"></i>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
-                                    <span class="text-xs px-2 py-0.5 rounded-full ${cat.bgColor} ${cat.color} font-semibold border ${cat.borderColor}">${cat.badge}</span>
-                                </div>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${cat.desc}</p>
-                            </div>
-                        </div>
-
-                        <!-- Right Controls & Progress -->
-                        <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-0 border-slate-100 dark:border-slate-800">
-                            <div class="text-left sm:text-right">
-                                <div class="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                                    Tiến độ: <span id="cat_stat_${cat.id}" class="font-bold text-slate-800 dark:text-slate-200">${usedInCat}/${totalInCat} (${percent}%)</span>
-                                </div>
-                                <div class="w-28 sm:w-32 bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mt-1 border border-slate-200 dark:border-slate-700/50 overflow-hidden">
-                                    <div id="cat_bar_${cat.id}" class="bg-emerald-500 h-1.5 rounded-full transition-all duration-300" style="width: ${percent}%"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-1.5">
-                                <button onclick="event.stopPropagation(); checkAllInCategory('${cat.id}', true)" title="Đánh dấu tất cả là đã dùng" class="px-2 py-1 text-xs text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition border border-slate-200 dark:border-slate-700/50">
-                                    <i class="fa-solid fa-check-double"></i>
-                                </button>
-                                <button onclick="event.stopPropagation(); checkAllInCategory('${cat.id}', false)" title="Bỏ chọn tất cả" class="px-2 py-1 text-xs text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition border border-slate-200 dark:border-slate-700/50">
-                                    <i class="fa-solid fa-rotate-left"></i>
-                                </button>
-                                <div id="icon_chevron_${cat.id}" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-transform duration-300">
-                                    <i class="fa-solid fa-chevron-down text-xs"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Accordion Content Body -->
-                    <div id="content_${cat.id}" class="accordion-content border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-950/40">
-                        <div class="p-3.5 sm:p-4 space-y-2" id="list_${cat.id}">
-                            ${renderTitleItems(cat)}
-                        </div>
-                    </div>
-                `;
-
-                container.appendChild(catCard);
-            });
-
-            updateProgressCounters();
-        }
-
         function renderTitleItems(cat) {
             return cat.titles.map((titleText, idx) => {
                 const titleId = getTitleId(cat.id, idx);
                 const isChecked = !!checkedMap[titleId];
-
                 return `
-                    <div id="item_wrapper_${titleId}" class="title-item flex items-center justify-between gap-3 p-3 rounded-xl bg-white dark:bg-slate-900/80 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-800 transition group ${isChecked ? 'opacity-60 bg-slate-100/50 dark:bg-slate-950/40' : ''}"
-                         data-title="${titleText.toLowerCase()}" data-checked="${isChecked}">
-                        <div class="flex items-start sm:items-center space-x-3 flex-1 min-w-0">
-                            <!-- Custom Checkbox -->
-                            <div class="pt-0.5 sm:pt-0 shrink-0">
-                                <input type="checkbox" id="${titleId}" 
-                                    ${isChecked ? 'checked' : ''} 
-                                    onchange="toggleTitleCheck('${cat.id}', '${titleId}', this.checked)"
-                                    class="w-4 h-4 text-emerald-600 bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-600 rounded focus:ring-emerald-500 cursor-pointer accent-emerald-500">
-                            </div>
-
-                            <!-- Title Text -->
-                            <label for="${titleId}" class="text-sm font-medium cursor-pointer leading-relaxed break-words flex-1 select-none ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-white'}">
-                                ${titleText}
-                            </label>
-                        </div>
+                    <div id="item_wrapper_${titleId}" class="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
+                        <input type="checkbox" 
+                               id="${titleId}" 
+                               ${isChecked ? 'checked' : ''} 
+                               onchange="toggleCheck('${titleId}')"
+                               class="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer shrink-0 transition">
+                        <label for="${titleId}" 
+                               id="label_${titleId}" 
+                               class="text-sm sm:text-base font-medium select-none cursor-pointer flex-1 transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
+                            ${titleText}
+                        </label>
                     </div>
                 `;
             }).join('');
         }
 
-        function toggleTitleCheck(catId, titleId, isChecked) {
-            checkedMap[titleId] = isChecked;
-            saveState();
-
-            const wrapper = document.getElementById(`item_wrapper_${titleId}`);
-            const label = wrapper.querySelector('label');
-            const badge = document.getElementById(`badge_used_${titleId}`);
-
-            wrapper.setAttribute('data-checked', isChecked);
-
-            if (isChecked) {
-                wrapper.classList.add('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
-                label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
-                label.classList.remove('text-slate-800', 'dark:text-slate-200');
-                if (badge) {
-                    badge.classList.remove('hidden');
-                    badge.classList.add('inline-block');
+        function toggleCheck(titleId) {
+            const checkbox = document.getElementById(titleId);
+            const label = document.getElementById(`label_${titleId}`);
+            if (checkbox && label) {
+                if (checkbox.checked) {
+                    checkedMap[titleId] = true;
+                    label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
+                    label.classList.remove('text-slate-800', 'dark:text-slate-200');
+                } else {
+                    delete checkedMap[titleId];
+                    label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
+                    label.classList.add('text-slate-800', 'dark:text-slate-200');
                 }
-            } else {
-                wrapper.classList.remove('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
-                label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
-                label.classList.add('text-slate-800', 'dark:text-slate-200');
-                if (badge) {
-                    badge.classList.add('hidden');
-                    badge.classList.remove('inline-block');
-                }
+                saveState();
             }
-
-            updateCategoryCounter(catId);
-            applyFilterAndSearch();
-        }
-
-        function checkAllInCategory(catId, status) {
-            const cat = categoriesData.find(c => c.id === catId);
-            if (!cat) return;
-
-            cat.titles.forEach((_, idx) => {
-                const titleId = getTitleId(catId, idx);
-                checkedMap[titleId] = status;
-
-                const checkbox = document.getElementById(titleId);
-                if (checkbox) checkbox.checked = status;
-
-                const wrapper = document.getElementById(`item_wrapper_${titleId}`);
-                if (wrapper) {
-                    const label = wrapper.querySelector('label');
-                    const badge = document.getElementById(`badge_used_${titleId}`);
-                    wrapper.setAttribute('data-checked', status);
-
-                    if (status) {
-                        wrapper.classList.add('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
-                        label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
-                        label.classList.remove('text-slate-800', 'dark:text-slate-200');
-                        if (badge) badge.classList.remove('hidden');
-                    } else {
-                        wrapper.classList.remove('opacity-60', 'bg-slate-100/50', 'dark:bg-slate-950/40');
-                        label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
-                        label.classList.add('text-slate-800', 'dark:text-slate-200');
-                        if (badge) badge.classList.add('hidden');
-                    }
-                }
-            });
-
-            saveState();
-            updateCategoryCounter(catId);
-            applyFilterAndSearch();
-            showToast(status ? `Đã chọn tất cả trong ${cat.title.split('.')[0]}` : `Đã bỏ chọn tất cả trong ${cat.title.split('.')[0]}`);
         }
 
         function toggleCategory(catId) {
             const content = document.getElementById(`content_${catId}`);
             const chevron = document.getElementById(`icon_chevron_${catId}`);
+            if (!content || !chevron) return;
 
             if (content.style.maxHeight && content.style.maxHeight !== '0px') {
                 content.style.maxHeight = '0px';
@@ -612,15 +482,46 @@
             }
         }
 
-        function expandAll() {
-            categoriesData.forEach(cat => {
-                const content = document.getElementById(`content_${cat.id}`);
-                const chevron = document.getElementById(`icon_chevron_${cat.id}`);
-                if (content) {
-                    content.style.maxHeight = content.scrollHeight + 5000 + 'px';
-                    content.style.opacity = '1';
-                    chevron.style.transform = 'rotate(180deg)';
-                }
+        function renderCategories() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+
+            categoriesData.forEach((cat) => {
+                const catCard = document.createElement('div');
+                catCard.className = 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm transition-all hover:border-slate-300 dark:hover:border-slate-700';
+                catCard.id = `card_${cat.id}`;
+
+                catCard.innerHTML = `
+                    <!-- Accordion Header -->
+                    <div class="p-4 flex items-center justify-between cursor-pointer select-none gap-3 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition"
+                         onclick="toggleCategory('${cat.id}')">
+                        <div class="flex items-center space-x-3.5 flex-1 min-w-0">
+                            <div class="w-10 h-10 rounded-xl ${cat.bgColor} ${cat.color} border ${cat.borderColor} flex items-center justify-center text-lg shrink-0 shadow-xs">
+                                <i class="fa-solid ${cat.icon}"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-wide truncate">${cat.title}</h2>
+                                </div>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">${cat.desc}</p>
+                            </div>
+                        </div>
+
+                        <!-- Collapsible Chevron Button -->
+                        <div id="icon_chevron_${cat.id}" class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-transform duration-300 shrink-0">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Content Body -->
+                    <div id="content_${cat.id}" class="accordion-content border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-950/40">
+                        <div class="p-3.5 sm:p-4 space-y-2" id="list_${cat.id}">
+                            ${renderTitleItems(cat)}
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(catCard);
             });
         }
 
@@ -637,51 +538,13 @@
         }
 
         function updateCategoryCounter(catId) {
-            const cat = categoriesData.find(c => c.id === catId);
-            if (!cat) return;
-
-            const total = cat.titles.length;
-            let used = 0;
-            cat.titles.forEach((_, idx) => {
-                if (checkedMap[getTitleId(catId, idx)]) used++;
-            });
-
-            const percent = total > 0 ? Math.round((used / total) * 100) : 0;
-            const statEl = document.getElementById(`cat_stat_${catId}`);
-            const barEl = document.getElementById(`cat_bar_${catId}`);
-
-            if (statEl) statEl.textContent = `${used}/${total} (${percent}%)`;
-            if (barEl) barEl.style.width = `${percent}%`;
+            // Stats elements removed for cleaner UI
+            return;
         }
 
         function updateProgressCounters() {
-            let totalTitles = 0;
-            let totalUsed = 0;
-
-            categoriesData.forEach(cat => {
-                totalTitles += cat.titles.length;
-                cat.titles.forEach((_, idx) => {
-                    if (checkedMap[getTitleId(cat.id, idx)]) totalUsed++;
-                });
-            });
-
-            const totalUnused = totalTitles - totalUsed;
-            const percent = totalTitles > 0 ? Math.round((totalUsed / totalTitles) * 100) : 0;
-            
-            const overallText = document.getElementById('overallProgressText');
-            const overallBar = document.getElementById('overallProgressBar');
-
-            if (overallText) overallText.textContent = `${totalUsed} / ${totalTitles} (${percent}%)`;
-            if (overallBar) overallBar.style.width = `${percent}%`;
-
-            // Update badge counts safely
-            const cntAll = document.getElementById('cnt-all');
-            const cntUnused = document.getElementById('cnt-unused');
-            const cntUsed = document.getElementById('cnt-used');
-
-            if (cntAll) cntAll.textContent = totalTitles;
-            if (cntUnused) cntUnused.textContent = totalUnused;
-            if (cntUsed) cntUsed.textContent = totalUsed;
+            // Progress elements removed for cleaner UI
+            return;
         }
 
         function confirmResetAll() {
