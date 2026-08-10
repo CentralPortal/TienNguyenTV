@@ -92,10 +92,36 @@
 
     <!-- Footer -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-5 text-center text-xs text-slate-500 transition-colors">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <p>© 2026 TienNguyenTVOfficial Title Collection Manager. Công cụ quản lý tiêu đề video vùng cao.</p>
+            <button onclick="openResetModal()" class="text-xs text-red-600 dark:text-red-400 hover:underline flex items-center gap-1 font-medium cursor-pointer">
+                <i class="fa-solid fa-rotate-left"></i> Đặt lại tất cả đánh dấu
+            </button>
         </div>
     </footer>
+
+    <!-- Custom Modal for Reset Confirmation (No browser confirm() used) -->
+    <div id="resetModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+            <div class="flex items-center gap-3 text-red-600 dark:text-red-400">
+                <div class="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Đặt lại trạng thái</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+                Bạn có chắc chắn muốn xóa tất cả trạng thái đã lưu trong trình duyệt?
+            </p>
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button onclick="closeResetModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition cursor-pointer">
+                    Hủy
+                </button>
+                <button onclick="executeResetAll()" class="px-4 py-2 text-xs font-semibold bg-red-600 hover:bg-red-700 text-white rounded-xl transition shadow-xs cursor-pointer">
+                    Xác nhận đặt lại
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript Application Logic -->
     <script>
@@ -372,18 +398,16 @@
         const STORAGE_KEY = 'tien_nguyen_tv_checked_titles_v3';
         const THEME_KEY = 'tien_nguyen_tv_theme';
 
-        // Load theme preferences
         function initTheme() {
             const savedTheme = localStorage.getItem(THEME_KEY);
             if (savedTheme) {
                 currentTheme = savedTheme;
             } else {
-                currentTheme = 'light'; // Default light theme
+                currentTheme = 'light';
             }
             applyTheme();
         }
 
-        // Toggle Theme between Light and Dark
         function toggleTheme() {
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             localStorage.setItem(THEME_KEY, currentTheme);
@@ -400,6 +424,69 @@
             } else {
                 html.classList.remove('dark');
                 if (icon) icon.className = 'fa-solid fa-sun text-amber-500';
+            }
+        }
+
+        // Load checkbox states from browser localStorage
+        function loadState() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    checkedMap = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Failed to load state from localStorage', e);
+            }
+        }
+
+        // Save updated checkbox states to browser localStorage
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedMap));
+            } catch (e) {
+                console.error('Failed to save state to localStorage', e);
+            }
+        }
+
+        function getTitleId(catId, index) {
+            return `${catId}_title_${index}`;
+        }
+
+        function renderTitleItems(cat) {
+            return cat.titles.map((titleText, idx) => {
+                const titleId = getTitleId(cat.id, idx);
+                const isChecked = !!checkedMap[titleId];
+                return `
+                    <div id="item_wrapper_${titleId}" class="flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 transition hover:border-slate-300 dark:hover:border-slate-700">
+                        <input type="checkbox" 
+                               id="${titleId}" 
+                               ${isChecked ? 'checked' : ''} 
+                               onchange="toggleCheck('${titleId}')"
+                               class="w-5 h-5 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer shrink-0 transition">
+                        <label for="${titleId}" 
+                               id="label_${titleId}" 
+                               class="text-sm sm:text-base font-medium select-none cursor-pointer flex-1 transition ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-800 dark:text-slate-200'}">
+                            ${titleText}
+                        </label>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleCheck(titleId) {
+            const checkbox = document.getElementById(titleId);
+            const label = document.getElementById(`label_${titleId}`);
+            if (checkbox && label) {
+                if (checkbox.checked) {
+                    checkedMap[titleId] = true;
+                    label.classList.add('line-through', 'text-slate-400', 'dark:text-slate-500');
+                    label.classList.remove('text-slate-800', 'dark:text-slate-200');
+                } else {
+                    delete checkedMap[titleId];
+                    label.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-500');
+                    label.classList.add('text-slate-800', 'dark:text-slate-200');
+                }
+                saveState(); // Instantly write to localStorage
             }
         }
 
@@ -689,6 +776,49 @@
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 2500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            loadState();
+            renderCategories();
+            collapseAll();
+        });
+    </script>
+</body>
+</html>
+        function openResetModal() {
+            const modal = document.getElementById('resetModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeResetModal() {
+            const modal = document.getElementById('resetModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function executeResetAll() {
+            checkedMap = {};
+            saveState();
+            renderCategories();
+            collapseAll();
+            closeResetModal();
+            showToast('Đã đặt lại tất cả tiêu đề thành công!');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            if (toast && toastMsg) {
+                toastMsg.textContent = msg;
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                toast.classList.add('translate-y-0', 'opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-0', 'opacity-100');
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                }, 2500);
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
