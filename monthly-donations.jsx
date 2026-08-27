@@ -1,43 +1,24 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 
 /* ---------------------------------------------------------
-   Data definitions
+   Data definitions (seed template for new records)
 --------------------------------------------------------- */
 
-const ESSENTIAL_ITEMS = [
-  { id: "es1", name: "Thực Phẩm Thiết Yếu", cost: 1200000 },
-  { id: "es2", name: "Nệm Phụ", cost: 600000 },
-  { id: "es3", name: "Đèn Năng Lượng Mặt Trời", cost: 2200000 },
-  { id: "es4", name: "Nhu Yếu Phẩm Cho Giấc Ngủ", cost: 1750000 },
-  { id: "es5", name: "Giường Gỗ Mặt Phẳng (tự đóng)", cost: 2000000 },
-  { id: "es6", name: "Giường Sắt", cost: 3000000 },
-  { id: "es7", name: "Đồ Dùng Nhà Bếp", cost: 2000000 },
-  { id: "es8", name: "2 Bình Chứa Nước (20-30 lít)", cost: 80000 },
-  { id: "es9", name: "Bạt Che", cost: 1500000 },
+const ITEM_SEED = [
+  { name: "20 Con Gà Giống", cost: 10000000 },
+  { name: "Chuồng Gỗ (8ft x 10ft) + Công Thợ", cost: 7000000 },
+  { name: "Thức Ăn Cho Gà (3 tháng)", cost: 1000000 },
+  { name: "Lưới Rào Khu Vực Chạy (200 sq ft)", cost: 700000 },
+  { name: "Lưới Che Nắng Phía Trên", cost: 700000 },
+  { name: "Vắc-xin", cost: 2000000 },
+  { name: "5 Máng Nước Kèm Ổ Đẻ", cost: 500000 },
+  { name: "Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", cost: 200000 },
+  { name: "Chi Phí Di Chuyển (xăng, phí đường, v.v.)", cost: 500000 },
+  { name: "Phí Nhân Công", cost: 0 },
 ];
-
-const CHICKEN_ITEMS = [
-  { id: "ck1", name: "20 Con Gà Giống", cost: 10000000 },
-  { id: "ck2", name: "Chuồng Gỗ (8ft x 10ft) + Công Thợ", cost: 7000000 },
-  { id: "ck3", name: "Thức Ăn Cho Gà (3 tháng)", cost: 1000000 },
-  { id: "ck4", name: "Lưới Rào Khu Vực Chạy (200 sq ft)", cost: 700000 },
-  { id: "ck5", name: "Lưới Che Nắng Phía Trên", cost: 700000 },
-  { id: "ck6", name: "Vắc-xin", cost: 2000000 },
-  { id: "ck7", name: "5 Máng Nước Kèm Ổ Đẻ", cost: 500000 },
-  { id: "ck8", name: "Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", cost: 200000 },
-];
-
-const OTHER_ITEMS = [
-  { id: "oe1", name: "Xe Đạp", cost: 2000000 },
-  { id: "oe2", name: "Chi Phí Di Chuyển (xăng, phí đường, v.v.)", cost: 500000 },
-  { id: "oe3", name: "Phí Nhân Công", cost: 0 },
-];
-
-const ALL_ITEMS = [...ESSENTIAL_ITEMS, ...CHICKEN_ITEMS, ...OTHER_ITEMS];
 
 const STORAGE_KEY = "monthly-donations-v1";
 const PASSWORD = "TNTV";
-const DEFAULT_RATE = 25400;
 const MONTHS = [
   "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
   "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12",
@@ -49,48 +30,73 @@ const MONTHS = [
 
 const uid = () => Math.random().toString(36).slice(2, 10);
 
-const defaultItemsMap = () => {
-  const map = {};
-  ALL_ITEMS.forEach((it) => {
-    map[it.id] = { checked: false, cost: it.cost };
-  });
-  return map;
-};
+const seedItems = () =>
+  ITEM_SEED.map((it) => ({ id: uid(), name: it.name, cost: it.cost, checked: false }));
 
 const makeRecord = (familyId) => ({
   id: uid(),
   familyId,
   youtubeUrl: "",
   expanded: true,
-  items: defaultItemsMap(),
+  items: seedItems(),
 });
 
 const formatVnd = (n) => `${Math.round(n || 0).toLocaleString("vi-VN")} ₫`;
-const formatUsd = (n) =>
-  `$${(n || 0).toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}`;
 
-const recordTotals = (record, rate) => {
-  let vnd = 0;
-  Object.values(record.items).forEach((entry) => {
-    if (entry.checked) vnd += Number(entry.cost) || 0;
-  });
-  return { vnd, usd: rate ? vnd / rate : 0 };
+const sumChecked = (items) =>
+  (items || []).reduce((sum, it) => (it.checked ? sum + (Number(it.cost) || 0) : sum), 0);
+
+const recordTotal = (record) => sumChecked(record.items);
+
+// Best-effort migration from older data shapes so previously saved data
+// keeps working after the item model changed.
+const migrateRecord = (r) => {
+  // Newest shape already: single "items" array.
+  if (Array.isArray(r.items)) {
+    return { ...r, items: r.items.filter((it) => (it.name || "").trim() !== "Xe Đạp") };
+  }
+
+  // Previous shape: two arrays, chickenItems + otherItems.
+  if (Array.isArray(r.chickenItems) || Array.isArray(r.otherItems)) {
+    const merged = [
+      ...(Array.isArray(r.chickenItems) ? r.chickenItems : []),
+      ...(Array.isArray(r.otherItems) ? r.otherItems : []),
+    ].filter((it) => (it.name || "").trim() !== "Xe Đạp");
+    return { ...r, items: merged.length ? merged : seedItems() };
+  }
+
+  // Oldest shape: flat { id: { checked, cost } } map keyed by fixed ids.
+  if (r.items && typeof r.items === "object") {
+    const OLD_IDS_TO_SEED = [
+      ["ck1", "20 Con Gà Giống", 10000000],
+      ["ck2", "Chuồng Gỗ (8ft x 10ft) + Công Thợ", 7000000],
+      ["ck3", "Thức Ăn Cho Gà (3 tháng)", 1000000],
+      ["ck4", "Lưới Rào Khu Vực Chạy (200 sq ft)", 700000],
+      ["ck5", "Lưới Che Nắng Phía Trên", 700000],
+      ["ck6", "Vắc-xin", 2000000],
+      ["ck7", "5 Máng Nước Kèm Ổ Đẻ", 500000],
+      ["ck8", "Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", 200000],
+      ["oe2", "Chi Phí Di Chuyển (xăng, phí đường, v.v.)", 500000],
+      ["oe3", "Phí Nhân Công", 0],
+    ];
+    const built = OLD_IDS_TO_SEED.map(([id, name, cost]) => ({
+      id: uid(),
+      name,
+      cost: r.items[id] ? Number(r.items[id].cost) || 0 : cost,
+      checked: r.items[id] ? !!r.items[id].checked : false,
+    }));
+    return { ...r, items: built };
+  }
+
+  return { ...r, items: seedItems() };
 };
 
 /* ---------------------------------------------------------
    Small building blocks
 --------------------------------------------------------- */
 
-function ItemTable({ title, icon, items, itemState, onToggle, onCostChange, rate }) {
-  let subtotal = 0;
-  Object.keys(itemState).forEach((id) => {
-    if (items.find((i) => i.id === id) && itemState[id].checked) {
-      subtotal += Number(itemState[id].cost) || 0;
-    }
-  });
+function ItemTable({ title, icon, items, onToggle, onNameChange, onCostChange, onDeleteItem, onAddItem }) {
+  const subtotal = sumChecked(items);
 
   return (
     <div className="item-table-wrap">
@@ -105,41 +111,62 @@ function ItemTable({ title, icon, items, itemState, onToggle, onCostChange, rate
               <th className="col-check"></th>
               <th className="col-name">Tên vật phẩm</th>
               <th className="col-cost">Chi phí (VND)</th>
-              <th className="col-cost">Chi phí (USD)</th>
+              <th className="col-actions"></th>
             </tr>
           </thead>
           <tbody>
-            {items.map((it) => {
-              const entry = itemState[it.id] || { checked: false, cost: it.cost };
-              const usd = rate ? (Number(entry.cost) || 0) / rate : 0;
-              return (
-                <tr key={it.id} className={entry.checked ? "row-checked" : ""}>
-                  <td className="col-check">
-                    <input
-                      type="checkbox"
-                      className="chk"
-                      checked={entry.checked}
-                      onChange={(e) => onToggle(it.id, e.target.checked)}
-                      aria-label={`Chọn ${it.name}`}
-                    />
-                  </td>
-                  <td className="col-name">{it.name}</td>
-                  <td className="col-cost">
-                    <input
-                      type="text"
-                      inputMode="numeric"
-                      className="cost-input"
-                      value={Number(entry.cost || 0).toLocaleString("vi-VN")}
-                      onChange={(e) => {
-                        const digits = e.target.value.replace(/[^\d]/g, "");
-                        onCostChange(it.id, digits === "" ? 0 : parseInt(digits, 10));
-                      }}
-                    />
-                  </td>
-                  <td className="col-cost usd-cell">{formatUsd(usd)}</td>
-                </tr>
-              );
-            })}
+            {items.map((it) => (
+              <tr key={it.id} className={it.checked ? "row-checked" : ""}>
+                <td className="col-check">
+                  <input
+                    type="checkbox"
+                    className="chk"
+                    checked={it.checked}
+                    onChange={(e) => onToggle(it.id, e.target.checked)}
+                    aria-label={`Chọn ${it.name}`}
+                  />
+                </td>
+                <td className="col-name">
+                  <input
+                    type="text"
+                    className="name-input"
+                    value={it.name}
+                    placeholder="Tên vật phẩm"
+                    onChange={(e) => onNameChange(it.id, e.target.value)}
+                  />
+                </td>
+                <td className="col-cost">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    className="cost-input"
+                    value={Number(it.cost || 0).toLocaleString("vi-VN")}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/[^\d]/g, "");
+                      onCostChange(it.id, digits === "" ? 0 : parseInt(digits, 10));
+                    }}
+                  />
+                </td>
+                <td className="col-actions">
+                  <button
+                    type="button"
+                    className="row-delete"
+                    onClick={() => onDeleteItem(it.id)}
+                    title="Xóa vật phẩm"
+                    aria-label="Xóa vật phẩm"
+                  >
+                    ×
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {items.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="empty-row">
+                  Chưa có vật phẩm nào trong mục này.
+                </td>
+              </tr>
+            ) : null}
           </tbody>
           <tfoot>
             <tr>
@@ -147,11 +174,14 @@ function ItemTable({ title, icon, items, itemState, onToggle, onCostChange, rate
                 Tổng phần này (đã chọn)
               </td>
               <td className="subtotal-value">{formatVnd(subtotal)}</td>
-              <td className="subtotal-value usd-cell">{formatUsd(rate ? subtotal / rate : 0)}</td>
+              <td></td>
             </tr>
           </tfoot>
         </table>
       </div>
+      <button type="button" className="add-item-btn" onClick={onAddItem}>
+        + Thêm vật phẩm
+      </button>
     </div>
   );
 }
@@ -159,14 +189,16 @@ function ItemTable({ title, icon, items, itemState, onToggle, onCostChange, rate
 function RecordCard({
   record,
   index,
-  rate,
   onField,
   onToggleExpand,
   onToggleItem,
+  onNameChange,
   onCostChange,
+  onRequestDeleteItem,
+  onAddItem,
   onDelete,
 }) {
-  const totals = recordTotals(record, rate);
+  const total = recordTotal(record);
 
   return (
     <section id={`record-${record.id}`} className="record-card">
@@ -185,8 +217,7 @@ function RecordCard({
 
         <div className="record-header-actions">
           <div className="mini-total">
-            <span>{formatVnd(totals.vnd)}</span>
-            <span className="mini-total-usd">{formatUsd(totals.usd)}</span>
+            <span>{formatVnd(total)}</span>
           </div>
           <button
             className="icon-btn"
@@ -227,46 +258,20 @@ function RecordCard({
           </div>
 
           <ItemTable
-            title="Nhu Yếu Phẩm Thiết Yếu"
-            icon="🏠"
-            items={ESSENTIAL_ITEMS}
-            itemState={record.items}
-            rate={rate}
-            onToggle={(id, checked) => onToggleItem(id, checked)}
-            onCostChange={(id, cost) => onCostChange(id, cost)}
-          />
-
-          <div className="precondition-note">
-            <strong>Điều Kiện Trước Khi Quyên Góp Gà:</strong> hãy xác nhận gia đình đã sẵn sàng
-            (khu vực úm gà an toàn, chuồng thông gió tốt, có biện pháp chống rắn/thú săn mồi)
-            trước khi tiến hành phần chi phí nuôi gà bên dưới.
-          </div>
-
-          <ItemTable
-            title="Gà — Vật Liệu Và Chi Phí"
+            title="Vật Liệu Và Chi Phí"
             icon="🐔"
-            items={CHICKEN_ITEMS}
-            itemState={record.items}
-            rate={rate}
-            onToggle={(id, checked) => onToggleItem(id, checked)}
-            onCostChange={(id, cost) => onCostChange(id, cost)}
-          />
-
-          <ItemTable
-            title="Chi Phí Khác"
-            icon="🧾"
-            items={OTHER_ITEMS}
-            itemState={record.items}
-            rate={rate}
-            onToggle={(id, checked) => onToggleItem(id, checked)}
-            onCostChange={(id, cost) => onCostChange(id, cost)}
+            items={record.items}
+            onToggle={(id, checked) => onToggleItem("items", id, checked)}
+            onNameChange={(id, name) => onNameChange("items", id, name)}
+            onCostChange={(id, cost) => onCostChange("items", id, cost)}
+            onDeleteItem={(id) => onRequestDeleteItem("items", id)}
+            onAddItem={() => onAddItem("items")}
           />
 
           <div className="record-total-footer">
             <span className="record-total-label">Tổng chi phí đã chọn cho gia đình này</span>
             <span className="record-total-values">
-              <span className="rt-vnd">{formatVnd(totals.vnd)}</span>
-              <span className="rt-usd">{formatUsd(totals.usd)}</span>
+              <span className="rt-vnd">{formatVnd(total)}</span>
             </span>
           </div>
         </div>
@@ -280,6 +285,8 @@ function PasswordModal({ modal, value, onChange, onConfirm, onCancel }) {
   const message =
     modal.type === "delete"
       ? "Nhập mật khẩu để xóa gia đình này. Hành động này không thể hoàn tác."
+      : modal.type === "deleteItem"
+      ? "Nhập mật khẩu để xóa vật phẩm này. Hành động này không thể hoàn tác."
       : "Nhập mật khẩu để xóa tất cả các mục đang được chọn (ở mọi gia đình).";
 
   return (
@@ -318,36 +325,21 @@ function PasswordModal({ modal, value, onChange, onConfirm, onCancel }) {
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [rate, setRate] = useState(DEFAULT_RATE);
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [records, setRecords] = useState([]);
   const [saveStatus, setSaveStatus] = useState("idle"); // idle | saving | saved | offline
-  const [rateStatus, setRateStatus] = useState("idle"); // idle | loading | live | cached | error
-  const [rateUpdatedAt, setRateUpdatedAt] = useState(null);
-  const [modal, setModal] = useState({ open: false, type: null, recordId: null, error: "" });
+  const [modal, setModal] = useState({
+    open: false,
+    type: null,
+    recordId: null,
+    section: null,
+    itemId: null,
+    error: "",
+  });
   const [pwInput, setPwInput] = useState("");
 
   const loadedRef = useRef(false);
   const saveTimer = useRef(null);
-
-  // Fetch the live VND/USD exchange rate and override the current rate
-  const fetchLiveRate = async () => {
-    setRateStatus("loading");
-    try {
-      const res = await fetch("https://open.er-api.com/v6/latest/USD");
-      const data = await res.json();
-      const liveVnd = data && data.rates && data.rates.VND;
-      if (liveVnd) {
-        setRate(Math.round(liveVnd));
-        setRateStatus("live");
-        setRateUpdatedAt(new Date());
-      } else {
-        setRateStatus("error");
-      }
-    } catch (e) {
-      setRateStatus("error");
-    }
-  };
 
   // Load from cloud storage on mount
   useEffect(() => {
@@ -356,15 +348,10 @@ export default function App() {
         const res = await window.storage.get(STORAGE_KEY, false);
         if (res && res.value) {
           const parsed = JSON.parse(res.value);
-          setRate(parsed.rate || DEFAULT_RATE);
           setMonth(parsed.month || new Date().getMonth() + 1);
           const recs = Array.isArray(parsed.records) ? parsed.records : [];
-          // merge in any new items that may not exist yet on old saved records
-          const merged = recs.map((r) => ({
-            ...r,
-            items: { ...defaultItemsMap(), ...r.items },
-          }));
-          setRecords(merged.length ? merged : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+          const migrated = recs.map(migrateRecord);
+          setRecords(migrated.length ? migrated : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
         } else {
           setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
         }
@@ -374,8 +361,6 @@ export default function App() {
         loadedRef.current = true;
         setLoading(false);
       }
-      // Always refresh the exchange rate from the live source when the app opens
-      fetchLiveRate();
     })();
   }, []);
 
@@ -388,7 +373,7 @@ export default function App() {
       try {
         const result = await window.storage.set(
           STORAGE_KEY,
-          JSON.stringify({ rate, month, records }),
+          JSON.stringify({ month, records }),
           false
         );
         setSaveStatus(result ? "saved" : "offline");
@@ -398,15 +383,15 @@ export default function App() {
     }, 700);
     return () => clearTimeout(saveTimer.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rate, month, records]);
+  }, [month, records]);
 
-  const grand = useMemo(() => {
+  const grandTotal = useMemo(() => {
     let vnd = 0;
     records.forEach((r) => {
-      vnd += recordTotals(r, rate).vnd;
+      vnd += recordTotal(r);
     });
-    return { vnd, usd: rate ? vnd / rate : 0 };
-  }, [records, rate]);
+    return vnd;
+  }, [records]);
 
   const updateField = (recordId, field, value) => {
     setRecords((prev) => prev.map((r) => (r.id === recordId ? { ...r, [field]: value } : r)));
@@ -418,23 +403,39 @@ export default function App() {
     );
   };
 
-  const toggleItem = (recordId, itemId, checked) => {
+  const mapSectionItems = (recs, recordId, section, fn) =>
+    recs.map((r) => (r.id === recordId ? { ...r, [section]: fn(r[section]) } : r));
+
+  const toggleItem = (recordId, section, itemId, checked) => {
     setRecords((prev) =>
-      prev.map((r) =>
-        r.id === recordId
-          ? { ...r, items: { ...r.items, [itemId]: { ...r.items[itemId], checked } } }
-          : r
+      mapSectionItems(prev, recordId, section, (items) =>
+        items.map((it) => (it.id === itemId ? { ...it, checked } : it))
       )
     );
   };
 
-  const changeCost = (recordId, itemId, cost) => {
+  const changeItemName = (recordId, section, itemId, name) => {
     setRecords((prev) =>
-      prev.map((r) =>
-        r.id === recordId
-          ? { ...r, items: { ...r.items, [itemId]: { ...r.items[itemId], cost } } }
-          : r
+      mapSectionItems(prev, recordId, section, (items) =>
+        items.map((it) => (it.id === itemId ? { ...it, name } : it))
       )
+    );
+  };
+
+  const changeItemCost = (recordId, section, itemId, cost) => {
+    setRecords((prev) =>
+      mapSectionItems(prev, recordId, section, (items) =>
+        items.map((it) => (it.id === itemId ? { ...it, cost } : it))
+      )
+    );
+  };
+
+  const addItem = (recordId, section) => {
+    setRecords((prev) =>
+      mapSectionItems(prev, recordId, section, (items) => [
+        ...items,
+        { id: uid(), name: "", cost: 0, checked: false },
+      ])
     );
   };
 
@@ -458,15 +459,21 @@ export default function App() {
 
   const requestDelete = (recordId) => {
     setPwInput("");
-    setModal({ open: true, type: "delete", recordId, error: "" });
+    setModal({ open: true, type: "delete", recordId, section: null, itemId: null, error: "" });
+  };
+
+  const requestDeleteItem = (recordId, section, itemId) => {
+    setPwInput("");
+    setModal({ open: true, type: "deleteItem", recordId, section, itemId, error: "" });
   };
 
   const requestClear = () => {
     setPwInput("");
-    setModal({ open: true, type: "clear", recordId: null, error: "" });
+    setModal({ open: true, type: "clear", recordId: null, section: null, itemId: null, error: "" });
   };
 
-  const closeModal = () => setModal({ open: false, type: null, recordId: null, error: "" });
+  const closeModal = () =>
+    setModal({ open: false, type: null, recordId: null, section: null, itemId: null, error: "" });
 
   const confirmModal = () => {
     if (pwInput !== PASSWORD) {
@@ -475,13 +482,17 @@ export default function App() {
     }
     if (modal.type === "delete") {
       setRecords((prev) => prev.filter((r) => r.id !== modal.recordId));
+    } else if (modal.type === "deleteItem") {
+      setRecords((prev) =>
+        mapSectionItems(prev, modal.recordId, modal.section, (items) =>
+          items.filter((it) => it.id !== modal.itemId)
+        )
+      );
     } else if (modal.type === "clear") {
       setRecords((prev) =>
         prev.map((r) => ({
           ...r,
-          items: Object.fromEntries(
-            Object.entries(r.items).map(([k, v]) => [k, { ...v, checked: false }])
-          ),
+          items: r.items.map((it) => ({ ...it, checked: false })),
         }))
       );
     }
@@ -537,7 +548,7 @@ export default function App() {
           align-items: center;
           gap: 12px 20px;
         }
-        .eyebrow { display: none; }
+
         .title-row {
           display: flex;
           align-items: center;
@@ -592,61 +603,6 @@ export default function App() {
           font-weight: 600;
           color: #FFFFFF;
         }
-        .total-usd {
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 12.5px;
-          color: var(--gold-soft);
-        }
-        .rate-card {
-          background: rgba(255,255,255,0.08);
-          border: 1px solid rgba(240,219,175,0.35);
-          border-radius: 10px;
-          padding: 5px 12px;
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 6px 8px;
-        }
-        .rate-card label {
-          font-size: 11px;
-          color: var(--gold-soft);
-          text-transform: uppercase;
-          letter-spacing: 0.03em;
-          white-space: nowrap;
-        }
-        .rate-card input {
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 13px;
-          background: transparent;
-          border: none;
-          border-bottom: 1px solid rgba(240,219,175,0.5);
-          color: #fff;
-          padding: 2px 0;
-          width: 90px;
-        }
-        .rate-card input:focus { outline: none; border-bottom-color: var(--gold); }
-        .rate-refresh {
-          background: rgba(255,255,255,0.1);
-          border: 1px solid rgba(240,219,175,0.4);
-          color: #fff;
-          border-radius: 6px;
-          width: 24px;
-          height: 24px;
-          font-size: 12px;
-          line-height: 1;
-          cursor: pointer;
-          flex-shrink: 0;
-        }
-        .rate-refresh:hover { background: rgba(255,255,255,0.2); }
-        .rate-status {
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 10.5px;
-          color: var(--gold-soft);
-          width: 100%;
-          white-space: nowrap;
-        }
-        .rate-status-live { color: #9FD9AA; }
-        .rate-status-error { color: #E9B48A; }
 
         .save-status {
           font-family: 'IBM Plex Mono', monospace;
@@ -760,7 +716,6 @@ export default function App() {
           display: flex; flex-direction: column; text-align: right; font-size: 13px;
           color: var(--green-deep); font-weight: 600;
         }
-        .mini-total-usd { font-size: 11px; color: var(--ink-soft); font-weight: 400; }
 
         .icon-btn {
           border: 1px solid var(--border);
@@ -793,17 +748,6 @@ export default function App() {
         }
         .youtube-open:hover { text-decoration: underline; }
 
-        .precondition-note {
-          background: var(--gold-soft);
-          border-left: 4px solid var(--gold);
-          padding: 10px 14px;
-          border-radius: 8px;
-          font-size: 13.5px;
-          line-height: 1.5;
-          margin: 4px 0 18px;
-          color: #4B3A15;
-        }
-
         .item-table-wrap { margin-top: 18px; }
         .section-title {
           display: flex; align-items: center; gap: 8px;
@@ -829,8 +773,8 @@ export default function App() {
         .item-table tr.row-checked td { background: #FBF5E4; }
         .col-check { width: 34px; text-align: center; }
         .col-name { min-width: 220px; }
-        .col-cost { width: 150px; white-space: nowrap; }
-        .usd-cell { font-family: 'IBM Plex Mono', monospace; color: var(--ink-soft); }
+        .col-cost { width: 170px; white-space: nowrap; }
+        .col-actions { width: 36px; text-align: center; }
 
         .chk {
           width: 18px; height: 18px;
@@ -838,8 +782,20 @@ export default function App() {
           cursor: pointer;
         }
 
+        .name-input {
+          width: 100%;
+          font-family: 'Be Vietnam Pro', sans-serif;
+          font-size: 13.5px;
+          padding: 6px 8px;
+          border: 1px solid transparent;
+          border-radius: 6px;
+          background: transparent;
+        }
+        .name-input:hover { border-color: var(--border); background: #fff; }
+        .name-input:focus { outline: none; border-color: var(--gold); background: #fff; }
+
         .cost-input {
-          width: 120px;
+          width: 140px;
           font-family: 'IBM Plex Mono', monospace;
           font-size: 13px;
           padding: 5px 8px;
@@ -850,6 +806,26 @@ export default function App() {
         }
         .cost-input:focus { outline: none; border-color: var(--gold); }
 
+        .row-delete {
+          width: 26px; height: 26px;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--ink-soft);
+          font-size: 16px;
+          line-height: 1;
+          cursor: pointer;
+        }
+        .row-delete:hover { background: var(--rust-bg); color: var(--rust); border-color: #E9C3B0; }
+
+        .empty-row {
+          text-align: center;
+          color: var(--ink-soft);
+          font-size: 13px;
+          padding: 14px 8px;
+          font-style: italic;
+        }
+
         .item-table tfoot td {
           border-bottom: none;
           border-top: 2px solid var(--border);
@@ -858,6 +834,19 @@ export default function App() {
         }
         .subtotal-label { color: var(--ink-soft); font-weight: 600; font-size: 12.5px; }
         .subtotal-value { font-family: 'IBM Plex Mono', monospace; color: var(--green-deep); }
+
+        .add-item-btn {
+          margin-top: 8px;
+          background: transparent;
+          border: 1px dashed var(--moss);
+          color: var(--green-deep);
+          font-weight: 700;
+          font-size: 12.5px;
+          padding: 7px 14px;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+        .add-item-btn:hover { background: var(--gold-soft); border-style: solid; border-color: var(--gold); }
 
         .record-total-footer {
           margin-top: 20px;
@@ -874,7 +863,6 @@ export default function App() {
         .record-total-label { font-weight: 600; font-size: 14px; }
         .record-total-values { display: flex; gap: 14px; align-items: baseline; font-family: 'IBM Plex Mono', monospace; }
         .rt-vnd { font-size: 18px; font-weight: 700; color: #fff; }
-        .rt-usd { font-size: 13px; color: var(--gold-soft); }
 
         /* ---------- Modal ---------- */
         .modal-overlay {
@@ -921,9 +909,6 @@ export default function App() {
           .totals-row { width: 100%; gap: 8px; }
           .total-card { flex: 1 1 100%; padding: 8px 12px; }
           .total-vnd { font-size: 16px; }
-          .rate-card { flex: 1 1 100%; padding: 6px 12px; }
-          .rate-card input { width: 100px; }
-          .rate-status { font-size: 10px; }
           .save-status { width: 100%; }
 
           /* Nav */
@@ -946,17 +931,17 @@ export default function App() {
           .youtube-input-row { flex-direction: column; align-items: stretch; gap: 6px; }
           .youtube-open { text-align: right; }
 
-          .precondition-note { font-size: 12.5px; padding: 9px 12px; }
-
           /* Tables: keep horizontal scroll, but shrink so more fits without scrolling */
           .section-title { font-size: 13.5px; }
           .item-table { font-size: 12px; }
           .item-table th { font-size: 10px; padding: 5px 6px; }
           .item-table td { padding: 6px 6px; }
-          .col-name { min-width: 150px; }
-          .col-cost { width: 110px; }
-          .cost-input { width: 90px; font-size: 12px; padding: 4px 6px; }
+          .col-name { min-width: 140px; }
+          .col-cost { width: 120px; }
+          .cost-input { width: 100px; font-size: 12px; padding: 4px 6px; }
+          .name-input { font-size: 12.5px; padding: 5px 6px; }
           .chk { width: 16px; height: 16px; }
+          .row-delete { width: 24px; height: 24px; font-size: 14px; }
 
           .record-total-footer { flex-direction: column; align-items: flex-start; gap: 6px; padding: 12px 14px; }
           .record-total-values { gap: 10px; }
@@ -967,8 +952,8 @@ export default function App() {
         }
 
         @media (max-width: 400px) {
-          .col-name { min-width: 130px; }
-          .cost-input { width: 78px; }
+          .col-name { min-width: 120px; }
+          .cost-input { width: 84px; }
         }
       `}</style>
 
@@ -996,38 +981,7 @@ export default function App() {
               <div className="totals-row">
                 <div className="total-card">
                   <span className="total-label">Tổng cộng</span>
-                  <span className="total-vnd">{formatVnd(grand.vnd)}</span>
-                  <span className="total-usd">≈ {formatUsd(grand.usd)}</span>
-                </div>
-                <div className="rate-card">
-                  <label>Tỷ giá (VND/$1)</label>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    value={Number(rate || 0).toLocaleString("vi-VN")}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/[^\d]/g, "");
-                      setRate(digits === "" ? 0 : parseInt(digits, 10));
-                    }}
-                  />
-                  <button
-                    type="button"
-                    className="rate-refresh"
-                    onClick={fetchLiveRate}
-                    title="Cập nhật tỷ giá trực tuyến"
-                    aria-label="Cập nhật tỷ giá trực tuyến"
-                  >
-                    {rateStatus === "loading" ? "…" : "🔄"}
-                  </button>
-                  <span className={`rate-status rate-status-${rateStatus}`}>
-                    {rateStatus === "loading"
-                      ? "Đang cập nhật…"
-                      : rateStatus === "live"
-                      ? `Trực tuyến · ${rateUpdatedAt ? rateUpdatedAt.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" }) : ""}`
-                      : rateStatus === "error"
-                      ? "Dùng giá đã lưu"
-                      : ""}
-                  </span>
+                  <span className="total-vnd">{formatVnd(grandTotal)}</span>
                 </div>
               </div>
 
@@ -1067,11 +1021,21 @@ export default function App() {
                 key={record.id}
                 record={record}
                 index={idx}
-                rate={rate}
                 onField={(field, value) => updateField(record.id, field, value)}
                 onToggleExpand={() => toggleExpand(record.id)}
-                onToggleItem={(itemId, checked) => toggleItem(record.id, itemId, checked)}
-                onCostChange={(itemId, cost) => changeCost(record.id, itemId, cost)}
+                onToggleItem={(section, itemId, checked) =>
+                  toggleItem(record.id, section, itemId, checked)
+                }
+                onNameChange={(section, itemId, name) =>
+                  changeItemName(record.id, section, itemId, name)
+                }
+                onCostChange={(section, itemId, cost) =>
+                  changeItemCost(record.id, section, itemId, cost)
+                }
+                onRequestDeleteItem={(section, itemId) =>
+                  requestDeleteItem(record.id, section, itemId)
+                }
+                onAddItem={(section) => addItem(record.id, section)}
                 onDelete={() => requestDelete(record.id)}
               />
             ))}
