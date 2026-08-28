@@ -20,7 +20,6 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, signInWithCustomToken, signInAnonymously } from "firebase/auth";
 import { getFirestore, doc, onSnapshot, setDoc } from "firebase/firestore";
 
-// Firebase Initialization
 const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
 
@@ -235,18 +234,19 @@ function ItemTable({ items, onToggle, onNameChange, onCostChange, onDeleteItem, 
   const subtotal = sumChecked(items);
 
   return (
-    <div className="mt-5 bg-stone-50/70 rounded-2xl border border-stone-200 p-4">
+    <div className="mt-4 sm:mt-5 bg-stone-50/70 rounded-2xl border border-stone-200 p-2.5 sm:p-4">
       <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
-        <h4 className="text-sm font-bold text-amber-700 flex items-center gap-2">
-          <CheckSquare className="w-4 h-4 text-amber-600" /> Danh Sách Vật Liệu & Chi Phí Hỗ Trợ
+        <h4 className="text-xs sm:text-sm font-bold text-amber-700 flex items-center gap-1.5 sm:gap-2">
+          <CheckSquare className="w-4 h-4 text-amber-600 shrink-0" /> Danh Sách Vật Liệu & Chi Phí Hỗ Trợ
         </h4>
-        <span className="text-xs text-stone-500 font-medium">
+        <span className="text-[11px] sm:text-xs text-stone-500 font-medium whitespace-nowrap">
           Đã chọn: <strong className="text-stone-800">{items.filter((i) => i.checked).length}</strong>/{items.length}
         </span>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-xs border-collapse">
+      {/* Desktop & Tablet Table View */}
+      <div className="hidden sm:block overflow-x-auto">
+        <table className="w-full text-left text-xs border-collapse min-w-[500px]">
           <thead>
             <tr className="border-b border-stone-200 text-stone-500 font-semibold uppercase tracking-wider">
               <th className="py-2.5 px-2 w-10 text-center">Chọn</th>
@@ -327,9 +327,77 @@ function ItemTable({ items, onToggle, onNameChange, onCostChange, onDeleteItem, 
         </table>
       </div>
 
+      {/* Mobile Card List View */}
+      <div className="sm:hidden space-y-3">
+        {items.map((it) => (
+          <div
+            key={it.id}
+            className={`p-3 rounded-xl border transition-all ${
+              it.checked
+                ? "bg-amber-50/80 border-amber-200 shadow-2xs"
+                : "bg-white border-stone-200 opacity-75"
+            }`}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <input
+                type="checkbox"
+                className="w-5 h-5 rounded border-stone-300 text-amber-600 focus:ring-amber-500/20 accent-amber-600 cursor-pointer shrink-0"
+                checked={it.checked}
+                onChange={(e) => onToggle(it.id, e.target.checked)}
+                aria-label={`Chọn ${it.name}`}
+              />
+              <input
+                type="text"
+                className="flex-1 bg-transparent text-stone-800 text-xs font-semibold placeholder-stone-400 focus:outline-none focus:border-b focus:border-amber-500 py-1 min-w-0"
+                value={it.name}
+                placeholder="Nhập tên vật phẩm..."
+                onChange={(e) => onNameChange(it.id, e.target.value)}
+              />
+              <button
+                type="button"
+                className="p-1.5 rounded-lg bg-stone-100 text-stone-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0"
+                onClick={() => onDeleteItem(it.id)}
+                title="Xóa vật phẩm"
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-stone-200/60 text-xs">
+              <span className="text-stone-500 font-medium shrink-0">Chi Phí (VND):</span>
+              <div className="relative flex-1 max-w-[180px]">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  className="w-full text-right font-mono bg-white border border-stone-200 rounded-lg px-2.5 py-1.5 text-stone-800 text-xs font-bold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
+                  value={Number(it.cost || 0).toLocaleString("vi-VN")}
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/[^\d]/g, "");
+                    onCostChange(it.id, digits === "" ? 0 : parseInt(digits, 10));
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {items.length === 0 && (
+          <div className="py-4 text-center text-stone-400 text-xs italic bg-white rounded-xl border border-stone-200">
+            Chưa có vật phẩm nào. Nhấn "+ Thêm vật phẩm mới" bên dưới.
+          </div>
+        )}
+
+        <div className="flex items-center justify-between p-3 rounded-xl bg-stone-100/80 border border-stone-200 text-xs font-bold text-stone-700">
+          <span>Tổng subtotal (đã chọn):</span>
+          <span className="font-mono text-sm text-emerald-700 font-extrabold">
+            {formatVnd(subtotal)}
+          </span>
+        </div>
+      </div>
+
       <button
         type="button"
-        className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-stone-300 bg-white text-stone-700 hover:text-amber-700 hover:border-amber-400 hover:bg-amber-50/50 text-xs font-semibold transition-all shadow-xs"
+        className="mt-3 w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl border border-dashed border-stone-300 bg-white text-stone-700 hover:text-amber-700 hover:border-amber-400 hover:bg-amber-50/50 text-xs font-semibold transition-all shadow-2xs"
         onClick={onAddItem}
       >
         <Plus className="w-3.5 h-3.5" /> Thêm vật phẩm mới
@@ -355,20 +423,20 @@ function RecordCard({
   return (
     <section
       id={`record-${record.id}`}
-      className="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm transition-all border-t-4 border-t-amber-500 hover:shadow-md"
+      className="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-xs transition-all border-t-4 border-t-amber-500 hover:shadow-md"
     >
       {/* Header Bar */}
-      <div className="bg-stone-50/80 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 border-b border-stone-200">
-        <div className="flex items-center gap-3 flex-1 min-w-[240px]">
-          <span className="font-mono text-xs font-bold px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-lg">
+      <div className="bg-stone-50/80 p-3 sm:p-5 flex flex-wrap items-center justify-between gap-3 border-b border-stone-200">
+        <div className="flex items-center gap-2.5 sm:gap-3 flex-1 min-w-[180px]">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-lg shrink-0">
             #{String(index + 1).padStart(2, "0")}
           </span>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500 block">
               Gia Đình Thụ Hưởng
             </span>
             <input
-              className="w-full text-lg sm:text-xl font-extrabold bg-transparent text-stone-900 focus:outline-none focus:border-b focus:border-amber-500 py-0.5 placeholder-stone-400"
+              className="w-full text-base sm:text-xl font-extrabold bg-transparent text-stone-900 focus:outline-none focus:border-b focus:border-amber-500 py-0.5 placeholder-stone-400 truncate"
               value={record.familyId}
               onChange={(e) => onField("familyId", e.target.value)}
               placeholder="Nhập tên / mã số gia đình..."
@@ -376,27 +444,27 @@ function RecordCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="flex items-center gap-2 sm:gap-3 ml-auto">
           <div className="text-right">
-            <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500 block">
+            <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-wider text-stone-500 block">
               Tổng Hỗ Trợ
             </span>
-            <span className="font-mono text-base sm:text-lg font-bold text-emerald-700">
+            <span className="font-mono text-sm sm:text-lg font-bold text-emerald-700">
               {formatVnd(total)}
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 border-l border-stone-200 pl-3">
+          <div className="flex items-center gap-1 border-l border-stone-200 pl-2 sm:pl-3">
             <button
               onClick={onToggleExpand}
-              className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 transition-colors"
+              className="p-1.5 sm:p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 transition-colors"
               title={record.expanded ? "Thu gọn" : "Mở rộng"}
             >
               {record.expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
             <button
               onClick={onDelete}
-              className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition-colors border border-rose-100"
+              className="p-1.5 sm:p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition-colors border border-rose-100"
               title="Xóa gia đình này"
             >
               <Trash2 className="w-4 h-4" />
@@ -407,53 +475,44 @@ function RecordCard({
 
       {/* Expanded Body */}
       {record.expanded && (
-        <div className="p-4 sm:p-6 bg-white space-y-4">
-          {/* YouTube Video Link Field */}
-          <div className="bg-stone-50/70 p-3.5 rounded-xl border border-stone-200 flex flex-wrap items-center gap-3">
-            <Youtube className="w-5 h-5 text-rose-600 shrink-0" />
-            <div className="flex-1 min-w-[200px]">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block mb-0.5">
-                Đường Dẫn Video YouTube Thực Địa
-              </label>
-              <input
-                className="w-full bg-white text-stone-800 text-xs px-3 py-1.5 rounded-lg border border-stone-200 focus:outline-none focus:border-amber-500 font-mono placeholder-stone-400"
-                value={record.youtubeUrl}
-                onChange={(e) => onField("youtubeUrl", e.target.value)}
-                placeholder="https://www.youtube.com/watch?v=..."
-              />
+        <div className="p-3 sm:p-6 bg-white space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <label className="text-xs font-semibold text-stone-500 shrink-0">
+              Link Youtube Video:
+            </label>
+            <div className="flex-1 flex items-center gap-2">
+              <div className="relative flex-1">
+                <Youtube className="w-4 h-4 text-rose-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="url"
+                  className="w-full bg-stone-50 border border-stone-200 rounded-xl pl-9 pr-3 py-1.5 text-xs text-stone-800 focus:outline-none focus:border-amber-500 font-mono"
+                  value={record.youtubeUrl || ""}
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  onChange={(e) => onField("youtubeUrl", e.target.value)}
+                />
+              </div>
+              {record.youtubeUrl && (
+                <a
+                  href={record.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-rose-50 text-rose-600 hover:bg-rose-100 rounded-xl transition-colors border border-rose-100 shrink-0"
+                  title="Mở video YouTube"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
             </div>
-            {record.youtubeUrl && (
-              <a
-                href={record.youtubeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 text-xs font-semibold transition-all"
-              >
-                Mở Video <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            )}
           </div>
 
-          {/* Items Table */}
           <ItemTable
             items={record.items}
-            onToggle={(id, checked) => onToggleItem(id, checked)}
-            onNameChange={(id, name) => onNameChange(id, name)}
-            onCostChange={(id, cost) => onCostChange(id, cost)}
-            onDeleteItem={(id) => onRequestDeleteItem(id)}
+            onToggle={(itemId, checked) => onToggleItem(itemId, checked)}
+            onNameChange={(itemId, name) => onNameChange(itemId, name)}
+            onCostChange={(itemId, cost) => onCostChange(itemId, cost)}
+            onDeleteItem={(itemId) => onRequestDeleteItem(itemId)}
             onAddItem={onAddItem}
           />
-
-          {/* Card Summary Footer */}
-          <div className="flex flex-wrap items-center justify-between gap-3 bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl">
-            <span className="text-xs font-bold text-stone-700 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-              Tổng chi phí hỗ trợ thực tế cho gia đình này:
-            </span>
-            <span className="font-mono text-lg font-extrabold text-emerald-700">
-              {formatVnd(total)}
-            </span>
-          </div>
         </div>
       )}
     </section>
@@ -464,7 +523,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [records, setRecords] = useState([]);
-  const [saveStatus, setSaveStatus] = useState("idle"); // idle | saving | saved | offline
+  const [saveStatus, setSaveStatus] = useState("saved");
   const [toast, setToast] = useState(null);
   const [user, setUser] = useState(null);
   const [modal, setModal] = useState({
@@ -475,8 +534,8 @@ export default function App() {
     payload: null,
   });
 
-  const fileInputRef = useRef(null);
   const saveTimer = useRef(null);
+  const fileInputRef = useRef(null);
   const isRemoteUpdating = useRef(false);
 
   const showToast = (message, type = "info") => {
@@ -484,10 +543,8 @@ export default function App() {
     setTimeout(() => setToast(null), 4000);
   };
 
-  // Auth & Cloud Real-time Listener (onSnapshot for multi-user sync)
   useEffect(() => {
     if (!auth || !db) {
-      // Fallback to local storage if Firebase context is unavailable
       (async () => {
         try {
           const raw = await asyncStorage.getItem(STORAGE_KEY);
@@ -524,7 +581,6 @@ export default function App() {
         if (!isMounted || !userCred.user) return;
         setUser(userCred.user);
 
-        // Public shared collection path per mandatory rules
         const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'appState', 'current');
 
         unsubscribeDoc = onSnapshot(
@@ -544,7 +600,6 @@ export default function App() {
                 }, 100);
               }
             } else {
-              // Seed initial document if it doesn't exist
               const initialRecs = [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")];
               setRecords(initialRecs);
               setDoc(docRef, { month, records: initialRecs, updatedAt: Date.now() });
@@ -573,7 +628,6 @@ export default function App() {
     };
   }, []);
 
-  // Debounced Auto-save to Cloud
   useEffect(() => {
     if (loading || isRemoteUpdating.current) return;
 
@@ -608,7 +662,6 @@ export default function App() {
     return records.reduce((sum, r) => sum + recordTotal(r), 0);
   }, [records]);
 
-  // Backup & Restore handlers
   const handleBackup = () => {
     try {
       const dataStr = JSON.stringify({ month, records, exportedAt: new Date().toISOString() }, null, 2);
@@ -808,7 +861,6 @@ export default function App() {
                 ))}
               </select>
 
-              {/* Backup & Restore Controls */}
               <input
                 type="file"
                 accept=".json,application/json"
@@ -875,7 +927,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Container */}
+      {}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-6">
         <div className="flex items-center justify-between gap-4 bg-white border border-stone-200 rounded-2xl p-4 shadow-sm">
           <span className="text-sm font-bold text-stone-700">
@@ -889,7 +941,6 @@ export default function App() {
           </button>
         </div>
 
-        {/* Record Cards List */}
         <div className="space-y-6">
           {records.map((record, idx) => (
             <RecordCard
@@ -917,7 +968,6 @@ export default function App() {
         </div>
       </main>
 
-      {/* Global Modals & Notifications */}
       <ConfirmModal modal={modal} onConfirm={confirmModal} onCancel={closeModal} />
       <ToastNotification toast={toast} onClose={() => setToast(null)} />
     </div>
