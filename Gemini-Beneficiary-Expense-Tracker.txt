@@ -1,0 +1,744 @@
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import {
+  HeartHandshake,
+  Plus,
+  Trash2,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  RefreshCw,
+  AlertTriangle,
+  CheckCircle2,
+  X,
+  CheckSquare,
+  Sparkles,
+  Youtube
+} from "lucide-react";
+
+const ITEM_SEED = [
+  { name: "25+ Con Gà Giống", cost: 10000000 },
+  { name: "Chuồng tầm 2.4m x 3m + Công Thợ", cost: 13000000 },
+  { name: "Thức Ăn Cho Gà (3 tháng)", cost: 1000000 },
+  { name: "Lưới Rào Khu Vực Chạy tầm 18.5m²", cost: 700000 },
+  { name: "Lưới Che Nắng Phía Trên", cost: 700000 },
+  { name: "Vắc-xin", cost: 2000000 },
+  { name: "5 Máng Nước Kèm Ổ Đẻ", cost: 500000 },
+  { name: "Thanh đậu dài 6m (VD: 4 thanh, mỗi thanh dài 1.5m)", cost: 200000 },
+  { name: "Chi Phí Di Chuyển (xăng, phí đường, v.v.)", cost: 500000 },
+  { name: "Phí Nhân Công", cost: 1500000 },
+  { name: "Nệm", cost: 600000, checked: false },
+];
+
+const STORAGE_KEY = "monthly-donations-v2";
+const MONTHS = [
+  "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+  "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12",
+];
+
+const asyncStorage = {
+  getItem: async (key) => {
+    try {
+      if (window.storage && typeof window.storage.get === "function") {
+        const res = await window.storage.get(key, false);
+        return res ? res.value : null;
+      }
+      return localStorage.getItem(key);
+    } catch (e) {
+      return localStorage.getItem(key);
+    }
+  },
+  setItem: async (key, value) => {
+    try {
+      if (window.storage && typeof window.storage.set === "function") {
+        await window.storage.set(key, value, false);
+        return true;
+      }
+      localStorage.setItem(key, value);
+      return true;
+    } catch (e) {
+      try {
+        localStorage.setItem(key, value);
+        return true;
+      } catch (err) {
+        return false;
+      }
+    }
+  },
+};
+
+const uid = () => Math.random().toString(36).substring(2, 10);
+
+const seedItems = () =>
+  ITEM_SEED.map((it) => ({
+    id: uid(),
+    name: it.name,
+    cost: it.cost,
+    checked: it.checked !== undefined ? it.checked : true,
+  }));
+
+const makeRecord = (familyId) => ({
+  id: uid(),
+  familyId,
+  youtubeUrl: "",
+  expanded: true,
+  items: seedItems(),
+});
+
+const formatVnd = (n) => `${Math.round(Number(n) || 0).toLocaleString("vi-VN")} ₫`;
+
+const sumChecked = (items) =>
+  (items || []).reduce((sum, it) => (it.checked ? sum + (Number(it.cost) || 0) : sum), 0);
+
+const recordTotal = (record) => sumChecked(record.items);
+
+const normalizeItems = (items) => {
+  const RENAMES = [
+    ["Chuồng Gỗ (8ft x 10ft) + Công Thợ", "Chuồng tầm 2.4m x 3m + Công Thợ", 13000000],
+    ["Lưới Rào Khu Vực Chạy (200 sq ft)", "Lưới Rào Khu Vực Chạy tầm 18.5m²", null],
+    ["Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", "Thanh đậu dài 6m (VD: 4 thanh, mỗi thanh dài 1.5m)", null],
+    ["20 Con Gà Giống", "25+ Con Gà Giống", null],
+  ];
+  const COST_FIXES = {
+    "Phí Nhân Công": 1500000,
+    "Chi Phí Di Chuyển (xăng, phí đường, v.v.)": 500000,
+  };
+
+  let list = (items || []).map((it) => {
+    let { name, cost } = it;
+    const rename = RENAMES.find(([oldName]) => oldName === name);
+    if (rename) {
+      name = rename[1];
+      if (rename[2] !== null) cost = rename[2];
+    } else if (COST_FIXES[name] !== undefined && (cost === 0 || cost === null)) {
+      cost = COST_FIXES[name];
+    }
+    return { ...it, name, cost: Number(cost) || 0 };
+  });
+
+  if (!list.some((it) => it.name === "Nệm")) {
+    list.push({ id: uid(), name: "Nệm", cost: 600000, checked: false });
+  }
+
+  return list;
+};
+
+const migrateRecord = (r) => {
+  if (Array.isArray(r.items)) {
+    const cleaned = r.items.filter((it) => (it.name || "").trim() !== "Xe Đạp");
+    return { ...r, items: normalizeItems(cleaned) };
+  }
+
+  if (Array.isArray(r.chickenItems) || Array.isArray(r.otherItems)) {
+    const merged = [
+      ...(Array.isArray(r.chickenItems) ? r.chickenItems : []),
+      ...(Array.isArray(r.otherItems) ? r.otherItems : []),
+    ].filter((it) => (it.name || "").trim() !== "Xe Đạp");
+    return { ...r, items: normalizeItems(merged.length ? merged : seedItems()) };
+  }
+
+  return { ...r, items: seedItems() };
+};
+
+function ToastNotification({ toast, onClose }) {
+  if (!toast) return null;
+
+  const bgStyles = {
+    success: "bg-emerald-900 text-emerald-100 border-emerald-700 shadow-emerald-900/10",
+    error: "bg-rose-900 text-rose-100 border-rose-700 shadow-rose-900/10",
+    info: "bg-stone-900 text-stone-100 border-stone-800 shadow-stone-900/10",
+  }[toast.type || "info"];
+
+  return (
+    <div className="fixed bottom-5 right-5 z-50 max-w-sm animate-bounce-short">
+      <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border shadow-xl ${bgStyles}`}>
+        {toast.type === "success" && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
+        {toast.type === "error" && <AlertTriangle className="w-5 h-5 text-rose-400 shrink-0" />}
+        {toast.type === "info" && <Sparkles className="w-5 h-5 text-amber-400 shrink-0" />}
+        <span className="text-sm font-medium">{toast.message}</span>
+        <button
+          onClick={onClose}
+          className="ml-auto text-stone-400 hover:text-white transition-colors"
+          aria-label="Đóng"
+        >
+          <X className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ConfirmModal({ modal, onConfirm, onCancel }) {
+  if (!modal.open) return null;
+
+  const messages = {
+    delete: "Bạn có chắc chắn muốn xóa gia đình này? Hành động này không thể hoàn tác.",
+    deleteItem: "Bạn có chắc chắn muốn xóa vật phẩm này khỏi danh sách?",
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-stone-900/40 backdrop-blur-xs flex items-center justify-center p-4"
+      onClick={onCancel}
+    >
+      <div
+        className="bg-white border border-stone-200 text-stone-800 rounded-2xl p-6 max-w-md w-full shadow-2xl transform transition-all border-t-4 border-t-amber-500"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <div className="p-2.5 bg-amber-50 rounded-xl text-amber-600 border border-amber-100">
+            <AlertTriangle className="w-6 h-6" />
+          </div>
+          <h3 className="text-lg font-bold text-stone-900">Xác Nhận Thao Tác</h3>
+        </div>
+        <p className="text-sm text-stone-600 leading-relaxed mb-6">
+          {messages[modal.type] || "Bạn có chắc chắn muốn thực hiện hành động này?"}
+        </p>
+        <div className="flex justify-end gap-3">
+          <button
+            type="button"
+            className="px-4 py-2.5 rounded-xl border border-stone-200 bg-stone-100 text-stone-700 text-xs font-semibold hover:bg-stone-200 transition-colors"
+            onClick={onCancel}
+          >
+            Hủy Bỏ
+          </button>
+          <button
+            type="button"
+            className="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-md shadow-amber-600/20 transition-all"
+            onClick={onConfirm}
+          >
+            Xác Nhận
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ItemTable({ items, onToggle, onNameChange, onCostChange, onDeleteItem, onAddItem }) {
+  const subtotal = sumChecked(items);
+
+  return (
+    <div className="mt-5 bg-stone-50/70 rounded-2xl border border-stone-200 p-4">
+      <div className="flex items-center justify-between mb-3 pb-2 border-b border-stone-200">
+        <h4 className="text-sm font-bold text-amber-700 flex items-center gap-2">
+          <CheckSquare className="w-4 h-4 text-amber-600" /> Danh Sách Vật Liệu & Chi Phí Hỗ Trợ
+        </h4>
+        <span className="text-xs text-stone-500 font-medium">
+          Đã chọn: <strong className="text-stone-800">{items.filter((i) => i.checked).length}</strong>/{items.length}
+        </span>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr className="border-b border-stone-200 text-stone-500 font-semibold uppercase tracking-wider">
+              <th className="py-2.5 px-2 w-10 text-center">Chọn</th>
+              <th className="py-2.5 px-3 min-w-[200px]">Tên Vật Phẩm</th>
+              <th className="py-2.5 px-3 text-right w-[160px]">Chi Phí (VND)</th>
+              <th className="py-2.5 px-2 w-10 text-center">Xóa</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-stone-200/80">
+            {items.map((it) => (
+              <tr
+                key={it.id}
+                className={`transition-colors hover:bg-amber-50/50 ${
+                  it.checked ? "bg-amber-50/70" : "bg-white opacity-80"
+                }`}
+              >
+                <td className="py-2 px-2 text-center">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-stone-300 text-amber-600 focus:ring-amber-500/20 accent-amber-600 cursor-pointer"
+                    checked={it.checked}
+                    onChange={(e) => onToggle(it.id, e.target.checked)}
+                    aria-label={`Chọn ${it.name}`}
+                  />
+                </td>
+                <td className="py-2 px-3">
+                  <input
+                    type="text"
+                    className="w-full bg-transparent text-stone-800 font-medium placeholder-stone-400 focus:outline-none focus:border-b focus:border-amber-500 py-1"
+                    value={it.name}
+                    placeholder="Nhập tên vật phẩm..."
+                    onChange={(e) => onNameChange(it.id, e.target.value)}
+                  />
+                </td>
+                <td className="py-2 px-3 text-right">
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    className="w-full text-right font-mono bg-white border border-stone-200 rounded-lg px-2.5 py-1 text-stone-800 font-semibold focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500/30"
+                    value={Number(it.cost || 0).toLocaleString("vi-VN")}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/[^\d]/g, "");
+                      onCostChange(it.id, digits === "" ? 0 : parseInt(digits, 10));
+                    }}
+                  />
+                </td>
+                <td className="py-2 px-2 text-center">
+                  <button
+                    type="button"
+                    className="p-1 rounded bg-transparent text-stone-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                    onClick={() => onDeleteItem(it.id)}
+                    title="Xóa vật phẩm"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {items.length === 0 && (
+              <tr>
+                <td colSpan={4} className="py-6 text-center text-stone-400 italic">
+                  Chưa có vật phẩm nào. Nhấn "+ Thêm vật phẩm mới" ở bên dưới.
+                </td>
+              </tr>
+            )}
+          </tbody>
+          <tfoot>
+            <tr className="border-t-2 border-stone-200 font-semibold text-stone-700 bg-stone-100/50">
+              <td colSpan={2} className="py-3 px-3 text-stone-600">
+                Tổng subtotal (mục đã chọn):
+              </td>
+              <td className="py-3 px-3 text-right font-mono text-sm font-bold text-emerald-700">
+                {formatVnd(subtotal)}
+              </td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <button
+        type="button"
+        className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-stone-300 bg-white text-stone-700 hover:text-amber-700 hover:border-amber-400 hover:bg-amber-50/50 text-xs font-semibold transition-all shadow-xs"
+        onClick={onAddItem}
+      >
+        <Plus className="w-3.5 h-3.5" /> Thêm vật phẩm mới
+      </button>
+    </div>
+  );
+}
+
+function RecordCard({
+  record,
+  index,
+  onField,
+  onToggleExpand,
+  onToggleItem,
+  onNameChange,
+  onCostChange,
+  onRequestDeleteItem,
+  onAddItem,
+  onDelete,
+}) {
+  const total = recordTotal(record);
+
+  return (
+    <section
+      id={`record-${record.id}`}
+      className="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm transition-all border-t-4 border-t-amber-500 hover:shadow-md"
+    >
+      {/* Header Bar */}
+      <div className="bg-stone-50/80 p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 border-b border-stone-200">
+        <div className="flex items-center gap-3 flex-1 min-w-[240px]">
+          <span className="font-mono text-xs font-bold px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-200 rounded-lg">
+            #{String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="flex-1">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500 block">
+              Gia Đình Thụ Hưởng
+            </span>
+            <input
+              className="w-full text-lg sm:text-xl font-extrabold bg-transparent text-stone-900 focus:outline-none focus:border-b focus:border-amber-500 py-0.5 placeholder-stone-400"
+              value={record.familyId}
+              onChange={(e) => onField("familyId", e.target.value)}
+              placeholder="Nhập tên / mã số gia đình..."
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 ml-auto">
+          <div className="text-right">
+            <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500 block">
+              Tổng Hỗ Trợ
+            </span>
+            <span className="font-mono text-base sm:text-lg font-bold text-emerald-700">
+              {formatVnd(total)}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1.5 border-l border-stone-200 pl-3">
+            <button
+              onClick={onToggleExpand}
+              className="p-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-600 hover:text-stone-900 transition-colors"
+              title={record.expanded ? "Thu gọn" : "Mở rộng"}
+            >
+              {record.expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={onDelete}
+              className="p-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 transition-colors border border-rose-100"
+              title="Xóa gia đình này"
+            >
+              <Trash2 className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Expanded Body */}
+      {record.expanded && (
+        <div className="p-4 sm:p-6 bg-white space-y-4">
+          {/* YouTube Video Link Field */}
+          <div className="bg-stone-50/70 p-3.5 rounded-xl border border-stone-200 flex flex-wrap items-center gap-3">
+            <Youtube className="w-5 h-5 text-rose-600 shrink-0" />
+            <div className="flex-1 min-w-[200px]">
+              <label className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block mb-0.5">
+                Đường Dẫn Video YouTube Thực Địa
+              </label>
+              <input
+                className="w-full bg-white text-stone-800 text-xs px-3 py-1.5 rounded-lg border border-stone-200 focus:outline-none focus:border-amber-500 font-mono placeholder-stone-400"
+                value={record.youtubeUrl}
+                onChange={(e) => onField("youtubeUrl", e.target.value)}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+            </div>
+            {record.youtubeUrl && (
+              <a
+                href={record.youtubeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 text-xs font-semibold transition-all"
+              >
+                Mở Video <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+
+          {/* Items Table */}
+          <ItemTable
+            items={record.items}
+            onToggle={(id, checked) => onToggleItem(id, checked)}
+            onNameChange={(id, name) => onNameChange(id, name)}
+            onCostChange={(id, cost) => onCostChange(id, cost)}
+            onDeleteItem={(id) => onRequestDeleteItem(id)}
+            onAddItem={onAddItem}
+          />
+
+          {/* Card Summary Footer */}
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl">
+            <span className="text-xs font-bold text-stone-700 flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              Tổng chi phí hỗ trợ thực tế cho gia đình này:
+            </span>
+            <span className="font-mono text-lg font-extrabold text-emerald-700">
+              {formatVnd(total)}
+            </span>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [records, setRecords] = useState([]);
+  const [saveStatus, setSaveStatus] = useState("idle"); // idle | saving | saved | offline
+  const [toast, setToast] = useState(null);
+  const [modal, setModal] = useState({
+    open: false,
+    type: null,
+    recordId: null,
+    itemId: null,
+  });
+
+  const loadedRef = useRef(false);
+  const saveTimer = useRef(null);
+
+  const showToast = (message, type = "info") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const raw = await asyncStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          setMonth(parsed.month || new Date().getMonth() + 1);
+          const recs = Array.isArray(parsed.records) ? parsed.records : [];
+          const migrated = recs.map(migrateRecord);
+          setRecords(migrated.length ? migrated : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+        } else {
+          setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+        }
+      } catch (e) {
+        setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+      } finally {
+        loadedRef.current = true;
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!loadedRef.current) return;
+    setSaveStatus("saving");
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+
+    saveTimer.current = setTimeout(async () => {
+      try {
+        const success = await asyncStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ month, records })
+        );
+        setSaveStatus(success ? "saved" : "offline");
+      } catch (e) {
+        setSaveStatus("offline");
+      }
+    }, 600);
+
+    return () => clearTimeout(saveTimer.current);
+  }, [month, records]);
+
+  const grandTotal = useMemo(() => {
+    return records.reduce((sum, r) => sum + recordTotal(r), 0);
+  }, [records]);
+
+  const updateField = (recordId, field, value) => {
+    setRecords((prev) => prev.map((r) => (r.id === recordId ? { ...r, [field]: value } : r)));
+  };
+
+  const toggleExpand = (recordId) => {
+    setRecords((prev) =>
+      prev.map((r) => (r.id === recordId ? { ...r, expanded: !r.expanded } : r))
+    );
+  };
+
+  const toggleItem = (recordId, itemId, checked) => {
+    setRecords((prev) =>
+      prev.map((r) =>
+        r.id === recordId
+          ? {
+              ...r,
+              items: r.items.map((it) => (it.id === itemId ? { ...it, checked } : it)),
+            }
+          : r
+      )
+    );
+  };
+
+  const changeItemName = (recordId, itemId, name) => {
+    setRecords((prev) =>
+      prev.map((r) =>
+        r.id === recordId
+          ? {
+              ...r,
+              items: r.items.map((it) => (it.id === itemId ? { ...it, name } : it)),
+            }
+          : r
+      )
+    );
+  };
+
+  const changeItemCost = (recordId, itemId, cost) => {
+    setRecords((prev) =>
+      prev.map((r) =>
+        r.id === recordId
+          ? {
+              ...r,
+              items: r.items.map((it) => (it.id === itemId ? { ...it, cost } : it)),
+            }
+          : r
+      )
+    );
+  };
+
+  const addItem = (recordId) => {
+    setRecords((prev) =>
+      prev.map((r) =>
+        r.id === recordId
+          ? {
+              ...r,
+              items: [...r.items, { id: uid(), name: "", cost: 0, checked: true }],
+            }
+          : r
+      )
+    );
+  };
+
+  const addRecord = () => {
+    const nextNum = records.length + 1;
+    const newRec = makeRecord(`Gia đình ${nextNum}`);
+    setRecords((prev) => [...prev, newRec]);
+    showToast(`Đã thêm Gia đình ${nextNum}`, "success");
+    setTimeout(() => {
+      const el = document.getElementById(`record-${newRec.id}`);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
+  const requestDelete = (recordId) => {
+    setModal({ open: true, type: "delete", recordId, itemId: null });
+  };
+
+  const requestDeleteItem = (recordId, itemId) => {
+    setModal({ open: true, type: "deleteItem", recordId, itemId });
+  };
+
+  const closeModal = () =>
+    setModal({ open: false, type: null, recordId: null, itemId: null });
+
+  const confirmModal = () => {
+    if (modal.type === "delete") {
+      setRecords((prev) => prev.filter((r) => r.id !== modal.recordId));
+      showToast("Đã xóa gia đình thành công", "info");
+    } else if (modal.type === "deleteItem") {
+      setRecords((prev) =>
+        prev.map((r) =>
+          r.id === modal.recordId
+            ? { ...r, items: r.items.filter((it) => it.id !== modal.itemId) }
+            : r
+        )
+      );
+      showToast("Đã xóa vật phẩm", "info");
+    }
+    closeModal();
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-stone-50 text-stone-600 flex items-center justify-center font-mono text-sm gap-3">
+        <RefreshCw className="w-5 h-5 animate-spin text-amber-600" />
+        Đang tải dữ liệu hỗ trợ...
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-stone-100/70 text-stone-800 font-sans pb-16 selection:bg-amber-200">
+      {/* Top Header & Dashboard Total Display */}
+      <header className="bg-white border-b border-stone-200 p-4 sm:p-6 shadow-xs">
+        <div className="max-w-6xl mx-auto space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-amber-50 text-amber-700 rounded-2xl border border-amber-200/80 shadow-xs">
+                <HeartHandshake className="w-6 h-6" />
+              </div>
+              <div>
+                <h1 className="text-xl sm:text-2xl font-black text-stone-900 tracking-tight">
+                  Quản Lý Hỗ Trợ Gia Đình
+                </h1>
+                <p className="text-xs text-stone-500 font-medium">
+                  Sổ theo dõi quyên góp, trao tặng sinh kế & vật liệu
+                </p>
+              </div>
+            </div>
+
+            {/* Month Select & Storage Sync Status */}
+            <div className="flex items-center gap-3">
+              <select
+                className="bg-stone-50 text-stone-800 border border-stone-200 font-mono text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none focus:border-amber-500 cursor-pointer shadow-xs"
+                value={month}
+                onChange={(e) => setMonth(parseInt(e.target.value, 10))}
+              >
+                {MONTHS.map((m, i) => (
+                  <option key={i} value={i + 1}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200 font-mono text-[11px] shadow-xs">
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    saveStatus === "saving"
+                      ? "bg-amber-500 animate-pulse"
+                      : saveStatus === "offline"
+                      ? "bg-rose-500"
+                      : "bg-emerald-500"
+                  }`}
+                />
+                <span className="text-stone-600 font-medium">
+                  {saveStatus === "saving"
+                    ? "Đang lưu..."
+                    : saveStatus === "offline"
+                    ? "Chưa đồng bộ"
+                    : "Đã lưu cloud"}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Grand Budget Total Summary Banner */}
+          <div className="bg-gradient-to-r from-emerald-50 via-emerald-50/80 to-amber-50/50 border border-emerald-200/80 rounded-2xl p-4 flex items-center justify-between shadow-xs">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-100 text-emerald-700 rounded-xl">
+                <Sparkles className="w-5 h-5 animate-pulse" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 block">
+                  Tổng Ngân Sách Dự Chi
+                </span>
+                <span className="text-xl sm:text-2xl font-extrabold text-emerald-700 font-mono">
+                  {formatVnd(grandTotal)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Container */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-6">
+        <div className="flex items-center justify-between gap-4 bg-white border border-stone-200 rounded-2xl p-4 shadow-sm">
+          <span className="text-sm font-bold text-stone-700">
+            Danh sách các gia đình nhận hỗ trợ
+          </span>
+          <button
+            onClick={addRecord}
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-md shadow-amber-500/20 transition-all"
+          >
+            <Plus className="w-4 h-4" /> Thêm Gia Đình
+          </button>
+        </div>
+
+        {/* Record Cards List */}
+        <div className="space-y-6">
+          {records.map((record, idx) => (
+            <RecordCard
+              key={record.id}
+              record={record}
+              index={idx}
+              onField={(field, value) => updateField(record.id, field, value)}
+              onToggleExpand={() => toggleExpand(record.id)}
+              onToggleItem={(itemId, checked) => toggleItem(record.id, itemId, checked)}
+              onNameChange={(itemId, name) => changeItemName(record.id, itemId, name)}
+              onCostChange={(itemId, cost) => changeItemCost(record.id, itemId, cost)}
+              onRequestDeleteItem={(itemId) => requestDeleteItem(record.id, itemId)}
+              onAddItem={() => addItem(record.id)}
+              onDelete={() => requestDelete(record.id)}
+            />
+          ))}
+
+          {records.length === 0 && (
+            <div className="text-center py-12 bg-white border border-stone-200 rounded-2xl shadow-xs">
+              <p className="text-stone-500 text-sm font-medium">
+                Chưa có danh sách gia đình nào. Nhấn "+ Thêm Gia Đình" ở trên để bắt đầu.
+              </p>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Global Modals & Notifications */}
+      <ConfirmModal modal={modal} onConfirm={confirmModal} onCancel={closeModal} />
+      <ToastNotification toast={toast} onClose={() => setToast(null)} />
+    </div>
+  );
+}
