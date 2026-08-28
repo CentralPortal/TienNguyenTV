@@ -5,20 +5,20 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 --------------------------------------------------------- */
 
 const ITEM_SEED = [
-  { name: "20 Con Gà Giống", cost: 10000000 },
-  { name: "Chuồng Gỗ (8ft x 10ft) + Công Thợ", cost: 7000000 },
+  { name: "25+ Con Gà Giống", cost: 10000000 },
+  { name: "Chuồng tầm 2.4m x 3m + Công Thợ", cost: 13000000 },
   { name: "Thức Ăn Cho Gà (3 tháng)", cost: 1000000 },
-  { name: "Lưới Rào Khu Vực Chạy (200 sq ft)", cost: 700000 },
+  { name: "Lưới Rào Khu Vực Chạy tầm 18.5m²", cost: 700000 },
   { name: "Lưới Che Nắng Phía Trên", cost: 700000 },
   { name: "Vắc-xin", cost: 2000000 },
   { name: "5 Máng Nước Kèm Ổ Đẻ", cost: 500000 },
-  { name: "Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", cost: 200000 },
+  { name: "Thanh đậu dài 6m (VD: 4 thanh, mỗi thanh dài 1.5m)", cost: 200000 },
   { name: "Chi Phí Di Chuyển (xăng, phí đường, v.v.)", cost: 500000 },
-  { name: "Phí Nhân Công", cost: 0 },
+  { name: "Phí Nhân Công", cost: 1500000 },
+  { name: "Nệm", cost: 600000, checked: false },
 ];
 
 const STORAGE_KEY = "monthly-donations-v1";
-const PASSWORD = "TNTV";
 const MONTHS = [
   "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
   "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12",
@@ -31,7 +31,12 @@ const MONTHS = [
 const uid = () => Math.random().toString(36).slice(2, 10);
 
 const seedItems = () =>
-  ITEM_SEED.map((it) => ({ id: uid(), name: it.name, cost: it.cost, checked: false }));
+  ITEM_SEED.map((it) => ({
+    id: uid(),
+    name: it.name,
+    cost: it.cost,
+    checked: it.checked !== undefined ? it.checked : true,
+  }));
 
 const makeRecord = (familyId) => ({
   id: uid(),
@@ -48,12 +53,46 @@ const sumChecked = (items) =>
 
 const recordTotal = (record) => sumChecked(record.items);
 
+// Renames/cost-corrections applied to previously saved items that still
+// carry an old name, plus ensuring the "Nệm" item always exists.
+const normalizeItems = (items) => {
+  const RENAMES = [
+    ["Chuồng Gỗ (8ft x 10ft) + Công Thợ", "Chuồng tầm 2.4m x 3m + Công Thợ", 13000000],
+    ["Lưới Rào Khu Vực Chạy (200 sq ft)", "Lưới Rào Khu Vực Chạy tầm 18.5m²", null],
+    ["Thanh Đậu Dài 20 Feet (VD: 4 thanh 5 feet)", "Thanh đậu dài 6m (VD: 4 thanh, mỗi thanh dài 1.5m)", null],
+    ["20 Con Gà Giống", "25+ Con Gà Giống", null],
+  ];
+  const COST_FIXES = {
+    "Phí Nhân Công": 1500000,
+    "Chi Phí Di Chuyển (xăng, phí đường, v.v.)": 500000,
+  };
+
+  let list = (items || []).map((it) => {
+    let { name, cost } = it;
+    const rename = RENAMES.find(([oldName]) => oldName === name);
+    if (rename) {
+      name = rename[1];
+      if (rename[2] !== null) cost = rename[2];
+    } else if (COST_FIXES[name] !== undefined) {
+      cost = COST_FIXES[name];
+    }
+    return { ...it, name, cost };
+  });
+
+  if (!list.some((it) => it.name === "Nệm")) {
+    list = [...list, { id: uid(), name: "Nệm", cost: 600000, checked: false }];
+  }
+
+  return list;
+};
+
 // Best-effort migration from older data shapes so previously saved data
 // keeps working after the item model changed.
 const migrateRecord = (r) => {
   // Newest shape already: single "items" array.
   if (Array.isArray(r.items)) {
-    return { ...r, items: r.items.filter((it) => (it.name || "").trim() !== "Xe Đạp") };
+    const cleaned = r.items.filter((it) => (it.name || "").trim() !== "Xe Đạp");
+    return { ...r, items: normalizeItems(cleaned) };
   }
 
   // Previous shape: two arrays, chickenItems + otherItems.
@@ -62,7 +101,7 @@ const migrateRecord = (r) => {
       ...(Array.isArray(r.chickenItems) ? r.chickenItems : []),
       ...(Array.isArray(r.otherItems) ? r.otherItems : []),
     ].filter((it) => (it.name || "").trim() !== "Xe Đạp");
-    return { ...r, items: merged.length ? merged : seedItems() };
+    return { ...r, items: normalizeItems(merged.length ? merged : seedItems()) };
   }
 
   // Oldest shape: flat { id: { checked, cost } } map keyed by fixed ids.
@@ -83,9 +122,9 @@ const migrateRecord = (r) => {
       id: uid(),
       name,
       cost: r.items[id] ? Number(r.items[id].cost) || 0 : cost,
-      checked: r.items[id] ? !!r.items[id].checked : false,
+      checked: r.items[id] ? !!r.items[id].checked : true,
     }));
-    return { ...r, items: built };
+    return { ...r, items: normalizeItems(built) };
   }
 
   return { ...r, items: seedItems() };
@@ -280,32 +319,22 @@ function RecordCard({
   );
 }
 
-function PasswordModal({ modal, value, onChange, onConfirm, onCancel }) {
+function ConfirmModal({ modal, onConfirm, onCancel }) {
   if (!modal.open) return null;
   const message =
     modal.type === "delete"
-      ? "Nhập mật khẩu để xóa gia đình này. Hành động này không thể hoàn tác."
+      ? "Bạn có chắc chắn muốn xóa gia đình này? Hành động này không thể hoàn tác."
       : modal.type === "deleteItem"
-      ? "Nhập mật khẩu để xóa vật phẩm này. Hành động này không thể hoàn tác."
-      : "Nhập mật khẩu để xóa tất cả các mục đang được chọn (ở mọi gia đình).";
+      ? "Bạn có chắc chắn muốn xóa vật phẩm này? Hành động này không thể hoàn tác."
+      : modal.type === "restore"
+      ? "Khôi phục sẽ ghi đè toàn bộ dữ liệu hiện tại bằng dữ liệu từ tệp sao lưu. Bạn có chắc chắn muốn tiếp tục?"
+      : "Bạn có chắc chắn muốn xóa tất cả các mục đang được chọn (ở mọi gia đình)?";
 
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <h3>Xác Nhận Mật Khẩu</h3>
+        <h3>Xác Nhận</h3>
         <p>{message}</p>
-        <input
-          type="password"
-          autoFocus
-          className="modal-input"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") onConfirm();
-          }}
-          placeholder="Mật khẩu"
-        />
-        {modal.error ? <div className="modal-error">{modal.error}</div> : null}
         <div className="modal-actions">
           <button className="btn btn-ghost" onClick={onCancel}>
             Hủy
@@ -334,12 +363,12 @@ export default function App() {
     recordId: null,
     section: null,
     itemId: null,
-    error: "",
+    payload: null,
   });
-  const [pwInput, setPwInput] = useState("");
 
   const loadedRef = useRef(false);
   const saveTimer = useRef(null);
+  const fileInputRef = useRef(null);
 
   // Load from cloud storage on mount
   useEffect(() => {
@@ -458,28 +487,25 @@ export default function App() {
   };
 
   const requestDelete = (recordId) => {
-    setPwInput("");
-    setModal({ open: true, type: "delete", recordId, section: null, itemId: null, error: "" });
+    setModal({ open: true, type: "delete", recordId, section: null, itemId: null, payload: null });
   };
 
   const requestDeleteItem = (recordId, section, itemId) => {
-    setPwInput("");
-    setModal({ open: true, type: "deleteItem", recordId, section, itemId, error: "" });
+    setModal({ open: true, type: "deleteItem", recordId, section, itemId, payload: null });
   };
 
   const requestClear = () => {
-    setPwInput("");
-    setModal({ open: true, type: "clear", recordId: null, section: null, itemId: null, error: "" });
+    setModal({ open: true, type: "clear", recordId: null, section: null, itemId: null, payload: null });
+  };
+
+  const requestRestore = (payload) => {
+    setModal({ open: true, type: "restore", recordId: null, section: null, itemId: null, payload });
   };
 
   const closeModal = () =>
-    setModal({ open: false, type: null, recordId: null, section: null, itemId: null, error: "" });
+    setModal({ open: false, type: null, recordId: null, section: null, itemId: null, payload: null });
 
   const confirmModal = () => {
-    if (pwInput !== PASSWORD) {
-      setModal((m) => ({ ...m, error: "Mật khẩu không đúng. Vui lòng thử lại." }));
-      return;
-    }
     if (modal.type === "delete") {
       setRecords((prev) => prev.filter((r) => r.id !== modal.recordId));
     } else if (modal.type === "deleteItem") {
@@ -495,8 +521,51 @@ export default function App() {
           items: r.items.map((it) => ({ ...it, checked: false })),
         }))
       );
+    } else if (modal.type === "restore" && modal.payload) {
+      const recs = Array.isArray(modal.payload.records) ? modal.payload.records : [];
+      const migrated = recs.map(migrateRecord);
+      setMonth(modal.payload.month || month);
+      setRecords(migrated.length ? migrated : records);
     }
     closeModal();
+  };
+
+  const handleBackup = () => {
+    const payload = JSON.stringify({ month, records }, null, 2);
+    const blob = new Blob([payload], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `sao-luu-quyen-gop-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleRestoreClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleFileSelected = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const parsed = JSON.parse(evt.target.result);
+        if (!parsed || !Array.isArray(parsed.records)) {
+          window.alert("Tệp sao lưu không hợp lệ.");
+          return;
+        }
+        requestRestore(parsed);
+      } catch (err) {
+        window.alert("Không thể đọc tệp sao lưu. Vui lòng kiểm tra định dạng JSON.");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
   };
 
   return (
@@ -653,6 +722,8 @@ export default function App() {
         }
         .add-btn { background: var(--green); color: #F5EFDF; }
         .add-btn:hover { background: var(--green-deep); }
+        .backup-btn { background: var(--surface); color: var(--green-deep); border: 1px solid var(--border); }
+        .backup-btn:hover { background: var(--gold-soft); border-color: var(--gold); }
         .clear-btn { background: var(--rust-bg); color: var(--rust); border: 1px solid #E9C3B0; }
         .clear-btn:hover { background: #F5D9C8; }
 
@@ -880,12 +951,6 @@ export default function App() {
         }
         .modal-box h3 { margin: 0 0 8px; color: var(--rust); font-size: 17px; }
         .modal-box p { margin: 0 0 14px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
-        .modal-input {
-          width: 100%; padding: 9px 12px; border: 1px solid var(--border);
-          border-radius: 8px; font-size: 14px; margin-bottom: 8px;
-        }
-        .modal-input:focus { outline: none; border-color: var(--rust); }
-        .modal-error { color: var(--rust); font-size: 12.5px; margin-bottom: 8px; }
         .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
         .btn { padding: 8px 16px; border-radius: 8px; border: none; font-weight: 700; font-size: 13px; cursor: pointer; }
         .btn-ghost { background: transparent; color: var(--ink-soft); border: 1px solid var(--border); }
@@ -915,7 +980,7 @@ export default function App() {
           .record-nav { padding: 0 12px; gap: 8px; margin: 12px auto 0; }
           .nav-pill { font-size: 12px; padding: 6px 11px; }
           .spacer { flex-basis: 100%; height: 0; }
-          .add-btn, .clear-btn { flex: 1 1 auto; text-align: center; font-size: 12.5px; padding: 9px 12px; }
+          .add-btn, .clear-btn, .backup-btn { flex: 1 1 auto; text-align: center; font-size: 12.5px; padding: 9px 12px; }
 
           /* Records */
           .records { padding: 0 12px; gap: 14px; margin-top: 16px; }
@@ -1007,6 +1072,19 @@ export default function App() {
               </button>
             ))}
             <span className="spacer" />
+            <input
+              type="file"
+              accept="application/json,.json"
+              ref={fileInputRef}
+              onChange={handleFileSelected}
+              style={{ display: "none" }}
+            />
+            <button className="backup-btn" onClick={handleBackup}>
+              ⬇ Sao lưu
+            </button>
+            <button className="backup-btn" onClick={handleRestoreClick}>
+              ⬆ Khôi phục
+            </button>
             <button className="clear-btn" onClick={requestClear}>
               Xóa mục đã chọn
             </button>
@@ -1043,13 +1121,7 @@ export default function App() {
         </>
       )}
 
-      <PasswordModal
-        modal={modal}
-        value={pwInput}
-        onChange={setPwInput}
-        onConfirm={confirmModal}
-        onCancel={closeModal}
-      />
+      <ConfirmModal modal={modal} onConfirm={confirmModal} onCancel={closeModal} />
     </div>
   );
 }
