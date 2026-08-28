@@ -12,8 +12,24 @@ import {
   X,
   CheckSquare,
   Sparkles,
-  Youtube
+  Youtube,
+  Download,
+  Upload
 } from "lucide-react";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAuth, signInWithCustomToken, signInAnonymously } from "firebase/auth";
+import { getFirestore, doc, onSnapshot, setDoc } from "firebase/firestore";
+
+// Firebase Initialization
+const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+
+let app, auth, db;
+if (firebaseConfig) {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  auth = getAuth(app);
+  db = getFirestore(app);
+}
 
 const ITEM_SEED = [
   { name: "25+ Con Gà Giống", cost: 10000000 },
@@ -173,6 +189,7 @@ function ConfirmModal({ modal, onConfirm, onCancel }) {
   const messages = {
     delete: "Bạn có chắc chắn muốn xóa gia đình này? Hành động này không thể hoàn tác.",
     deleteItem: "Bạn có chắc chắn muốn xóa vật phẩm này khỏi danh sách?",
+    restore: "Khôi phục sẽ ghi đè toàn bộ dữ liệu hiện tại bằng dữ liệu từ tệp sao lưu. Bạn có chắc chắn muốn tiếp tục?",
   };
 
   return (
@@ -449,66 +466,197 @@ export default function App() {
   const [records, setRecords] = useState([]);
   const [saveStatus, setSaveStatus] = useState("idle"); // idle | saving | saved | offline
   const [toast, setToast] = useState(null);
+  const [user, setUser] = useState(null);
   const [modal, setModal] = useState({
     open: false,
     type: null,
     recordId: null,
     itemId: null,
+    payload: null,
   });
 
-  const loadedRef = useRef(false);
+  const fileInputRef = useRef(null);
   const saveTimer = useRef(null);
+  const isRemoteUpdating = useRef(false);
 
   const showToast = (message, type = "info") => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 4000);
   };
 
+  // Auth & Cloud Real-time Listener (onSnapshot for multi-user sync)
   useEffect(() => {
-    (async () => {
-      try {
-        const raw = await asyncStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          setMonth(parsed.month || new Date().getMonth() + 1);
-          const recs = Array.isArray(parsed.records) ? parsed.records : [];
-          const migrated = recs.map(migrateRecord);
-          setRecords(migrated.length ? migrated : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
-        } else {
+    if (!auth || !db) {
+      // Fallback to local storage if Firebase context is unavailable
+      (async () => {
+        try {
+          const raw = await asyncStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            setMonth(parsed.month || new Date().getMonth() + 1);
+            const recs = Array.isArray(parsed.records) ? parsed.records : [];
+            const migrated = recs.map(migrateRecord);
+            setRecords(migrated.length ? migrated : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+          } else {
+            setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+          }
+        } catch (e) {
           setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+        } finally {
+          setLoading(false);
         }
-      } catch (e) {
-        setRecords([makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
-      } finally {
-        loadedRef.current = true;
+      })();
+      return;
+    }
+
+    let unsubscribeDoc = null;
+    let isMounted = true;
+
+    const initAuthAndSync = async () => {
+      try {
+        let userCred;
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          userCred = await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          userCred = await signInAnonymously(auth);
+        }
+        
+        if (!isMounted || !userCred.user) return;
+        setUser(userCred.user);
+
+        // Public shared collection path per mandatory rules
+        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'appState', 'current');
+
+        unsubscribeDoc = onSnapshot(
+          docRef,
+          (snapshot) => {
+            if (snapshot.exists()) {
+              const data = snapshot.data();
+              if (data) {
+                isRemoteUpdating.current = true;
+                if (data.month !== undefined) setMonth(data.month);
+                if (Array.isArray(data.records)) {
+                  const migrated = data.records.map(migrateRecord);
+                  setRecords(migrated.length ? migrated : [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")]);
+                }
+                setTimeout(() => {
+                  isRemoteUpdating.current = false;
+                }, 100);
+              }
+            } else {
+              // Seed initial document if it doesn't exist
+              const initialRecs = [makeRecord("Gia đình 1"), makeRecord("Gia đình 2")];
+              setRecords(initialRecs);
+              setDoc(docRef, { month, records: initialRecs, updatedAt: Date.now() });
+            }
+            setSaveStatus("saved");
+            setLoading(false);
+          },
+          (error) => {
+            console.error("Cloud sync error:", error);
+            setSaveStatus("offline");
+            setLoading(false);
+          }
+        );
+      } catch (err) {
+        console.error("Auth / Cloud init error:", err);
+        setSaveStatus("offline");
         setLoading(false);
       }
-    })();
+    };
+
+    initAuthAndSync();
+
+    return () => {
+      isMounted = false;
+      if (unsubscribeDoc) unsubscribeDoc();
+    };
   }, []);
 
+  // Debounced Auto-save to Cloud
   useEffect(() => {
-    if (!loadedRef.current) return;
+    if (loading || isRemoteUpdating.current) return;
+
     setSaveStatus("saving");
     if (saveTimer.current) clearTimeout(saveTimer.current);
 
     saveTimer.current = setTimeout(async () => {
       try {
-        const success = await asyncStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ month, records })
-        );
-        setSaveStatus(success ? "saved" : "offline");
+        if (db && auth?.currentUser) {
+          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'appState', 'current');
+          await setDoc(docRef, {
+            month,
+            records,
+            updatedAt: Date.now(),
+            updatedBy: auth.currentUser.uid
+          }, { merge: true });
+          setSaveStatus("saved");
+        } else {
+          await asyncStorage.setItem(STORAGE_KEY, JSON.stringify({ month, records }));
+          setSaveStatus("saved");
+        }
       } catch (e) {
+        console.error("Save error:", e);
         setSaveStatus("offline");
       }
     }, 600);
 
     return () => clearTimeout(saveTimer.current);
-  }, [month, records]);
+  }, [month, records, loading]);
 
   const grandTotal = useMemo(() => {
     return records.reduce((sum, r) => sum + recordTotal(r), 0);
   }, [records]);
+
+  // Backup & Restore handlers
+  const handleBackup = () => {
+    try {
+      const dataStr = JSON.stringify({ month, records, exportedAt: new Date().toISOString() }, null, 2);
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const dateStr = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `sao-luu-du-lieu-quyen-gop-${dateStr}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Đã tải xuống tệp sao lưu dữ liệu!", "success");
+    } catch (err) {
+      showToast("Không thể tạo tệp sao lưu.", "error");
+    }
+  };
+
+  const handleRestoreClick = () => {
+    if (fileInputRef.current) fileInputRef.current.click();
+  };
+
+  const handleFileSelected = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const parsed = JSON.parse(evt.target.result);
+        if (!parsed || !Array.isArray(parsed.records)) {
+          showToast("Tệp sao lưu không hợp lệ.", "error");
+          return;
+        }
+        setModal({
+          open: true,
+          type: "restore",
+          recordId: null,
+          itemId: null,
+          payload: parsed,
+        });
+      } catch (err) {
+        showToast("Lỗi định dạng tệp JSON.", "error");
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = "";
+  };
 
   const updateField = (recordId, field, value) => {
     setRecords((prev) => prev.map((r) => (r.id === recordId ? { ...r, [field]: value } : r)));
@@ -607,6 +755,12 @@ export default function App() {
         )
       );
       showToast("Đã xóa vật phẩm", "info");
+    } else if (modal.type === "restore" && modal.payload) {
+      const recs = Array.isArray(modal.payload.records) ? modal.payload.records : [];
+      const migrated = recs.map(migrateRecord);
+      setMonth(modal.payload.month || month);
+      setRecords(migrated.length ? migrated : records);
+      showToast("Khôi phục dữ liệu thành công! Đang đồng bộ...", "success");
     }
     closeModal();
   };
@@ -635,13 +789,13 @@ export default function App() {
                   Quản Lý Hỗ Trợ Gia Đình
                 </h1>
                 <p className="text-xs text-stone-500 font-medium">
-                  Sổ theo dõi quyên góp, trao tặng sinh kế & vật liệu
+                  Sổ theo dõi quyên góp, trao tặng sinh kế & vật liệu (Đồng bộ thời gian thực)
                 </p>
               </div>
             </div>
 
-            {/* Month Select & Storage Sync Status */}
-            <div className="flex items-center gap-3">
+            {/* Month Select, Backup/Restore & Cloud Sync Status */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <select
                 className="bg-stone-50 text-stone-800 border border-stone-200 font-mono text-xs font-semibold px-3 py-2 rounded-xl focus:outline-none focus:border-amber-500 cursor-pointer shadow-xs"
                 value={month}
@@ -654,7 +808,34 @@ export default function App() {
                 ))}
               </select>
 
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200 font-mono text-[11px] shadow-xs">
+              {/* Backup & Restore Controls */}
+              <input
+                type="file"
+                accept=".json,application/json"
+                ref={fileInputRef}
+                onChange={handleFileSelected}
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={handleBackup}
+                title="Sao lưu dữ liệu ra file JSON"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-700 font-semibold text-xs transition-colors shadow-xs"
+              >
+                <Download className="w-3.5 h-3.5 text-stone-600" />
+                <span>Sao Lưu</span>
+              </button>
+              <button
+                type="button"
+                onClick={handleRestoreClick}
+                title="Khôi phục dữ liệu từ file JSON"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-700 font-semibold text-xs transition-colors shadow-xs"
+              >
+                <Upload className="w-3.5 h-3.5 text-stone-600" />
+                <span>Khôi Phục</span>
+              </button>
+
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-stone-50 border border-stone-200 font-mono text-[11px] shadow-xs">
                 <span
                   className={`w-2 h-2 rounded-full ${
                     saveStatus === "saving"
@@ -668,8 +849,8 @@ export default function App() {
                   {saveStatus === "saving"
                     ? "Đang lưu..."
                     : saveStatus === "offline"
-                    ? "Chưa đồng bộ"
-                    : "Đã lưu cloud"}
+                    ? "Ngoại tuyến"
+                    : "Đã đồng bộ"}
                 </span>
               </div>
             </div>
