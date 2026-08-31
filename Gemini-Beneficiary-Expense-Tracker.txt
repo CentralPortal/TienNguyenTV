@@ -251,7 +251,7 @@ function ItemTable({ items, onToggle, onNameChange, onCostChange, onDeleteItem, 
             <tr className="border-b border-stone-200 text-stone-500 font-semibold uppercase tracking-wider">
               <th className="py-2.5 px-2 w-10 text-center">Chọn</th>
               <th className="py-2.5 px-3 min-w-[200px]">Tên Vật Phẩm</th>
-              <th className="py-2.5 px-3 text-right w-[160px]">Chi Phí (VND)</th>
+              <th className="py-2.5 px-3 text-right w-[160px]">Chi Phí</th>
               <th className="py-2.5 px-2 w-10 text-center">Xóa</th>
             </tr>
           </thead>
@@ -364,7 +364,7 @@ function ItemTable({ items, onToggle, onNameChange, onCostChange, onDeleteItem, 
             </div>
 
             <div className="flex items-center justify-between gap-2 pt-2 border-t border-stone-200/60 text-xs">
-              <span className="text-stone-500 font-medium shrink-0">Chi Phí (VND):</span>
+              <span className="text-stone-500 font-medium shrink-0">Chi Phí:</span>
               <div className="relative flex-1 max-w-[180px]">
                 <input
                   type="text"
@@ -972,4 +972,4 @@ export default function App() {
       <ToastNotification toast={toast} onClose={() => setToast(null)} />
     </div>
   );
-}
+}hhh
